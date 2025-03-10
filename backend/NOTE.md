@@ -18,26 +18,40 @@ Após configurar docker-compose.yml e Dockerfile:
 
 ## Schema prisma
 
-generator client {
-  provider = "prisma-client-js"
-  output = "../generated/prisma_client"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+  output = "../generated/prisma_client"
+}
+
 model Brinquedo {
-  cod            String        @id @default(uuid()) @db.Uuid
-  nome           String        @unique @db.VarChar(255)
-  tipo_bringuedo String        @db.Uuid
-  marca          String        @db.VarChar(255)
-  data_aquisicao DateTime      @db.Date
-  valor_locacao  Decimal       @db.Money
-  tipoBrinquedo  TipoBrinquedo @relation(fields: [tipo_bringuedo], references: [cod])
+  cod              String            @id @default(uuid()) @db.Uuid
+  nome             String            @unique @db.VarChar(255)
+  tipo_brinquedo   String            @db.Uuid
+  marca            String            @db.VarChar(255)
+  data_aquisicao   DateTime          @db.Date
+  valor_locacao    Decimal           @db.Money
+  tipoBrinquedo    TipoBrinquedo     @relation(fields: [tipo_brinquedo], references: [cod])
+  brinquedosLocados BrinquedoLocado[]
 
   @@map("brinquedos")
+}
+
+model BrinquedoLocado {
+  cod            String     @id @default(uuid()) @db.Uuid
+  valor_unitario Decimal    @db.Money
+  nome           String     @db.VarChar(255)
+  cod_locacao    String     @db.Uuid
+  data_devolucao DateTime   @db.Date
+  cod_brinquedo  String     @db.Uuid
+  locacao        Locacao    @relation(fields: [cod_locacao], references: [cod])
+  brinquedo      Brinquedo  @relation(fields: [cod_brinquedo], references: [cod])
+
+  @@map("brinquedos_locados")
 }
 
 model Cliente {
@@ -54,8 +68,9 @@ model Cliente {
 
 enum Funcao {
   GERENTE
-  ANALISTA_LOCACAO
-  ANALISTA_CADASTRO
+  CAIXA
+  AGENTE_LOCACAO
+  AGENTE_CADASTRO
   ALMOXARIFE
 }
 
@@ -63,8 +78,8 @@ model Funcionario {
   cpf      String @id @db.Char(11)
   nome     String @db.VarChar(255)
   telefone String @db.VarChar(11)
-  senha    String @db.VarChar(30)
   funcao   Funcao
+  senha    String @db.VarChar(30)
 
   @@map("funcionarios")
 }
@@ -73,8 +88,6 @@ model Locacao {
   cod               String            @id @default(uuid()) @db.Uuid
   data_hora         DateTime          @default(now()) @db.Date
   cpf_cliente       String            @db.Char(11)
-  valor_item        Decimal           @db.Money
-  data_devolucao    DateTime          @db.Date
   brinquedosLocados BrinquedoLocado[]
   cliente           Cliente           @relation(fields: [cpf_cliente], references: [cpf])
   pagamento         Pagamento?
@@ -100,17 +113,7 @@ model TipoBrinquedo {
   nome       String      @unique @db.VarChar(255)
   brinquedos Brinquedo[]
 
-  @@map("tipo_brinquedo")
-}
-
-model BrinquedoLocado {
-  cod            String   @id @default(uuid()) @db.Uuid
-  valor_unitario Decimal  @db.Money
-  cod_locacao    String   @db.Uuid
-  data_devolucao DateTime @db.Date
-  locacao        Locacao  @relation(fields: [cod_locacao], references: [cod])
-
-  @@map("brinquedos_locados")
+  @@map("tipos_brinquedos")
 }
 
 ##

@@ -37,7 +37,7 @@ const corsOptions: cors.CorsOptions = {
 
 type TServerProtocol = 'https' | 'http'
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || ''
 
 export type TRouteConfig = {

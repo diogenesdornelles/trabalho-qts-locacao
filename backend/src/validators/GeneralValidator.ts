@@ -50,4 +50,16 @@ export default class GeneralValidator {
   public static validateMoney = (value: number): boolean => {
     return Number.isInteger(value * 100)
   }
+
+  public static isValidPwd = (pwd: string): boolean => {
+    // Expressão regular que valida:
+    // - Pelo menos 8 caracteres
+    // - Pelo menos uma letra minúscula
+    // - Pelo menos uma letra maiúscula
+    // - Pelo menos um dígito
+    // - Pelo menos um caractere especial
+    const regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,30}$/
+    return regex.test(pwd)
+  }
 }

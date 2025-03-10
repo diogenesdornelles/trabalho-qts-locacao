@@ -50,6 +50,26 @@ export type Pagamento = $Result.DefaultSelection<Prisma.$PagamentoPayload>
 export type TipoBrinquedo = $Result.DefaultSelection<Prisma.$TipoBrinquedoPayload>
 
 /**
+ * Enums
+ */
+export namespace $Enums {
+  export const Funcao: {
+  GERENTE: 'GERENTE',
+  CAIXA: 'CAIXA',
+  AGENTE_LOCACAO: 'AGENTE_LOCACAO',
+  AGENTE_CADASTRO: 'AGENTE_CADASTRO',
+  ALMOXARIFE: 'ALMOXARIFE'
+};
+
+export type Funcao = (typeof Funcao)[keyof typeof Funcao]
+
+}
+
+export type Funcao = $Enums.Funcao
+
+export const Funcao: typeof $Enums.Funcao
+
+/**
  * ##  Prisma Client ʲˢ
  *
  * Type-safe database client for TypeScript & Node.js
@@ -4904,7 +4924,7 @@ export namespace Prisma {
     cpf: string | null
     nome: string | null
     telefone: string | null
-    funcao: string | null
+    funcao: $Enums.Funcao | null
     senha: string | null
   }
 
@@ -4912,7 +4932,7 @@ export namespace Prisma {
     cpf: string | null
     nome: string | null
     telefone: string | null
-    funcao: string | null
+    funcao: $Enums.Funcao | null
     senha: string | null
   }
 
@@ -5027,7 +5047,7 @@ export namespace Prisma {
     cpf: string
     nome: string
     telefone: string
-    funcao: string
+    funcao: $Enums.Funcao
     senha: string
     _count: FuncionarioCountAggregateOutputType | null
     _min: FuncionarioMinAggregateOutputType | null
@@ -5089,7 +5109,7 @@ export namespace Prisma {
       cpf: string
       nome: string
       telefone: string
-      funcao: string
+      funcao: $Enums.Funcao
       senha: string
     }, ExtArgs["result"]["funcionario"]>
     composites: {}
@@ -5517,7 +5537,7 @@ export namespace Prisma {
     readonly cpf: FieldRef<"Funcionario", 'String'>
     readonly nome: FieldRef<"Funcionario", 'String'>
     readonly telefone: FieldRef<"Funcionario", 'String'>
-    readonly funcao: FieldRef<"Funcionario", 'String'>
+    readonly funcao: FieldRef<"Funcionario", 'Funcao'>
     readonly senha: FieldRef<"Funcionario", 'String'>
   }
     
@@ -9271,6 +9291,20 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Funcao'
+   */
+  export type EnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao'>
+    
+
+
+  /**
+   * Reference to a field of type 'Funcao[]'
+   */
+  export type ListEnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao[]'>
+    
+
+
+  /**
    * Reference to a field of type 'Int'
    */
   export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -9482,7 +9516,7 @@ export namespace Prisma {
     cpf?: StringFilter<"Funcionario"> | string
     nome?: StringFilter<"Funcionario"> | string
     telefone?: StringFilter<"Funcionario"> | string
-    funcao?: StringFilter<"Funcionario"> | string
+    funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringFilter<"Funcionario"> | string
   }
 
@@ -9501,7 +9535,7 @@ export namespace Prisma {
     NOT?: FuncionarioWhereInput | FuncionarioWhereInput[]
     nome?: StringFilter<"Funcionario"> | string
     telefone?: StringFilter<"Funcionario"> | string
-    funcao?: StringFilter<"Funcionario"> | string
+    funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringFilter<"Funcionario"> | string
   }, "cpf">
 
@@ -9523,7 +9557,7 @@ export namespace Prisma {
     cpf?: StringWithAggregatesFilter<"Funcionario"> | string
     nome?: StringWithAggregatesFilter<"Funcionario"> | string
     telefone?: StringWithAggregatesFilter<"Funcionario"> | string
-    funcao?: StringWithAggregatesFilter<"Funcionario"> | string
+    funcao?: EnumFuncaoWithAggregatesFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringWithAggregatesFilter<"Funcionario"> | string
   }
 
@@ -9878,7 +9912,7 @@ export namespace Prisma {
     cpf: string
     nome: string
     telefone: string
-    funcao: string
+    funcao: $Enums.Funcao
     senha: string
   }
 
@@ -9886,7 +9920,7 @@ export namespace Prisma {
     cpf: string
     nome: string
     telefone: string
-    funcao: string
+    funcao: $Enums.Funcao
     senha: string
   }
 
@@ -9894,7 +9928,7 @@ export namespace Prisma {
     cpf?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
-    funcao?: StringFieldUpdateOperationsInput | string
+    funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9902,7 +9936,7 @@ export namespace Prisma {
     cpf?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
-    funcao?: StringFieldUpdateOperationsInput | string
+    funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9910,7 +9944,7 @@ export namespace Prisma {
     cpf: string
     nome: string
     telefone: string
-    funcao: string
+    funcao: $Enums.Funcao
     senha: string
   }
 
@@ -9918,7 +9952,7 @@ export namespace Prisma {
     cpf?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
-    funcao?: StringFieldUpdateOperationsInput | string
+    funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
   }
 
@@ -9926,7 +9960,7 @@ export namespace Prisma {
     cpf?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
     telefone?: StringFieldUpdateOperationsInput | string
-    funcao?: StringFieldUpdateOperationsInput | string
+    funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
   }
 
@@ -10330,6 +10364,13 @@ export namespace Prisma {
     telefone?: SortOrder
   }
 
+  export type EnumFuncaoFilter<$PrismaModel = never> = {
+    equals?: $Enums.Funcao | EnumFuncaoFieldRefInput<$PrismaModel>
+    in?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumFuncaoFilter<$PrismaModel> | $Enums.Funcao
+  }
+
   export type FuncionarioCountOrderByAggregateInput = {
     cpf?: SortOrder
     nome?: SortOrder
@@ -10352,6 +10393,16 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+  }
+
+  export type EnumFuncaoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Funcao | EnumFuncaoFieldRefInput<$PrismaModel>
+    in?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumFuncaoWithAggregatesFilter<$PrismaModel> | $Enums.Funcao
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFuncaoFilter<$PrismaModel>
+    _max?: NestedEnumFuncaoFilter<$PrismaModel>
   }
 
   export type ClienteScalarRelationFilter = {
@@ -10626,6 +10677,10 @@ export namespace Prisma {
     update?: PagamentoUpdateWithWhereUniqueWithoutClienteInput | PagamentoUpdateWithWhereUniqueWithoutClienteInput[]
     updateMany?: PagamentoUpdateManyWithWhereWithoutClienteInput | PagamentoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: PagamentoScalarWhereInput | PagamentoScalarWhereInput[]
+  }
+
+  export type EnumFuncaoFieldUpdateOperationsInput = {
+    set?: $Enums.Funcao
   }
 
   export type BrinquedoLocadoCreateNestedManyWithoutLocacaoInput = {
@@ -10903,6 +10958,23 @@ export namespace Prisma {
     _sum?: NestedDecimalFilter<$PrismaModel>
     _min?: NestedDecimalFilter<$PrismaModel>
     _max?: NestedDecimalFilter<$PrismaModel>
+  }
+
+  export type NestedEnumFuncaoFilter<$PrismaModel = never> = {
+    equals?: $Enums.Funcao | EnumFuncaoFieldRefInput<$PrismaModel>
+    in?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumFuncaoFilter<$PrismaModel> | $Enums.Funcao
+  }
+
+  export type NestedEnumFuncaoWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Funcao | EnumFuncaoFieldRefInput<$PrismaModel>
+    in?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    notIn?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
+    not?: NestedEnumFuncaoWithAggregatesFilter<$PrismaModel> | $Enums.Funcao
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumFuncaoFilter<$PrismaModel>
+    _max?: NestedEnumFuncaoFilter<$PrismaModel>
   }
 
   export type TipoBrinquedoCreateWithoutBrinquedosInput = {

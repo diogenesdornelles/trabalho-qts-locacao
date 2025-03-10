@@ -1,4 +1,4 @@
-import { Router, RequestHandler } from 'express'
+import { RequestHandler } from 'express'
 
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import BrinquedosLocadosController from '../controllers/BrinquedosLocadosController'
@@ -25,6 +25,8 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
 
     this.router.post(
       '/',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAnalistaLocacao,
       GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
       this.controller.create as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -32,6 +34,8 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
 
     this.router.put(
       '/:cod',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAnalistaLocacao,
       GeneralMiddleware.validateUUID,
       this.controller.update as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

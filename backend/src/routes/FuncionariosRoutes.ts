@@ -24,6 +24,8 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
 
     this.router.post(
       '/',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationGerente,
       GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
       this.controller.create as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -31,6 +33,8 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
 
     this.router.put(
       '/:cpf',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationGerente,
       GeneralMiddleware.validateCpf,
       this.controller.update as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

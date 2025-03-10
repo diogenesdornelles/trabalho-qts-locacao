@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "Funcao" AS ENUM ('GERENTE', 'CAIXA', 'AGENTE_LOCACAO', 'AGENTE_CADASTRO', 'ALMOXARIFE');
+
 -- CreateTable
 CREATE TABLE "brinquedos" (
     "cod" UUID NOT NULL,
@@ -38,7 +41,7 @@ CREATE TABLE "funcionarios" (
     "cpf" CHAR(11) NOT NULL,
     "nome" VARCHAR(255) NOT NULL,
     "telefone" VARCHAR(11) NOT NULL,
-    "funcao" VARCHAR(40) NOT NULL,
+    "funcao" "Funcao" NOT NULL,
     "senha" VARCHAR(30) NOT NULL,
 
     CONSTRAINT "funcionarios_pkey" PRIMARY KEY ("cpf")

@@ -24,6 +24,8 @@ export default class TiposBrinquedosRouter extends BaseRouter<TiposBrinquedosCon
 
     this.router.post(
       '/',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAlmoxarife,
       GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
       this.controller.create as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -31,6 +33,8 @@ export default class TiposBrinquedosRouter extends BaseRouter<TiposBrinquedosCon
 
     this.router.put(
       '/:cod',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAlmoxarife,
       GeneralMiddleware.validateUUID,
       this.controller.update as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

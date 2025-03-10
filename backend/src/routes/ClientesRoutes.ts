@@ -24,6 +24,8 @@ export default class ClientesRouter extends BaseRouter<ClientesController> {
 
     this.router.post(
       '/',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAnalistaCadastro,
       GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
       this.controller.create as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -31,6 +33,8 @@ export default class ClientesRouter extends BaseRouter<ClientesController> {
 
     this.router.put(
       '/:cpf',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAnalistaCadastro,
       GeneralMiddleware.validateCpf,
       this.controller.update as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

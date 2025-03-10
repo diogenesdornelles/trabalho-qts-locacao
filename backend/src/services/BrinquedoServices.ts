@@ -48,7 +48,6 @@ export default class BrinquedoServices extends BaseService<Brinquedo> {
 
   public create = async (req: Request): Promise<Brinquedo> => {
     try {
-      
       // Valida os dados recebidos no corpo da requisição
       const validatedData = BrinquedoSchema.parse(req.body)
 

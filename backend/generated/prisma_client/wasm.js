@@ -180,7 +180,13 @@ exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
-
+exports.Funcao = exports.$Enums.Funcao = {
+  GERENTE: 'GERENTE',
+  CAIXA: 'CAIXA',
+  AGENTE_LOCACAO: 'AGENTE_LOCACAO',
+  AGENTE_CADASTRO: 'AGENTE_CADASTRO',
+  ALMOXARIFE: 'ALMOXARIFE'
+};
 
 exports.Prisma.ModelName = {
   Brinquedo: 'Brinquedo',

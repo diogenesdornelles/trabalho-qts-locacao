@@ -14,6 +14,8 @@ const telefoneSchema = z
   .string()
   .regex(/^\d{10,11}$/, 'Telefone deve conter exatamente 10 ou 11 dígitos')
 
+
+const senhaSchema = z.string().min(8).max(30).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,30}$/)
 /* ================================
    Schema para o modelo Brinquedo
    ================================ */
@@ -55,6 +57,7 @@ export const FuncaoEnum = z.enum([
   'ANALISTA_LOCACAO',
   'ANALISTA_CADASTRO',
   'ALMOXARIFE',
+  'CAIXA',
 ])
 export const FuncionarioSchema = z.object({
   cpf: z.string().refine(GeneralValidator.validateCpf, {
@@ -62,7 +65,7 @@ export const FuncionarioSchema = z.object({
   }),
   nome: z.string().max(255),
   telefone: telefoneSchema,
-  senha: z.string().max(30),
+  senha: senhaSchema,
   funcao: FuncaoEnum,
 })
 
@@ -124,4 +127,14 @@ export const TipoBrinquedoSchema = z.object({
   cod: z.string().uuid().optional(), // Gerado automaticamente
   nome: z.string().max(255),
   brinquedos: z.array(BrinquedoSchema).optional(),
+})
+
+/* ======================================
+   Schema para o modelo Login
+   ====================================== */
+export const LoginSchema = z.object({
+  cpf: z.string().refine(GeneralValidator.validateCpf, {
+    message: 'Invalid CPF format. Please provide a valid CPF.',
+  }),
+  senha: senhaSchema,
 })

@@ -52,11 +52,19 @@ model Cliente {
   @@map("clientes")
 }
 
+enum Funcao {
+  GERENTE
+  CAIXA
+  AGENTE_LOCACAO
+  AGENTE_CADASTRO
+  ALMOXARIFE
+}
+
 model Funcionario {
   cpf      String @id @db.Char(11)
   nome     String @db.VarChar(255)
   telefone String @db.VarChar(11)
-  funcao   String @db.VarChar(40)
+  funcao   Funcao
   senha    String @db.VarChar(30)
 
   @@map("funcionarios")

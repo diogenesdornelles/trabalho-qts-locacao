@@ -28,7 +28,6 @@ export default class PagamentosController extends BaseController<PagamentoServic
     try {
       const { cod } = req.params
 
-      
       const pagamento = await this.service.getOne(cod)
       console.log(pagamento)
       if (!pagamento) {

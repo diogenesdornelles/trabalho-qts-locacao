@@ -1,5 +1,9 @@
 import { Request } from 'express'
-import { Funcionario, PrismaClient } from '../../generated/prisma_client'
+import {
+  Funcionario,
+  PrismaClient,
+  Funcao,
+} from '../../generated/prisma_client'
 import { z } from 'zod'
 import { FuncionarioSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
@@ -39,12 +43,18 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
     try {
       // Valida os dados recebidos no corpo da requisição
       const validatedData = FuncionarioSchema.parse(req.body)
-
+      // tornar oculto o pwd no bd
       validatedData.senha = await hashPassword(validatedData.senha)
 
       // Salva o novo funcionário utilizando o método create do Prisma
       const createdFuncionario = await this.prisma.funcionario.create({
-        data: validatedData,
+        data: {
+          cpf: validatedData.cpf,
+          telefone: validatedData.telefone,
+          funcao: validatedData.funcao as Funcao,
+          nome: validatedData.nome,
+          senha: validatedData.senha,
+        },
       })
       return createdFuncionario
     } catch (error: unknown) {

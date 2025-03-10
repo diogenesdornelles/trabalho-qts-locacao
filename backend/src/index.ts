@@ -8,8 +8,10 @@ import TipoBrinquedoRouter from './routes/TiposBrinquedosRoutes'
 import LocacaoRouter from './routes/LocacoesRoutes'
 import ClienteRouter from './routes/ClientesRoutes'
 import PagamentoRouter from './routes/PagamentosRoutes'
+import LoginRouter from './routes/LoginRoutes'
 import { TRouteConfig } from './app'
 import BrinquedoLocadoRouter from './routes/BrinquedosLocadosRoutes'
+
 /**
  * run a app
  *
@@ -42,6 +44,10 @@ const allRoutes: TRouteConfig[] = [
   },
   {
     baseRouter: new PagamentoRouter(),
+    basePath: '/api/pagamentos',
+  },
+  {
+    baseRouter: new LoginRouter(),
     basePath: '/api/pagamentos',
   },
 ]
