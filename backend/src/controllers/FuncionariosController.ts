@@ -15,8 +15,10 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
     try {
       const funcionarios = await this.service.getAll()
       res.status(200).json(funcionarios)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -33,8 +35,10 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
         return
       }
       res.status(200).json(funcionario)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -46,8 +50,10 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
     try {
       const funcionario = await this.service.create(req)
       res.status(201).json(funcionario)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -64,8 +70,10 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
         return
       }
       res.status(200).json(updatedFuncionario)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -82,8 +90,10 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
         return
       }
       res.status(200).json({ message: 'Employee deleted!' })
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 }

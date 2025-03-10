@@ -17,6 +17,7 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -36,6 +37,7 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -50,6 +52,7 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
       return
     } catch (error) {
       next(error)
+      return
     }
   }
   public update = async (

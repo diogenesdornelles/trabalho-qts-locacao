@@ -65,7 +65,7 @@ export default class LocacaoServices extends BaseService<Locacao> {
     try {
       // Valida os dados recebidos no corpo da requisição
       const validatedData = LocacaoSchema.parse(req.body)
-
+      console.log(validatedData)
       // Salva o novo funcionário utilizando o método create do Prisma
       const createdLocacao = await this.prisma.locacao.create({
         data: {

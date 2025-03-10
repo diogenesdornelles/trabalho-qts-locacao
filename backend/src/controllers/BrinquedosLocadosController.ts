@@ -18,6 +18,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -37,6 +38,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -51,6 +53,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -70,6 +73,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -89,6 +93,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 }

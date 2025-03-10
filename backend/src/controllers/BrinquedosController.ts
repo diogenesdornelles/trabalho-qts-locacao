@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import BrinquedoServices from '../services/BrinquedoLocadoServices'
+import BrinquedoServices from '../services/BrinquedoServices'
 import { BaseController } from './BaseController'
 
 export default class BrinquedosController extends BaseController<BrinquedoServices> {
@@ -15,8 +15,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
     try {
       const brinquedos = await this.service.getAll()
       res.status(200).json(brinquedos)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -33,8 +35,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
         return
       }
       res.status(200).json(brinquedo)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -46,8 +50,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
     try {
       const brinquedo = await this.service.create(req)
       res.status(201).json(brinquedo)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -64,8 +70,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
         return
       }
       res.status(200).json(updatedBrinquedo)
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -82,8 +90,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
         return
       }
       res.status(200).json({ message: 'Toy deleted!' })
+      return
     } catch (error) {
       next(error)
+      return
     }
   }
 }

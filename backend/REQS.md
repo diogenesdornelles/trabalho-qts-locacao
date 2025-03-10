@@ -37,7 +37,15 @@
       "marca": "Marca E",
       "data_aquisicao": "2022-05-01",
       "valor_locacao": 18.50
-    }
+    },
+    {
+      "cod": "2cff3c40-cb5f-4d66-820e-c348bec1bbff",
+      "nome": "Cama elástica",
+      "tipo_brinquedo": "29000f7f-bb63-45db-b61c-fd8cc90fc384",
+      "marca": "Marca A",
+      "data_aquisicao": "2022-01-01T00:00:00.000Z",
+      "valor_locacao": "1010.5"
+}
   ],
   "clientes": [
     {
@@ -111,14 +119,26 @@
       "telefone": "0000000000",
       "funcao": "GERENTE",
       "senha": "senha654"
-    }
+    },
+    {
+      "cpf": "00480171084",
+      "nome": "Diogenes",
+      "telefone": "6666666666",
+      "funcao": "GERENTE",
+      "senha": "senha123"
+}
   ],
   "locacoes": [
     { "cpf_cliente": "11111111111" },
     { "cpf_cliente": "22222222222" },
     { "cpf_cliente": "33333333333" },
     { "cpf_cliente": "44444444444" },
-    { "cpf_cliente": "55555555555" }
+    { "cpf_cliente": "55555555555" },
+    {
+      "cod": "666b2be2-c774-4b9f-a49b-cba648059f4e",
+      "data_hora": "2025-03-10T00:00:00.000Z",
+      "cpf_cliente": "00480171084"
+}
   ],
   "pagamentos": [
     {
@@ -150,6 +170,14 @@
       "cod_locacao": "locacao-placeholder-5",
       "valor_pagamento": 18.50,
       "valor_locacao": 18.50
+    },
+    {
+      "cod": "47de1b39-d1ea-4b99-b808-887f3f1c0371",
+      "cpf_cliente": "00480171084",
+      "cod_locacao": "666b2be2-c774-4b9f-a49b-cba648059f4e",
+      "data_pagamento": "2025-03-10T00:00:00.000Z",
+      "valor_pagamento": "1010.5",
+      "valor_locacao": "1010.5"
     }
   ],
   "tiposBrinquedos": [
@@ -194,7 +222,15 @@
       "cod_locacao": "locacao-placeholder-5",
       "cod_brinquedo": "brinquedo-placeholder-5",
       "data_devolucao": "2022-07-05"
-    }
+    },
+    {
+      "cod": "51ab643c-37eb-4c05-8221-0a403e9eb8ef",
+      "valor_unitario": "1010.5",
+      "nome": "Cama elástica",
+      "cod_locacao": "666b2be2-c774-4b9f-a49b-cba648059f4e",
+      "data_devolucao": "2024-07-01T00:00:00.000Z",
+      "cod_brinquedo": "2cff3c40-cb5f-4d66-820e-c348bec1bbff"
+}
   ]
 }
 ```

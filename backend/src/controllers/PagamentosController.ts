@@ -27,7 +27,10 @@ export default class PagamentosController extends BaseController<PagamentoServic
   ): Promise<void> => {
     try {
       const { cod } = req.params
+
+      
       const pagamento = await this.service.getOne(cod)
+      console.log(pagamento)
       if (!pagamento) {
         res.status(404).json({ message: 'Payment not found' })
         return
@@ -36,6 +39,7 @@ export default class PagamentosController extends BaseController<PagamentoServic
       return
     } catch (error) {
       next(error)
+      return
     }
   }
 
@@ -50,6 +54,7 @@ export default class PagamentosController extends BaseController<PagamentoServic
       return
     } catch (error) {
       next(error)
+      return
     }
   }
   public update = async (

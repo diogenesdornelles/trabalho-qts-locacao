@@ -94,6 +94,7 @@ export default class PagamentoServices extends BaseService<Pagamento> {
       delete updateData['cod']
       delete updateData['valor_locacao']
 
+      // Se a cheva de cod de locação é objeto de alteração
       if (validatedData.cod_locacao) {
         const locacaoService = new LocacaoServices()
         validatedData.valor_locacao = await locacaoService.getTotalValue(

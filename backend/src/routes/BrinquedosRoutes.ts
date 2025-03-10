@@ -1,4 +1,4 @@
-import { Router, RequestHandler } from 'express'
+import { RequestHandler } from 'express'
 import BrinquedosController from '../controllers/BrinquedosController'
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import { BaseRouter } from './BaseRouter'

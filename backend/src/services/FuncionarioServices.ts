@@ -3,6 +3,7 @@ import { Funcionario, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { FuncionarioSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import hashPassword from '../utils/hashPwd'
 
 export default class FuncionarioServices extends BaseService<Funcionario> {
   constructor() {
@@ -38,6 +39,8 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
     try {
       // Valida os dados recebidos no corpo da requisição
       const validatedData = FuncionarioSchema.parse(req.body)
+
+      validatedData.senha = await hashPassword(validatedData.senha)
 
       // Salva o novo funcionário utilizando o método create do Prisma
       const createdFuncionario = await this.prisma.funcionario.create({
@@ -81,6 +84,10 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
 
       // Remove o campo 'cpf' caso esteja presente, para evitar atualizar a PK
       delete updateData['cpf']
+
+      if (validatedData.senha) {
+        validatedData.senha = await hashPassword(validatedData.senha)
+      }
 
       // Atualiza o funcionário utilizando o método update do Prisma
       const updatedFuncionario = await this.prisma.funcionario.update({
