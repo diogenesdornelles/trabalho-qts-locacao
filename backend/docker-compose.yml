@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    image: postgres:latest
+    hostname: postgresdb
+    container_name: postgresdb
+    restart: always
+    environment:
+      POSTGRES_DB: locacaotest
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 123456
+    ports:
+      - '5433:5432'
+    networks:
+      - prisma-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 5s
+      timeout: 2s
+      retries: 20
+
+  server:
+    build: 
+      context: .  
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    stdin_open: true
+    tty: true  # Keeps the container running for debugging
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    env_file:
+      # - .env.prod
+      - .env
+    networks:
+      - prisma-network
+networks:
+  prisma-network:
+    name: prisma-network
