@@ -65,7 +65,7 @@ model Funcionario {
   nome     String @db.VarChar(255)
   telefone String @db.VarChar(11)
   funcao   Funcao
-  senha    String @db.VarChar(30)
+  senha    String @db.VarChar(128)
 
   @@map("funcionarios")
 }

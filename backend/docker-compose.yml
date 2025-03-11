@@ -6,10 +6,13 @@ services:
     hostname: postgres_db
     container_name: postgres_db
     restart: always
-    environment:
-      POSTGRES_DB: locacaotest
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 123456
+    # environment:
+    #   POSTGRES_DB: locacaotest
+    #   POSTGRES_USER: postgres
+    #   POSTGRES_PASSWORD: 123456
+    env_file:
+      # .env.prod
+      - .env
     ports:
       - '5433:5432' # porta 5433 no localhost (máquina local) mapeada para a porta 5432 do container (default pg)
     networks:

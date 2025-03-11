@@ -1,4 +1,4 @@
-import { z, ZodObject } from 'zod'
+import { z } from 'zod'
 import GeneralValidator from './GeneralValidator'
 import { dateSchema } from './dateSchema'
 
@@ -14,9 +14,6 @@ export const CreatePagamentoValidator = z
     data_pagamento: dateSchema.optional(), // Default now se não informado
     valor_pagamento: z.number().gte(0).refine(GeneralValidator.validateMoney, {
       message: 'valor_pagamento must be a money float type',
-    }),
-    valor_locacao: z.number().gte(0).refine(GeneralValidator.validateMoney, {
-      message: 'valor_locacao must be a money float type',
     }),
   })
   .strict()

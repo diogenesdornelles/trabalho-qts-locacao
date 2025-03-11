@@ -52,7 +52,11 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
     try {
       const validatedData = CreateBrinquedoLocadoValidator.parse(req.body)
       const brinquedo = await this.service.create(validatedData)
-      res.status(201).json(brinquedo)
+      if (!brinquedo) {
+        res.status(201).json(brinquedo)
+        return
+      } 
+      res.status(404).json({ message: 'Toy not created' })
       return
     } catch (error) {
       next(error)

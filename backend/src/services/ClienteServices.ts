@@ -1,13 +1,9 @@
-import { Request } from 'express'
-import { Cliente, Locacao, PrismaClient } from '../../generated/prisma_client'
+import { PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { ClienteSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
-import { CreateClienteValidator } from '../validators/CreateClienteValidator'
-import { UpdateBrinquedoValidator } from '../validators/UpdateBrinquedoValidator'
-import { ClienteResponseDTO } from '../dtos/ClienteResponseDTO'
-import { CreateClienteDTO } from '../dtos/CreateClienteDTO'
-import { UpdateClienteDTO } from '../dtos/UpdateClienteDTO'
+import { ClienteResponseDTO } from '../dtos/response/ClienteResponseDTO'
+import { CreateClienteDTO } from '../dtos/create/CreateClienteDTO'
+import { UpdateClienteDTO } from '../dtos/update/UpdateClienteDTO'
 
 export default class ClienteServices extends BaseService<
   ClienteResponseDTO,

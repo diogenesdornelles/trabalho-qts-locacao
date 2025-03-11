@@ -48,7 +48,7 @@ const allRoutes: TRouteConfig[] = [
   },
   {
     baseRouter: new LoginRouter(),
-    basePath: '/api/pagamentos',
+    basePath: '/api/login',
   },
 ]
 

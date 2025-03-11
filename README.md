@@ -165,13 +165,18 @@ especificações:
    - **CPF não cadastrado:**
      1. **Sistema** mostra mensagem.
      2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca e mostra os campos para alteração: **nome e telefone**.
+4. **Sistema** busca e mostra os campos para alteração: **nome, telefone, senha e repete senha**.
 5. **Gerente** altera os campos.
 6. **Sistema** valida os campos:
    - **Campos obrigatórios não preenchidos ou incorretos:**
      1. **Sistema** mostra mensagem.
      2. **Sistema** retorna ao passo 3.b.4 do fluxo alternativo.
-7. **Sistema** insere os dados.
+7. **Sistema** mostra seleção *Função*:
+8. **Gerente** escolhe opção:
+   - **Campos obrigatórios não preenchidos ou incorretos:**
+     1. **Sistema** mostra mensagem.
+     2. **Sistema** retorna ao passo 3.a.7 do fluxo alternativo.
+9. **Sistema** insere os dados.
 
 ##### 3.c. Operação Excluir
 
@@ -473,15 +478,16 @@ especificações:
 3. **Caixa** preenche o campo.
 4. **Sistema** valida campo.
 5. **Sistema** mostra nome e cpf do cliente.
-6. **Sistema** mostra listagem com locações em aberto **código único, nomes de brinquedos, valor unitário dos brinquedos e valor total da locação**.
+6. **Sistema** mostra listagem com locações em aberto
 7. **Caixa** seleciona a locação objeto de pagamento.
-8. **Sistema** mostra campo: **Valor do pagamento**.
-9. **Caixa** preenche o campo.
-10. **Sistema** valida o campo.
-11. **Sistema** registra data e hora atual.
-12. **Sistema** registra código único.
-13. **Sistema** salva dados.
-14. **Sistema** mostra mensagem *Operação realizada com sucesso*;
+8. **Sistema** mostra itens da locação: **código único, nomes de brinquedos, valor unitário dos brinquedos e valor total da locação**.
+9. **Sistema** mostra campo: **Valor do pagamento**.
+10. **Caixa** preenche o campo.
+11. **Sistema** valida o campo.
+12. **Sistema** registra data e hora atual.
+13. **Sistema** registra código único.
+14. **Sistema** salva dados.
+15. **Sistema** mostra mensagem *Operação realizada com sucesso*;
 
 ---
 
@@ -524,7 +530,7 @@ especificações:
 
 tabela funcionarios
 
-- cpf(pk), nome, telefone, senha e função (senha para permitir autenticação e autorização) (função é um enum de  GERENTE, ALMOXARIFE, ANALISTA_CADASTRO, ANALISTA_LOCACAO)
+- cpf(pk), nome, telefone, senha e função (senha para permitir autenticação e autorização) (função é um enum de  CAIXA, GERENTE, ALMOXARIFE, ANALISTA_CADASTRO, ANALISTA_LOCACAO)
 
 Um funcionario (gerente) pode cadastrar muitos funcionários.
 
@@ -605,7 +611,7 @@ CREATE TABLE IF NOT EXISTS public.funcionarios
     nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
     telefone character varying(11) COLLATE pg_catalog."default" NOT NULL,
     funcao funcao NOT NULL,
-    senha character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    senha character varying(128) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT pk_cpf_funcionario PRIMARY KEY (cpf)
 );
 
@@ -750,7 +756,7 @@ model Funcionario {
   nome     String @db.VarChar(255)
   telefone String @db.VarChar(11)
   funcao   Funcao
-  senha    String @db.VarChar(30)
+  senha    String @db.VarChar(128)
 
   @@map("funcionarios")
 }

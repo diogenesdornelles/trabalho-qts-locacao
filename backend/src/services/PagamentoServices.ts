@@ -2,9 +2,9 @@ import { Pagamento, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
 import LocacaoServices from './LocacaoServices'
-import { PagamentoResponseDTO } from '../dtos/PagamentoResponseDTO'
-import { CreatePagamentoDTO } from '../dtos/CreatePagamentoDTO'
-import { UpdatePagamentoDTO } from '../dtos/UpdatePagamentoDTO'
+import { PagamentoResponseDTO } from '../dtos/response/PagamentoResponseDTO'
+import { CreatePagamentoDTO } from '../dtos/create/CreatePagamentoDTO'
+import { UpdatePagamentoDTO } from '../dtos/update/UpdatePagamentoDTO'
 
 export default class PagamentoServices extends BaseService<
   PagamentoResponseDTO,
@@ -50,10 +50,11 @@ export default class PagamentoServices extends BaseService<
     try {
       // É preciso atualizar valor total, através da locação e seus respectivos itens locados
       const locacaoService = new LocacaoServices()
-      data.valor_locacao = await locacaoService.getTotalValue(data.cod_locacao)
-
+      const totalValue = await locacaoService.getTotalValue(data.cod_locacao)
       // Salva o novo pagamento utilizando o método create do Prisma
-      const createdPagamento = await this.prisma.pagamento.create({ data })
+      const createdPagamento = await this.prisma.pagamento.create({
+        data: { ...data, valor_locacao: totalValue },
+      })
 
       return createdPagamento
     } catch (error: unknown) {

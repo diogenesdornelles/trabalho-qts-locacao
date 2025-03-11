@@ -1,0 +1,51 @@
+[
+  {
+    "nome": "Cama elástica",
+    "tipo_brinquedo": "uuid-placeholder-1",
+    "marca": "Marca A",
+    "data_aquisicao": "2022-01-01",
+    "valor_locacao": 200.0
+  },
+  {
+    "nome": "Bate-bate",
+    "tipo_brinquedo": "uuid-placeholder-2",
+    "marca": "Marca B",
+    "data_aquisicao": "2022-02-01",
+    "valor_locacao": 150.0
+  },
+  {
+    "nome": "Piscina de bolinhas",
+    "tipo_brinquedo": "uuid-placeholder-3",
+    "marca": "Marca C",
+    "data_aquisicao": "2022-03-01",
+    "valor_locacao": 125.0
+  },
+  {
+    "nome": "Pula-pula",
+    "tipo_brinquedo": "uuid-placeholder-4",
+    "marca": "Marca D",
+    "data_aquisicao": "2022-04-01",
+    "valor_locacao": 150.0
+  },
+  {
+    "nome": "Castelo inflável",
+    "tipo_brinquedo": "uuid-placeholder-5",
+    "marca": "Marca E",
+    "data_aquisicao": "2022-05-01",
+    "valor_locacao": 200.0
+  },
+  {
+    "nome": "Fantasia da Moana",
+    "tipo_brinquedo": "uuid-placeholder-5",
+    "marca": "Marca F",
+    "data_aquisicao": "2023-05-01",
+    "valor_locacao": 50.0
+  },
+  {
+    "nome": "Fantasia do Hulk",
+    "tipo_brinquedo": "uuid-placeholder-5",
+    "marca": "Marca G",
+    "data_aquisicao": "2023-08-27",
+    "valor_locacao": 50.0
+  }
+]

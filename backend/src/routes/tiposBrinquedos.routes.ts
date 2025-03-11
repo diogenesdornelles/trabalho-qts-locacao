@@ -1,4 +1,4 @@
-import { Router, RequestHandler } from 'express'
+import { RequestHandler } from 'express'
 import TiposBrinquedosController from '../controllers/TiposBrinquedosController'
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import { BaseRouter } from './BaseRouter'
@@ -11,12 +11,14 @@ export default class TiposBrinquedosRouter extends BaseRouter<TiposBrinquedosCon
   protected initRoutes(): void {
     this.router.get(
       '/',
+      GeneralMiddleware.authentication,
       this.controller.getAll,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
     )
 
     this.router.get(
       '/:cod',
+      GeneralMiddleware.authentication,
       GeneralMiddleware.validateUUID,
       this.controller.getOne as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

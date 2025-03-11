@@ -1,0 +1,27 @@
+[
+  {
+    "cpf_cliente": "11111111111",
+    "cod_locacao": "locacao-placeholder-1",
+    "valor_pagamento": 400
+  },
+  {
+    "cpf_cliente": "22222222222",
+    "cod_locacao": "locacao-placeholder-2",
+    "valor_pagamento": 300
+  },
+  {
+    "cpf_cliente": "33333333333",
+    "cod_locacao": "locacao-placeholder-3",
+    "valor_pagamento": 350
+  },
+  {
+    "cpf_cliente": "44444444444",
+    "cod_locacao": "locacao-placeholder-4",
+    "valor_pagamento": 400
+  },
+  {
+    "cpf_cliente": "55555555555",
+    "cod_locacao": "locacao-placeholder-5",
+    "valor_pagamento": 300
+  }
+]

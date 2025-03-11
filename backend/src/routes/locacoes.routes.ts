@@ -11,12 +11,14 @@ export default class LocacoesRouter extends BaseRouter<LocacoesController> {
   protected initRoutes(): void {
     this.router.get(
       '/',
+      GeneralMiddleware.authentication,
       this.controller.getAll,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
     )
 
     this.router.get(
       '/:cod',
+      GeneralMiddleware.authentication,
       GeneralMiddleware.validateUUID,
       this.controller.getOne as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

@@ -1,14 +1,13 @@
 import {
-  Funcionario,
   PrismaClient,
   Funcao,
 } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
 import hashPassword from '../utils/hashPwd'
-import { FuncionarioResponseDTO } from '../dtos/FuncionarioResponseDTO'
-import { CreateFuncionarioDTO } from '../dtos/CreateFuncionarioDTO'
-import { UpdateFuncionarioDTO } from '../dtos/UpdateFuncionarioDTO'
+import { FuncionarioResponseDTO } from '../dtos/response/FuncionarioResponseDTO'
+import { CreateFuncionarioDTO } from '../dtos/create/CreateFuncionarioDTO'
+import { UpdateFuncionarioDTO } from '../dtos/update/UpdateFuncionarioDTO'
 
 export default class FuncionarioServices extends BaseService<
   FuncionarioResponseDTO,
@@ -18,9 +17,17 @@ export default class FuncionarioServices extends BaseService<
   constructor() {
     super(new PrismaClient())
   }
-  public getAll = async (): Promise<Funcionario[]> => {
+  public getAll = async (): Promise<FuncionarioResponseDTO[]> => {
     try {
-      return await this.prisma.funcionario.findMany()
+      return await this.prisma.funcionario.findMany({
+        select: {
+          cpf: true,
+          nome: true,
+          telefone: true,
+          funcao: true,
+          senha: false,
+        },
+      })
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error('Error fetching all employees:', error.message)
@@ -36,6 +43,13 @@ export default class FuncionarioServices extends BaseService<
     try {
       return await this.prisma.funcionario.findUnique({
         where: { cpf: pk },
+        select: {
+          cpf: true,
+          nome: true,
+          telefone: true,
+          funcao: true,
+          senha: false,
+        }
       })
     } catch (error: unknown) {
       if (error instanceof Error) {

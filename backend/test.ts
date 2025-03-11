@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { Funcao, PrismaClient } from './generated/prisma_client'
 import { FuncionarioSchema } from './src/schemas/schemas'
+import hashPassword from './src/utils/hashPwd'
 
 const prisma = new PrismaClient()
 
@@ -15,6 +16,8 @@ async function main() {
     }
 
     const validatedData = FuncionarioSchema.parse(data)
+
+    validatedData.senha = await hashPassword(validatedData.senha)
 
     const gerente = await prisma.funcionario.create({
       data: {

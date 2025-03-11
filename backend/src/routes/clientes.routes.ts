@@ -11,12 +11,14 @@ export default class ClientesRouter extends BaseRouter<ClientesController> {
   protected initRoutes(): void {
     this.router.get(
       '/',
+      GeneralMiddleware.authentication,
       this.controller.getAll,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
     )
 
     this.router.get(
       '/:cpf',
+      GeneralMiddleware.authentication,
       GeneralMiddleware.validateCpf,
       this.controller.getOne as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

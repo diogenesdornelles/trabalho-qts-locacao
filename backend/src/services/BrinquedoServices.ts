@@ -1,10 +1,10 @@
 import { PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
-import { BrinquedoResponseComTipoDTO } from '../dtos/BrinquedoResponseComTipoDTO'
-import { BrinquedoResponseDTO } from '../dtos/BrinquedoResponseDTO'
-import { CreateBrinquedoDTO } from '../dtos/CreateBrinquedoDTO'
-import { UpdateBrinquedoDTO } from '../dtos/UpdateBrinquedoDTO'
+import { BrinquedoResponseComTipoDTO } from '../dtos/response/BrinquedoResponseComTipoDTO'
+import { BrinquedoResponseDTO } from '../dtos/response/BrinquedoResponseDTO'
+import { CreateBrinquedoDTO } from '../dtos/create/CreateBrinquedoDTO'
+import { UpdateBrinquedoDTO } from '../dtos/update/UpdateBrinquedoDTO'
 
 export default class BrinquedoServices extends BaseService<
   BrinquedoResponseDTO,

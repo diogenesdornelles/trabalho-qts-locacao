@@ -1,10 +1,10 @@
 import { Locacao, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
-import { LocacaoResponseDTO } from '../dtos/LocacaoResponseDTO'
-import { LocacaoResponseComBrinquedosDTO } from '../dtos/LocacaoResponseComBrinquedosDTO'
-import { CreateLocacaoDTO } from '../dtos/CreateLocacaoDTO'
-import { UpdateLocacaoDTO } from '../dtos/UpdateLocacaoDTO'
+import { LocacaoResponseDTO } from '../dtos/response/LocacaoResponseDTO'
+import { LocacaoResponseComBrinquedosDTO } from '../dtos/response/LocacaoResponseComBrinquedosDTO'
+import { CreateLocacaoDTO } from '../dtos/create/CreateLocacaoDTO'
+import { UpdateLocacaoDTO } from '../dtos/update/UpdateLocacaoDTO'
 
 export default class LocacaoServices extends BaseService<
   LocacaoResponseDTO,

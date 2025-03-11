@@ -1,0 +1,27 @@
+[
+  {
+    "cod_locacao": "locacao-placeholder-1",
+    "cod_brinquedo": "brinquedo-placeholder-1",
+    "data_devolucao": "2022-07-01"
+  },
+  {
+    "cod_locacao": "locacao-placeholder-2",
+    "cod_brinquedo": "brinquedo-placeholder-2",
+    "data_devolucao": "2022-07-02"
+  },
+  {
+    "cod_locacao": "locacao-placeholder-3",
+    "cod_brinquedo": "brinquedo-placeholder-3",
+    "data_devolucao": "2022-07-03"
+  },
+  {
+    "cod_locacao": "locacao-placeholder-4",
+    "cod_brinquedo": "brinquedo-placeholder-4",
+    "data_devolucao": "2022-07-04"
+  },
+  {
+    "cod_locacao": "locacao-placeholder-5",
+    "cod_brinquedo": "brinquedo-placeholder-5",
+    "data_devolucao": "2022-07-05"
+  }
+]

@@ -200,9 +200,9 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ) => {
     const { token } = req as CustomRequest
-    // Verifica se há token e se a função é "ANALISTA_LOCACAO"
+    // Verifica se há token e se a função é "CAIXA"
     if (!token || token.funcao !== FuncaoEnum.Values.CAIXA) {
-      res.status(403).json({ message: 'Access denied: analista locacao only' })
+      res.status(403).json({ message: 'Access denied: caixa only' })
       return
     }
     next()

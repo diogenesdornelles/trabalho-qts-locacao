@@ -42,7 +42,11 @@ const HOST = process.env.HOST || ''
 
 export type TRouteConfig = {
   basePath: string
-  baseRouter: BaseRouter<BaseController<BaseService<Record<string, any>, Record<string, any>, Record<string, any>>>>
+  baseRouter: BaseRouter<
+    BaseController<
+      BaseService<Record<string, any>, Record<string, any>, Record<string, any>>
+    >
+  >
 }
 
 class App {

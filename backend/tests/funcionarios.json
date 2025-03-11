@@ -1,0 +1,44 @@
+[
+  {
+    "cpf": "66666666666",
+    "nome": "Jose",
+    "telefone": "6666666666",
+    "funcao": "GERENTE",
+    "senha": "#123ABCabd"
+  },
+  {
+    "cpf": "00480171084",
+    "nome": "Diogenes",
+    "telefone": "1199111111",
+    "funcao": "CAIXA",
+    "senha": "#123ABCabd"
+  },
+  {
+    "cpf": "77777777777",
+    "nome": "Mario",
+    "telefone": "7777777777",
+    "funcao": "ALMOXARIFE",
+    "senha": "senha456"
+  },
+  {
+    "cpf": "Claudir",
+    "nome": "Funcionario 3",
+    "telefone": "8888888888",
+    "funcao": "ANALISTA_CADASTRO",
+    "senha": "senha789"
+  },
+  {
+    "cpf": "Estevao",
+    "nome": "Funcionario 4",
+    "telefone": "9999999999",
+    "funcao": "ANALISTA_LOCACAO",
+    "senha": "senha321"
+  },
+  {
+    "cpf": "kauan",
+    "nome": "Funcionario 5",
+    "telefone": "0000000000",
+    "funcao": "GERENTE",
+    "senha": "senha654"
+  }
+]

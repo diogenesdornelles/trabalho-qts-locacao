@@ -11,12 +11,14 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
   protected initRoutes(): void {
     this.router.get(
       '/',
+      GeneralMiddleware.authentication,
       this.controller.getAll,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
     )
 
     this.router.get(
       '/:cpf',
+      GeneralMiddleware.authentication,
       GeneralMiddleware.validateCpf,
       this.controller.getOne as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -42,6 +44,8 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
 
     this.router.delete(
       '/:cpf',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationGerente,
       GeneralMiddleware.validateCpf,
       this.controller.delete as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,

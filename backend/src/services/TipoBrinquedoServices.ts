@@ -1,9 +1,9 @@
 import { TipoBrinquedo, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
-import { TipoBrinquedoResponseDTO } from '../dtos/TipoBrinquedoResponseDTO'
-import { CreateTipoBrinquedoDTO } from '../dtos/CreateTipoBrinquedoDTO'
-import { UpdateTipoBrinquedoDTO } from '../dtos/UpdateTipoBrinquedoDTO'
+import { TipoBrinquedoResponseDTO } from '../dtos/response/TipoBrinquedoResponseDTO'
+import { CreateTipoBrinquedoDTO } from '../dtos/create/CreateTipoBrinquedoDTO'
+import { UpdateTipoBrinquedoDTO } from '../dtos/update/UpdateTipoBrinquedoDTO'
 
 export default class TipoBrinquedoServices extends BaseService<
   TipoBrinquedoResponseDTO,

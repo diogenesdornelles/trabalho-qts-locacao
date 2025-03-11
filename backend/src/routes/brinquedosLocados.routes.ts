@@ -12,12 +12,14 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
   protected initRoutes(): void {
     this.router.get(
       '/',
+      GeneralMiddleware.authentication,
       this.controller.getAll,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
     )
 
     this.router.get(
       '/:cod',
+      GeneralMiddleware.authentication,
       GeneralMiddleware.validateUUID,
       this.controller.getOne as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
@@ -43,6 +45,8 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
 
     this.router.delete(
       '/:cod',
+      GeneralMiddleware.authentication,
+      GeneralMiddleware.authorizationAnalistaLocacao,
       GeneralMiddleware.validateUUID,
       this.controller.delete as unknown as RequestHandler,
       GeneralMiddleware.errorHandler as unknown as RequestHandler,
