@@ -1,25 +1,27 @@
-import { Request } from 'express'
-import {
-  Brinquedo,
-  PrismaClient,
-  TipoBrinquedo,
-} from '../../generated/prisma_client'
+import { PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { BrinquedoSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import { BrinquedoResponseComTipoDTO } from '../dtos/BrinquedoResponseComTipoDTO'
+import { BrinquedoResponseDTO } from '../dtos/BrinquedoResponseDTO'
+import { CreateBrinquedoDTO } from '../dtos/CreateBrinquedoDTO'
+import { UpdateBrinquedoDTO } from '../dtos/UpdateBrinquedoDTO'
 
-type BrinquedoComTipo = Brinquedo & {
-  tipoBrinquedo: TipoBrinquedo
-}
-
-export default class BrinquedoServices extends BaseService<Brinquedo> {
+export default class BrinquedoServices extends BaseService<
+  BrinquedoResponseDTO,
+  CreateBrinquedoDTO,
+  UpdateBrinquedoDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
 
-  public getAll = async (): Promise<Brinquedo[]> => {
+  public getAll = async (): Promise<BrinquedoResponseComTipoDTO[]> => {
     try {
-      return await this.prisma.brinquedo.findMany()
+      return await this.prisma.brinquedo.findMany({
+        include: {
+          tipoBrinquedo: true,
+        },
+      })
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error('Error fetching all toys:', error.message)
@@ -29,7 +31,9 @@ export default class BrinquedoServices extends BaseService<Brinquedo> {
     }
   }
 
-  public getOne = async (pk: string): Promise<BrinquedoComTipo | null> => {
+  public getOne = async (
+    pk: string,
+  ): Promise<BrinquedoResponseComTipoDTO | null> => {
     try {
       return await this.prisma.brinquedo.findUnique({
         where: { cod: pk },
@@ -46,15 +50,12 @@ export default class BrinquedoServices extends BaseService<Brinquedo> {
     }
   }
 
-  public create = async (req: Request): Promise<Brinquedo> => {
+  public create = async (
+    data: CreateBrinquedoDTO,
+  ): Promise<BrinquedoResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = BrinquedoSchema.parse(req.body)
-
       // Salva o novo brinquedo utilizando o método create do Prisma
-      const createdBrinquedo = await this.prisma.brinquedo.create({
-        data: validatedData,
-      })
+      const createdBrinquedo = await this.prisma.brinquedo.create({ data })
       return createdBrinquedo
     } catch (error: unknown) {
       // Trata erros de validação do Zod
@@ -75,29 +76,12 @@ export default class BrinquedoServices extends BaseService<Brinquedo> {
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<Brinquedo>> => {
+    data: UpdateBrinquedoDTO,
+  ): Promise<Partial<BrinquedoResponseDTO>> => {
     try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = BrinquedoSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cpf' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cod']
-
-      // Atualiza o brinquedo utilizando o método update do Prisma
       const updatedBrinquedo = await this.prisma.brinquedo.update({
         where: { cod: pk },
-        data: updateData,
+        data,
       })
 
       return updatedBrinquedo

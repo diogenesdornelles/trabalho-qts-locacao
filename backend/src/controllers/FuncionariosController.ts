@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import FuncionarioServices from '../services/FuncionarioServices'
 import { BaseController } from './BaseController'
+import { CreateFuncionarioValidator } from '../validators/CreateFuncionarioValidator'
+import { UpdateFuncionarioValidator } from '../validators/UpdateFuncionarioValidator'
 
 export default class FuncionariosController extends BaseController<FuncionarioServices> {
   constructor() {
@@ -48,7 +50,8 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const funcionario = await this.service.create(req)
+      const validatedData = CreateFuncionarioValidator.parse(req.body)
+      const funcionario = await this.service.create(validatedData)
       res.status(201).json(funcionario)
       return
     } catch (error) {
@@ -64,7 +67,9 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
   ): Promise<void> => {
     try {
       const { cpf } = req.params
-      const updatedFuncionario = await this.service.update(cpf, req)
+
+      const validatedData = UpdateFuncionarioValidator.parse(req.body)
+      const updatedFuncionario = await this.service.update(cpf, validatedData)
       if (!updatedFuncionario) {
         res.status(404).json({ message: 'Employee not found' })
         return

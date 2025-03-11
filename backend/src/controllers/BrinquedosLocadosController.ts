@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import BrinquedoLocadoServices from '../services/BrinquedoLocadoServices'
 import { BaseController } from './BaseController'
+import { CreateBrinquedoLocadoValidator } from '../validators/CreateBrinquedoLocadoValidator'
+import { UpdateBrinquedoLocadoValidator } from '../validators/UpdateBrinquedoLocadoValidator'
 
 export default class BrinquedosLocadosController extends BaseController<BrinquedoLocadoServices> {
   constructor() {
@@ -48,7 +50,8 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const brinquedo = await this.service.create(req)
+      const validatedData = CreateBrinquedoLocadoValidator.parse(req.body)
+      const brinquedo = await this.service.create(validatedData)
       res.status(201).json(brinquedo)
       return
     } catch (error) {
@@ -64,7 +67,8 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const updatedBrinquedo = await this.service.update(cod, req)
+      const validatedData = UpdateBrinquedoLocadoValidator.parse(req.body)
+      const updatedBrinquedo = await this.service.update(cod, validatedData)
       if (!updatedBrinquedo) {
         res.status(404).json({ message: 'Toy not found' })
         return

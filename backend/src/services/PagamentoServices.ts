@@ -1,11 +1,16 @@
-import { Request } from 'express'
 import { Pagamento, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { PagamentoSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
 import LocacaoServices from './LocacaoServices'
+import { PagamentoResponseDTO } from '../dtos/PagamentoResponseDTO'
+import { CreatePagamentoDTO } from '../dtos/CreatePagamentoDTO'
+import { UpdatePagamentoDTO } from '../dtos/UpdatePagamentoDTO'
 
-export default class PagamentoServices extends BaseService<Pagamento> {
+export default class PagamentoServices extends BaseService<
+  PagamentoResponseDTO,
+  CreatePagamentoDTO,
+  UpdatePagamentoDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
@@ -22,7 +27,7 @@ export default class PagamentoServices extends BaseService<Pagamento> {
     }
   }
 
-  public getOne = async (pk: string): Promise<Pagamento | null> => {
+  public getOne = async (pk: string): Promise<PagamentoResponseDTO | null> => {
     try {
       return await this.prisma.pagamento.findUnique({
         where: { cod: pk },
@@ -39,20 +44,16 @@ export default class PagamentoServices extends BaseService<Pagamento> {
     }
   }
 
-  public create = async (req: Request): Promise<Pagamento> => {
+  public create = async (
+    data: CreatePagamentoDTO,
+  ): Promise<PagamentoResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = PagamentoSchema.parse(req.body)
       // É preciso atualizar valor total, através da locação e seus respectivos itens locados
       const locacaoService = new LocacaoServices()
-      validatedData.valor_locacao = await locacaoService.getTotalValue(
-        validatedData.cod_locacao,
-      )
+      data.valor_locacao = await locacaoService.getTotalValue(data.cod_locacao)
 
       // Salva o novo pagamento utilizando o método create do Prisma
-      const createdPagamento = await this.prisma.pagamento.create({
-        data: validatedData,
-      })
+      const createdPagamento = await this.prisma.pagamento.create({ data })
 
       return createdPagamento
     } catch (error: unknown) {
@@ -74,66 +75,12 @@ export default class PagamentoServices extends BaseService<Pagamento> {
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<Pagamento>> => {
-    try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = PagamentoSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cod' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cod']
-      delete updateData['valor_locacao']
-
-      // Se a cheva de cod de locação é objeto de alteração
-      if (validatedData.cod_locacao) {
-        const locacaoService = new LocacaoServices()
-        validatedData.valor_locacao = await locacaoService.getTotalValue(
-          validatedData.cod_locacao,
-        )
-      }
-
-      // É preciso atualizar valor total, através da locação e seus respectivos itens locados
-
-      // Atualiza o pagamento utilizando o método update do Prisma
-      const updatedPagamento = await this.prisma.pagamento.update({
-        where: { cod: pk },
-        data: updateData,
-      })
-
-      return updatedPagamento
-    } catch (error: unknown) {
-      if (error instanceof z.ZodError) {
-        console.error('Validation error on update payment:', error.errors)
-        throw new Error(
-          `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
-        )
-      }
-      if (error instanceof Error) {
-        console.error('Database error on update payment:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while updating payment.')
-    }
+    data: UpdatePagamentoDTO,
+  ): Promise<PagamentoResponseDTO> => {
+    throw new Error('Method not implemented.')
   }
 
   public delete = async (pk: string): Promise<boolean> => {
-    try {
-      await this.prisma.pagamento.delete({
-        where: { cod: pk },
-      })
-      return true
-    } catch (error: unknown) {
-      return false
-    }
+    throw new Error('Method not implemented.')
   }
 }

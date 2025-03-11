@@ -1,10 +1,15 @@
-import { Request } from 'express'
 import { TipoBrinquedo, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { TipoBrinquedoSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import { TipoBrinquedoResponseDTO } from '../dtos/TipoBrinquedoResponseDTO'
+import { CreateTipoBrinquedoDTO } from '../dtos/CreateTipoBrinquedoDTO'
+import { UpdateTipoBrinquedoDTO } from '../dtos/UpdateTipoBrinquedoDTO'
 
-export default class TipoBrinquedoServices extends BaseService<TipoBrinquedo> {
+export default class TipoBrinquedoServices extends BaseService<
+  TipoBrinquedoResponseDTO,
+  CreateTipoBrinquedoDTO,
+  UpdateTipoBrinquedoDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
@@ -21,7 +26,9 @@ export default class TipoBrinquedoServices extends BaseService<TipoBrinquedo> {
     }
   }
 
-  public getOne = async (pk: string): Promise<TipoBrinquedo | null> => {
+  public getOne = async (
+    pk: string,
+  ): Promise<TipoBrinquedoResponseDTO | null> => {
     try {
       return await this.prisma.tipoBrinquedo.findUnique({
         where: { cod: pk },
@@ -35,16 +42,12 @@ export default class TipoBrinquedoServices extends BaseService<TipoBrinquedo> {
     }
   }
 
-  public create = async (req: Request): Promise<TipoBrinquedo> => {
+  public create = async (
+    data: CreateTipoBrinquedoDTO,
+  ): Promise<TipoBrinquedoResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = TipoBrinquedoSchema.parse(req.body)
-
-      // Salva o novo tipo brinquedo utilizando o método create do Prisma
       const createdTipoBrinquedo = await this.prisma.tipoBrinquedo.create({
-        data: {
-          nome: validatedData.nome,
-        },
+        data,
       })
       return createdTipoBrinquedo
     } catch (error: unknown) {
@@ -66,29 +69,13 @@ export default class TipoBrinquedoServices extends BaseService<TipoBrinquedo> {
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<TipoBrinquedo>> => {
+    data: UpdateTipoBrinquedoDTO,
+  ): Promise<Partial<TipoBrinquedoResponseDTO>> => {
     try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = TipoBrinquedoSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cpf' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cod']
-
       // Atualiza o tipo brinquedo utilizando o método update do Prisma
       const updatedTipoBrinquedo = await this.prisma.tipoBrinquedo.update({
         where: { cod: pk },
-        data: updateData,
+        data,
       })
 
       return updatedTipoBrinquedo

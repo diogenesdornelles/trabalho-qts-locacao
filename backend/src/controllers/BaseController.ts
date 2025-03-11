@@ -2,7 +2,11 @@ import { Request, Response, NextFunction } from 'express'
 import { BaseService } from '../services/BaseService'
 
 export abstract class BaseController<
-  T extends BaseService<Record<string, any>>,
+  T extends BaseService<
+    Record<string, any>,
+    Record<string, any>,
+    Record<string, any>
+  >,
 > {
   public service: T
   constructor(service: T) {

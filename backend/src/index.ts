@@ -2,15 +2,15 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 import App from './app'
-import FuncionarioRouter from './routes/FuncionariosRoutes'
-import BrinquedoRouter from './routes/BrinquedosRoutes'
-import TipoBrinquedoRouter from './routes/TiposBrinquedosRoutes'
-import LocacaoRouter from './routes/LocacoesRoutes'
-import ClienteRouter from './routes/ClientesRoutes'
-import PagamentoRouter from './routes/PagamentosRoutes'
-import LoginRouter from './routes/LoginRoutes'
+import FuncionarioRouter from './routes/funcionarios.routes'
+import BrinquedoRouter from './routes/brinquedos.routes'
+import TipoBrinquedoRouter from './routes/tiposBrinquedos.routes'
+import LocacaoRouter from './routes/locacoes.routes'
+import ClienteRouter from './routes/clientes.routes'
+import PagamentoRouter from './routes/pagamentos.routes'
+import LoginRouter from './routes/login.routes'
 import { TRouteConfig } from './app'
-import BrinquedoLocadoRouter from './routes/BrinquedosLocadosRoutes'
+import BrinquedoLocadoRouter from './routes/brinquedosLocados.routes'
 
 /**
  * run a app

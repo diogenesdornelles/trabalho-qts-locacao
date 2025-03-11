@@ -1,15 +1,21 @@
-import { Request } from 'express'
-import { BrinquedoLocado, PrismaClient } from '../../generated/prisma_client'
+import { PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { BrinquedoLocadoSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import { BrinquedoLocadoResponseDTO } from '../dtos/BrinquedoLocadoResponseDTO'
+import { UpdateBrinquedoDTO } from '../dtos/UpdateBrinquedoDTO'
+import { CreateBrinquedoLocadoDTO } from '../dtos/CreateBrinquedoLocadoDTO'
+import { UpdateBrinquedoLocadoDTO } from '../dtos/UpdateBrinquedoLocadoDTO'
 
-export default class BrinquedoLocadoServices extends BaseService<BrinquedoLocado> {
+export default class BrinquedoLocadoServices extends BaseService<
+  BrinquedoLocadoResponseDTO,
+  CreateBrinquedoLocadoDTO,
+  UpdateBrinquedoLocadoDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
 
-  public getAll = async (): Promise<BrinquedoLocado[]> => {
+  public getAll = async (): Promise<BrinquedoLocadoResponseDTO[]> => {
     try {
       return await this.prisma.brinquedoLocado.findMany()
     } catch (error: unknown) {
@@ -21,7 +27,9 @@ export default class BrinquedoLocadoServices extends BaseService<BrinquedoLocado
     }
   }
 
-  public getOne = async (pk: string): Promise<BrinquedoLocado | null> => {
+  public getOne = async (
+    pk: string,
+  ): Promise<BrinquedoLocadoResponseDTO | null> => {
     try {
       return await this.prisma.brinquedoLocado.findUnique({
         where: { cod: pk },
@@ -35,14 +43,13 @@ export default class BrinquedoLocadoServices extends BaseService<BrinquedoLocado
     }
   }
 
-  public create = async (req: Request): Promise<BrinquedoLocado> => {
+  public create = async (
+    data: CreateBrinquedoLocadoDTO,
+  ): Promise<BrinquedoLocadoResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = BrinquedoLocadoSchema.parse(req.body)
-
       // Salva o novo brinquedo locado utilizando o método create do Prisma
       const createdBrinquedoLocado = await this.prisma.brinquedoLocado.create({
-        data: validatedData,
+        data,
       })
       return createdBrinquedoLocado
     } catch (error: unknown) {
@@ -64,29 +71,13 @@ export default class BrinquedoLocadoServices extends BaseService<BrinquedoLocado
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<BrinquedoLocado>> => {
+    data: UpdateBrinquedoDTO,
+  ): Promise<Partial<BrinquedoLocadoResponseDTO>> => {
     try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = BrinquedoLocadoSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cod' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cod']
-
       // Atualiza o brinquedo locado utilizando o método update do Prisma
       const updatedBrinquedoLocado = await this.prisma.brinquedoLocado.update({
         where: { cod: pk },
-        data: updateData,
+        data,
       })
 
       return updatedBrinquedoLocado

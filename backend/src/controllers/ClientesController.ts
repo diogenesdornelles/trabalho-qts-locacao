@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import ClienteServices from '../services/ClienteServices'
 import { BaseController } from './BaseController'
+import { CreateClienteValidator } from '../validators/CreateClienteValidator'
+import { UpdateBrinquedoValidator } from '../validators/UpdateBrinquedoValidator'
 
 export default class ClientesController extends BaseController<ClienteServices> {
   constructor() {
@@ -48,7 +50,8 @@ export default class ClientesController extends BaseController<ClienteServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const cliente = await this.service.create(req)
+      const validatedData = CreateClienteValidator.parse(req.body)
+      const cliente = await this.service.create(validatedData)
       res.status(201).json(cliente)
       return
     } catch (error) {
@@ -64,7 +67,8 @@ export default class ClientesController extends BaseController<ClienteServices> 
   ): Promise<void> => {
     try {
       const { cpf } = req.params
-      const updatedCliente = await this.service.update(cpf, req)
+      const validatedData = UpdateBrinquedoValidator.parse(req.body)
+      const updatedCliente = await this.service.update(cpf, validatedData)
       if (!updatedCliente) {
         res.status(404).json({ message: 'Customer not found' })
         return

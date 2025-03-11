@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import TipoBrinquedoServices from '../services/TipoBrinquedoServices'
 import { BaseController } from './BaseController'
+import { CreateTipoBrinquedoValidator } from '../validators/CreateTipoBrinquedoValidator'
+import { UpdateTipoBrinquedoValidator } from '../validators/UpdateTipoBrinquedoValidator'
 
 export default class TiposBrinquedosController extends BaseController<TipoBrinquedoServices> {
   constructor() {
@@ -47,7 +49,8 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const tipo = await this.service.create(req)
+      const validatedData = CreateTipoBrinquedoValidator.parse(req.body)
+      const tipo = await this.service.create(validatedData)
       res.status(201).json(tipo)
       return
     } catch (error) {
@@ -63,7 +66,8 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const updatedTipo = await this.service.update(cod, req)
+      const validatedData = UpdateTipoBrinquedoValidator.parse(req.body)
+      const updatedTipo = await this.service.update(cod, validatedData)
       if (!updatedTipo) {
         res.status(404).json({ message: 'Type toy not found' })
         return

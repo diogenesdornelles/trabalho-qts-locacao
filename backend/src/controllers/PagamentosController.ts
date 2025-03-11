@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import PagamentoServices from '../services/PagamentoServices'
 import { BaseController } from './BaseController'
+import { PagamentoSchema } from '../schemas/schemas'
 
 export default class PagamentosController extends BaseController<PagamentoServices> {
   constructor() {
@@ -48,7 +49,8 @@ export default class PagamentosController extends BaseController<PagamentoServic
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const locacao = await this.service.create(req)
+      const validatedData = PagamentoSchema.parse(req.body)
+      const locacao = await this.service.create(validatedData)
       res.status(201).json(locacao)
       return
     } catch (error) {

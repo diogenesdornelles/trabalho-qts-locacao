@@ -3,16 +3,21 @@ import { Cliente, Locacao, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { ClienteSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import { CreateClienteValidator } from '../validators/CreateClienteValidator'
+import { UpdateBrinquedoValidator } from '../validators/UpdateBrinquedoValidator'
+import { ClienteResponseDTO } from '../dtos/ClienteResponseDTO'
+import { CreateClienteDTO } from '../dtos/CreateClienteDTO'
+import { UpdateClienteDTO } from '../dtos/UpdateClienteDTO'
 
-type ClienteComLocacoes = Cliente & {
-  locacoes: Locacao[]
-}
-
-export default class ClienteServices extends BaseService<Cliente> {
+export default class ClienteServices extends BaseService<
+  ClienteResponseDTO,
+  CreateClienteDTO,
+  UpdateClienteDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
-  public getAll = async (): Promise<Cliente[]> => {
+  public getAll = async (): Promise<ClienteResponseDTO[]> => {
     try {
       // Encontra todos os clientes
       return await this.prisma.cliente.findMany()
@@ -25,13 +30,10 @@ export default class ClienteServices extends BaseService<Cliente> {
     }
   }
 
-  public getOne = async (pk: string): Promise<ClienteComLocacoes | null> => {
+  public getOne = async (pk: string): Promise<ClienteResponseDTO | null> => {
     try {
       return await this.prisma.cliente.findUnique({
         where: { cpf: pk },
-        include: {
-          locacoes: true, // consulta populada: nome usaso no prisma schema
-        },
       })
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -42,23 +44,11 @@ export default class ClienteServices extends BaseService<Cliente> {
     }
   }
 
-  public create = async (req: Request): Promise<Cliente> => {
+  public create = async (
+    data: CreateClienteDTO,
+  ): Promise<ClienteResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = ClienteSchema.parse(req.body)
-
-      // pk = cpf não é opcional
-
-      // Salva o novo cliente utilizando o método create do Prisma
-      const createdCliente = await this.prisma.cliente.create({
-        data: {
-          cpf: validatedData.cpf,
-          nome: validatedData.nome,
-          telefone: validatedData.telefone,
-          endereco: validatedData.endereco,
-          data_nascimento: validatedData.data_nascimento,
-        },
-      })
+      const createdCliente = await this.prisma.cliente.create({ data })
       return createdCliente
     } catch (error: unknown) {
       // Trata erros de validação do Zod
@@ -79,29 +69,12 @@ export default class ClienteServices extends BaseService<Cliente> {
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<Cliente>> => {
+    data: UpdateClienteDTO,
+  ): Promise<Partial<ClienteResponseDTO>> => {
     try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = ClienteSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cpf' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cpf']
-
-      // Atualiza o cliente utilizando o método update do Prisma
       const updatedCliente = await this.prisma.cliente.update({
         where: { cpf: pk },
-        data: updateData,
+        data,
       })
 
       return updatedCliente

@@ -1,18 +1,16 @@
-import { Request } from 'express'
-import {
-  BrinquedoLocado,
-  Locacao,
-  PrismaClient,
-} from '../../generated/prisma_client'
+import { Locacao, PrismaClient } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { LocacaoSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
+import { LocacaoResponseDTO } from '../dtos/LocacaoResponseDTO'
+import { LocacaoResponseComBrinquedosDTO } from '../dtos/LocacaoResponseComBrinquedosDTO'
+import { CreateLocacaoDTO } from '../dtos/CreateLocacaoDTO'
+import { UpdateLocacaoDTO } from '../dtos/UpdateLocacaoDTO'
 
-type LocacaoComBrinquedos = Locacao & {
-  brinquedosLocados: BrinquedoLocado[]
-}
-
-export default class LocacaoServices extends BaseService<Locacao> {
+export default class LocacaoServices extends BaseService<
+  LocacaoResponseDTO,
+  CreateLocacaoDTO,
+  UpdateLocacaoDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
@@ -44,7 +42,9 @@ export default class LocacaoServices extends BaseService<Locacao> {
     return totalValorUnitario
   }
 
-  public getOne = async (pk: string): Promise<LocacaoComBrinquedos | null> => {
+  public getOne = async (
+    pk: string,
+  ): Promise<LocacaoResponseComBrinquedosDTO | null> => {
     try {
       return await this.prisma.locacao.findUnique({
         where: { cod: pk },
@@ -61,17 +61,11 @@ export default class LocacaoServices extends BaseService<Locacao> {
     }
   }
 
-  public create = async (req: Request): Promise<Locacao> => {
+  public create = async (
+    data: CreateLocacaoDTO,
+  ): Promise<LocacaoResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = LocacaoSchema.parse(req.body)
-      console.log(validatedData)
-      // Salva o novo funcionário utilizando o método create do Prisma
-      const createdLocacao = await this.prisma.locacao.create({
-        data: {
-          cpf_cliente: validatedData.cpf_cliente,
-        },
-      })
+      const createdLocacao = await this.prisma.locacao.create({ data })
       return createdLocacao
     } catch (error: unknown) {
       // Trata erros de validação do Zod
@@ -90,53 +84,14 @@ export default class LocacaoServices extends BaseService<Locacao> {
     }
   }
 
-  public update = async (pk: string, req: Request): Promise<Locacao> => {
-    try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = LocacaoSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove cod (pk) se houver, para evitar update
-      delete updateData['cod']
-
-      // Atualiza o funcionário utilizando o método update do Prisma
-      const updatedLocacao = await this.prisma.locacao.update({
-        where: { cod: pk },
-        data: updateData,
-      })
-      return updatedLocacao
-    } catch (error: unknown) {
-      if (error instanceof z.ZodError) {
-        console.error('Validation error on update rental:', error.errors)
-        throw new Error(
-          `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
-        )
-      }
-      if (error instanceof Error) {
-        console.error('Database error on update rental:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while updating rental.')
-    }
+  public update = async (
+    pk: string,
+    data: UpdateLocacaoDTO,
+  ): Promise<LocacaoResponseDTO> => {
+    throw new Error('Method not implemented.')
   }
 
   public delete = async (pk: string): Promise<boolean> => {
-    try {
-      await this.prisma.locacao.delete({
-        where: { cod: pk },
-      })
-      return true
-    } catch (error: unknown) {
-      return false
-    }
+    throw new Error('Method not implemented.')
   }
 }

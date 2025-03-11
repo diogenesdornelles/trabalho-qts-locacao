@@ -1,15 +1,20 @@
-import { Request } from 'express'
 import {
   Funcionario,
   PrismaClient,
   Funcao,
 } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { FuncionarioSchema } from '../schemas/schemas'
 import { BaseService } from './BaseService'
 import hashPassword from '../utils/hashPwd'
+import { FuncionarioResponseDTO } from '../dtos/FuncionarioResponseDTO'
+import { CreateFuncionarioDTO } from '../dtos/CreateFuncionarioDTO'
+import { UpdateFuncionarioDTO } from '../dtos/UpdateFuncionarioDTO'
 
-export default class FuncionarioServices extends BaseService<Funcionario> {
+export default class FuncionarioServices extends BaseService<
+  FuncionarioResponseDTO,
+  CreateFuncionarioDTO,
+  UpdateFuncionarioDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
@@ -25,7 +30,9 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
     }
   }
 
-  public getOne = async (pk: string): Promise<Funcionario | null> => {
+  public getOne = async (
+    pk: string,
+  ): Promise<FuncionarioResponseDTO | null> => {
     try {
       return await this.prisma.funcionario.findUnique({
         where: { cpf: pk },
@@ -39,21 +46,18 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
     }
   }
 
-  public create = async (req: Request): Promise<Funcionario> => {
+  public create = async (
+    data: CreateFuncionarioDTO,
+  ): Promise<FuncionarioResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = FuncionarioSchema.parse(req.body)
       // tornar oculto o pwd no bd
-      validatedData.senha = await hashPassword(validatedData.senha)
+      data.senha = await hashPassword(data.senha)
 
       // Salva o novo funcionário utilizando o método create do Prisma
       const createdFuncionario = await this.prisma.funcionario.create({
         data: {
-          cpf: validatedData.cpf,
-          telefone: validatedData.telefone,
-          funcao: validatedData.funcao as Funcao,
-          nome: validatedData.nome,
-          senha: validatedData.senha,
+          ...data,
+          funcao: data.funcao as Funcao,
         },
       })
       return createdFuncionario
@@ -76,33 +80,20 @@ export default class FuncionarioServices extends BaseService<Funcionario> {
 
   public update = async (
     pk: string,
-    req: Request,
-  ): Promise<Partial<Funcionario>> => {
+    data: UpdateFuncionarioDTO,
+  ): Promise<Partial<FuncionarioResponseDTO>> => {
     try {
-      // Cria uma versão parcial do schema para permitir atualizações parciais
-      const partialSchema = FuncionarioSchema.partial()
-
-      // Valida os dados enviados (parciais) no corpo da requisição
-      const validatedData = partialSchema.parse(req.body)
-
-      // Remove as chaves com valor undefined
-      const updateData = Object.fromEntries(
-        Object.entries(validatedData).filter(
-          ([_, value]) => value !== undefined,
-        ),
-      )
-
-      // Remove o campo 'cpf' caso esteja presente, para evitar atualizar a PK
-      delete updateData['cpf']
-
-      if (validatedData.senha) {
-        validatedData.senha = await hashPassword(validatedData.senha)
+      if (data.senha) {
+        data.senha = await hashPassword(data.senha)
       }
 
       // Atualiza o funcionário utilizando o método update do Prisma
       const updatedFuncionario = await this.prisma.funcionario.update({
         where: { cpf: pk },
-        data: updateData,
+        data: {
+          ...data,
+          funcao: data.funcao as Funcao,
+        },
       })
 
       return updatedFuncionario

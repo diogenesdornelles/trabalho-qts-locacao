@@ -1,46 +1,37 @@
-import { Request } from 'express'
 import { z } from 'zod'
-import { LoginSchema } from '../schemas/schemas'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { BaseService } from './BaseService'
 import { PrismaClient } from '../../generated/prisma_client'
+import { TokenResponseDTO } from '../dtos/TokenResponseDTO'
+import { CreateTokenDTO } from '../dtos/CreateTokenDTO'
+import { UpdateTokenDTO } from '../dtos/UpdateTokenDTO'
 
 dotenv.config()
 
-export type TToken = {
-  funcionario: {
-    cpf: string
-    nome: string
-  }
-  token: string
-}
-
 const SECRET_KEY = process.env.SECRET_KEY || 'r34534erfefgdf7576ghfg4455456'
 
-export default class LoginServices extends BaseService<TToken> {
+export default class LoginServices extends BaseService<
+  TokenResponseDTO,
+  CreateTokenDTO,
+  UpdateTokenDTO
+> {
   constructor() {
     super(new PrismaClient())
   }
 
-  public create = async (req: Request): Promise<TToken> => {
+  public create = async (data: CreateTokenDTO): Promise<TokenResponseDTO> => {
     try {
-      // Valida os dados recebidos no corpo da requisição
-      const validatedData = LoginSchema.parse(req.body)
-
       const dbFuncionario = await this.prisma.funcionario.findUnique({
-        where: { cpf: validatedData.cpf },
+        where: { cpf: data.cpf },
       })
 
       if (!dbFuncionario) {
         throw new Error('Cpf of password is not correct')
       }
 
-      const isMatch = bcrypt.compareSync(
-        validatedData.senha,
-        dbFuncionario.senha,
-      )
+      const isMatch = bcrypt.compareSync(data.senha, dbFuncionario.senha)
 
       if (isMatch) {
         const token = jwt.sign(
@@ -74,13 +65,16 @@ export default class LoginServices extends BaseService<TToken> {
     }
   }
 
-  public getAll(): Promise<TToken[]> {
+  public getAll(): Promise<TokenResponseDTO[]> {
     throw new Error('Method not implemented.')
   }
-  public getOne(pk: string): Promise<TToken | null> {
+  public getOne(pk: string): Promise<TokenResponseDTO | null> {
     throw new Error('Method not implemented.')
   }
-  public update(pk: string, req: Request): Promise<Partial<TToken>> {
+  public update(
+    pk: string,
+    data: UpdateTokenDTO,
+  ): Promise<Partial<TokenResponseDTO>> {
     throw new Error('Method not implemented.')
   }
   public delete(pk: string): Promise<boolean> {

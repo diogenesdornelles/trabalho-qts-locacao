@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 import LocacaoServices from '../services/LocacaoServices'
 import { BaseController } from './BaseController'
+import { CreateLocacaoValidator } from '../validators/CreateLocacaoValidator'
 
 export default class LocacoesController extends BaseController<LocacaoServices> {
   constructor() {
@@ -47,7 +48,8 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const locacao = await this.service.create(req)
+      const validatedData = CreateLocacaoValidator.parse(req.body)
+      const locacao = await this.service.create(validatedData)
       res.status(201).json(locacao)
       return
     } catch (error) {

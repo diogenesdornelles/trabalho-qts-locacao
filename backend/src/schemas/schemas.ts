@@ -14,8 +14,13 @@ const telefoneSchema = z
   .string()
   .regex(/^\d{10,11}$/, 'Telefone deve conter exatamente 10 ou 11 dígitos')
 
-
-const senhaSchema = z.string().min(8).max(30).regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,30}$/)
+const senhaSchema = z
+  .string()
+  .min(8)
+  .max(30)
+  .regex(
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,30}$/,
+  )
 /* ================================
    Schema para o modelo Brinquedo
    ================================ */

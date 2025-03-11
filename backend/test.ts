@@ -16,7 +16,6 @@ async function main() {
 
     const validatedData = FuncionarioSchema.parse(data)
 
-
     const gerente = await prisma.funcionario.create({
       data: {
         cpf: validatedData.cpf,
@@ -43,7 +42,6 @@ async function main() {
     }
     throw new Error('An unknown error occurred while saving employee.')
   }
-
 }
 
 main()
