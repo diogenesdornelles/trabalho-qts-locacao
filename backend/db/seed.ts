@@ -1,25 +1,32 @@
 import { z } from 'zod'
-import { Funcao, PrismaClient } from './generated/prisma_client'
-import { FuncionarioSchema } from './src/schemas/schemas'
-import hashPassword from './src/utils/hashPwd'
+import { Funcao, PrismaClient } from '../generated/prisma_client'
+import { FuncionarioSchema } from '../src/schemas/schemas'
+import hashPassword from '../src/utils/hashPwd'
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
+const NOME = process.env.SUPER_USER_NOME
+const PWD = process.env.SUPER_USER_PWD
+const CPF = process.env.SUPER_USER_CPF
 
 const prisma = new PrismaClient()
 
 async function main() {
   try {
     const data = {
-      cpf: '00480171084',
-      nome: 'Diogenes',
-      telefone: '1199111111',
+      cpf: CPF,
+      nome: NOME,
+      telefone: '1111111111',
       funcao: Funcao.GERENTE, // Use os valores do enum como string
-      senha: '#123ABCabd',
+      senha: PWD,
     }
 
     const validatedData = FuncionarioSchema.parse(data)
 
     validatedData.senha = await hashPassword(validatedData.senha)
 
-    const gerente = await prisma.funcionario.create({
+    await prisma.funcionario.create({
       data: {
         cpf: validatedData.cpf,
         telefone: validatedData.telefone,
@@ -28,8 +35,6 @@ async function main() {
         senha: validatedData.senha,
       },
     })
-
-    console.log(gerente)
   } catch (error: unknown) {
     // Trata erros de validação do Zod
     if (error instanceof z.ZodError) {

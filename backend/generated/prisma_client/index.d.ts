@@ -1,9 +1,8 @@
-
 /**
  * Client
-**/
+ **/
 
-import * as runtime from './runtime/library.js';
+import * as runtime from './runtime/library.js'
 import $Types = runtime.Types // general types
 import $Public = runtime.Types.Public
 import $Utils = runtime.Types.Utils
@@ -12,57 +11,57 @@ import $Result = runtime.Types.Result
 
 export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
-
 /**
  * Model Brinquedo
- * 
+ *
  */
 export type Brinquedo = $Result.DefaultSelection<Prisma.$BrinquedoPayload>
 /**
  * Model BrinquedoLocado
- * 
+ *
  */
-export type BrinquedoLocado = $Result.DefaultSelection<Prisma.$BrinquedoLocadoPayload>
+export type BrinquedoLocado =
+  $Result.DefaultSelection<Prisma.$BrinquedoLocadoPayload>
 /**
  * Model Cliente
- * 
+ *
  */
 export type Cliente = $Result.DefaultSelection<Prisma.$ClientePayload>
 /**
  * Model Funcionario
- * 
+ *
  */
 export type Funcionario = $Result.DefaultSelection<Prisma.$FuncionarioPayload>
 /**
  * Model Locacao
- * 
+ *
  */
 export type Locacao = $Result.DefaultSelection<Prisma.$LocacaoPayload>
 /**
  * Model Pagamento
- * 
+ *
  */
 export type Pagamento = $Result.DefaultSelection<Prisma.$PagamentoPayload>
 /**
  * Model TipoBrinquedo
- * 
+ *
  */
-export type TipoBrinquedo = $Result.DefaultSelection<Prisma.$TipoBrinquedoPayload>
+export type TipoBrinquedo =
+  $Result.DefaultSelection<Prisma.$TipoBrinquedoPayload>
 
 /**
  * Enums
  */
 export namespace $Enums {
   export const Funcao: {
-  GERENTE: 'GERENTE',
-  CAIXA: 'CAIXA',
-  AGENTE_LOCACAO: 'AGENTE_LOCACAO',
-  AGENTE_CADASTRO: 'AGENTE_CADASTRO',
-  ALMOXARIFE: 'ALMOXARIFE'
-};
+    GERENTE: 'GERENTE'
+    CAIXA: 'CAIXA'
+    AGENTE_LOCACAO: 'AGENTE_LOCACAO'
+    AGENTE_CADASTRO: 'AGENTE_CADASTRO'
+    ALMOXARIFE: 'ALMOXARIFE'
+  }
 
-export type Funcao = (typeof Funcao)[keyof typeof Funcao]
-
+  export type Funcao = (typeof Funcao)[keyof typeof Funcao]
 }
 
 export type Funcao = $Enums.Funcao
@@ -85,12 +84,16 @@ export const Funcao: typeof $Enums.Funcao
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
-  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+  U = 'log' extends keyof ClientOptions
+    ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition>
+      ? Prisma.GetEvents<ClientOptions['log']>
+      : never
+    : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-    /**
+  /**
    * ##  Prisma Client ʲˢ
    *
    * Type-safe database client for TypeScript & Node.js
@@ -105,18 +108,25 @@ export class PrismaClient<
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
    */
 
-  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
-  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+  constructor(
+    optionsArg?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>,
+  )
+  $on<V extends U>(
+    eventType: V,
+    callback: (
+      event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent,
+    ) => void,
+  ): PrismaClient
 
   /**
    * Connect with the database
    */
-  $connect(): $Utils.JsPromise<void>;
+  $connect(): $Utils.JsPromise<void>
 
   /**
    * Disconnect from the database
    */
-  $disconnect(): $Utils.JsPromise<void>;
+  $disconnect(): $Utils.JsPromise<void>
 
   /**
    * Add a middleware
@@ -125,7 +135,7 @@ export class PrismaClient<
    */
   $use(cb: Prisma.Middleware): void
 
-/**
+  /**
    * Executes a prepared raw query and returns the number of affected rows.
    * @example
    * ```
@@ -134,7 +144,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+  $executeRaw<T = unknown>(
+    query: TemplateStringsArray | Prisma.Sql,
+    ...values: any[]
+  ): Prisma.PrismaPromise<number>
 
   /**
    * Executes a raw query and returns the number of affected rows.
@@ -146,7 +159,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+  $executeRawUnsafe<T = unknown>(
+    query: string,
+    ...values: any[]
+  ): Prisma.PrismaPromise<number>
 
   /**
    * Performs a prepared raw query and returns the `SELECT` data.
@@ -157,7 +173,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+  $queryRaw<T = unknown>(
+    query: TemplateStringsArray | Prisma.Sql,
+    ...values: any[]
+  ): Prisma.PrismaPromise<T>
 
   /**
    * Performs a raw query and returns the `SELECT` data.
@@ -169,8 +188,10 @@ export class PrismaClient<
    *
    * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
    */
-  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
-
+  $queryRawUnsafe<T = unknown>(
+    query: string,
+    ...values: any[]
+  ): Prisma.PrismaPromise<T>
 
   /**
    * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
@@ -182,87 +203,106 @@ export class PrismaClient<
    *   prisma.user.create({ data: { name: 'Alice' } }),
    * ])
    * ```
-   * 
+   *
    * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
    */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(
+    arg: [...P],
+    options?: { isolationLevel?: Prisma.TransactionIsolationLevel },
+  ): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
-  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+  $transaction<R>(
+    fn: (
+      prisma: Omit<PrismaClient, runtime.ITXClientDenyList>,
+    ) => $Utils.JsPromise<R>,
+    options?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    },
+  ): $Utils.JsPromise<R>
 
+  $extends: $Extensions.ExtendsHook<
+    'extends',
+    Prisma.TypeMapCb<ClientOptions>,
+    ExtArgs,
+    $Utils.Call<
+      Prisma.TypeMapCb<ClientOptions>,
+      {
+        extArgs: ExtArgs
+      }
+    >
+  >
 
-  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
-    extArgs: ExtArgs
-  }>>
-
-      /**
+  /**
    * `prisma.brinquedo`: Exposes CRUD operations for the **Brinquedo** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Brinquedos
-    * const brinquedos = await prisma.brinquedo.findMany()
-    * ```
-    */
-  get brinquedo(): Prisma.BrinquedoDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Brinquedos
+   * const brinquedos = await prisma.brinquedo.findMany()
+   * ```
+   */
+  get brinquedo(): Prisma.BrinquedoDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.brinquedoLocado`: Exposes CRUD operations for the **BrinquedoLocado** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more BrinquedoLocados
-    * const brinquedoLocados = await prisma.brinquedoLocado.findMany()
-    * ```
-    */
-  get brinquedoLocado(): Prisma.BrinquedoLocadoDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more BrinquedoLocados
+   * const brinquedoLocados = await prisma.brinquedoLocado.findMany()
+   * ```
+   */
+  get brinquedoLocado(): Prisma.BrinquedoLocadoDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.cliente`: Exposes CRUD operations for the **Cliente** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Clientes
-    * const clientes = await prisma.cliente.findMany()
-    * ```
-    */
-  get cliente(): Prisma.ClienteDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Clientes
+   * const clientes = await prisma.cliente.findMany()
+   * ```
+   */
+  get cliente(): Prisma.ClienteDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.funcionario`: Exposes CRUD operations for the **Funcionario** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Funcionarios
-    * const funcionarios = await prisma.funcionario.findMany()
-    * ```
-    */
-  get funcionario(): Prisma.FuncionarioDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Funcionarios
+   * const funcionarios = await prisma.funcionario.findMany()
+   * ```
+   */
+  get funcionario(): Prisma.FuncionarioDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.locacao`: Exposes CRUD operations for the **Locacao** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Locacaos
-    * const locacaos = await prisma.locacao.findMany()
-    * ```
-    */
-  get locacao(): Prisma.LocacaoDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Locacaos
+   * const locacaos = await prisma.locacao.findMany()
+   * ```
+   */
+  get locacao(): Prisma.LocacaoDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.pagamento`: Exposes CRUD operations for the **Pagamento** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Pagamentos
-    * const pagamentos = await prisma.pagamento.findMany()
-    * ```
-    */
-  get pagamento(): Prisma.PagamentoDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more Pagamentos
+   * const pagamentos = await prisma.pagamento.findMany()
+   * ```
+   */
+  get pagamento(): Prisma.PagamentoDelegate<ExtArgs, ClientOptions>
 
   /**
    * `prisma.tipoBrinquedo`: Exposes CRUD operations for the **TipoBrinquedo** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more TipoBrinquedos
-    * const tipoBrinquedos = await prisma.tipoBrinquedo.findMany()
-    * ```
-    */
-  get tipoBrinquedo(): Prisma.TipoBrinquedoDelegate<ExtArgs, ClientOptions>;
+   * Example usage:
+   * ```ts
+   * // Fetch zero or more TipoBrinquedos
+   * const tipoBrinquedos = await prisma.tipoBrinquedo.findMany()
+   * ```
+   */
+  get tipoBrinquedo(): Prisma.TipoBrinquedoDelegate<ExtArgs, ClientOptions>
 }
 
 export namespace Prisma {
@@ -293,8 +333,6 @@ export namespace Prisma {
   export import raw = runtime.raw
   export import Sql = runtime.Sql
 
-
-
   /**
    * Decimal.js
    */
@@ -311,8 +349,8 @@ export namespace Prisma {
   export type MetricHistogramBucket = runtime.MetricHistogramBucket
 
   /**
-  * Extensions
-  */
+   * Extensions
+   */
   export import Extension = $Extensions.UserArgs
   export import getExtensionContext = runtime.Extensions.getExtensionContext
   export import Args = $Public.Args
@@ -334,7 +372,6 @@ export namespace Prisma {
    * Utility Types
    */
 
-
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -349,36 +386,36 @@ export namespace Prisma {
    */
   namespace NullTypes {
     /**
-    * Type of `Prisma.DbNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.DbNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class DbNull {
       private DbNull: never
       private constructor()
     }
 
     /**
-    * Type of `Prisma.JsonNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.JsonNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class JsonNull {
       private JsonNull: never
       private constructor()
     }
 
     /**
-    * Type of `Prisma.AnyNull`.
-    *
-    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    *
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
+     * Type of `Prisma.AnyNull`.
+     *
+     * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+     *
+     * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+     */
     class AnyNull {
       private AnyNull: never
       private constructor()
@@ -419,22 +456,24 @@ export namespace Prisma {
   /**
    * Get the type of the value, that the Promise holds.
    */
-  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+  export type PromiseType<T extends PromiseLike<any>> =
+    T extends PromiseLike<infer U> ? U : T
 
   /**
    * Get the return type of a function which returns a Promise.
    */
-  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+  export type PromiseReturnType<
+    T extends (...args: any) => $Utils.JsPromise<any>,
+  > = PromiseType<ReturnType<T>>
 
   /**
    * From T, pick a set of properties whose keys are in the union K
    */
   type Prisma__Pick<T, K extends keyof T> = {
-      [P in K]: T[P];
-  };
+    [P in K]: T[P]
+  }
 
-
-  export type Enumerable<T> = T | Array<T>;
+  export type Enumerable<T> = T | Array<T>
 
   export type RequiredKeys<T> = {
     [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
@@ -451,8 +490,8 @@ export namespace Prisma {
    * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
    */
   export type Subset<T, U> = {
-    [key in keyof T]: key extends keyof U ? T[key] : never;
-  };
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  }
 
   /**
    * SelectSubset
@@ -461,12 +500,11 @@ export namespace Prisma {
    */
   export type SelectSubset<T, U> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    (T extends SelectAndInclude
-      ? 'Please either choose `select` or `include`.'
-      : T extends SelectAndOmit
-        ? 'Please either choose `select` or `omit`.'
-        : {})
+  } & (T extends SelectAndInclude
+    ? 'Please either choose `select` or `include`.'
+    : T extends SelectAndOmit
+      ? 'Please either choose `select` or `omit`.'
+      : {})
 
   /**
    * Subset + Intersection
@@ -474,37 +512,35 @@ export namespace Prisma {
    */
   export type SubsetIntersection<T, U, K> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
-  } &
-    K
+  } & K
 
-  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
 
   /**
    * XOR is needed to have a real mutually exclusive union type
    * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
    */
-  type XOR<T, U> =
-    T extends object ?
-    U extends object ?
-      (Without<T, U> & U) | (Without<U, T> & T)
-    : U : T
-
+  type XOR<T, U> = T extends object
+    ? U extends object
+      ? (Without<T, U> & U) | (Without<U, T> & T)
+      : U
+    : T
 
   /**
    * Is T a Record?
    */
-  type IsObject<T extends any> = T extends Array<any>
-  ? False
-  : T extends Date
-  ? False
-  : T extends Uint8Array
-  ? False
-  : T extends BigInt
-  ? False
-  : T extends object
-  ? True
-  : False
-
+  type IsObject<T extends any> =
+    T extends Array<any>
+      ? False
+      : T extends Date
+        ? False
+        : T extends Uint8Array
+          ? False
+          : T extends BigInt
+            ? False
+            : T extends object
+              ? True
+              : False
 
   /**
    * If it's T[], return T
@@ -525,11 +561,7 @@ export namespace Prisma {
 
   type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
 
-  type _Either<
-    O extends object,
-    K extends Key,
-    strict extends Boolean
-  > = {
+  type _Either<O extends object, K extends Key, strict extends Boolean> = {
     1: EitherStrict<O, K>
     0: EitherLoose<O, K>
   }[strict]
@@ -537,7 +569,7 @@ export namespace Prisma {
   type Either<
     O extends object,
     K extends Key,
-    strict extends Boolean = 1
+    strict extends Boolean = 1,
   > = O extends unknown ? _Either<O, K, strict> : never
 
   export type Union = any
@@ -554,50 +586,69 @@ export namespace Prisma {
     : never
 
   export type Overwrite<O extends object, O1 extends object> = {
-      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
-  } & {};
+    [K in keyof O]: K extends keyof O1 ? O1[K] : O[K]
+  } & {}
 
-  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
-      [K in keyof U]-?: At<U, K>;
-  }>>;
+  type _Merge<U extends object> = IntersectOf<
+    Overwrite<
+      U,
+      {
+        [K in keyof U]-?: At<U, K>
+      }
+    >
+  >
 
-  type Key = string | number | symbol;
-  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
-  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
-  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
-  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
-      1: AtStrict<O, K>;
-      0: AtLoose<O, K>;
-  }[strict];
+  type Key = string | number | symbol
+  type AtBasic<O extends object, K extends Key> = K extends keyof O
+    ? O[K]
+    : never
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O]
+  type AtLoose<O extends object, K extends Key> = O extends unknown
+    ? AtStrict<O, K>
+    : never
+  export type At<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1,
+  > = {
+    1: AtStrict<O, K>
+    0: AtLoose<O, K>
+  }[strict]
 
-  export type ComputeRaw<A extends any> = A extends Function ? A : {
-    [K in keyof A]: A[K];
-  } & {};
+  export type ComputeRaw<A extends any> = A extends Function
+    ? A
+    : {
+        [K in keyof A]: A[K]
+      } & {}
 
   export type OptionalFlat<O> = {
-    [K in keyof O]?: O[K];
-  } & {};
+    [K in keyof O]?: O[K]
+  } & {}
 
   type _Record<K extends keyof any, T> = {
-    [P in K]: T;
-  };
+    [P in K]: T
+  }
 
   // cause typescript not to expand types and preserve names
-  type NoExpand<T> = T extends unknown ? T : never;
+  type NoExpand<T> = T extends unknown ? T : never
 
   // this type assumes the passed object is entirely optional
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
-    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
-      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
-    : never>;
+      ?
+          | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+          | ({ [P in keyof O as P extends K ? P : never]-?: O[P] } & O)
+      : never
+  >
 
-  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+  type _Strict<U, _U = U> = U extends unknown
+    ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>>
+    : never
 
-  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>
   /** End Helper Types for "Merge" **/
 
-  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>
 
   /**
   A [[Boolean]]
@@ -622,8 +673,8 @@ export namespace Prisma {
   export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
     ? 0 // anything `never` is false
     : A1 extends A2
-    ? 1
-    : 0
+      ? 1
+      : 0
 
   export type Has<U extends Union, U1 extends Union> = Not<
     Extends<Exclude<U1, U>, U1>
@@ -642,25 +693,23 @@ export namespace Prisma {
 
   export type Keys<U extends Union> = U extends unknown ? keyof U : never
 
-  type Cast<A, B> = A extends B ? A : B;
+  type Cast<A, B> = A extends B ? A : B
 
-  export const type: unique symbol;
-
-
+  export const type: unique symbol
 
   /**
    * Used by group by
    */
 
-  export type GetScalarType<T, O> = O extends object ? {
-    [P in keyof T]: P extends keyof O
-      ? O[P]
-      : never
-  } : never
+  export type GetScalarType<T, O> = O extends object
+    ? {
+        [P in keyof T]: P extends keyof O ? O[P] : never
+      }
+    : never
 
   type FieldPaths<
     T,
-    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>,
   > = IsObject<T> extends True ? U : T
 
   type GetHavingFields<T> = {
@@ -672,11 +721,13 @@ export namespace Prisma {
         // based on the brilliant idea of Pierre-Antoine Mills
         // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
         T[K] extends infer TK
-        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        ? GetHavingFields<
+            UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never
+          >
         : never
       : {} extends FieldPaths<T[K]>
-      ? never
-      : K
+        ? never
+        : K
   }[keyof T]
 
   /**
@@ -689,46 +740,67 @@ export namespace Prisma {
   /**
    * Like `Pick`, but additionally can also accept an array of keys
    */
-  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+  type PickEnumerable<
+    T,
+    K extends Enumerable<keyof T> | keyof T,
+  > = Prisma__Pick<T, MaybeTupleToUnion<K>>
 
   /**
    * Exclude all keys with underscores
    */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
-
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}`
+    ? never
+    : T
 
   export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
 
-  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
-
+  type FieldRefInputType<Model, FieldType> = Model extends never
+    ? never
+    : FieldRef<Model, FieldType>
 
   export const ModelName: {
-    Brinquedo: 'Brinquedo',
-    BrinquedoLocado: 'BrinquedoLocado',
-    Cliente: 'Cliente',
-    Funcionario: 'Funcionario',
-    Locacao: 'Locacao',
-    Pagamento: 'Pagamento',
+    Brinquedo: 'Brinquedo'
+    BrinquedoLocado: 'BrinquedoLocado'
+    Cliente: 'Cliente'
+    Funcionario: 'Funcionario'
+    Locacao: 'Locacao'
+    Pagamento: 'Pagamento'
     TipoBrinquedo: 'TipoBrinquedo'
-  };
+  }
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
-
 
   export type Datasources = {
     db?: Datasource
   }
 
-  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
-    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  interface TypeMapCb<ClientOptions = {}>
+    extends $Utils.Fn<
+      { extArgs: $Extensions.InternalArgs },
+      $Utils.Record<string, any>
+    > {
+    returns: Prisma.TypeMap<
+      this['params']['extArgs'],
+      ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}
+    >
   }
 
-  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+  export type TypeMap<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > = {
     globalOmitOptions: {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "brinquedo" | "brinquedoLocado" | "cliente" | "funcionario" | "locacao" | "pagamento" | "tipoBrinquedo"
+      modelProps:
+        | 'brinquedo'
+        | 'brinquedoLocado'
+        | 'cliente'
+        | 'funcionario'
+        | 'locacao'
+        | 'pagamento'
+        | 'tipoBrinquedo'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -876,7 +948,9 @@ export namespace Prisma {
           }
           count: {
             args: Prisma.BrinquedoLocadoCountArgs<ExtArgs>
-            result: $Utils.Optional<BrinquedoLocadoCountAggregateOutputType> | number
+            result:
+              | $Utils.Optional<BrinquedoLocadoCountAggregateOutputType>
+              | number
           }
         }
       }
@@ -1024,7 +1098,9 @@ export namespace Prisma {
           }
           count: {
             args: Prisma.FuncionarioCountArgs<ExtArgs>
-            result: $Utils.Optional<FuncionarioCountAggregateOutputType> | number
+            result:
+              | $Utils.Optional<FuncionarioCountAggregateOutputType>
+              | number
           }
         }
       }
@@ -1246,7 +1322,9 @@ export namespace Prisma {
           }
           count: {
             args: Prisma.TipoBrinquedoCountArgs<ExtArgs>
-            result: $Utils.Optional<TipoBrinquedoCountAggregateOutputType> | number
+            result:
+              | $Utils.Optional<TipoBrinquedoCountAggregateOutputType>
+              | number
           }
         }
       }
@@ -1256,25 +1334,29 @@ export namespace Prisma {
       payload: any
       operations: {
         $executeRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]]
           result: any
         }
         $executeRawUnsafe: {
-          args: [query: string, ...values: any[]],
+          args: [query: string, ...values: any[]]
           result: any
         }
         $queryRaw: {
-          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]]
           result: any
         }
         $queryRawUnsafe: {
-          args: [query: string, ...values: any[]],
+          args: [query: string, ...values: any[]]
           result: any
         }
       }
     }
   }
-  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export const defineExtension: $Extensions.ExtendsHook<
+    'define',
+    Prisma.TypeMapCb,
+    $Extensions.DefaultArgs
+  >
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
@@ -1295,7 +1377,7 @@ export namespace Prisma {
      * ```
      * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
-     * 
+     *
      * // Emit as events
      * log: [
      *   { emit: 'stdout', level: 'query' },
@@ -1319,7 +1401,7 @@ export namespace Prisma {
     }
     /**
      * Global configuration for omitting model fields by default.
-     * 
+     *
      * @example
      * ```
      * const prisma = new PrismaClient({
@@ -1350,10 +1432,20 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
-  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
-    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
-    : never
+  export type GetLogType<T extends LogLevel | LogDefinition> =
+    T extends LogDefinition
+      ? T['emit'] extends 'event'
+        ? T['level']
+        : never
+      : never
+  export type GetEvents<T extends any> =
+    T extends Array<LogLevel | LogDefinition>
+      ?
+          | GetLogType<T[0]>
+          | GetLogType<T[1]>
+          | GetLogType<T[2]>
+          | GetLogType<T[3]>
+      : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -1369,7 +1461,6 @@ export namespace Prisma {
     target: string
   }
   /* End Types for Logging */
-
 
   export type PrismaAction =
     | 'findUnique'
@@ -1414,12 +1505,17 @@ export namespace Prisma {
   ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
-  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+  export function getLogLevel(
+    log: Array<LogLevel | LogDefinition>,
+  ): LogLevel | undefined
 
   /**
    * `PrismaClient` proxy available in interactive transactions.
    */
-  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+  export type TransactionClient = Omit<
+    Prisma.DefaultPrismaClient,
+    runtime.ITXClientDenyList
+  >
 
   export type Datasource = {
     url?: string
@@ -1429,7 +1525,6 @@ export namespace Prisma {
    * Count Types
    */
 
-
   /**
    * Count Type BrinquedoCountOutputType
    */
@@ -1438,15 +1533,21 @@ export namespace Prisma {
     brinquedosLocados: number
   }
 
-  export type BrinquedoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brinquedosLocados?: boolean | BrinquedoCountOutputTypeCountBrinquedosLocadosArgs
+  export type BrinquedoCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    brinquedosLocados?:
+      | boolean
+      | BrinquedoCountOutputTypeCountBrinquedosLocadosArgs
   }
 
   // Custom InputTypes
   /**
    * BrinquedoCountOutputType without action
    */
-  export type BrinquedoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoCountOutputType
      */
@@ -1456,10 +1557,11 @@ export namespace Prisma {
   /**
    * BrinquedoCountOutputType without action
    */
-  export type BrinquedoCountOutputTypeCountBrinquedosLocadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoCountOutputTypeCountBrinquedosLocadosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: BrinquedoLocadoWhereInput
   }
-
 
   /**
    * Count Type ClienteCountOutputType
@@ -1470,7 +1572,9 @@ export namespace Prisma {
     pagamentos: number
   }
 
-  export type ClienteCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacoes?: boolean | ClienteCountOutputTypeCountLocacoesArgs
     pagamentos?: boolean | ClienteCountOutputTypeCountPagamentosArgs
   }
@@ -1479,7 +1583,9 @@ export namespace Prisma {
   /**
    * ClienteCountOutputType without action
    */
-  export type ClienteCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the ClienteCountOutputType
      */
@@ -1489,17 +1595,20 @@ export namespace Prisma {
   /**
    * ClienteCountOutputType without action
    */
-  export type ClienteCountOutputTypeCountLocacoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCountOutputTypeCountLocacoesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: LocacaoWhereInput
   }
 
   /**
    * ClienteCountOutputType without action
    */
-  export type ClienteCountOutputTypeCountPagamentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCountOutputTypeCountPagamentosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: PagamentoWhereInput
   }
-
 
   /**
    * Count Type LocacaoCountOutputType
@@ -1509,15 +1618,21 @@ export namespace Prisma {
     brinquedosLocados: number
   }
 
-  export type LocacaoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    brinquedosLocados?: boolean | LocacaoCountOutputTypeCountBrinquedosLocadosArgs
+  export type LocacaoCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    brinquedosLocados?:
+      | boolean
+      | LocacaoCountOutputTypeCountBrinquedosLocadosArgs
   }
 
   // Custom InputTypes
   /**
    * LocacaoCountOutputType without action
    */
-  export type LocacaoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the LocacaoCountOutputType
      */
@@ -1527,10 +1642,11 @@ export namespace Prisma {
   /**
    * LocacaoCountOutputType without action
    */
-  export type LocacaoCountOutputTypeCountBrinquedosLocadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoCountOutputTypeCountBrinquedosLocadosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: BrinquedoLocadoWhereInput
   }
-
 
   /**
    * Count Type TipoBrinquedoCountOutputType
@@ -1540,7 +1656,9 @@ export namespace Prisma {
     brinquedos: number
   }
 
-  export type TipoBrinquedoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCountOutputTypeSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     brinquedos?: boolean | TipoBrinquedoCountOutputTypeCountBrinquedosArgs
   }
 
@@ -1548,7 +1666,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedoCountOutputType without action
    */
-  export type TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCountOutputTypeDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedoCountOutputType
      */
@@ -1558,10 +1678,11 @@ export namespace Prisma {
   /**
    * TipoBrinquedoCountOutputType without action
    */
-  export type TipoBrinquedoCountOutputTypeCountBrinquedosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCountOutputTypeCountBrinquedosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: BrinquedoWhereInput
   }
-
 
   /**
    * Models
@@ -1615,7 +1736,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type BrinquedoAvgAggregateInputType = {
     valor_locacao?: true
   }
@@ -1652,81 +1772,86 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type BrinquedoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Brinquedo to aggregate.
      */
     where?: BrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brinquedos to fetch.
      */
-    orderBy?: BrinquedoOrderByWithRelationInput | BrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithRelationInput
+      | BrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: BrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Brinquedos
-    **/
+     **/
     _count?: true | BrinquedoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
+     **/
     _avg?: BrinquedoAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
+     **/
     _sum?: BrinquedoSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: BrinquedoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: BrinquedoMaxAggregateInputType
   }
 
   export type GetBrinquedoAggregateType<T extends BrinquedoAggregateArgs> = {
-        [P in keyof T & keyof AggregateBrinquedo]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateBrinquedo]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateBrinquedo[P]>
       : GetScalarType<T[P], AggregateBrinquedo[P]>
   }
 
-
-
-
-  export type BrinquedoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: BrinquedoWhereInput
-    orderBy?: BrinquedoOrderByWithAggregationInput | BrinquedoOrderByWithAggregationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithAggregationInput
+      | BrinquedoOrderByWithAggregationInput[]
     by: BrinquedoScalarFieldEnum[] | BrinquedoScalarFieldEnum
     having?: BrinquedoScalarWhereWithAggregatesInput
     take?: number
@@ -1752,11 +1877,11 @@ export namespace Prisma {
     _max: BrinquedoMaxAggregateOutputType | null
   }
 
-  type GetBrinquedoGroupByPayload<T extends BrinquedoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<BrinquedoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BrinquedoGroupByOutputType))]: P extends '_count'
+  type GetBrinquedoGroupByPayload<T extends BrinquedoGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<BrinquedoGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof BrinquedoGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], BrinquedoGroupByOutputType[P]>
@@ -1765,38 +1890,52 @@ export namespace Prisma {
       >
     >
 
+  export type BrinquedoSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+      tipo_brinquedo?: boolean
+      marca?: boolean
+      data_aquisicao?: boolean
+      valor_locacao?: boolean
+      tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
+      brinquedosLocados?: boolean | Brinquedo$brinquedosLocadosArgs<ExtArgs>
+      _count?: boolean | BrinquedoCountOutputTypeDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedo']
+  >
 
-  export type BrinquedoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-    tipo_brinquedo?: boolean
-    marca?: boolean
-    data_aquisicao?: boolean
-    valor_locacao?: boolean
-    tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
-    brinquedosLocados?: boolean | Brinquedo$brinquedosLocadosArgs<ExtArgs>
-    _count?: boolean | BrinquedoCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedo"]>
+  export type BrinquedoSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+      tipo_brinquedo?: boolean
+      marca?: boolean
+      data_aquisicao?: boolean
+      valor_locacao?: boolean
+      tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedo']
+  >
 
-  export type BrinquedoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-    tipo_brinquedo?: boolean
-    marca?: boolean
-    data_aquisicao?: boolean
-    valor_locacao?: boolean
-    tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedo"]>
-
-  export type BrinquedoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-    tipo_brinquedo?: boolean
-    marca?: boolean
-    data_aquisicao?: boolean
-    valor_locacao?: boolean
-    tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedo"]>
+  export type BrinquedoSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+      tipo_brinquedo?: boolean
+      marca?: boolean
+      data_aquisicao?: boolean
+      valor_locacao?: boolean
+      tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedo']
+  >
 
   export type BrinquedoSelectScalar = {
     cod?: boolean
@@ -1807,45 +1946,78 @@ export namespace Prisma {
     valor_locacao?: boolean
   }
 
-  export type BrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome" | "tipo_brinquedo" | "marca" | "data_aquisicao" | "valor_locacao", ExtArgs["result"]["brinquedo"]>
-  export type BrinquedoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'cod'
+    | 'nome'
+    | 'tipo_brinquedo'
+    | 'marca'
+    | 'data_aquisicao'
+    | 'valor_locacao',
+    ExtArgs['result']['brinquedo']
+  >
+  export type BrinquedoInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
     brinquedosLocados?: boolean | Brinquedo$brinquedosLocadosArgs<ExtArgs>
     _count?: boolean | BrinquedoCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type BrinquedoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
   }
-  export type BrinquedoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
   }
 
-  export type $BrinquedoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Brinquedo"
+  export type $BrinquedoPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Brinquedo'
     objects: {
       tipoBrinquedo: Prisma.$TipoBrinquedoPayload<ExtArgs>
       brinquedosLocados: Prisma.$BrinquedoLocadoPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cod: string
-      nome: string
-      tipo_brinquedo: string
-      marca: string
-      data_aquisicao: Date
-      valor_locacao: Prisma.Decimal
-    }, ExtArgs["result"]["brinquedo"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cod: string
+        nome: string
+        tipo_brinquedo: string
+        marca: string
+        data_aquisicao: Date
+        valor_locacao: Prisma.Decimal
+      },
+      ExtArgs['result']['brinquedo']
+    >
     composites: {}
   }
 
-  type BrinquedoGetPayload<S extends boolean | null | undefined | BrinquedoDefaultArgs> = $Result.GetResult<Prisma.$BrinquedoPayload, S>
+  type BrinquedoGetPayload<
+    S extends boolean | null | undefined | BrinquedoDefaultArgs,
+  > = $Result.GetResult<Prisma.$BrinquedoPayload, S>
 
-  type BrinquedoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BrinquedoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BrinquedoCountAggregateInputType | true
+  type BrinquedoCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    BrinquedoFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: BrinquedoCountAggregateInputType | true
+  }
+
+  export interface BrinquedoDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Brinquedo']
+      meta: { name: 'Brinquedo' }
     }
-
-  export interface BrinquedoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Brinquedo'], meta: { name: 'Brinquedo' } }
     /**
      * Find zero or one Brinquedo that matches the filter.
      * @param {BrinquedoFindUniqueArgs} args - Arguments to find a Brinquedo
@@ -1857,7 +2029,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends BrinquedoFindUniqueArgs>(args: SelectSubset<T, BrinquedoFindUniqueArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends BrinquedoFindUniqueArgs>(
+      args: SelectSubset<T, BrinquedoFindUniqueArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one Brinquedo that matches the filter or throw an error with `error.code='P2025'`
@@ -1871,7 +2055,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends BrinquedoFindUniqueOrThrowArgs>(args: SelectSubset<T, BrinquedoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends BrinquedoFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, BrinquedoFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Brinquedo that matches the filter.
@@ -1886,7 +2082,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends BrinquedoFindFirstArgs>(args?: SelectSubset<T, BrinquedoFindFirstArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends BrinquedoFindFirstArgs>(
+      args?: SelectSubset<T, BrinquedoFindFirstArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Brinquedo that matches the filter or
@@ -1902,7 +2110,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends BrinquedoFindFirstOrThrowArgs>(args?: SelectSubset<T, BrinquedoFindFirstOrThrowArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends BrinquedoFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, BrinquedoFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more Brinquedos that matches the filter.
@@ -1912,15 +2132,24 @@ export namespace Prisma {
      * @example
      * // Get all Brinquedos
      * const brinquedos = await prisma.brinquedo.findMany()
-     * 
+     *
      * // Get first 10 Brinquedos
      * const brinquedos = await prisma.brinquedo.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cod`
      * const brinquedoWithCodOnly = await prisma.brinquedo.findMany({ select: { cod: true } })
-     * 
+     *
      */
-    findMany<T extends BrinquedoFindManyArgs>(args?: SelectSubset<T, BrinquedoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends BrinquedoFindManyArgs>(
+      args?: SelectSubset<T, BrinquedoFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a Brinquedo.
@@ -1932,9 +2161,21 @@ export namespace Prisma {
      *     // ... data to create a Brinquedo
      *   }
      * })
-     * 
+     *
      */
-    create<T extends BrinquedoCreateArgs>(args: SelectSubset<T, BrinquedoCreateArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends BrinquedoCreateArgs>(
+      args: SelectSubset<T, BrinquedoCreateArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many Brinquedos.
@@ -1946,9 +2187,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends BrinquedoCreateManyArgs>(args?: SelectSubset<T, BrinquedoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends BrinquedoCreateManyArgs>(
+      args?: SelectSubset<T, BrinquedoCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Brinquedos and returns the data saved in the database.
@@ -1960,7 +2203,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Brinquedos and only return the `cod`
      * const brinquedoWithCodOnly = await prisma.brinquedo.createManyAndReturn({
      *   select: { cod: true },
@@ -1970,9 +2213,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends BrinquedoCreateManyAndReturnArgs>(args?: SelectSubset<T, BrinquedoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends BrinquedoCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, BrinquedoCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a Brinquedo.
@@ -1984,9 +2236,21 @@ export namespace Prisma {
      *     // ... filter to delete one Brinquedo
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends BrinquedoDeleteArgs>(args: SelectSubset<T, BrinquedoDeleteArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends BrinquedoDeleteArgs>(
+      args: SelectSubset<T, BrinquedoDeleteArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one Brinquedo.
@@ -2001,9 +2265,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends BrinquedoUpdateArgs>(args: SelectSubset<T, BrinquedoUpdateArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends BrinquedoUpdateArgs>(
+      args: SelectSubset<T, BrinquedoUpdateArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more Brinquedos.
@@ -2015,9 +2291,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends BrinquedoDeleteManyArgs>(args?: SelectSubset<T, BrinquedoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends BrinquedoDeleteManyArgs>(
+      args?: SelectSubset<T, BrinquedoDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Brinquedos.
@@ -2034,9 +2312,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends BrinquedoUpdateManyArgs>(args: SelectSubset<T, BrinquedoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends BrinquedoUpdateManyArgs>(
+      args: SelectSubset<T, BrinquedoUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Brinquedos and returns the data updated in the database.
@@ -2051,7 +2331,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Brinquedos and only return the `cod`
      * const brinquedoWithCodOnly = await prisma.brinquedo.updateManyAndReturn({
      *   select: { cod: true },
@@ -2064,9 +2344,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends BrinquedoUpdateManyAndReturnArgs>(args: SelectSubset<T, BrinquedoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends BrinquedoUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, BrinquedoUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one Brinquedo.
@@ -2085,8 +2374,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends BrinquedoUpsertArgs>(args: SelectSubset<T, BrinquedoUpsertArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends BrinquedoUpsertArgs>(
+      args: SelectSubset<T, BrinquedoUpsertArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of Brinquedos.
@@ -2100,7 +2400,7 @@ export namespace Prisma {
      *     // ... the filter for the Brinquedos we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends BrinquedoCountArgs>(
       args?: Subset<T, BrinquedoCountArgs>,
     ): Prisma.PrismaPromise<
@@ -2134,8 +2434,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends BrinquedoAggregateArgs>(args: Subset<T, BrinquedoAggregateArgs>): Prisma.PrismaPromise<GetBrinquedoAggregateType<T>>
+     **/
+    aggregate<T extends BrinquedoAggregateArgs>(
+      args: Subset<T, BrinquedoAggregateArgs>,
+    ): Prisma.PrismaPromise<GetBrinquedoAggregateType<T>>
 
     /**
      * Group by Brinquedo.
@@ -2153,8 +2455,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends BrinquedoGroupByArgs,
       HasSelectOrTake extends Or<
@@ -2164,59 +2466,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: BrinquedoGroupByArgs['orderBy'] }
         : { orderBy?: BrinquedoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BrinquedoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBrinquedoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Brinquedo model
-   */
-  readonly fields: BrinquedoFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, BrinquedoGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetBrinquedoGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the Brinquedo model
+     */
+    readonly fields: BrinquedoFieldRefs
   }
 
   /**
@@ -2225,23 +2534,65 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BrinquedoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    tipoBrinquedo<T extends TipoBrinquedoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TipoBrinquedoDefaultArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    brinquedosLocados<T extends Brinquedo$brinquedosLocadosArgs<ExtArgs> = {}>(args?: Subset<T, Brinquedo$brinquedosLocadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__BrinquedoClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    tipoBrinquedo<T extends TipoBrinquedoDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, TipoBrinquedoDefaultArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      | $Result.GetResult<
+          Prisma.$TipoBrinquedoPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+    brinquedosLocados<T extends Brinquedo$brinquedosLocadosArgs<ExtArgs> = {}>(
+      args?: Subset<T, Brinquedo$brinquedosLocadosArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -2251,27 +2602,25 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the Brinquedo model
-   */ 
+   */
   interface BrinquedoFieldRefs {
-    readonly cod: FieldRef<"Brinquedo", 'String'>
-    readonly nome: FieldRef<"Brinquedo", 'String'>
-    readonly tipo_brinquedo: FieldRef<"Brinquedo", 'String'>
-    readonly marca: FieldRef<"Brinquedo", 'String'>
-    readonly data_aquisicao: FieldRef<"Brinquedo", 'DateTime'>
-    readonly valor_locacao: FieldRef<"Brinquedo", 'Decimal'>
+    readonly cod: FieldRef<'Brinquedo', 'String'>
+    readonly nome: FieldRef<'Brinquedo', 'String'>
+    readonly tipo_brinquedo: FieldRef<'Brinquedo', 'String'>
+    readonly marca: FieldRef<'Brinquedo', 'String'>
+    readonly data_aquisicao: FieldRef<'Brinquedo', 'DateTime'>
+    readonly valor_locacao: FieldRef<'Brinquedo', 'Decimal'>
   }
-    
 
   // Custom InputTypes
   /**
    * Brinquedo findUnique
    */
-  export type BrinquedoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2293,7 +2642,9 @@ export namespace Prisma {
   /**
    * Brinquedo findUniqueOrThrow
    */
-  export type BrinquedoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2315,7 +2666,9 @@ export namespace Prisma {
   /**
    * Brinquedo findFirst
    */
-  export type BrinquedoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2334,31 +2687,33 @@ export namespace Prisma {
     where?: BrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brinquedos to fetch.
      */
-    orderBy?: BrinquedoOrderByWithRelationInput | BrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithRelationInput
+      | BrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Brinquedos.
      */
     cursor?: BrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Brinquedos.
      */
     distinct?: BrinquedoScalarFieldEnum | BrinquedoScalarFieldEnum[]
@@ -2367,7 +2722,9 @@ export namespace Prisma {
   /**
    * Brinquedo findFirstOrThrow
    */
-  export type BrinquedoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2386,31 +2743,33 @@ export namespace Prisma {
     where?: BrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brinquedos to fetch.
      */
-    orderBy?: BrinquedoOrderByWithRelationInput | BrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithRelationInput
+      | BrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Brinquedos.
      */
     cursor?: BrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Brinquedos.
      */
     distinct?: BrinquedoScalarFieldEnum | BrinquedoScalarFieldEnum[]
@@ -2419,7 +2778,9 @@ export namespace Prisma {
   /**
    * Brinquedo findMany
    */
-  export type BrinquedoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2438,25 +2799,27 @@ export namespace Prisma {
     where?: BrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Brinquedos to fetch.
      */
-    orderBy?: BrinquedoOrderByWithRelationInput | BrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithRelationInput
+      | BrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Brinquedos.
      */
     cursor?: BrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Brinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Brinquedos.
      */
     skip?: number
@@ -2466,7 +2829,9 @@ export namespace Prisma {
   /**
    * Brinquedo create
    */
-  export type BrinquedoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2488,7 +2853,9 @@ export namespace Prisma {
   /**
    * Brinquedo createMany
    */
-  export type BrinquedoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Brinquedos.
      */
@@ -2499,7 +2866,9 @@ export namespace Prisma {
   /**
    * Brinquedo createManyAndReturn
    */
-  export type BrinquedoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2522,7 +2891,9 @@ export namespace Prisma {
   /**
    * Brinquedo update
    */
-  export type BrinquedoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2548,11 +2919,16 @@ export namespace Prisma {
   /**
    * Brinquedo updateMany
    */
-  export type BrinquedoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Brinquedos.
      */
-    data: XOR<BrinquedoUpdateManyMutationInput, BrinquedoUncheckedUpdateManyInput>
+    data: XOR<
+      BrinquedoUpdateManyMutationInput,
+      BrinquedoUncheckedUpdateManyInput
+    >
     /**
      * Filter which Brinquedos to update
      */
@@ -2566,7 +2942,9 @@ export namespace Prisma {
   /**
    * Brinquedo updateManyAndReturn
    */
-  export type BrinquedoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2578,7 +2956,10 @@ export namespace Prisma {
     /**
      * The data used to update Brinquedos.
      */
-    data: XOR<BrinquedoUpdateManyMutationInput, BrinquedoUncheckedUpdateManyInput>
+    data: XOR<
+      BrinquedoUpdateManyMutationInput,
+      BrinquedoUncheckedUpdateManyInput
+    >
     /**
      * Filter which Brinquedos to update
      */
@@ -2596,7 +2977,9 @@ export namespace Prisma {
   /**
    * Brinquedo upsert
    */
-  export type BrinquedoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2626,7 +3009,9 @@ export namespace Prisma {
   /**
    * Brinquedo delete
    */
-  export type BrinquedoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2648,7 +3033,9 @@ export namespace Prisma {
   /**
    * Brinquedo deleteMany
    */
-  export type BrinquedoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Brinquedos to delete
      */
@@ -2662,7 +3049,9 @@ export namespace Prisma {
   /**
    * Brinquedo.brinquedosLocados
    */
-  export type Brinquedo$brinquedosLocadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Brinquedo$brinquedosLocadosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -2676,7 +3065,9 @@ export namespace Prisma {
      */
     include?: BrinquedoLocadoInclude<ExtArgs> | null
     where?: BrinquedoLocadoWhereInput
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     cursor?: BrinquedoLocadoWhereUniqueInput
     take?: number
     skip?: number
@@ -2686,7 +3077,9 @@ export namespace Prisma {
   /**
    * Brinquedo without action
    */
-  export type BrinquedoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -2700,7 +3093,6 @@ export namespace Prisma {
      */
     include?: BrinquedoInclude<ExtArgs> | null
   }
-
 
   /**
    * Model BrinquedoLocado
@@ -2750,7 +3142,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type BrinquedoLocadoAvgAggregateInputType = {
     valor_unitario?: true
   }
@@ -2787,81 +3178,90 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type BrinquedoLocadoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which BrinquedoLocado to aggregate.
      */
     where?: BrinquedoLocadoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of BrinquedoLocados to fetch.
      */
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: BrinquedoLocadoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` BrinquedoLocados from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` BrinquedoLocados.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned BrinquedoLocados
-    **/
+     **/
     _count?: true | BrinquedoLocadoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
+     **/
     _avg?: BrinquedoLocadoAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
+     **/
     _sum?: BrinquedoLocadoSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: BrinquedoLocadoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: BrinquedoLocadoMaxAggregateInputType
   }
 
-  export type GetBrinquedoLocadoAggregateType<T extends BrinquedoLocadoAggregateArgs> = {
-        [P in keyof T & keyof AggregateBrinquedoLocado]: P extends '_count' | 'count'
+  export type GetBrinquedoLocadoAggregateType<
+    T extends BrinquedoLocadoAggregateArgs,
+  > = {
+    [P in keyof T & keyof AggregateBrinquedoLocado]: P extends
+      | '_count'
+      | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateBrinquedoLocado[P]>
       : GetScalarType<T[P], AggregateBrinquedoLocado[P]>
   }
 
-
-
-
-  export type BrinquedoLocadoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: BrinquedoLocadoWhereInput
-    orderBy?: BrinquedoLocadoOrderByWithAggregationInput | BrinquedoLocadoOrderByWithAggregationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithAggregationInput
+      | BrinquedoLocadoOrderByWithAggregationInput[]
     by: BrinquedoLocadoScalarFieldEnum[] | BrinquedoLocadoScalarFieldEnum
     having?: BrinquedoLocadoScalarWhereWithAggregatesInput
     take?: number
@@ -2887,11 +3287,12 @@ export namespace Prisma {
     _max: BrinquedoLocadoMaxAggregateOutputType | null
   }
 
-  type GetBrinquedoLocadoGroupByPayload<T extends BrinquedoLocadoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<BrinquedoLocadoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof BrinquedoLocadoGroupByOutputType))]: P extends '_count'
+  type GetBrinquedoLocadoGroupByPayload<T extends BrinquedoLocadoGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<BrinquedoLocadoGroupByOutputType, T['by']> & {
+          [P in keyof T &
+            keyof BrinquedoLocadoGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], BrinquedoLocadoGroupByOutputType[P]>
@@ -2900,39 +3301,53 @@ export namespace Prisma {
       >
     >
 
+  export type BrinquedoLocadoSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      valor_unitario?: boolean
+      nome?: boolean
+      cod_locacao?: boolean
+      data_devolucao?: boolean
+      cod_brinquedo?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedoLocado']
+  >
 
-  export type BrinquedoLocadoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    valor_unitario?: boolean
-    nome?: boolean
-    cod_locacao?: boolean
-    data_devolucao?: boolean
-    cod_brinquedo?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedoLocado"]>
+  export type BrinquedoLocadoSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      valor_unitario?: boolean
+      nome?: boolean
+      cod_locacao?: boolean
+      data_devolucao?: boolean
+      cod_brinquedo?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedoLocado']
+  >
 
-  export type BrinquedoLocadoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    valor_unitario?: boolean
-    nome?: boolean
-    cod_locacao?: boolean
-    data_devolucao?: boolean
-    cod_brinquedo?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedoLocado"]>
-
-  export type BrinquedoLocadoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    valor_unitario?: boolean
-    nome?: boolean
-    cod_locacao?: boolean
-    data_devolucao?: boolean
-    cod_brinquedo?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["brinquedoLocado"]>
+  export type BrinquedoLocadoSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      valor_unitario?: boolean
+      nome?: boolean
+      cod_locacao?: boolean
+      data_devolucao?: boolean
+      cod_brinquedo?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['brinquedoLocado']
+  >
 
   export type BrinquedoLocadoSelectScalar = {
     cod?: boolean
@@ -2943,46 +3358,79 @@ export namespace Prisma {
     cod_brinquedo?: boolean
   }
 
-  export type BrinquedoLocadoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "valor_unitario" | "nome" | "cod_locacao" | "data_devolucao" | "cod_brinquedo", ExtArgs["result"]["brinquedoLocado"]>
-  export type BrinquedoLocadoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'cod'
+    | 'valor_unitario'
+    | 'nome'
+    | 'cod_locacao'
+    | 'data_devolucao'
+    | 'cod_brinquedo',
+    ExtArgs['result']['brinquedoLocado']
+  >
+  export type BrinquedoLocadoInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }
-  export type BrinquedoLocadoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }
-  export type BrinquedoLocadoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }
 
-  export type $BrinquedoLocadoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "BrinquedoLocado"
+  export type $BrinquedoLocadoPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'BrinquedoLocado'
     objects: {
       locacao: Prisma.$LocacaoPayload<ExtArgs>
       brinquedo: Prisma.$BrinquedoPayload<ExtArgs>
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cod: string
-      valor_unitario: Prisma.Decimal
-      nome: string
-      cod_locacao: string
-      data_devolucao: Date
-      cod_brinquedo: string
-    }, ExtArgs["result"]["brinquedoLocado"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cod: string
+        valor_unitario: Prisma.Decimal
+        nome: string
+        cod_locacao: string
+        data_devolucao: Date
+        cod_brinquedo: string
+      },
+      ExtArgs['result']['brinquedoLocado']
+    >
     composites: {}
   }
 
-  type BrinquedoLocadoGetPayload<S extends boolean | null | undefined | BrinquedoLocadoDefaultArgs> = $Result.GetResult<Prisma.$BrinquedoLocadoPayload, S>
+  type BrinquedoLocadoGetPayload<
+    S extends boolean | null | undefined | BrinquedoLocadoDefaultArgs,
+  > = $Result.GetResult<Prisma.$BrinquedoLocadoPayload, S>
 
-  type BrinquedoLocadoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<BrinquedoLocadoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: BrinquedoLocadoCountAggregateInputType | true
+  type BrinquedoLocadoCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    BrinquedoLocadoFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: BrinquedoLocadoCountAggregateInputType | true
+  }
+
+  export interface BrinquedoLocadoDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['BrinquedoLocado']
+      meta: { name: 'BrinquedoLocado' }
     }
-
-  export interface BrinquedoLocadoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BrinquedoLocado'], meta: { name: 'BrinquedoLocado' } }
     /**
      * Find zero or one BrinquedoLocado that matches the filter.
      * @param {BrinquedoLocadoFindUniqueArgs} args - Arguments to find a BrinquedoLocado
@@ -2994,7 +3442,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends BrinquedoLocadoFindUniqueArgs>(args: SelectSubset<T, BrinquedoLocadoFindUniqueArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends BrinquedoLocadoFindUniqueArgs>(
+      args: SelectSubset<T, BrinquedoLocadoFindUniqueArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one BrinquedoLocado that matches the filter or throw an error with `error.code='P2025'`
@@ -3008,7 +3468,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends BrinquedoLocadoFindUniqueOrThrowArgs>(args: SelectSubset<T, BrinquedoLocadoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends BrinquedoLocadoFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, BrinquedoLocadoFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first BrinquedoLocado that matches the filter.
@@ -3023,7 +3495,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends BrinquedoLocadoFindFirstArgs>(args?: SelectSubset<T, BrinquedoLocadoFindFirstArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends BrinquedoLocadoFindFirstArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoFindFirstArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first BrinquedoLocado that matches the filter or
@@ -3039,7 +3523,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends BrinquedoLocadoFindFirstOrThrowArgs>(args?: SelectSubset<T, BrinquedoLocadoFindFirstOrThrowArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends BrinquedoLocadoFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more BrinquedoLocados that matches the filter.
@@ -3049,15 +3545,24 @@ export namespace Prisma {
      * @example
      * // Get all BrinquedoLocados
      * const brinquedoLocados = await prisma.brinquedoLocado.findMany()
-     * 
+     *
      * // Get first 10 BrinquedoLocados
      * const brinquedoLocados = await prisma.brinquedoLocado.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cod`
      * const brinquedoLocadoWithCodOnly = await prisma.brinquedoLocado.findMany({ select: { cod: true } })
-     * 
+     *
      */
-    findMany<T extends BrinquedoLocadoFindManyArgs>(args?: SelectSubset<T, BrinquedoLocadoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends BrinquedoLocadoFindManyArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a BrinquedoLocado.
@@ -3069,9 +3574,21 @@ export namespace Prisma {
      *     // ... data to create a BrinquedoLocado
      *   }
      * })
-     * 
+     *
      */
-    create<T extends BrinquedoLocadoCreateArgs>(args: SelectSubset<T, BrinquedoLocadoCreateArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends BrinquedoLocadoCreateArgs>(
+      args: SelectSubset<T, BrinquedoLocadoCreateArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many BrinquedoLocados.
@@ -3083,9 +3600,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends BrinquedoLocadoCreateManyArgs>(args?: SelectSubset<T, BrinquedoLocadoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends BrinquedoLocadoCreateManyArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many BrinquedoLocados and returns the data saved in the database.
@@ -3097,7 +3616,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many BrinquedoLocados and only return the `cod`
      * const brinquedoLocadoWithCodOnly = await prisma.brinquedoLocado.createManyAndReturn({
      *   select: { cod: true },
@@ -3107,9 +3626,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends BrinquedoLocadoCreateManyAndReturnArgs>(args?: SelectSubset<T, BrinquedoLocadoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends BrinquedoLocadoCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a BrinquedoLocado.
@@ -3121,9 +3649,21 @@ export namespace Prisma {
      *     // ... filter to delete one BrinquedoLocado
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends BrinquedoLocadoDeleteArgs>(args: SelectSubset<T, BrinquedoLocadoDeleteArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends BrinquedoLocadoDeleteArgs>(
+      args: SelectSubset<T, BrinquedoLocadoDeleteArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one BrinquedoLocado.
@@ -3138,9 +3678,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends BrinquedoLocadoUpdateArgs>(args: SelectSubset<T, BrinquedoLocadoUpdateArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends BrinquedoLocadoUpdateArgs>(
+      args: SelectSubset<T, BrinquedoLocadoUpdateArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more BrinquedoLocados.
@@ -3152,9 +3704,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends BrinquedoLocadoDeleteManyArgs>(args?: SelectSubset<T, BrinquedoLocadoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends BrinquedoLocadoDeleteManyArgs>(
+      args?: SelectSubset<T, BrinquedoLocadoDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more BrinquedoLocados.
@@ -3171,9 +3725,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends BrinquedoLocadoUpdateManyArgs>(args: SelectSubset<T, BrinquedoLocadoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends BrinquedoLocadoUpdateManyArgs>(
+      args: SelectSubset<T, BrinquedoLocadoUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more BrinquedoLocados and returns the data updated in the database.
@@ -3188,7 +3744,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more BrinquedoLocados and only return the `cod`
      * const brinquedoLocadoWithCodOnly = await prisma.brinquedoLocado.updateManyAndReturn({
      *   select: { cod: true },
@@ -3201,9 +3757,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends BrinquedoLocadoUpdateManyAndReturnArgs>(args: SelectSubset<T, BrinquedoLocadoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends BrinquedoLocadoUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, BrinquedoLocadoUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one BrinquedoLocado.
@@ -3222,8 +3787,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends BrinquedoLocadoUpsertArgs>(args: SelectSubset<T, BrinquedoLocadoUpsertArgs<ExtArgs>>): Prisma__BrinquedoLocadoClient<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends BrinquedoLocadoUpsertArgs>(
+      args: SelectSubset<T, BrinquedoLocadoUpsertArgs<ExtArgs>>,
+    ): Prisma__BrinquedoLocadoClient<
+      $Result.GetResult<
+        Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of BrinquedoLocados.
@@ -3237,7 +3813,7 @@ export namespace Prisma {
      *     // ... the filter for the BrinquedoLocados we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends BrinquedoLocadoCountArgs>(
       args?: Subset<T, BrinquedoLocadoCountArgs>,
     ): Prisma.PrismaPromise<
@@ -3271,8 +3847,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends BrinquedoLocadoAggregateArgs>(args: Subset<T, BrinquedoLocadoAggregateArgs>): Prisma.PrismaPromise<GetBrinquedoLocadoAggregateType<T>>
+     **/
+    aggregate<T extends BrinquedoLocadoAggregateArgs>(
+      args: Subset<T, BrinquedoLocadoAggregateArgs>,
+    ): Prisma.PrismaPromise<GetBrinquedoLocadoAggregateType<T>>
 
     /**
      * Group by BrinquedoLocado.
@@ -3290,8 +3868,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends BrinquedoLocadoGroupByArgs,
       HasSelectOrTake extends Or<
@@ -3301,59 +3879,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: BrinquedoLocadoGroupByArgs['orderBy'] }
         : { orderBy?: BrinquedoLocadoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, BrinquedoLocadoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBrinquedoLocadoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the BrinquedoLocado model
-   */
-  readonly fields: BrinquedoLocadoFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, BrinquedoLocadoGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetBrinquedoLocadoGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the BrinquedoLocado model
+     */
+    readonly fields: BrinquedoLocadoFieldRefs
   }
 
   /**
@@ -3362,23 +3947,68 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__BrinquedoLocadoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    locacao<T extends LocacaoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocacaoDefaultArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    brinquedo<T extends BrinquedoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BrinquedoDefaultArgs<ExtArgs>>): Prisma__BrinquedoClient<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__BrinquedoLocadoClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    locacao<T extends LocacaoDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, LocacaoDefaultArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      | $Result.GetResult<
+          Prisma.$LocacaoPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+    brinquedo<T extends BrinquedoDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, BrinquedoDefaultArgs<ExtArgs>>,
+    ): Prisma__BrinquedoClient<
+      | $Result.GetResult<
+          Prisma.$BrinquedoPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -3388,27 +4018,25 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the BrinquedoLocado model
-   */ 
+   */
   interface BrinquedoLocadoFieldRefs {
-    readonly cod: FieldRef<"BrinquedoLocado", 'String'>
-    readonly valor_unitario: FieldRef<"BrinquedoLocado", 'Decimal'>
-    readonly nome: FieldRef<"BrinquedoLocado", 'String'>
-    readonly cod_locacao: FieldRef<"BrinquedoLocado", 'String'>
-    readonly data_devolucao: FieldRef<"BrinquedoLocado", 'DateTime'>
-    readonly cod_brinquedo: FieldRef<"BrinquedoLocado", 'String'>
+    readonly cod: FieldRef<'BrinquedoLocado', 'String'>
+    readonly valor_unitario: FieldRef<'BrinquedoLocado', 'Decimal'>
+    readonly nome: FieldRef<'BrinquedoLocado', 'String'>
+    readonly cod_locacao: FieldRef<'BrinquedoLocado', 'String'>
+    readonly data_devolucao: FieldRef<'BrinquedoLocado', 'DateTime'>
+    readonly cod_brinquedo: FieldRef<'BrinquedoLocado', 'String'>
   }
-    
 
   // Custom InputTypes
   /**
    * BrinquedoLocado findUnique
    */
-  export type BrinquedoLocadoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3430,7 +4058,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado findUniqueOrThrow
    */
-  export type BrinquedoLocadoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3452,7 +4082,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado findFirst
    */
-  export type BrinquedoLocadoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3471,31 +4103,33 @@ export namespace Prisma {
     where?: BrinquedoLocadoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of BrinquedoLocados to fetch.
      */
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for BrinquedoLocados.
      */
     cursor?: BrinquedoLocadoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` BrinquedoLocados from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` BrinquedoLocados.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of BrinquedoLocados.
      */
     distinct?: BrinquedoLocadoScalarFieldEnum | BrinquedoLocadoScalarFieldEnum[]
@@ -3504,7 +4138,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado findFirstOrThrow
    */
-  export type BrinquedoLocadoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3523,31 +4159,33 @@ export namespace Prisma {
     where?: BrinquedoLocadoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of BrinquedoLocados to fetch.
      */
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for BrinquedoLocados.
      */
     cursor?: BrinquedoLocadoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` BrinquedoLocados from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` BrinquedoLocados.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of BrinquedoLocados.
      */
     distinct?: BrinquedoLocadoScalarFieldEnum | BrinquedoLocadoScalarFieldEnum[]
@@ -3556,7 +4194,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado findMany
    */
-  export type BrinquedoLocadoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3575,25 +4215,27 @@ export namespace Prisma {
     where?: BrinquedoLocadoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of BrinquedoLocados to fetch.
      */
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing BrinquedoLocados.
      */
     cursor?: BrinquedoLocadoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` BrinquedoLocados from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` BrinquedoLocados.
      */
     skip?: number
@@ -3603,7 +4245,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado create
    */
-  export type BrinquedoLocadoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3625,7 +4269,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado createMany
    */
-  export type BrinquedoLocadoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many BrinquedoLocados.
      */
@@ -3636,7 +4282,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado createManyAndReturn
    */
-  export type BrinquedoLocadoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3659,7 +4307,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado update
    */
-  export type BrinquedoLocadoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3685,11 +4335,16 @@ export namespace Prisma {
   /**
    * BrinquedoLocado updateMany
    */
-  export type BrinquedoLocadoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update BrinquedoLocados.
      */
-    data: XOR<BrinquedoLocadoUpdateManyMutationInput, BrinquedoLocadoUncheckedUpdateManyInput>
+    data: XOR<
+      BrinquedoLocadoUpdateManyMutationInput,
+      BrinquedoLocadoUncheckedUpdateManyInput
+    >
     /**
      * Filter which BrinquedoLocados to update
      */
@@ -3703,7 +4358,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado updateManyAndReturn
    */
-  export type BrinquedoLocadoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3715,7 +4372,10 @@ export namespace Prisma {
     /**
      * The data used to update BrinquedoLocados.
      */
-    data: XOR<BrinquedoLocadoUpdateManyMutationInput, BrinquedoLocadoUncheckedUpdateManyInput>
+    data: XOR<
+      BrinquedoLocadoUpdateManyMutationInput,
+      BrinquedoLocadoUncheckedUpdateManyInput
+    >
     /**
      * Filter which BrinquedoLocados to update
      */
@@ -3733,7 +4393,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado upsert
    */
-  export type BrinquedoLocadoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3763,7 +4425,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado delete
    */
-  export type BrinquedoLocadoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3785,7 +4449,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado deleteMany
    */
-  export type BrinquedoLocadoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which BrinquedoLocados to delete
      */
@@ -3799,7 +4465,9 @@ export namespace Prisma {
   /**
    * BrinquedoLocado without action
    */
-  export type BrinquedoLocadoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type BrinquedoLocadoDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -3813,7 +4481,6 @@ export namespace Prisma {
      */
     include?: BrinquedoLocadoInclude<ExtArgs> | null
   }
-
 
   /**
    * Model Cliente
@@ -3850,7 +4517,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type ClienteMinAggregateInputType = {
     cpf?: true
     nome?: true
@@ -3876,69 +4542,74 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type ClienteAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Cliente to aggregate.
      */
     where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Clientes to fetch.
      */
-    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
+    orderBy?:
+      | ClienteOrderByWithRelationInput
+      | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Clientes
-    **/
+     **/
     _count?: true | ClienteCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: ClienteMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: ClienteMaxAggregateInputType
   }
 
   export type GetClienteAggregateType<T extends ClienteAggregateArgs> = {
-        [P in keyof T & keyof AggregateCliente]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateCliente]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateCliente[P]>
       : GetScalarType<T[P], AggregateCliente[P]>
   }
 
-
-
-
-  export type ClienteGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: ClienteWhereInput
-    orderBy?: ClienteOrderByWithAggregationInput | ClienteOrderByWithAggregationInput[]
+    orderBy?:
+      | ClienteOrderByWithAggregationInput
+      | ClienteOrderByWithAggregationInput[]
     by: ClienteScalarFieldEnum[] | ClienteScalarFieldEnum
     having?: ClienteScalarWhereWithAggregatesInput
     take?: number
@@ -3959,11 +4630,11 @@ export namespace Prisma {
     _max: ClienteMaxAggregateOutputType | null
   }
 
-  type GetClienteGroupByPayload<T extends ClienteGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<ClienteGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof ClienteGroupByOutputType))]: P extends '_count'
+  type GetClienteGroupByPayload<T extends ClienteGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<ClienteGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof ClienteGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], ClienteGroupByOutputType[P]>
@@ -3972,33 +4643,47 @@ export namespace Prisma {
       >
     >
 
+  export type ClienteSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      endereco?: boolean
+      data_nascimento?: boolean
+      telefone?: boolean
+      locacoes?: boolean | Cliente$locacoesArgs<ExtArgs>
+      pagamentos?: boolean | Cliente$pagamentosArgs<ExtArgs>
+      _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['cliente']
+  >
 
-  export type ClienteSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    endereco?: boolean
-    data_nascimento?: boolean
-    telefone?: boolean
-    locacoes?: boolean | Cliente$locacoesArgs<ExtArgs>
-    pagamentos?: boolean | Cliente$pagamentosArgs<ExtArgs>
-    _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["cliente"]>
+  export type ClienteSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      endereco?: boolean
+      data_nascimento?: boolean
+      telefone?: boolean
+    },
+    ExtArgs['result']['cliente']
+  >
 
-  export type ClienteSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    endereco?: boolean
-    data_nascimento?: boolean
-    telefone?: boolean
-  }, ExtArgs["result"]["cliente"]>
-
-  export type ClienteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    endereco?: boolean
-    data_nascimento?: boolean
-    telefone?: boolean
-  }, ExtArgs["result"]["cliente"]>
+  export type ClienteSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      endereco?: boolean
+      data_nascimento?: boolean
+      telefone?: boolean
+    },
+    ExtArgs['result']['cliente']
+  >
 
   export type ClienteSelectScalar = {
     cpf?: boolean
@@ -4008,40 +4693,65 @@ export namespace Prisma {
     telefone?: boolean
   }
 
-  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "endereco" | "data_nascimento" | "telefone", ExtArgs["result"]["cliente"]>
-  export type ClienteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    'cpf' | 'nome' | 'endereco' | 'data_nascimento' | 'telefone',
+    ExtArgs['result']['cliente']
+  >
+  export type ClienteInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacoes?: boolean | Cliente$locacoesArgs<ExtArgs>
     pagamentos?: boolean | Cliente$pagamentosArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type ClienteIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type ClienteIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type ClienteIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
+  export type ClienteIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
 
-  export type $ClientePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Cliente"
+  export type $ClientePayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Cliente'
     objects: {
       locacoes: Prisma.$LocacaoPayload<ExtArgs>[]
       pagamentos: Prisma.$PagamentoPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cpf: string
-      nome: string
-      endereco: string
-      data_nascimento: Date
-      telefone: string
-    }, ExtArgs["result"]["cliente"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cpf: string
+        nome: string
+        endereco: string
+        data_nascimento: Date
+        telefone: string
+      },
+      ExtArgs['result']['cliente']
+    >
     composites: {}
   }
 
-  type ClienteGetPayload<S extends boolean | null | undefined | ClienteDefaultArgs> = $Result.GetResult<Prisma.$ClientePayload, S>
+  type ClienteGetPayload<
+    S extends boolean | null | undefined | ClienteDefaultArgs,
+  > = $Result.GetResult<Prisma.$ClientePayload, S>
 
-  type ClienteCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<ClienteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: ClienteCountAggregateInputType | true
+  type ClienteCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<ClienteFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: ClienteCountAggregateInputType | true
+  }
+
+  export interface ClienteDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Cliente']
+      meta: { name: 'Cliente' }
     }
-
-  export interface ClienteDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Cliente'], meta: { name: 'Cliente' } }
     /**
      * Find zero or one Cliente that matches the filter.
      * @param {ClienteFindUniqueArgs} args - Arguments to find a Cliente
@@ -4053,7 +4763,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends ClienteFindUniqueArgs>(args: SelectSubset<T, ClienteFindUniqueArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends ClienteFindUniqueArgs>(
+      args: SelectSubset<T, ClienteFindUniqueArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one Cliente that matches the filter or throw an error with `error.code='P2025'`
@@ -4067,7 +4789,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends ClienteFindUniqueOrThrowArgs>(args: SelectSubset<T, ClienteFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends ClienteFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, ClienteFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Cliente that matches the filter.
@@ -4082,7 +4816,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends ClienteFindFirstArgs>(args?: SelectSubset<T, ClienteFindFirstArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends ClienteFindFirstArgs>(
+      args?: SelectSubset<T, ClienteFindFirstArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Cliente that matches the filter or
@@ -4098,7 +4844,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends ClienteFindFirstOrThrowArgs>(args?: SelectSubset<T, ClienteFindFirstOrThrowArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends ClienteFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, ClienteFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more Clientes that matches the filter.
@@ -4108,15 +4866,24 @@ export namespace Prisma {
      * @example
      * // Get all Clientes
      * const clientes = await prisma.cliente.findMany()
-     * 
+     *
      * // Get first 10 Clientes
      * const clientes = await prisma.cliente.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cpf`
      * const clienteWithCpfOnly = await prisma.cliente.findMany({ select: { cpf: true } })
-     * 
+     *
      */
-    findMany<T extends ClienteFindManyArgs>(args?: SelectSubset<T, ClienteFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends ClienteFindManyArgs>(
+      args?: SelectSubset<T, ClienteFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a Cliente.
@@ -4128,9 +4895,21 @@ export namespace Prisma {
      *     // ... data to create a Cliente
      *   }
      * })
-     * 
+     *
      */
-    create<T extends ClienteCreateArgs>(args: SelectSubset<T, ClienteCreateArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends ClienteCreateArgs>(
+      args: SelectSubset<T, ClienteCreateArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many Clientes.
@@ -4142,9 +4921,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends ClienteCreateManyArgs>(args?: SelectSubset<T, ClienteCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends ClienteCreateManyArgs>(
+      args?: SelectSubset<T, ClienteCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Clientes and returns the data saved in the database.
@@ -4156,7 +4937,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Clientes and only return the `cpf`
      * const clienteWithCpfOnly = await prisma.cliente.createManyAndReturn({
      *   select: { cpf: true },
@@ -4166,9 +4947,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends ClienteCreateManyAndReturnArgs>(args?: SelectSubset<T, ClienteCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends ClienteCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, ClienteCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a Cliente.
@@ -4180,9 +4970,21 @@ export namespace Prisma {
      *     // ... filter to delete one Cliente
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends ClienteDeleteArgs>(args: SelectSubset<T, ClienteDeleteArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends ClienteDeleteArgs>(
+      args: SelectSubset<T, ClienteDeleteArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one Cliente.
@@ -4197,9 +4999,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends ClienteUpdateArgs>(args: SelectSubset<T, ClienteUpdateArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends ClienteUpdateArgs>(
+      args: SelectSubset<T, ClienteUpdateArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more Clientes.
@@ -4211,9 +5025,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends ClienteDeleteManyArgs>(args?: SelectSubset<T, ClienteDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends ClienteDeleteManyArgs>(
+      args?: SelectSubset<T, ClienteDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Clientes.
@@ -4230,9 +5046,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends ClienteUpdateManyArgs>(args: SelectSubset<T, ClienteUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends ClienteUpdateManyArgs>(
+      args: SelectSubset<T, ClienteUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Clientes and returns the data updated in the database.
@@ -4247,7 +5065,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Clientes and only return the `cpf`
      * const clienteWithCpfOnly = await prisma.cliente.updateManyAndReturn({
      *   select: { cpf: true },
@@ -4260,9 +5078,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends ClienteUpdateManyAndReturnArgs>(args: SelectSubset<T, ClienteUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends ClienteUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, ClienteUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one Cliente.
@@ -4281,8 +5108,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends ClienteUpsertArgs>(args: SelectSubset<T, ClienteUpsertArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends ClienteUpsertArgs>(
+      args: SelectSubset<T, ClienteUpsertArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      $Result.GetResult<
+        Prisma.$ClientePayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of Clientes.
@@ -4296,7 +5134,7 @@ export namespace Prisma {
      *     // ... the filter for the Clientes we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends ClienteCountArgs>(
       args?: Subset<T, ClienteCountArgs>,
     ): Prisma.PrismaPromise<
@@ -4330,8 +5168,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends ClienteAggregateArgs>(args: Subset<T, ClienteAggregateArgs>): Prisma.PrismaPromise<GetClienteAggregateType<T>>
+     **/
+    aggregate<T extends ClienteAggregateArgs>(
+      args: Subset<T, ClienteAggregateArgs>,
+    ): Prisma.PrismaPromise<GetClienteAggregateType<T>>
 
     /**
      * Group by Cliente.
@@ -4349,8 +5189,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends ClienteGroupByArgs,
       HasSelectOrTake extends Or<
@@ -4360,59 +5200,65 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: ClienteGroupByArgs['orderBy'] }
         : { orderBy?: ClienteGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, ClienteGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetClienteGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Cliente model
-   */
-  readonly fields: ClienteFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, ClienteGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors
+      ? GetClienteGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the Cliente model
+     */
+    readonly fields: ClienteFieldRefs
   }
 
   /**
@@ -4421,23 +5267,62 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__ClienteClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    locacoes<T extends Cliente$locacoesArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$locacoesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    pagamentos<T extends Cliente$pagamentosArgs<ExtArgs> = {}>(args?: Subset<T, Cliente$pagamentosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__ClienteClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    locacoes<T extends Cliente$locacoesArgs<ExtArgs> = {}>(
+      args?: Subset<T, Cliente$locacoesArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$LocacaoPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
+    pagamentos<T extends Cliente$pagamentosArgs<ExtArgs> = {}>(
+      args?: Subset<T, Cliente$pagamentosArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$PagamentoPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -4447,26 +5332,24 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the Cliente model
-   */ 
+   */
   interface ClienteFieldRefs {
-    readonly cpf: FieldRef<"Cliente", 'String'>
-    readonly nome: FieldRef<"Cliente", 'String'>
-    readonly endereco: FieldRef<"Cliente", 'String'>
-    readonly data_nascimento: FieldRef<"Cliente", 'DateTime'>
-    readonly telefone: FieldRef<"Cliente", 'String'>
+    readonly cpf: FieldRef<'Cliente', 'String'>
+    readonly nome: FieldRef<'Cliente', 'String'>
+    readonly endereco: FieldRef<'Cliente', 'String'>
+    readonly data_nascimento: FieldRef<'Cliente', 'DateTime'>
+    readonly telefone: FieldRef<'Cliente', 'String'>
   }
-    
 
   // Custom InputTypes
   /**
    * Cliente findUnique
    */
-  export type ClienteFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4488,7 +5371,9 @@ export namespace Prisma {
   /**
    * Cliente findUniqueOrThrow
    */
-  export type ClienteFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4510,7 +5395,9 @@ export namespace Prisma {
   /**
    * Cliente findFirst
    */
-  export type ClienteFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4529,31 +5416,33 @@ export namespace Prisma {
     where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Clientes to fetch.
      */
-    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
+    orderBy?:
+      | ClienteOrderByWithRelationInput
+      | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Clientes.
      */
     cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Clientes.
      */
     distinct?: ClienteScalarFieldEnum | ClienteScalarFieldEnum[]
@@ -4562,7 +5451,9 @@ export namespace Prisma {
   /**
    * Cliente findFirstOrThrow
    */
-  export type ClienteFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4581,31 +5472,33 @@ export namespace Prisma {
     where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Clientes to fetch.
      */
-    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
+    orderBy?:
+      | ClienteOrderByWithRelationInput
+      | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Clientes.
      */
     cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Clientes.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Clientes.
      */
     distinct?: ClienteScalarFieldEnum | ClienteScalarFieldEnum[]
@@ -4614,7 +5507,9 @@ export namespace Prisma {
   /**
    * Cliente findMany
    */
-  export type ClienteFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4633,25 +5528,27 @@ export namespace Prisma {
     where?: ClienteWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Clientes to fetch.
      */
-    orderBy?: ClienteOrderByWithRelationInput | ClienteOrderByWithRelationInput[]
+    orderBy?:
+      | ClienteOrderByWithRelationInput
+      | ClienteOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Clientes.
      */
     cursor?: ClienteWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Clientes from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Clientes.
      */
     skip?: number
@@ -4661,7 +5558,9 @@ export namespace Prisma {
   /**
    * Cliente create
    */
-  export type ClienteCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4683,7 +5582,9 @@ export namespace Prisma {
   /**
    * Cliente createMany
    */
-  export type ClienteCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Clientes.
      */
@@ -4694,7 +5595,9 @@ export namespace Prisma {
   /**
    * Cliente createManyAndReturn
    */
-  export type ClienteCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4713,7 +5616,9 @@ export namespace Prisma {
   /**
    * Cliente update
    */
-  export type ClienteUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4739,7 +5644,9 @@ export namespace Prisma {
   /**
    * Cliente updateMany
    */
-  export type ClienteUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Clientes.
      */
@@ -4757,7 +5664,9 @@ export namespace Prisma {
   /**
    * Cliente updateManyAndReturn
    */
-  export type ClienteUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4783,7 +5692,9 @@ export namespace Prisma {
   /**
    * Cliente upsert
    */
-  export type ClienteUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4813,7 +5724,9 @@ export namespace Prisma {
   /**
    * Cliente delete
    */
-  export type ClienteDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4835,7 +5748,9 @@ export namespace Prisma {
   /**
    * Cliente deleteMany
    */
-  export type ClienteDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Clientes to delete
      */
@@ -4849,7 +5764,9 @@ export namespace Prisma {
   /**
    * Cliente.locacoes
    */
-  export type Cliente$locacoesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Cliente$locacoesArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -4863,7 +5780,9 @@ export namespace Prisma {
      */
     include?: LocacaoInclude<ExtArgs> | null
     where?: LocacaoWhereInput
-    orderBy?: LocacaoOrderByWithRelationInput | LocacaoOrderByWithRelationInput[]
+    orderBy?:
+      | LocacaoOrderByWithRelationInput
+      | LocacaoOrderByWithRelationInput[]
     cursor?: LocacaoWhereUniqueInput
     take?: number
     skip?: number
@@ -4873,7 +5792,9 @@ export namespace Prisma {
   /**
    * Cliente.pagamentos
    */
-  export type Cliente$pagamentosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Cliente$pagamentosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -4887,7 +5808,9 @@ export namespace Prisma {
      */
     include?: PagamentoInclude<ExtArgs> | null
     where?: PagamentoWhereInput
-    orderBy?: PagamentoOrderByWithRelationInput | PagamentoOrderByWithRelationInput[]
+    orderBy?:
+      | PagamentoOrderByWithRelationInput
+      | PagamentoOrderByWithRelationInput[]
     cursor?: PagamentoWhereUniqueInput
     take?: number
     skip?: number
@@ -4897,7 +5820,9 @@ export namespace Prisma {
   /**
    * Cliente without action
    */
-  export type ClienteDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ClienteDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Cliente
      */
@@ -4911,7 +5836,6 @@ export namespace Prisma {
      */
     include?: ClienteInclude<ExtArgs> | null
   }
-
 
   /**
    * Model Funcionario
@@ -4948,7 +5872,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type FuncionarioMinAggregateInputType = {
     cpf?: true
     nome?: true
@@ -4974,69 +5897,75 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type FuncionarioAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Funcionario to aggregate.
      */
     where?: FuncionarioWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Funcionarios to fetch.
      */
-    orderBy?: FuncionarioOrderByWithRelationInput | FuncionarioOrderByWithRelationInput[]
+    orderBy?:
+      | FuncionarioOrderByWithRelationInput
+      | FuncionarioOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: FuncionarioWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Funcionarios from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Funcionarios.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Funcionarios
-    **/
+     **/
     _count?: true | FuncionarioCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: FuncionarioMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: FuncionarioMaxAggregateInputType
   }
 
-  export type GetFuncionarioAggregateType<T extends FuncionarioAggregateArgs> = {
-        [P in keyof T & keyof AggregateFuncionario]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
+  export type GetFuncionarioAggregateType<T extends FuncionarioAggregateArgs> =
+    {
+      [P in keyof T & keyof AggregateFuncionario]: P extends '_count' | 'count'
+        ? T[P] extends true
+          ? number
+          : GetScalarType<T[P], AggregateFuncionario[P]>
         : GetScalarType<T[P], AggregateFuncionario[P]>
-      : GetScalarType<T[P], AggregateFuncionario[P]>
-  }
+    }
 
-
-
-
-  export type FuncionarioGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: FuncionarioWhereInput
-    orderBy?: FuncionarioOrderByWithAggregationInput | FuncionarioOrderByWithAggregationInput[]
+    orderBy?:
+      | FuncionarioOrderByWithAggregationInput
+      | FuncionarioOrderByWithAggregationInput[]
     by: FuncionarioScalarFieldEnum[] | FuncionarioScalarFieldEnum
     having?: FuncionarioScalarWhereWithAggregatesInput
     take?: number
@@ -5057,11 +5986,12 @@ export namespace Prisma {
     _max: FuncionarioMaxAggregateOutputType | null
   }
 
-  type GetFuncionarioGroupByPayload<T extends FuncionarioGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<FuncionarioGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof FuncionarioGroupByOutputType))]: P extends '_count'
+  type GetFuncionarioGroupByPayload<T extends FuncionarioGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<FuncionarioGroupByOutputType, T['by']> & {
+          [P in keyof T &
+            keyof FuncionarioGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], FuncionarioGroupByOutputType[P]>
@@ -5070,30 +6000,44 @@ export namespace Prisma {
       >
     >
 
+  export type FuncionarioSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      telefone?: boolean
+      funcao?: boolean
+      senha?: boolean
+    },
+    ExtArgs['result']['funcionario']
+  >
 
-  export type FuncionarioSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    telefone?: boolean
-    funcao?: boolean
-    senha?: boolean
-  }, ExtArgs["result"]["funcionario"]>
+  export type FuncionarioSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      telefone?: boolean
+      funcao?: boolean
+      senha?: boolean
+    },
+    ExtArgs['result']['funcionario']
+  >
 
-  export type FuncionarioSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    telefone?: boolean
-    funcao?: boolean
-    senha?: boolean
-  }, ExtArgs["result"]["funcionario"]>
-
-  export type FuncionarioSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cpf?: boolean
-    nome?: boolean
-    telefone?: boolean
-    funcao?: boolean
-    senha?: boolean
-  }, ExtArgs["result"]["funcionario"]>
+  export type FuncionarioSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cpf?: boolean
+      nome?: boolean
+      telefone?: boolean
+      funcao?: boolean
+      senha?: boolean
+    },
+    ExtArgs['result']['funcionario']
+  >
 
   export type FuncionarioSelectScalar = {
     cpf?: boolean
@@ -5103,30 +6047,52 @@ export namespace Prisma {
     senha?: boolean
   }
 
-  export type FuncionarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "telefone" | "funcao" | "senha", ExtArgs["result"]["funcionario"]>
+  export type FuncionarioOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    'cpf' | 'nome' | 'telefone' | 'funcao' | 'senha',
+    ExtArgs['result']['funcionario']
+  >
 
-  export type $FuncionarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Funcionario"
+  export type $FuncionarioPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Funcionario'
     objects: {}
-    scalars: $Extensions.GetPayloadResult<{
-      cpf: string
-      nome: string
-      telefone: string
-      funcao: $Enums.Funcao
-      senha: string
-    }, ExtArgs["result"]["funcionario"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cpf: string
+        nome: string
+        telefone: string
+        funcao: $Enums.Funcao
+        senha: string
+      },
+      ExtArgs['result']['funcionario']
+    >
     composites: {}
   }
 
-  type FuncionarioGetPayload<S extends boolean | null | undefined | FuncionarioDefaultArgs> = $Result.GetResult<Prisma.$FuncionarioPayload, S>
+  type FuncionarioGetPayload<
+    S extends boolean | null | undefined | FuncionarioDefaultArgs,
+  > = $Result.GetResult<Prisma.$FuncionarioPayload, S>
 
-  type FuncionarioCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<FuncionarioFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: FuncionarioCountAggregateInputType | true
+  type FuncionarioCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    FuncionarioFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: FuncionarioCountAggregateInputType | true
+  }
+
+  export interface FuncionarioDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Funcionario']
+      meta: { name: 'Funcionario' }
     }
-
-  export interface FuncionarioDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Funcionario'], meta: { name: 'Funcionario' } }
     /**
      * Find zero or one Funcionario that matches the filter.
      * @param {FuncionarioFindUniqueArgs} args - Arguments to find a Funcionario
@@ -5138,7 +6104,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends FuncionarioFindUniqueArgs>(args: SelectSubset<T, FuncionarioFindUniqueArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends FuncionarioFindUniqueArgs>(
+      args: SelectSubset<T, FuncionarioFindUniqueArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one Funcionario that matches the filter or throw an error with `error.code='P2025'`
@@ -5152,7 +6130,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends FuncionarioFindUniqueOrThrowArgs>(args: SelectSubset<T, FuncionarioFindUniqueOrThrowArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends FuncionarioFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, FuncionarioFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Funcionario that matches the filter.
@@ -5167,7 +6157,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends FuncionarioFindFirstArgs>(args?: SelectSubset<T, FuncionarioFindFirstArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends FuncionarioFindFirstArgs>(
+      args?: SelectSubset<T, FuncionarioFindFirstArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Funcionario that matches the filter or
@@ -5183,7 +6185,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends FuncionarioFindFirstOrThrowArgs>(args?: SelectSubset<T, FuncionarioFindFirstOrThrowArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends FuncionarioFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, FuncionarioFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more Funcionarios that matches the filter.
@@ -5193,15 +6207,24 @@ export namespace Prisma {
      * @example
      * // Get all Funcionarios
      * const funcionarios = await prisma.funcionario.findMany()
-     * 
+     *
      * // Get first 10 Funcionarios
      * const funcionarios = await prisma.funcionario.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cpf`
      * const funcionarioWithCpfOnly = await prisma.funcionario.findMany({ select: { cpf: true } })
-     * 
+     *
      */
-    findMany<T extends FuncionarioFindManyArgs>(args?: SelectSubset<T, FuncionarioFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends FuncionarioFindManyArgs>(
+      args?: SelectSubset<T, FuncionarioFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a Funcionario.
@@ -5213,9 +6236,21 @@ export namespace Prisma {
      *     // ... data to create a Funcionario
      *   }
      * })
-     * 
+     *
      */
-    create<T extends FuncionarioCreateArgs>(args: SelectSubset<T, FuncionarioCreateArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends FuncionarioCreateArgs>(
+      args: SelectSubset<T, FuncionarioCreateArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many Funcionarios.
@@ -5227,9 +6262,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends FuncionarioCreateManyArgs>(args?: SelectSubset<T, FuncionarioCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends FuncionarioCreateManyArgs>(
+      args?: SelectSubset<T, FuncionarioCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Funcionarios and returns the data saved in the database.
@@ -5241,7 +6278,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Funcionarios and only return the `cpf`
      * const funcionarioWithCpfOnly = await prisma.funcionario.createManyAndReturn({
      *   select: { cpf: true },
@@ -5251,9 +6288,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends FuncionarioCreateManyAndReturnArgs>(args?: SelectSubset<T, FuncionarioCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends FuncionarioCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, FuncionarioCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a Funcionario.
@@ -5265,9 +6311,21 @@ export namespace Prisma {
      *     // ... filter to delete one Funcionario
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends FuncionarioDeleteArgs>(args: SelectSubset<T, FuncionarioDeleteArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends FuncionarioDeleteArgs>(
+      args: SelectSubset<T, FuncionarioDeleteArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one Funcionario.
@@ -5282,9 +6340,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends FuncionarioUpdateArgs>(args: SelectSubset<T, FuncionarioUpdateArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends FuncionarioUpdateArgs>(
+      args: SelectSubset<T, FuncionarioUpdateArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more Funcionarios.
@@ -5296,9 +6366,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends FuncionarioDeleteManyArgs>(args?: SelectSubset<T, FuncionarioDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends FuncionarioDeleteManyArgs>(
+      args?: SelectSubset<T, FuncionarioDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Funcionarios.
@@ -5315,9 +6387,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends FuncionarioUpdateManyArgs>(args: SelectSubset<T, FuncionarioUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends FuncionarioUpdateManyArgs>(
+      args: SelectSubset<T, FuncionarioUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Funcionarios and returns the data updated in the database.
@@ -5332,7 +6406,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Funcionarios and only return the `cpf`
      * const funcionarioWithCpfOnly = await prisma.funcionario.updateManyAndReturn({
      *   select: { cpf: true },
@@ -5345,9 +6419,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends FuncionarioUpdateManyAndReturnArgs>(args: SelectSubset<T, FuncionarioUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends FuncionarioUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, FuncionarioUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one Funcionario.
@@ -5366,8 +6449,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends FuncionarioUpsertArgs>(args: SelectSubset<T, FuncionarioUpsertArgs<ExtArgs>>): Prisma__FuncionarioClient<$Result.GetResult<Prisma.$FuncionarioPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends FuncionarioUpsertArgs>(
+      args: SelectSubset<T, FuncionarioUpsertArgs<ExtArgs>>,
+    ): Prisma__FuncionarioClient<
+      $Result.GetResult<
+        Prisma.$FuncionarioPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of Funcionarios.
@@ -5381,7 +6475,7 @@ export namespace Prisma {
      *     // ... the filter for the Funcionarios we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends FuncionarioCountArgs>(
       args?: Subset<T, FuncionarioCountArgs>,
     ): Prisma.PrismaPromise<
@@ -5415,8 +6509,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends FuncionarioAggregateArgs>(args: Subset<T, FuncionarioAggregateArgs>): Prisma.PrismaPromise<GetFuncionarioAggregateType<T>>
+     **/
+    aggregate<T extends FuncionarioAggregateArgs>(
+      args: Subset<T, FuncionarioAggregateArgs>,
+    ): Prisma.PrismaPromise<GetFuncionarioAggregateType<T>>
 
     /**
      * Group by Funcionario.
@@ -5434,8 +6530,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends FuncionarioGroupByArgs,
       HasSelectOrTake extends Or<
@@ -5445,59 +6541,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: FuncionarioGroupByArgs['orderBy'] }
         : { orderBy?: FuncionarioGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, FuncionarioGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetFuncionarioGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Funcionario model
-   */
-  readonly fields: FuncionarioFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, FuncionarioGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetFuncionarioGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the Funcionario model
+     */
+    readonly fields: FuncionarioFieldRefs
   }
 
   /**
@@ -5506,21 +6609,40 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__FuncionarioClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
+  export interface Prisma__FuncionarioClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -5530,26 +6652,24 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the Funcionario model
-   */ 
+   */
   interface FuncionarioFieldRefs {
-    readonly cpf: FieldRef<"Funcionario", 'String'>
-    readonly nome: FieldRef<"Funcionario", 'String'>
-    readonly telefone: FieldRef<"Funcionario", 'String'>
-    readonly funcao: FieldRef<"Funcionario", 'Funcao'>
-    readonly senha: FieldRef<"Funcionario", 'String'>
+    readonly cpf: FieldRef<'Funcionario', 'String'>
+    readonly nome: FieldRef<'Funcionario', 'String'>
+    readonly telefone: FieldRef<'Funcionario', 'String'>
+    readonly funcao: FieldRef<'Funcionario', 'Funcao'>
+    readonly senha: FieldRef<'Funcionario', 'String'>
   }
-    
 
   // Custom InputTypes
   /**
    * Funcionario findUnique
    */
-  export type FuncionarioFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5567,7 +6687,9 @@ export namespace Prisma {
   /**
    * Funcionario findUniqueOrThrow
    */
-  export type FuncionarioFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5585,7 +6707,9 @@ export namespace Prisma {
   /**
    * Funcionario findFirst
    */
-  export type FuncionarioFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5600,31 +6724,33 @@ export namespace Prisma {
     where?: FuncionarioWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Funcionarios to fetch.
      */
-    orderBy?: FuncionarioOrderByWithRelationInput | FuncionarioOrderByWithRelationInput[]
+    orderBy?:
+      | FuncionarioOrderByWithRelationInput
+      | FuncionarioOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Funcionarios.
      */
     cursor?: FuncionarioWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Funcionarios from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Funcionarios.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Funcionarios.
      */
     distinct?: FuncionarioScalarFieldEnum | FuncionarioScalarFieldEnum[]
@@ -5633,7 +6759,9 @@ export namespace Prisma {
   /**
    * Funcionario findFirstOrThrow
    */
-  export type FuncionarioFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5648,31 +6776,33 @@ export namespace Prisma {
     where?: FuncionarioWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Funcionarios to fetch.
      */
-    orderBy?: FuncionarioOrderByWithRelationInput | FuncionarioOrderByWithRelationInput[]
+    orderBy?:
+      | FuncionarioOrderByWithRelationInput
+      | FuncionarioOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Funcionarios.
      */
     cursor?: FuncionarioWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Funcionarios from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Funcionarios.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Funcionarios.
      */
     distinct?: FuncionarioScalarFieldEnum | FuncionarioScalarFieldEnum[]
@@ -5681,7 +6811,9 @@ export namespace Prisma {
   /**
    * Funcionario findMany
    */
-  export type FuncionarioFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5696,25 +6828,27 @@ export namespace Prisma {
     where?: FuncionarioWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Funcionarios to fetch.
      */
-    orderBy?: FuncionarioOrderByWithRelationInput | FuncionarioOrderByWithRelationInput[]
+    orderBy?:
+      | FuncionarioOrderByWithRelationInput
+      | FuncionarioOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Funcionarios.
      */
     cursor?: FuncionarioWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Funcionarios from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Funcionarios.
      */
     skip?: number
@@ -5724,7 +6858,9 @@ export namespace Prisma {
   /**
    * Funcionario create
    */
-  export type FuncionarioCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5742,7 +6878,9 @@ export namespace Prisma {
   /**
    * Funcionario createMany
    */
-  export type FuncionarioCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Funcionarios.
      */
@@ -5753,7 +6891,9 @@ export namespace Prisma {
   /**
    * Funcionario createManyAndReturn
    */
-  export type FuncionarioCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5772,7 +6912,9 @@ export namespace Prisma {
   /**
    * Funcionario update
    */
-  export type FuncionarioUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5794,11 +6936,16 @@ export namespace Prisma {
   /**
    * Funcionario updateMany
    */
-  export type FuncionarioUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Funcionarios.
      */
-    data: XOR<FuncionarioUpdateManyMutationInput, FuncionarioUncheckedUpdateManyInput>
+    data: XOR<
+      FuncionarioUpdateManyMutationInput,
+      FuncionarioUncheckedUpdateManyInput
+    >
     /**
      * Filter which Funcionarios to update
      */
@@ -5812,7 +6959,9 @@ export namespace Prisma {
   /**
    * Funcionario updateManyAndReturn
    */
-  export type FuncionarioUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5824,7 +6973,10 @@ export namespace Prisma {
     /**
      * The data used to update Funcionarios.
      */
-    data: XOR<FuncionarioUpdateManyMutationInput, FuncionarioUncheckedUpdateManyInput>
+    data: XOR<
+      FuncionarioUpdateManyMutationInput,
+      FuncionarioUncheckedUpdateManyInput
+    >
     /**
      * Filter which Funcionarios to update
      */
@@ -5838,7 +6990,9 @@ export namespace Prisma {
   /**
    * Funcionario upsert
    */
-  export type FuncionarioUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5864,7 +7018,9 @@ export namespace Prisma {
   /**
    * Funcionario delete
    */
-  export type FuncionarioDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5882,7 +7038,9 @@ export namespace Prisma {
   /**
    * Funcionario deleteMany
    */
-  export type FuncionarioDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Funcionarios to delete
      */
@@ -5896,7 +7054,9 @@ export namespace Prisma {
   /**
    * Funcionario without action
    */
-  export type FuncionarioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type FuncionarioDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Funcionario
      */
@@ -5906,7 +7066,6 @@ export namespace Prisma {
      */
     omit?: FuncionarioOmit<ExtArgs> | null
   }
-
 
   /**
    * Model Locacao
@@ -5937,7 +7096,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type LocacaoMinAggregateInputType = {
     cod?: true
     data_hora?: true
@@ -5957,69 +7115,74 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type LocacaoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Locacao to aggregate.
      */
     where?: LocacaoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Locacaos to fetch.
      */
-    orderBy?: LocacaoOrderByWithRelationInput | LocacaoOrderByWithRelationInput[]
+    orderBy?:
+      | LocacaoOrderByWithRelationInput
+      | LocacaoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: LocacaoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Locacaos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Locacaos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Locacaos
-    **/
+     **/
     _count?: true | LocacaoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: LocacaoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: LocacaoMaxAggregateInputType
   }
 
   export type GetLocacaoAggregateType<T extends LocacaoAggregateArgs> = {
-        [P in keyof T & keyof AggregateLocacao]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregateLocacao]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateLocacao[P]>
       : GetScalarType<T[P], AggregateLocacao[P]>
   }
 
-
-
-
-  export type LocacaoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: LocacaoWhereInput
-    orderBy?: LocacaoOrderByWithAggregationInput | LocacaoOrderByWithAggregationInput[]
+    orderBy?:
+      | LocacaoOrderByWithAggregationInput
+      | LocacaoOrderByWithAggregationInput[]
     by: LocacaoScalarFieldEnum[] | LocacaoScalarFieldEnum
     having?: LocacaoScalarWhereWithAggregatesInput
     take?: number
@@ -6038,11 +7201,11 @@ export namespace Prisma {
     _max: LocacaoMaxAggregateOutputType | null
   }
 
-  type GetLocacaoGroupByPayload<T extends LocacaoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<LocacaoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof LocacaoGroupByOutputType))]: P extends '_count'
+  type GetLocacaoGroupByPayload<T extends LocacaoGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<LocacaoGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof LocacaoGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], LocacaoGroupByOutputType[P]>
@@ -6051,30 +7214,44 @@ export namespace Prisma {
       >
     >
 
+  export type LocacaoSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      data_hora?: boolean
+      cpf_cliente?: boolean
+      brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+      pagamento?: boolean | Locacao$pagamentoArgs<ExtArgs>
+      _count?: boolean | LocacaoCountOutputTypeDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['locacao']
+  >
 
-  export type LocacaoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    data_hora?: boolean
-    cpf_cliente?: boolean
-    brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-    pagamento?: boolean | Locacao$pagamentoArgs<ExtArgs>
-    _count?: boolean | LocacaoCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["locacao"]>
+  export type LocacaoSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      data_hora?: boolean
+      cpf_cliente?: boolean
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['locacao']
+  >
 
-  export type LocacaoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    data_hora?: boolean
-    cpf_cliente?: boolean
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["locacao"]>
-
-  export type LocacaoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    data_hora?: boolean
-    cpf_cliente?: boolean
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["locacao"]>
+  export type LocacaoSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      data_hora?: boolean
+      cpf_cliente?: boolean
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['locacao']
+  >
 
   export type LocacaoSelectScalar = {
     cod?: boolean
@@ -6082,44 +7259,69 @@ export namespace Prisma {
     cpf_cliente?: boolean
   }
 
-  export type LocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "data_hora" | "cpf_cliente", ExtArgs["result"]["locacao"]>
-  export type LocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    'cod' | 'data_hora' | 'cpf_cliente',
+    ExtArgs['result']['locacao']
+  >
+  export type LocacaoInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     pagamento?: boolean | Locacao$pagamentoArgs<ExtArgs>
     _count?: boolean | LocacaoCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type LocacaoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
-  export type LocacaoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
 
-  export type $LocacaoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Locacao"
+  export type $LocacaoPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Locacao'
     objects: {
       brinquedosLocados: Prisma.$BrinquedoLocadoPayload<ExtArgs>[]
       cliente: Prisma.$ClientePayload<ExtArgs>
       pagamento: Prisma.$PagamentoPayload<ExtArgs> | null
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cod: string
-      data_hora: Date
-      cpf_cliente: string
-    }, ExtArgs["result"]["locacao"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cod: string
+        data_hora: Date
+        cpf_cliente: string
+      },
+      ExtArgs['result']['locacao']
+    >
     composites: {}
   }
 
-  type LocacaoGetPayload<S extends boolean | null | undefined | LocacaoDefaultArgs> = $Result.GetResult<Prisma.$LocacaoPayload, S>
+  type LocacaoGetPayload<
+    S extends boolean | null | undefined | LocacaoDefaultArgs,
+  > = $Result.GetResult<Prisma.$LocacaoPayload, S>
 
-  type LocacaoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<LocacaoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: LocacaoCountAggregateInputType | true
+  type LocacaoCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<LocacaoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+    select?: LocacaoCountAggregateInputType | true
+  }
+
+  export interface LocacaoDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Locacao']
+      meta: { name: 'Locacao' }
     }
-
-  export interface LocacaoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Locacao'], meta: { name: 'Locacao' } }
     /**
      * Find zero or one Locacao that matches the filter.
      * @param {LocacaoFindUniqueArgs} args - Arguments to find a Locacao
@@ -6131,7 +7333,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends LocacaoFindUniqueArgs>(args: SelectSubset<T, LocacaoFindUniqueArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends LocacaoFindUniqueArgs>(
+      args: SelectSubset<T, LocacaoFindUniqueArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one Locacao that matches the filter or throw an error with `error.code='P2025'`
@@ -6145,7 +7359,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends LocacaoFindUniqueOrThrowArgs>(args: SelectSubset<T, LocacaoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends LocacaoFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, LocacaoFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Locacao that matches the filter.
@@ -6160,7 +7386,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends LocacaoFindFirstArgs>(args?: SelectSubset<T, LocacaoFindFirstArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends LocacaoFindFirstArgs>(
+      args?: SelectSubset<T, LocacaoFindFirstArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Locacao that matches the filter or
@@ -6176,7 +7414,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends LocacaoFindFirstOrThrowArgs>(args?: SelectSubset<T, LocacaoFindFirstOrThrowArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends LocacaoFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, LocacaoFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more Locacaos that matches the filter.
@@ -6186,15 +7436,24 @@ export namespace Prisma {
      * @example
      * // Get all Locacaos
      * const locacaos = await prisma.locacao.findMany()
-     * 
+     *
      * // Get first 10 Locacaos
      * const locacaos = await prisma.locacao.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cod`
      * const locacaoWithCodOnly = await prisma.locacao.findMany({ select: { cod: true } })
-     * 
+     *
      */
-    findMany<T extends LocacaoFindManyArgs>(args?: SelectSubset<T, LocacaoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends LocacaoFindManyArgs>(
+      args?: SelectSubset<T, LocacaoFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a Locacao.
@@ -6206,9 +7465,21 @@ export namespace Prisma {
      *     // ... data to create a Locacao
      *   }
      * })
-     * 
+     *
      */
-    create<T extends LocacaoCreateArgs>(args: SelectSubset<T, LocacaoCreateArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends LocacaoCreateArgs>(
+      args: SelectSubset<T, LocacaoCreateArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many Locacaos.
@@ -6220,9 +7491,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends LocacaoCreateManyArgs>(args?: SelectSubset<T, LocacaoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends LocacaoCreateManyArgs>(
+      args?: SelectSubset<T, LocacaoCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Locacaos and returns the data saved in the database.
@@ -6234,7 +7507,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Locacaos and only return the `cod`
      * const locacaoWithCodOnly = await prisma.locacao.createManyAndReturn({
      *   select: { cod: true },
@@ -6244,9 +7517,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends LocacaoCreateManyAndReturnArgs>(args?: SelectSubset<T, LocacaoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends LocacaoCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, LocacaoCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a Locacao.
@@ -6258,9 +7540,21 @@ export namespace Prisma {
      *     // ... filter to delete one Locacao
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends LocacaoDeleteArgs>(args: SelectSubset<T, LocacaoDeleteArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends LocacaoDeleteArgs>(
+      args: SelectSubset<T, LocacaoDeleteArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one Locacao.
@@ -6275,9 +7569,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends LocacaoUpdateArgs>(args: SelectSubset<T, LocacaoUpdateArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends LocacaoUpdateArgs>(
+      args: SelectSubset<T, LocacaoUpdateArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more Locacaos.
@@ -6289,9 +7595,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends LocacaoDeleteManyArgs>(args?: SelectSubset<T, LocacaoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends LocacaoDeleteManyArgs>(
+      args?: SelectSubset<T, LocacaoDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Locacaos.
@@ -6308,9 +7616,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends LocacaoUpdateManyArgs>(args: SelectSubset<T, LocacaoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends LocacaoUpdateManyArgs>(
+      args: SelectSubset<T, LocacaoUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Locacaos and returns the data updated in the database.
@@ -6325,7 +7635,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Locacaos and only return the `cod`
      * const locacaoWithCodOnly = await prisma.locacao.updateManyAndReturn({
      *   select: { cod: true },
@@ -6338,9 +7648,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends LocacaoUpdateManyAndReturnArgs>(args: SelectSubset<T, LocacaoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends LocacaoUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, LocacaoUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one Locacao.
@@ -6359,8 +7678,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends LocacaoUpsertArgs>(args: SelectSubset<T, LocacaoUpsertArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends LocacaoUpsertArgs>(
+      args: SelectSubset<T, LocacaoUpsertArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      $Result.GetResult<
+        Prisma.$LocacaoPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of Locacaos.
@@ -6374,7 +7704,7 @@ export namespace Prisma {
      *     // ... the filter for the Locacaos we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends LocacaoCountArgs>(
       args?: Subset<T, LocacaoCountArgs>,
     ): Prisma.PrismaPromise<
@@ -6408,8 +7738,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends LocacaoAggregateArgs>(args: Subset<T, LocacaoAggregateArgs>): Prisma.PrismaPromise<GetLocacaoAggregateType<T>>
+     **/
+    aggregate<T extends LocacaoAggregateArgs>(
+      args: Subset<T, LocacaoAggregateArgs>,
+    ): Prisma.PrismaPromise<GetLocacaoAggregateType<T>>
 
     /**
      * Group by Locacao.
@@ -6427,8 +7759,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends LocacaoGroupByArgs,
       HasSelectOrTake extends Or<
@@ -6438,59 +7770,65 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: LocacaoGroupByArgs['orderBy'] }
         : { orderBy?: LocacaoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, LocacaoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetLocacaoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Locacao model
-   */
-  readonly fields: LocacaoFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, LocacaoGroupByArgs, OrderByArg> & InputErrors,
+    ): {} extends InputErrors
+      ? GetLocacaoGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the Locacao model
+     */
+    readonly fields: LocacaoFieldRefs
   }
 
   /**
@@ -6499,24 +7837,78 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__LocacaoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    brinquedosLocados<T extends Locacao$brinquedosLocadosArgs<ExtArgs> = {}>(args?: Subset<T, Locacao$brinquedosLocadosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoLocadoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    pagamento<T extends Locacao$pagamentoArgs<ExtArgs> = {}>(args?: Subset<T, Locacao$pagamentoArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__LocacaoClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    brinquedosLocados<T extends Locacao$brinquedosLocadosArgs<ExtArgs> = {}>(
+      args?: Subset<T, Locacao$brinquedosLocadosArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$BrinquedoLocadoPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
+    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, ClienteDefaultArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      | $Result.GetResult<
+          Prisma.$ClientePayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+    pagamento<T extends Locacao$pagamentoArgs<ExtArgs> = {}>(
+      args?: Subset<T, Locacao$pagamentoArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -6526,24 +7918,22 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the Locacao model
-   */ 
+   */
   interface LocacaoFieldRefs {
-    readonly cod: FieldRef<"Locacao", 'String'>
-    readonly data_hora: FieldRef<"Locacao", 'DateTime'>
-    readonly cpf_cliente: FieldRef<"Locacao", 'String'>
+    readonly cod: FieldRef<'Locacao', 'String'>
+    readonly data_hora: FieldRef<'Locacao', 'DateTime'>
+    readonly cpf_cliente: FieldRef<'Locacao', 'String'>
   }
-    
 
   // Custom InputTypes
   /**
    * Locacao findUnique
    */
-  export type LocacaoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6565,7 +7955,9 @@ export namespace Prisma {
   /**
    * Locacao findUniqueOrThrow
    */
-  export type LocacaoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6587,7 +7979,9 @@ export namespace Prisma {
   /**
    * Locacao findFirst
    */
-  export type LocacaoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6606,31 +8000,33 @@ export namespace Prisma {
     where?: LocacaoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Locacaos to fetch.
      */
-    orderBy?: LocacaoOrderByWithRelationInput | LocacaoOrderByWithRelationInput[]
+    orderBy?:
+      | LocacaoOrderByWithRelationInput
+      | LocacaoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Locacaos.
      */
     cursor?: LocacaoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Locacaos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Locacaos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Locacaos.
      */
     distinct?: LocacaoScalarFieldEnum | LocacaoScalarFieldEnum[]
@@ -6639,7 +8035,9 @@ export namespace Prisma {
   /**
    * Locacao findFirstOrThrow
    */
-  export type LocacaoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6658,31 +8056,33 @@ export namespace Prisma {
     where?: LocacaoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Locacaos to fetch.
      */
-    orderBy?: LocacaoOrderByWithRelationInput | LocacaoOrderByWithRelationInput[]
+    orderBy?:
+      | LocacaoOrderByWithRelationInput
+      | LocacaoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Locacaos.
      */
     cursor?: LocacaoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Locacaos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Locacaos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Locacaos.
      */
     distinct?: LocacaoScalarFieldEnum | LocacaoScalarFieldEnum[]
@@ -6691,7 +8091,9 @@ export namespace Prisma {
   /**
    * Locacao findMany
    */
-  export type LocacaoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6710,25 +8112,27 @@ export namespace Prisma {
     where?: LocacaoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Locacaos to fetch.
      */
-    orderBy?: LocacaoOrderByWithRelationInput | LocacaoOrderByWithRelationInput[]
+    orderBy?:
+      | LocacaoOrderByWithRelationInput
+      | LocacaoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Locacaos.
      */
     cursor?: LocacaoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Locacaos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Locacaos.
      */
     skip?: number
@@ -6738,7 +8142,9 @@ export namespace Prisma {
   /**
    * Locacao create
    */
-  export type LocacaoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6760,7 +8166,9 @@ export namespace Prisma {
   /**
    * Locacao createMany
    */
-  export type LocacaoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Locacaos.
      */
@@ -6771,7 +8179,9 @@ export namespace Prisma {
   /**
    * Locacao createManyAndReturn
    */
-  export type LocacaoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6794,7 +8204,9 @@ export namespace Prisma {
   /**
    * Locacao update
    */
-  export type LocacaoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6820,7 +8232,9 @@ export namespace Prisma {
   /**
    * Locacao updateMany
    */
-  export type LocacaoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Locacaos.
      */
@@ -6838,7 +8252,9 @@ export namespace Prisma {
   /**
    * Locacao updateManyAndReturn
    */
-  export type LocacaoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6868,7 +8284,9 @@ export namespace Prisma {
   /**
    * Locacao upsert
    */
-  export type LocacaoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6898,7 +8316,9 @@ export namespace Prisma {
   /**
    * Locacao delete
    */
-  export type LocacaoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6920,7 +8340,9 @@ export namespace Prisma {
   /**
    * Locacao deleteMany
    */
-  export type LocacaoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Locacaos to delete
      */
@@ -6934,7 +8356,9 @@ export namespace Prisma {
   /**
    * Locacao.brinquedosLocados
    */
-  export type Locacao$brinquedosLocadosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Locacao$brinquedosLocadosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the BrinquedoLocado
      */
@@ -6948,7 +8372,9 @@ export namespace Prisma {
      */
     include?: BrinquedoLocadoInclude<ExtArgs> | null
     where?: BrinquedoLocadoWhereInput
-    orderBy?: BrinquedoLocadoOrderByWithRelationInput | BrinquedoLocadoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoLocadoOrderByWithRelationInput
+      | BrinquedoLocadoOrderByWithRelationInput[]
     cursor?: BrinquedoLocadoWhereUniqueInput
     take?: number
     skip?: number
@@ -6958,7 +8384,9 @@ export namespace Prisma {
   /**
    * Locacao.pagamento
    */
-  export type Locacao$pagamentoArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Locacao$pagamentoArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -6977,7 +8405,9 @@ export namespace Prisma {
   /**
    * Locacao without action
    */
-  export type LocacaoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type LocacaoDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Locacao
      */
@@ -6991,7 +8421,6 @@ export namespace Prisma {
      */
     include?: LocacaoInclude<ExtArgs> | null
   }
-
 
   /**
    * Model Pagamento
@@ -7043,7 +8472,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type PagamentoAvgAggregateInputType = {
     valor_pagamento?: true
     valor_locacao?: true
@@ -7082,81 +8510,86 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type PagamentoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Pagamento to aggregate.
      */
     where?: PagamentoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Pagamentos to fetch.
      */
-    orderBy?: PagamentoOrderByWithRelationInput | PagamentoOrderByWithRelationInput[]
+    orderBy?:
+      | PagamentoOrderByWithRelationInput
+      | PagamentoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: PagamentoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Pagamentos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Pagamentos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned Pagamentos
-    **/
+     **/
     _count?: true | PagamentoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to average
-    **/
+     **/
     _avg?: PagamentoAvgAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to sum
-    **/
+     **/
     _sum?: PagamentoSumAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: PagamentoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: PagamentoMaxAggregateInputType
   }
 
   export type GetPagamentoAggregateType<T extends PagamentoAggregateArgs> = {
-        [P in keyof T & keyof AggregatePagamento]: P extends '_count' | 'count'
+    [P in keyof T & keyof AggregatePagamento]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregatePagamento[P]>
       : GetScalarType<T[P], AggregatePagamento[P]>
   }
 
-
-
-
-  export type PagamentoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: PagamentoWhereInput
-    orderBy?: PagamentoOrderByWithAggregationInput | PagamentoOrderByWithAggregationInput[]
+    orderBy?:
+      | PagamentoOrderByWithAggregationInput
+      | PagamentoOrderByWithAggregationInput[]
     by: PagamentoScalarFieldEnum[] | PagamentoScalarFieldEnum
     having?: PagamentoScalarWhereWithAggregatesInput
     take?: number
@@ -7182,11 +8615,11 @@ export namespace Prisma {
     _max: PagamentoMaxAggregateOutputType | null
   }
 
-  type GetPagamentoGroupByPayload<T extends PagamentoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<PagamentoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof PagamentoGroupByOutputType))]: P extends '_count'
+  type GetPagamentoGroupByPayload<T extends PagamentoGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<PagamentoGroupByOutputType, T['by']> & {
+          [P in keyof T & keyof PagamentoGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], PagamentoGroupByOutputType[P]>
@@ -7195,39 +8628,53 @@ export namespace Prisma {
       >
     >
 
+  export type PagamentoSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      cpf_cliente?: boolean
+      cod_locacao?: boolean
+      data_pagamento?: boolean
+      valor_pagamento?: boolean
+      valor_locacao?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['pagamento']
+  >
 
-  export type PagamentoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    cpf_cliente?: boolean
-    cod_locacao?: boolean
-    data_pagamento?: boolean
-    valor_pagamento?: boolean
-    valor_locacao?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pagamento"]>
+  export type PagamentoSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      cpf_cliente?: boolean
+      cod_locacao?: boolean
+      data_pagamento?: boolean
+      valor_pagamento?: boolean
+      valor_locacao?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['pagamento']
+  >
 
-  export type PagamentoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    cpf_cliente?: boolean
-    cod_locacao?: boolean
-    data_pagamento?: boolean
-    valor_pagamento?: boolean
-    valor_locacao?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pagamento"]>
-
-  export type PagamentoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    cpf_cliente?: boolean
-    cod_locacao?: boolean
-    data_pagamento?: boolean
-    valor_pagamento?: boolean
-    valor_locacao?: boolean
-    locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
-    cliente?: boolean | ClienteDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["pagamento"]>
+  export type PagamentoSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      cpf_cliente?: boolean
+      cod_locacao?: boolean
+      data_pagamento?: boolean
+      valor_pagamento?: boolean
+      valor_locacao?: boolean
+      locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
+      cliente?: boolean | ClienteDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['pagamento']
+  >
 
   export type PagamentoSelectScalar = {
     cod?: boolean
@@ -7238,46 +8685,79 @@ export namespace Prisma {
     valor_locacao?: boolean
   }
 
-  export type PagamentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "cpf_cliente" | "cod_locacao" | "data_pagamento" | "valor_pagamento" | "valor_locacao", ExtArgs["result"]["pagamento"]>
-  export type PagamentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<
+    | 'cod'
+    | 'cpf_cliente'
+    | 'cod_locacao'
+    | 'data_pagamento'
+    | 'valor_pagamento'
+    | 'valor_locacao',
+    ExtArgs['result']['pagamento']
+  >
+  export type PagamentoInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
-  export type PagamentoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
-  export type PagamentoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }
 
-  export type $PagamentoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Pagamento"
+  export type $PagamentoPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'Pagamento'
     objects: {
       locacao: Prisma.$LocacaoPayload<ExtArgs>
       cliente: Prisma.$ClientePayload<ExtArgs>
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cod: string
-      cpf_cliente: string
-      cod_locacao: string
-      data_pagamento: Date
-      valor_pagamento: Prisma.Decimal
-      valor_locacao: Prisma.Decimal
-    }, ExtArgs["result"]["pagamento"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cod: string
+        cpf_cliente: string
+        cod_locacao: string
+        data_pagamento: Date
+        valor_pagamento: Prisma.Decimal
+        valor_locacao: Prisma.Decimal
+      },
+      ExtArgs['result']['pagamento']
+    >
     composites: {}
   }
 
-  type PagamentoGetPayload<S extends boolean | null | undefined | PagamentoDefaultArgs> = $Result.GetResult<Prisma.$PagamentoPayload, S>
+  type PagamentoGetPayload<
+    S extends boolean | null | undefined | PagamentoDefaultArgs,
+  > = $Result.GetResult<Prisma.$PagamentoPayload, S>
 
-  type PagamentoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<PagamentoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: PagamentoCountAggregateInputType | true
+  type PagamentoCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    PagamentoFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: PagamentoCountAggregateInputType | true
+  }
+
+  export interface PagamentoDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['Pagamento']
+      meta: { name: 'Pagamento' }
     }
-
-  export interface PagamentoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Pagamento'], meta: { name: 'Pagamento' } }
     /**
      * Find zero or one Pagamento that matches the filter.
      * @param {PagamentoFindUniqueArgs} args - Arguments to find a Pagamento
@@ -7289,7 +8769,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends PagamentoFindUniqueArgs>(args: SelectSubset<T, PagamentoFindUniqueArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends PagamentoFindUniqueArgs>(
+      args: SelectSubset<T, PagamentoFindUniqueArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one Pagamento that matches the filter or throw an error with `error.code='P2025'`
@@ -7303,7 +8795,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends PagamentoFindUniqueOrThrowArgs>(args: SelectSubset<T, PagamentoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends PagamentoFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, PagamentoFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Pagamento that matches the filter.
@@ -7318,7 +8822,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends PagamentoFindFirstArgs>(args?: SelectSubset<T, PagamentoFindFirstArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends PagamentoFindFirstArgs>(
+      args?: SelectSubset<T, PagamentoFindFirstArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first Pagamento that matches the filter or
@@ -7334,7 +8850,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends PagamentoFindFirstOrThrowArgs>(args?: SelectSubset<T, PagamentoFindFirstOrThrowArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends PagamentoFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, PagamentoFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more Pagamentos that matches the filter.
@@ -7344,15 +8872,24 @@ export namespace Prisma {
      * @example
      * // Get all Pagamentos
      * const pagamentos = await prisma.pagamento.findMany()
-     * 
+     *
      * // Get first 10 Pagamentos
      * const pagamentos = await prisma.pagamento.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cod`
      * const pagamentoWithCodOnly = await prisma.pagamento.findMany({ select: { cod: true } })
-     * 
+     *
      */
-    findMany<T extends PagamentoFindManyArgs>(args?: SelectSubset<T, PagamentoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends PagamentoFindManyArgs>(
+      args?: SelectSubset<T, PagamentoFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a Pagamento.
@@ -7364,9 +8901,21 @@ export namespace Prisma {
      *     // ... data to create a Pagamento
      *   }
      * })
-     * 
+     *
      */
-    create<T extends PagamentoCreateArgs>(args: SelectSubset<T, PagamentoCreateArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends PagamentoCreateArgs>(
+      args: SelectSubset<T, PagamentoCreateArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many Pagamentos.
@@ -7378,9 +8927,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends PagamentoCreateManyArgs>(args?: SelectSubset<T, PagamentoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends PagamentoCreateManyArgs>(
+      args?: SelectSubset<T, PagamentoCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many Pagamentos and returns the data saved in the database.
@@ -7392,7 +8943,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many Pagamentos and only return the `cod`
      * const pagamentoWithCodOnly = await prisma.pagamento.createManyAndReturn({
      *   select: { cod: true },
@@ -7402,9 +8953,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends PagamentoCreateManyAndReturnArgs>(args?: SelectSubset<T, PagamentoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends PagamentoCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, PagamentoCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a Pagamento.
@@ -7416,9 +8976,21 @@ export namespace Prisma {
      *     // ... filter to delete one Pagamento
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends PagamentoDeleteArgs>(args: SelectSubset<T, PagamentoDeleteArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends PagamentoDeleteArgs>(
+      args: SelectSubset<T, PagamentoDeleteArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one Pagamento.
@@ -7433,9 +9005,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends PagamentoUpdateArgs>(args: SelectSubset<T, PagamentoUpdateArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends PagamentoUpdateArgs>(
+      args: SelectSubset<T, PagamentoUpdateArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more Pagamentos.
@@ -7447,9 +9031,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends PagamentoDeleteManyArgs>(args?: SelectSubset<T, PagamentoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends PagamentoDeleteManyArgs>(
+      args?: SelectSubset<T, PagamentoDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Pagamentos.
@@ -7466,9 +9052,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends PagamentoUpdateManyArgs>(args: SelectSubset<T, PagamentoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends PagamentoUpdateManyArgs>(
+      args: SelectSubset<T, PagamentoUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more Pagamentos and returns the data updated in the database.
@@ -7483,7 +9071,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more Pagamentos and only return the `cod`
      * const pagamentoWithCodOnly = await prisma.pagamento.updateManyAndReturn({
      *   select: { cod: true },
@@ -7496,9 +9084,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends PagamentoUpdateManyAndReturnArgs>(args: SelectSubset<T, PagamentoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends PagamentoUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, PagamentoUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one Pagamento.
@@ -7517,8 +9114,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends PagamentoUpsertArgs>(args: SelectSubset<T, PagamentoUpsertArgs<ExtArgs>>): Prisma__PagamentoClient<$Result.GetResult<Prisma.$PagamentoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends PagamentoUpsertArgs>(
+      args: SelectSubset<T, PagamentoUpsertArgs<ExtArgs>>,
+    ): Prisma__PagamentoClient<
+      $Result.GetResult<
+        Prisma.$PagamentoPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of Pagamentos.
@@ -7532,7 +9140,7 @@ export namespace Prisma {
      *     // ... the filter for the Pagamentos we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends PagamentoCountArgs>(
       args?: Subset<T, PagamentoCountArgs>,
     ): Prisma.PrismaPromise<
@@ -7566,8 +9174,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends PagamentoAggregateArgs>(args: Subset<T, PagamentoAggregateArgs>): Prisma.PrismaPromise<GetPagamentoAggregateType<T>>
+     **/
+    aggregate<T extends PagamentoAggregateArgs>(
+      args: Subset<T, PagamentoAggregateArgs>,
+    ): Prisma.PrismaPromise<GetPagamentoAggregateType<T>>
 
     /**
      * Group by Pagamento.
@@ -7585,8 +9195,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends PagamentoGroupByArgs,
       HasSelectOrTake extends Or<
@@ -7596,59 +9206,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: PagamentoGroupByArgs['orderBy'] }
         : { orderBy?: PagamentoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, PagamentoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPagamentoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Pagamento model
-   */
-  readonly fields: PagamentoFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, PagamentoGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetPagamentoGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the Pagamento model
+     */
+    readonly fields: PagamentoFieldRefs
   }
 
   /**
@@ -7657,23 +9274,68 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__PagamentoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    locacao<T extends LocacaoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LocacaoDefaultArgs<ExtArgs>>): Prisma__LocacaoClient<$Result.GetResult<Prisma.$LocacaoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ClienteDefaultArgs<ExtArgs>>): Prisma__ClienteClient<$Result.GetResult<Prisma.$ClientePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  export interface Prisma__PagamentoClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    locacao<T extends LocacaoDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, LocacaoDefaultArgs<ExtArgs>>,
+    ): Prisma__LocacaoClient<
+      | $Result.GetResult<
+          Prisma.$LocacaoPayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
+    cliente<T extends ClienteDefaultArgs<ExtArgs> = {}>(
+      args?: Subset<T, ClienteDefaultArgs<ExtArgs>>,
+    ): Prisma__ClienteClient<
+      | $Result.GetResult<
+          Prisma.$ClientePayload<ExtArgs>,
+          T,
+          'findUniqueOrThrow',
+          GlobalOmitOptions
+        >
+      | Null,
+      Null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -7683,27 +9345,25 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the Pagamento model
-   */ 
+   */
   interface PagamentoFieldRefs {
-    readonly cod: FieldRef<"Pagamento", 'String'>
-    readonly cpf_cliente: FieldRef<"Pagamento", 'String'>
-    readonly cod_locacao: FieldRef<"Pagamento", 'String'>
-    readonly data_pagamento: FieldRef<"Pagamento", 'DateTime'>
-    readonly valor_pagamento: FieldRef<"Pagamento", 'Decimal'>
-    readonly valor_locacao: FieldRef<"Pagamento", 'Decimal'>
+    readonly cod: FieldRef<'Pagamento', 'String'>
+    readonly cpf_cliente: FieldRef<'Pagamento', 'String'>
+    readonly cod_locacao: FieldRef<'Pagamento', 'String'>
+    readonly data_pagamento: FieldRef<'Pagamento', 'DateTime'>
+    readonly valor_pagamento: FieldRef<'Pagamento', 'Decimal'>
+    readonly valor_locacao: FieldRef<'Pagamento', 'Decimal'>
   }
-    
 
   // Custom InputTypes
   /**
    * Pagamento findUnique
    */
-  export type PagamentoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7725,7 +9385,9 @@ export namespace Prisma {
   /**
    * Pagamento findUniqueOrThrow
    */
-  export type PagamentoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7747,7 +9409,9 @@ export namespace Prisma {
   /**
    * Pagamento findFirst
    */
-  export type PagamentoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7766,31 +9430,33 @@ export namespace Prisma {
     where?: PagamentoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Pagamentos to fetch.
      */
-    orderBy?: PagamentoOrderByWithRelationInput | PagamentoOrderByWithRelationInput[]
+    orderBy?:
+      | PagamentoOrderByWithRelationInput
+      | PagamentoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Pagamentos.
      */
     cursor?: PagamentoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Pagamentos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Pagamentos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Pagamentos.
      */
     distinct?: PagamentoScalarFieldEnum | PagamentoScalarFieldEnum[]
@@ -7799,7 +9465,9 @@ export namespace Prisma {
   /**
    * Pagamento findFirstOrThrow
    */
-  export type PagamentoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7818,31 +9486,33 @@ export namespace Prisma {
     where?: PagamentoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Pagamentos to fetch.
      */
-    orderBy?: PagamentoOrderByWithRelationInput | PagamentoOrderByWithRelationInput[]
+    orderBy?:
+      | PagamentoOrderByWithRelationInput
+      | PagamentoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for Pagamentos.
      */
     cursor?: PagamentoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Pagamentos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Pagamentos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of Pagamentos.
      */
     distinct?: PagamentoScalarFieldEnum | PagamentoScalarFieldEnum[]
@@ -7851,7 +9521,9 @@ export namespace Prisma {
   /**
    * Pagamento findMany
    */
-  export type PagamentoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7870,25 +9542,27 @@ export namespace Prisma {
     where?: PagamentoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of Pagamentos to fetch.
      */
-    orderBy?: PagamentoOrderByWithRelationInput | PagamentoOrderByWithRelationInput[]
+    orderBy?:
+      | PagamentoOrderByWithRelationInput
+      | PagamentoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing Pagamentos.
      */
     cursor?: PagamentoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` Pagamentos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` Pagamentos.
      */
     skip?: number
@@ -7898,7 +9572,9 @@ export namespace Prisma {
   /**
    * Pagamento create
    */
-  export type PagamentoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7920,7 +9596,9 @@ export namespace Prisma {
   /**
    * Pagamento createMany
    */
-  export type PagamentoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many Pagamentos.
      */
@@ -7931,7 +9609,9 @@ export namespace Prisma {
   /**
    * Pagamento createManyAndReturn
    */
-  export type PagamentoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7954,7 +9634,9 @@ export namespace Prisma {
   /**
    * Pagamento update
    */
-  export type PagamentoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -7980,11 +9662,16 @@ export namespace Prisma {
   /**
    * Pagamento updateMany
    */
-  export type PagamentoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update Pagamentos.
      */
-    data: XOR<PagamentoUpdateManyMutationInput, PagamentoUncheckedUpdateManyInput>
+    data: XOR<
+      PagamentoUpdateManyMutationInput,
+      PagamentoUncheckedUpdateManyInput
+    >
     /**
      * Filter which Pagamentos to update
      */
@@ -7998,7 +9685,9 @@ export namespace Prisma {
   /**
    * Pagamento updateManyAndReturn
    */
-  export type PagamentoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -8010,7 +9699,10 @@ export namespace Prisma {
     /**
      * The data used to update Pagamentos.
      */
-    data: XOR<PagamentoUpdateManyMutationInput, PagamentoUncheckedUpdateManyInput>
+    data: XOR<
+      PagamentoUpdateManyMutationInput,
+      PagamentoUncheckedUpdateManyInput
+    >
     /**
      * Filter which Pagamentos to update
      */
@@ -8028,7 +9720,9 @@ export namespace Prisma {
   /**
    * Pagamento upsert
    */
-  export type PagamentoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -8058,7 +9752,9 @@ export namespace Prisma {
   /**
    * Pagamento delete
    */
-  export type PagamentoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -8080,7 +9776,9 @@ export namespace Prisma {
   /**
    * Pagamento deleteMany
    */
-  export type PagamentoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which Pagamentos to delete
      */
@@ -8094,7 +9792,9 @@ export namespace Prisma {
   /**
    * Pagamento without action
    */
-  export type PagamentoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type PagamentoDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Pagamento
      */
@@ -8108,7 +9808,6 @@ export namespace Prisma {
      */
     include?: PagamentoInclude<ExtArgs> | null
   }
-
 
   /**
    * Model TipoBrinquedo
@@ -8136,7 +9835,6 @@ export namespace Prisma {
     _all: number
   }
 
-
   export type TipoBrinquedoMinAggregateInputType = {
     cod?: true
     nome?: true
@@ -8153,69 +9851,76 @@ export namespace Prisma {
     _all?: true
   }
 
-  export type TipoBrinquedoAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoAggregateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which TipoBrinquedo to aggregate.
      */
     where?: TipoBrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of TipoBrinquedos to fetch.
      */
-    orderBy?: TipoBrinquedoOrderByWithRelationInput | TipoBrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | TipoBrinquedoOrderByWithRelationInput
+      | TipoBrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the start position
      */
     cursor?: TipoBrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` TipoBrinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` TipoBrinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Count returned TipoBrinquedos
-    **/
+     **/
     _count?: true | TipoBrinquedoCountAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the minimum value
-    **/
+     **/
     _min?: TipoBrinquedoMinAggregateInputType
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
+     *
      * Select which fields to find the maximum value
-    **/
+     **/
     _max?: TipoBrinquedoMaxAggregateInputType
   }
 
-  export type GetTipoBrinquedoAggregateType<T extends TipoBrinquedoAggregateArgs> = {
-        [P in keyof T & keyof AggregateTipoBrinquedo]: P extends '_count' | 'count'
+  export type GetTipoBrinquedoAggregateType<
+    T extends TipoBrinquedoAggregateArgs,
+  > = {
+    [P in keyof T & keyof AggregateTipoBrinquedo]: P extends '_count' | 'count'
       ? T[P] extends true
         ? number
         : GetScalarType<T[P], AggregateTipoBrinquedo[P]>
       : GetScalarType<T[P], AggregateTipoBrinquedo[P]>
   }
 
-
-
-
-  export type TipoBrinquedoGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoGroupByArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     where?: TipoBrinquedoWhereInput
-    orderBy?: TipoBrinquedoOrderByWithAggregationInput | TipoBrinquedoOrderByWithAggregationInput[]
+    orderBy?:
+      | TipoBrinquedoOrderByWithAggregationInput
+      | TipoBrinquedoOrderByWithAggregationInput[]
     by: TipoBrinquedoScalarFieldEnum[] | TipoBrinquedoScalarFieldEnum
     having?: TipoBrinquedoScalarWhereWithAggregatesInput
     take?: number
@@ -8233,11 +9938,12 @@ export namespace Prisma {
     _max: TipoBrinquedoMaxAggregateOutputType | null
   }
 
-  type GetTipoBrinquedoGroupByPayload<T extends TipoBrinquedoGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TipoBrinquedoGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TipoBrinquedoGroupByOutputType))]: P extends '_count'
+  type GetTipoBrinquedoGroupByPayload<T extends TipoBrinquedoGroupByArgs> =
+    Prisma.PrismaPromise<
+      Array<
+        PickEnumerable<TipoBrinquedoGroupByOutputType, T['by']> & {
+          [P in keyof T &
+            keyof TipoBrinquedoGroupByOutputType]: P extends '_count'
             ? T[P] extends boolean
               ? number
               : GetScalarType<T[P], TipoBrinquedoGroupByOutputType[P]>
@@ -8246,58 +9952,97 @@ export namespace Prisma {
       >
     >
 
+  export type TipoBrinquedoSelect<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+      brinquedos?: boolean | TipoBrinquedo$brinquedosArgs<ExtArgs>
+      _count?: boolean | TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs>
+    },
+    ExtArgs['result']['tipoBrinquedo']
+  >
 
-  export type TipoBrinquedoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-    brinquedos?: boolean | TipoBrinquedo$brinquedosArgs<ExtArgs>
-    _count?: boolean | TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tipoBrinquedo"]>
+  export type TipoBrinquedoSelectCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+    },
+    ExtArgs['result']['tipoBrinquedo']
+  >
 
-  export type TipoBrinquedoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-  }, ExtArgs["result"]["tipoBrinquedo"]>
-
-  export type TipoBrinquedoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    cod?: boolean
-    nome?: boolean
-  }, ExtArgs["result"]["tipoBrinquedo"]>
+  export type TipoBrinquedoSelectUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetSelect<
+    {
+      cod?: boolean
+      nome?: boolean
+    },
+    ExtArgs['result']['tipoBrinquedo']
+  >
 
   export type TipoBrinquedoSelectScalar = {
     cod?: boolean
     nome?: boolean
   }
 
-  export type TipoBrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome", ExtArgs["result"]["tipoBrinquedo"]>
-  export type TipoBrinquedoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoOmit<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = $Extensions.GetOmit<'cod' | 'nome', ExtArgs['result']['tipoBrinquedo']>
+  export type TipoBrinquedoInclude<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     brinquedos?: boolean | TipoBrinquedo$brinquedosArgs<ExtArgs>
     _count?: boolean | TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type TipoBrinquedoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type TipoBrinquedoIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type TipoBrinquedoIncludeCreateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
+  export type TipoBrinquedoIncludeUpdateManyAndReturn<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {}
 
-  export type $TipoBrinquedoPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "TipoBrinquedo"
+  export type $TipoBrinquedoPayload<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
+    name: 'TipoBrinquedo'
     objects: {
       brinquedos: Prisma.$BrinquedoPayload<ExtArgs>[]
     }
-    scalars: $Extensions.GetPayloadResult<{
-      cod: string
-      nome: string
-    }, ExtArgs["result"]["tipoBrinquedo"]>
+    scalars: $Extensions.GetPayloadResult<
+      {
+        cod: string
+        nome: string
+      },
+      ExtArgs['result']['tipoBrinquedo']
+    >
     composites: {}
   }
 
-  type TipoBrinquedoGetPayload<S extends boolean | null | undefined | TipoBrinquedoDefaultArgs> = $Result.GetResult<Prisma.$TipoBrinquedoPayload, S>
+  type TipoBrinquedoGetPayload<
+    S extends boolean | null | undefined | TipoBrinquedoDefaultArgs,
+  > = $Result.GetResult<Prisma.$TipoBrinquedoPayload, S>
 
-  type TipoBrinquedoCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TipoBrinquedoFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TipoBrinquedoCountAggregateInputType | true
+  type TipoBrinquedoCountArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = Omit<
+    TipoBrinquedoFindManyArgs,
+    'select' | 'include' | 'distinct' | 'omit'
+  > & {
+    select?: TipoBrinquedoCountAggregateInputType | true
+  }
+
+  export interface TipoBrinquedoDelegate<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > {
+    [K: symbol]: {
+      types: Prisma.TypeMap<ExtArgs>['model']['TipoBrinquedo']
+      meta: { name: 'TipoBrinquedo' }
     }
-
-  export interface TipoBrinquedoDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TipoBrinquedo'], meta: { name: 'TipoBrinquedo' } }
     /**
      * Find zero or one TipoBrinquedo that matches the filter.
      * @param {TipoBrinquedoFindUniqueArgs} args - Arguments to find a TipoBrinquedo
@@ -8309,7 +10054,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUnique<T extends TipoBrinquedoFindUniqueArgs>(args: SelectSubset<T, TipoBrinquedoFindUniqueArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findUnique<T extends TipoBrinquedoFindUniqueArgs>(
+      args: SelectSubset<T, TipoBrinquedoFindUniqueArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'findUnique',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find one TipoBrinquedo that matches the filter or throw an error with `error.code='P2025'`
@@ -8323,7 +10080,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findUniqueOrThrow<T extends TipoBrinquedoFindUniqueOrThrowArgs>(args: SelectSubset<T, TipoBrinquedoFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findUniqueOrThrow<T extends TipoBrinquedoFindUniqueOrThrowArgs>(
+      args: SelectSubset<T, TipoBrinquedoFindUniqueOrThrowArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'findUniqueOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first TipoBrinquedo that matches the filter.
@@ -8338,7 +10107,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirst<T extends TipoBrinquedoFindFirstArgs>(args?: SelectSubset<T, TipoBrinquedoFindFirstArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    findFirst<T extends TipoBrinquedoFindFirstArgs>(
+      args?: SelectSubset<T, TipoBrinquedoFindFirstArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'findFirst',
+        GlobalOmitOptions
+      > | null,
+      null,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find the first TipoBrinquedo that matches the filter or
@@ -8354,7 +10135,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    findFirstOrThrow<T extends TipoBrinquedoFindFirstOrThrowArgs>(args?: SelectSubset<T, TipoBrinquedoFindFirstOrThrowArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    findFirstOrThrow<T extends TipoBrinquedoFindFirstOrThrowArgs>(
+      args?: SelectSubset<T, TipoBrinquedoFindFirstOrThrowArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'findFirstOrThrow',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Find zero or more TipoBrinquedos that matches the filter.
@@ -8364,15 +10157,24 @@ export namespace Prisma {
      * @example
      * // Get all TipoBrinquedos
      * const tipoBrinquedos = await prisma.tipoBrinquedo.findMany()
-     * 
+     *
      * // Get first 10 TipoBrinquedos
      * const tipoBrinquedos = await prisma.tipoBrinquedo.findMany({ take: 10 })
-     * 
+     *
      * // Only select the `cod`
      * const tipoBrinquedoWithCodOnly = await prisma.tipoBrinquedo.findMany({ select: { cod: true } })
-     * 
+     *
      */
-    findMany<T extends TipoBrinquedoFindManyArgs>(args?: SelectSubset<T, TipoBrinquedoFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+    findMany<T extends TipoBrinquedoFindManyArgs>(
+      args?: SelectSubset<T, TipoBrinquedoFindManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'findMany',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create a TipoBrinquedo.
@@ -8384,9 +10186,21 @@ export namespace Prisma {
      *     // ... data to create a TipoBrinquedo
      *   }
      * })
-     * 
+     *
      */
-    create<T extends TipoBrinquedoCreateArgs>(args: SelectSubset<T, TipoBrinquedoCreateArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    create<T extends TipoBrinquedoCreateArgs>(
+      args: SelectSubset<T, TipoBrinquedoCreateArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'create',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Create many TipoBrinquedos.
@@ -8398,9 +10212,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     *     
+     *
      */
-    createMany<T extends TipoBrinquedoCreateManyArgs>(args?: SelectSubset<T, TipoBrinquedoCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    createMany<T extends TipoBrinquedoCreateManyArgs>(
+      args?: SelectSubset<T, TipoBrinquedoCreateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Create many TipoBrinquedos and returns the data saved in the database.
@@ -8412,7 +10228,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Create many TipoBrinquedos and only return the `cod`
      * const tipoBrinquedoWithCodOnly = await prisma.tipoBrinquedo.createManyAndReturn({
      *   select: { cod: true },
@@ -8422,9 +10238,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    createManyAndReturn<T extends TipoBrinquedoCreateManyAndReturnArgs>(args?: SelectSubset<T, TipoBrinquedoCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+    createManyAndReturn<T extends TipoBrinquedoCreateManyAndReturnArgs>(
+      args?: SelectSubset<T, TipoBrinquedoCreateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'createManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Delete a TipoBrinquedo.
@@ -8436,9 +10261,21 @@ export namespace Prisma {
      *     // ... filter to delete one TipoBrinquedo
      *   }
      * })
-     * 
+     *
      */
-    delete<T extends TipoBrinquedoDeleteArgs>(args: SelectSubset<T, TipoBrinquedoDeleteArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    delete<T extends TipoBrinquedoDeleteArgs>(
+      args: SelectSubset<T, TipoBrinquedoDeleteArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'delete',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Update one TipoBrinquedo.
@@ -8453,9 +10290,21 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    update<T extends TipoBrinquedoUpdateArgs>(args: SelectSubset<T, TipoBrinquedoUpdateArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+    update<T extends TipoBrinquedoUpdateArgs>(
+      args: SelectSubset<T, TipoBrinquedoUpdateArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'update',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Delete zero or more TipoBrinquedos.
@@ -8467,9 +10316,11 @@ export namespace Prisma {
      *     // ... provide filter here
      *   }
      * })
-     * 
+     *
      */
-    deleteMany<T extends TipoBrinquedoDeleteManyArgs>(args?: SelectSubset<T, TipoBrinquedoDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    deleteMany<T extends TipoBrinquedoDeleteManyArgs>(
+      args?: SelectSubset<T, TipoBrinquedoDeleteManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more TipoBrinquedos.
@@ -8486,9 +10337,11 @@ export namespace Prisma {
      *     // ... provide data here
      *   }
      * })
-     * 
+     *
      */
-    updateMany<T extends TipoBrinquedoUpdateManyArgs>(args: SelectSubset<T, TipoBrinquedoUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+    updateMany<T extends TipoBrinquedoUpdateManyArgs>(
+      args: SelectSubset<T, TipoBrinquedoUpdateManyArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<BatchPayload>
 
     /**
      * Update zero or more TipoBrinquedos and returns the data updated in the database.
@@ -8503,7 +10356,7 @@ export namespace Prisma {
      *     // ... provide data here
      *   ]
      * })
-     * 
+     *
      * // Update zero or more TipoBrinquedos and only return the `cod`
      * const tipoBrinquedoWithCodOnly = await prisma.tipoBrinquedo.updateManyAndReturn({
      *   select: { cod: true },
@@ -8516,9 +10369,18 @@ export namespace Prisma {
      * })
      * Note, that providing `undefined` is treated as the value not being there.
      * Read more here: https://pris.ly/d/null-undefined
-     * 
+     *
      */
-    updateManyAndReturn<T extends TipoBrinquedoUpdateManyAndReturnArgs>(args: SelectSubset<T, TipoBrinquedoUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+    updateManyAndReturn<T extends TipoBrinquedoUpdateManyAndReturnArgs>(
+      args: SelectSubset<T, TipoBrinquedoUpdateManyAndReturnArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'updateManyAndReturn',
+        GlobalOmitOptions
+      >
+    >
 
     /**
      * Create or update one TipoBrinquedo.
@@ -8537,8 +10399,19 @@ export namespace Prisma {
      *   }
      * })
      */
-    upsert<T extends TipoBrinquedoUpsertArgs>(args: SelectSubset<T, TipoBrinquedoUpsertArgs<ExtArgs>>): Prisma__TipoBrinquedoClient<$Result.GetResult<Prisma.$TipoBrinquedoPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
-
+    upsert<T extends TipoBrinquedoUpsertArgs>(
+      args: SelectSubset<T, TipoBrinquedoUpsertArgs<ExtArgs>>,
+    ): Prisma__TipoBrinquedoClient<
+      $Result.GetResult<
+        Prisma.$TipoBrinquedoPayload<ExtArgs>,
+        T,
+        'upsert',
+        GlobalOmitOptions
+      >,
+      never,
+      ExtArgs,
+      GlobalOmitOptions
+    >
 
     /**
      * Count the number of TipoBrinquedos.
@@ -8552,7 +10425,7 @@ export namespace Prisma {
      *     // ... the filter for the TipoBrinquedos we want to count
      *   }
      * })
-    **/
+     **/
     count<T extends TipoBrinquedoCountArgs>(
       args?: Subset<T, TipoBrinquedoCountArgs>,
     ): Prisma.PrismaPromise<
@@ -8586,8 +10459,10 @@ export namespace Prisma {
      *   },
      *   take: 10,
      * })
-    **/
-    aggregate<T extends TipoBrinquedoAggregateArgs>(args: Subset<T, TipoBrinquedoAggregateArgs>): Prisma.PrismaPromise<GetTipoBrinquedoAggregateType<T>>
+     **/
+    aggregate<T extends TipoBrinquedoAggregateArgs>(
+      args: Subset<T, TipoBrinquedoAggregateArgs>,
+    ): Prisma.PrismaPromise<GetTipoBrinquedoAggregateType<T>>
 
     /**
      * Group by TipoBrinquedo.
@@ -8605,8 +10480,8 @@ export namespace Prisma {
      *     _all: true
      *   },
      * })
-     * 
-    **/
+     *
+     **/
     groupBy<
       T extends TipoBrinquedoGroupByArgs,
       HasSelectOrTake extends Or<
@@ -8616,59 +10491,66 @@ export namespace Prisma {
       OrderByArg extends True extends HasSelectOrTake
         ? { orderBy: TipoBrinquedoGroupByArgs['orderBy'] }
         : { orderBy?: TipoBrinquedoGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      OrderFields extends ExcludeUnderscoreKeys<
+        Keys<MaybeTupleToUnion<T['orderBy']>>
+      >,
       ByFields extends MaybeTupleToUnion<T['by']>,
       ByValid extends Has<ByFields, OrderFields>,
       HavingFields extends GetHavingFields<T['having']>,
       HavingValid extends Has<ByFields, HavingFields>,
       ByEmpty extends T['by'] extends never[] ? True : False,
       InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
+        ? `Error: "by" must not be empty.`
+        : HavingValid extends False
+          ? {
+              [P in HavingFields]: P extends ByFields
                 ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TipoBrinquedoGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTipoBrinquedoGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the TipoBrinquedo model
-   */
-  readonly fields: TipoBrinquedoFieldRefs;
+                : P extends string
+                  ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+                  : [
+                      Error,
+                      'Field ',
+                      P,
+                      ` in "having" needs to be provided in "by"`,
+                    ]
+            }[HavingFields]
+          : 'take' extends Keys<T>
+            ? 'orderBy' extends Keys<T>
+              ? ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields]
+              : 'Error: If you provide "take", you also need to provide "orderBy"'
+            : 'skip' extends Keys<T>
+              ? 'orderBy' extends Keys<T>
+                ? ByValid extends True
+                  ? {}
+                  : {
+                      [P in OrderFields]: P extends ByFields
+                        ? never
+                        : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                    }[OrderFields]
+                : 'Error: If you provide "skip", you also need to provide "orderBy"'
+              : ByValid extends True
+                ? {}
+                : {
+                    [P in OrderFields]: P extends ByFields
+                      ? never
+                      : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+                  }[OrderFields],
+    >(
+      args: SubsetIntersection<T, TipoBrinquedoGroupByArgs, OrderByArg> &
+        InputErrors,
+    ): {} extends InputErrors
+      ? GetTipoBrinquedoGroupByPayload<T>
+      : Prisma.PrismaPromise<InputErrors>
+    /**
+     * Fields of the TipoBrinquedo model
+     */
+    readonly fields: TipoBrinquedoFieldRefs
   }
 
   /**
@@ -8677,22 +10559,51 @@ export namespace Prisma {
    * Because we want to prevent naming conflicts as mentioned in
    * https://github.com/prisma/prisma-client-js/issues/707
    */
-  export interface Prisma__TipoBrinquedoClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    brinquedos<T extends TipoBrinquedo$brinquedosArgs<ExtArgs> = {}>(args?: Subset<T, TipoBrinquedo$brinquedosArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BrinquedoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  export interface Prisma__TipoBrinquedoClient<
+    T,
+    Null = never,
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+    GlobalOmitOptions = {},
+  > extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise'
+    brinquedos<T extends TipoBrinquedo$brinquedosArgs<ExtArgs> = {}>(
+      args?: Subset<T, TipoBrinquedo$brinquedosArgs<ExtArgs>>,
+    ): Prisma.PrismaPromise<
+      | $Result.GetResult<
+          Prisma.$BrinquedoPayload<ExtArgs>,
+          T,
+          'findMany',
+          GlobalOmitOptions
+        >
+      | Null
+    >
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of which ever callback is executed.
      */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    then<TResult1 = T, TResult2 = never>(
+      onfulfilled?:
+        | ((value: T) => TResult1 | PromiseLike<TResult1>)
+        | undefined
+        | null,
+      onrejected?:
+        | ((reason: any) => TResult2 | PromiseLike<TResult2>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<TResult1 | TResult2>
     /**
      * Attaches a callback for only the rejection of the Promise.
      * @param onrejected The callback to execute when the Promise is rejected.
      * @returns A Promise for the completion of the callback.
      */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    catch<TResult = never>(
+      onrejected?:
+        | ((reason: any) => TResult | PromiseLike<TResult>)
+        | undefined
+        | null,
+    ): $Utils.JsPromise<T | TResult>
     /**
      * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
      * resolved value cannot be modified from the callback.
@@ -8702,23 +10613,21 @@ export namespace Prisma {
     finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
-
-
-
   /**
    * Fields of the TipoBrinquedo model
-   */ 
+   */
   interface TipoBrinquedoFieldRefs {
-    readonly cod: FieldRef<"TipoBrinquedo", 'String'>
-    readonly nome: FieldRef<"TipoBrinquedo", 'String'>
+    readonly cod: FieldRef<'TipoBrinquedo', 'String'>
+    readonly nome: FieldRef<'TipoBrinquedo', 'String'>
   }
-    
 
   // Custom InputTypes
   /**
    * TipoBrinquedo findUnique
    */
-  export type TipoBrinquedoFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoFindUniqueArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8740,7 +10649,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo findUniqueOrThrow
    */
-  export type TipoBrinquedoFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoFindUniqueOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8762,7 +10673,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo findFirst
    */
-  export type TipoBrinquedoFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoFindFirstArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8781,31 +10694,33 @@ export namespace Prisma {
     where?: TipoBrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of TipoBrinquedos to fetch.
      */
-    orderBy?: TipoBrinquedoOrderByWithRelationInput | TipoBrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | TipoBrinquedoOrderByWithRelationInput
+      | TipoBrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for TipoBrinquedos.
      */
     cursor?: TipoBrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` TipoBrinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` TipoBrinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of TipoBrinquedos.
      */
     distinct?: TipoBrinquedoScalarFieldEnum | TipoBrinquedoScalarFieldEnum[]
@@ -8814,7 +10729,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo findFirstOrThrow
    */
-  export type TipoBrinquedoFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoFindFirstOrThrowArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8833,31 +10750,33 @@ export namespace Prisma {
     where?: TipoBrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of TipoBrinquedos to fetch.
      */
-    orderBy?: TipoBrinquedoOrderByWithRelationInput | TipoBrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | TipoBrinquedoOrderByWithRelationInput
+      | TipoBrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for searching for TipoBrinquedos.
      */
     cursor?: TipoBrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` TipoBrinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` TipoBrinquedos.
      */
     skip?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
+     *
      * Filter by unique combinations of TipoBrinquedos.
      */
     distinct?: TipoBrinquedoScalarFieldEnum | TipoBrinquedoScalarFieldEnum[]
@@ -8866,7 +10785,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo findMany
    */
-  export type TipoBrinquedoFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoFindManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8885,25 +10806,27 @@ export namespace Prisma {
     where?: TipoBrinquedoWhereInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
+     *
      * Determine the order of TipoBrinquedos to fetch.
      */
-    orderBy?: TipoBrinquedoOrderByWithRelationInput | TipoBrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | TipoBrinquedoOrderByWithRelationInput
+      | TipoBrinquedoOrderByWithRelationInput[]
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
+     *
      * Sets the position for listing TipoBrinquedos.
      */
     cursor?: TipoBrinquedoWhereUniqueInput
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Take `±n` TipoBrinquedos from the position of the cursor.
      */
     take?: number
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
+     *
      * Skip the first `n` TipoBrinquedos.
      */
     skip?: number
@@ -8913,7 +10836,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo create
    */
-  export type TipoBrinquedoCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCreateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8935,7 +10860,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo createMany
    */
-  export type TipoBrinquedoCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCreateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to create many TipoBrinquedos.
      */
@@ -8946,7 +10873,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo createManyAndReturn
    */
-  export type TipoBrinquedoCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoCreateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8965,7 +10894,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo update
    */
-  export type TipoBrinquedoUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoUpdateArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -8991,11 +10922,16 @@ export namespace Prisma {
   /**
    * TipoBrinquedo updateMany
    */
-  export type TipoBrinquedoUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoUpdateManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * The data used to update TipoBrinquedos.
      */
-    data: XOR<TipoBrinquedoUpdateManyMutationInput, TipoBrinquedoUncheckedUpdateManyInput>
+    data: XOR<
+      TipoBrinquedoUpdateManyMutationInput,
+      TipoBrinquedoUncheckedUpdateManyInput
+    >
     /**
      * Filter which TipoBrinquedos to update
      */
@@ -9009,7 +10945,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo updateManyAndReturn
    */
-  export type TipoBrinquedoUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoUpdateManyAndReturnArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -9021,7 +10959,10 @@ export namespace Prisma {
     /**
      * The data used to update TipoBrinquedos.
      */
-    data: XOR<TipoBrinquedoUpdateManyMutationInput, TipoBrinquedoUncheckedUpdateManyInput>
+    data: XOR<
+      TipoBrinquedoUpdateManyMutationInput,
+      TipoBrinquedoUncheckedUpdateManyInput
+    >
     /**
      * Filter which TipoBrinquedos to update
      */
@@ -9035,7 +10976,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo upsert
    */
-  export type TipoBrinquedoUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoUpsertArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -9065,7 +11008,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo delete
    */
-  export type TipoBrinquedoDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoDeleteArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -9087,7 +11032,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo deleteMany
    */
-  export type TipoBrinquedoDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoDeleteManyArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Filter which TipoBrinquedos to delete
      */
@@ -9101,7 +11048,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo.brinquedos
    */
-  export type TipoBrinquedo$brinquedosArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedo$brinquedosArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the Brinquedo
      */
@@ -9115,7 +11064,9 @@ export namespace Prisma {
      */
     include?: BrinquedoInclude<ExtArgs> | null
     where?: BrinquedoWhereInput
-    orderBy?: BrinquedoOrderByWithRelationInput | BrinquedoOrderByWithRelationInput[]
+    orderBy?:
+      | BrinquedoOrderByWithRelationInput
+      | BrinquedoOrderByWithRelationInput[]
     cursor?: BrinquedoWhereUniqueInput
     take?: number
     skip?: number
@@ -9125,7 +11076,9 @@ export namespace Prisma {
   /**
    * TipoBrinquedo without action
    */
-  export type TipoBrinquedoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type TipoBrinquedoDefaultArgs<
+    ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs,
+  > = {
     /**
      * Select specific fields to fetch from the TipoBrinquedo
      */
@@ -9140,201 +11093,216 @@ export namespace Prisma {
     include?: TipoBrinquedoInclude<ExtArgs> | null
   }
 
-
   /**
    * Enums
    */
 
   export const TransactionIsolationLevel: {
-    ReadUncommitted: 'ReadUncommitted',
-    ReadCommitted: 'ReadCommitted',
-    RepeatableRead: 'RepeatableRead',
+    ReadUncommitted: 'ReadUncommitted'
+    ReadCommitted: 'ReadCommitted'
+    RepeatableRead: 'RepeatableRead'
     Serializable: 'Serializable'
-  };
+  }
 
-  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
-
+  export type TransactionIsolationLevel =
+    (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
   export const BrinquedoScalarFieldEnum: {
-    cod: 'cod',
-    nome: 'nome',
-    tipo_brinquedo: 'tipo_brinquedo',
-    marca: 'marca',
-    data_aquisicao: 'data_aquisicao',
+    cod: 'cod'
+    nome: 'nome'
+    tipo_brinquedo: 'tipo_brinquedo'
+    marca: 'marca'
+    data_aquisicao: 'data_aquisicao'
     valor_locacao: 'valor_locacao'
-  };
+  }
 
-  export type BrinquedoScalarFieldEnum = (typeof BrinquedoScalarFieldEnum)[keyof typeof BrinquedoScalarFieldEnum]
-
+  export type BrinquedoScalarFieldEnum =
+    (typeof BrinquedoScalarFieldEnum)[keyof typeof BrinquedoScalarFieldEnum]
 
   export const BrinquedoLocadoScalarFieldEnum: {
-    cod: 'cod',
-    valor_unitario: 'valor_unitario',
-    nome: 'nome',
-    cod_locacao: 'cod_locacao',
-    data_devolucao: 'data_devolucao',
+    cod: 'cod'
+    valor_unitario: 'valor_unitario'
+    nome: 'nome'
+    cod_locacao: 'cod_locacao'
+    data_devolucao: 'data_devolucao'
     cod_brinquedo: 'cod_brinquedo'
-  };
+  }
 
-  export type BrinquedoLocadoScalarFieldEnum = (typeof BrinquedoLocadoScalarFieldEnum)[keyof typeof BrinquedoLocadoScalarFieldEnum]
-
+  export type BrinquedoLocadoScalarFieldEnum =
+    (typeof BrinquedoLocadoScalarFieldEnum)[keyof typeof BrinquedoLocadoScalarFieldEnum]
 
   export const ClienteScalarFieldEnum: {
-    cpf: 'cpf',
-    nome: 'nome',
-    endereco: 'endereco',
-    data_nascimento: 'data_nascimento',
+    cpf: 'cpf'
+    nome: 'nome'
+    endereco: 'endereco'
+    data_nascimento: 'data_nascimento'
     telefone: 'telefone'
-  };
+  }
 
-  export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
-
+  export type ClienteScalarFieldEnum =
+    (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
 
   export const FuncionarioScalarFieldEnum: {
-    cpf: 'cpf',
-    nome: 'nome',
-    telefone: 'telefone',
-    funcao: 'funcao',
+    cpf: 'cpf'
+    nome: 'nome'
+    telefone: 'telefone'
+    funcao: 'funcao'
     senha: 'senha'
-  };
+  }
 
-  export type FuncionarioScalarFieldEnum = (typeof FuncionarioScalarFieldEnum)[keyof typeof FuncionarioScalarFieldEnum]
-
+  export type FuncionarioScalarFieldEnum =
+    (typeof FuncionarioScalarFieldEnum)[keyof typeof FuncionarioScalarFieldEnum]
 
   export const LocacaoScalarFieldEnum: {
-    cod: 'cod',
-    data_hora: 'data_hora',
+    cod: 'cod'
+    data_hora: 'data_hora'
     cpf_cliente: 'cpf_cliente'
-  };
+  }
 
-  export type LocacaoScalarFieldEnum = (typeof LocacaoScalarFieldEnum)[keyof typeof LocacaoScalarFieldEnum]
-
+  export type LocacaoScalarFieldEnum =
+    (typeof LocacaoScalarFieldEnum)[keyof typeof LocacaoScalarFieldEnum]
 
   export const PagamentoScalarFieldEnum: {
-    cod: 'cod',
-    cpf_cliente: 'cpf_cliente',
-    cod_locacao: 'cod_locacao',
-    data_pagamento: 'data_pagamento',
-    valor_pagamento: 'valor_pagamento',
+    cod: 'cod'
+    cpf_cliente: 'cpf_cliente'
+    cod_locacao: 'cod_locacao'
+    data_pagamento: 'data_pagamento'
+    valor_pagamento: 'valor_pagamento'
     valor_locacao: 'valor_locacao'
-  };
+  }
 
-  export type PagamentoScalarFieldEnum = (typeof PagamentoScalarFieldEnum)[keyof typeof PagamentoScalarFieldEnum]
-
+  export type PagamentoScalarFieldEnum =
+    (typeof PagamentoScalarFieldEnum)[keyof typeof PagamentoScalarFieldEnum]
 
   export const TipoBrinquedoScalarFieldEnum: {
-    cod: 'cod',
+    cod: 'cod'
     nome: 'nome'
-  };
+  }
 
-  export type TipoBrinquedoScalarFieldEnum = (typeof TipoBrinquedoScalarFieldEnum)[keyof typeof TipoBrinquedoScalarFieldEnum]
-
+  export type TipoBrinquedoScalarFieldEnum =
+    (typeof TipoBrinquedoScalarFieldEnum)[keyof typeof TipoBrinquedoScalarFieldEnum]
 
   export const SortOrder: {
-    asc: 'asc',
+    asc: 'asc'
     desc: 'desc'
-  };
+  }
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
-
   export const QueryMode: {
-    default: 'default',
+    default: 'default'
     insensitive: 'insensitive'
-  };
+  }
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
-
   /**
-   * Field references 
+   * Field references
    */
-
 
   /**
    * Reference to a field of type 'String'
    */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
-    
-
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'String'
+  >
 
   /**
    * Reference to a field of type 'String[]'
    */
-  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
-    
-
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'String[]'
+  >
 
   /**
    * Reference to a field of type 'DateTime'
    */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'DateTime'
+  >
 
   /**
    * Reference to a field of type 'DateTime[]'
    */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
-    
-
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'DateTime[]'
+  >
 
   /**
    * Reference to a field of type 'Decimal'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
-    
-
+  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Decimal'
+  >
 
   /**
    * Reference to a field of type 'Decimal[]'
    */
-  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal[]'>
-    
-
+  export type ListDecimalFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Decimal[]'
+  >
 
   /**
    * Reference to a field of type 'Funcao'
    */
-  export type EnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao'>
-    
-
+  export type EnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Funcao'
+  >
 
   /**
    * Reference to a field of type 'Funcao[]'
    */
-  export type ListEnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao[]'>
-    
-
+  export type ListEnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Funcao[]'
+  >
 
   /**
    * Reference to a field of type 'Int'
    */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
-    
-
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Int'
+  >
 
   /**
    * Reference to a field of type 'Int[]'
    */
-  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
-    
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<
+    $PrismaModel,
+    'Int[]'
+  >
+
   /**
    * Deep Input Types
    */
-
 
   export type BrinquedoWhereInput = {
     AND?: BrinquedoWhereInput | BrinquedoWhereInput[]
     OR?: BrinquedoWhereInput[]
     NOT?: BrinquedoWhereInput | BrinquedoWhereInput[]
-    cod?: UuidFilter<"Brinquedo"> | string
-    nome?: StringFilter<"Brinquedo"> | string
-    tipo_brinquedo?: UuidFilter<"Brinquedo"> | string
-    marca?: StringFilter<"Brinquedo"> | string
-    data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
-    valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
-    tipoBrinquedo?: XOR<TipoBrinquedoScalarRelationFilter, TipoBrinquedoWhereInput>
+    cod?: UuidFilter<'Brinquedo'> | string
+    nome?: StringFilter<'Brinquedo'> | string
+    tipo_brinquedo?: UuidFilter<'Brinquedo'> | string
+    marca?: StringFilter<'Brinquedo'> | string
+    data_aquisicao?: DateTimeFilter<'Brinquedo'> | Date | string
+    valor_locacao?:
+      | DecimalFilter<'Brinquedo'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    tipoBrinquedo?: XOR<
+      TipoBrinquedoScalarRelationFilter,
+      TipoBrinquedoWhereInput
+    >
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
   }
 
@@ -9349,19 +11317,30 @@ export namespace Prisma {
     brinquedosLocados?: BrinquedoLocadoOrderByRelationAggregateInput
   }
 
-  export type BrinquedoWhereUniqueInput = Prisma.AtLeast<{
-    cod?: string
-    nome?: string
-    AND?: BrinquedoWhereInput | BrinquedoWhereInput[]
-    OR?: BrinquedoWhereInput[]
-    NOT?: BrinquedoWhereInput | BrinquedoWhereInput[]
-    tipo_brinquedo?: UuidFilter<"Brinquedo"> | string
-    marca?: StringFilter<"Brinquedo"> | string
-    data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
-    valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
-    tipoBrinquedo?: XOR<TipoBrinquedoScalarRelationFilter, TipoBrinquedoWhereInput>
-    brinquedosLocados?: BrinquedoLocadoListRelationFilter
-  }, "cod" | "nome">
+  export type BrinquedoWhereUniqueInput = Prisma.AtLeast<
+    {
+      cod?: string
+      nome?: string
+      AND?: BrinquedoWhereInput | BrinquedoWhereInput[]
+      OR?: BrinquedoWhereInput[]
+      NOT?: BrinquedoWhereInput | BrinquedoWhereInput[]
+      tipo_brinquedo?: UuidFilter<'Brinquedo'> | string
+      marca?: StringFilter<'Brinquedo'> | string
+      data_aquisicao?: DateTimeFilter<'Brinquedo'> | Date | string
+      valor_locacao?:
+        | DecimalFilter<'Brinquedo'>
+        | Decimal
+        | DecimalJsLike
+        | number
+        | string
+      tipoBrinquedo?: XOR<
+        TipoBrinquedoScalarRelationFilter,
+        TipoBrinquedoWhereInput
+      >
+      brinquedosLocados?: BrinquedoLocadoListRelationFilter
+    },
+    'cod' | 'nome'
+  >
 
   export type BrinquedoOrderByWithAggregationInput = {
     cod?: SortOrder
@@ -9378,27 +11357,41 @@ export namespace Prisma {
   }
 
   export type BrinquedoScalarWhereWithAggregatesInput = {
-    AND?: BrinquedoScalarWhereWithAggregatesInput | BrinquedoScalarWhereWithAggregatesInput[]
+    AND?:
+      | BrinquedoScalarWhereWithAggregatesInput
+      | BrinquedoScalarWhereWithAggregatesInput[]
     OR?: BrinquedoScalarWhereWithAggregatesInput[]
-    NOT?: BrinquedoScalarWhereWithAggregatesInput | BrinquedoScalarWhereWithAggregatesInput[]
-    cod?: UuidWithAggregatesFilter<"Brinquedo"> | string
-    nome?: StringWithAggregatesFilter<"Brinquedo"> | string
-    tipo_brinquedo?: UuidWithAggregatesFilter<"Brinquedo"> | string
-    marca?: StringWithAggregatesFilter<"Brinquedo"> | string
-    data_aquisicao?: DateTimeWithAggregatesFilter<"Brinquedo"> | Date | string
-    valor_locacao?: DecimalWithAggregatesFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    NOT?:
+      | BrinquedoScalarWhereWithAggregatesInput
+      | BrinquedoScalarWhereWithAggregatesInput[]
+    cod?: UuidWithAggregatesFilter<'Brinquedo'> | string
+    nome?: StringWithAggregatesFilter<'Brinquedo'> | string
+    tipo_brinquedo?: UuidWithAggregatesFilter<'Brinquedo'> | string
+    marca?: StringWithAggregatesFilter<'Brinquedo'> | string
+    data_aquisicao?: DateTimeWithAggregatesFilter<'Brinquedo'> | Date | string
+    valor_locacao?:
+      | DecimalWithAggregatesFilter<'Brinquedo'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoLocadoWhereInput = {
     AND?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
     OR?: BrinquedoLocadoWhereInput[]
     NOT?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
-    cod?: UuidFilter<"BrinquedoLocado"> | string
-    valor_unitario?: DecimalFilter<"BrinquedoLocado"> | Decimal | DecimalJsLike | number | string
-    nome?: StringFilter<"BrinquedoLocado"> | string
-    cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
-    data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
-    cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
+    cod?: UuidFilter<'BrinquedoLocado'> | string
+    valor_unitario?:
+      | DecimalFilter<'BrinquedoLocado'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    nome?: StringFilter<'BrinquedoLocado'> | string
+    cod_locacao?: UuidFilter<'BrinquedoLocado'> | string
+    data_devolucao?: DateTimeFilter<'BrinquedoLocado'> | Date | string
+    cod_brinquedo?: UuidFilter<'BrinquedoLocado'> | string
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     brinquedo?: XOR<BrinquedoScalarRelationFilter, BrinquedoWhereInput>
   }
@@ -9414,19 +11407,27 @@ export namespace Prisma {
     brinquedo?: BrinquedoOrderByWithRelationInput
   }
 
-  export type BrinquedoLocadoWhereUniqueInput = Prisma.AtLeast<{
-    cod?: string
-    AND?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
-    OR?: BrinquedoLocadoWhereInput[]
-    NOT?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
-    valor_unitario?: DecimalFilter<"BrinquedoLocado"> | Decimal | DecimalJsLike | number | string
-    nome?: StringFilter<"BrinquedoLocado"> | string
-    cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
-    data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
-    cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
-    locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
-    brinquedo?: XOR<BrinquedoScalarRelationFilter, BrinquedoWhereInput>
-  }, "cod">
+  export type BrinquedoLocadoWhereUniqueInput = Prisma.AtLeast<
+    {
+      cod?: string
+      AND?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
+      OR?: BrinquedoLocadoWhereInput[]
+      NOT?: BrinquedoLocadoWhereInput | BrinquedoLocadoWhereInput[]
+      valor_unitario?:
+        | DecimalFilter<'BrinquedoLocado'>
+        | Decimal
+        | DecimalJsLike
+        | number
+        | string
+      nome?: StringFilter<'BrinquedoLocado'> | string
+      cod_locacao?: UuidFilter<'BrinquedoLocado'> | string
+      data_devolucao?: DateTimeFilter<'BrinquedoLocado'> | Date | string
+      cod_brinquedo?: UuidFilter<'BrinquedoLocado'> | string
+      locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
+      brinquedo?: XOR<BrinquedoScalarRelationFilter, BrinquedoWhereInput>
+    },
+    'cod'
+  >
 
   export type BrinquedoLocadoOrderByWithAggregationInput = {
     cod?: SortOrder
@@ -9443,26 +11444,38 @@ export namespace Prisma {
   }
 
   export type BrinquedoLocadoScalarWhereWithAggregatesInput = {
-    AND?: BrinquedoLocadoScalarWhereWithAggregatesInput | BrinquedoLocadoScalarWhereWithAggregatesInput[]
+    AND?:
+      | BrinquedoLocadoScalarWhereWithAggregatesInput
+      | BrinquedoLocadoScalarWhereWithAggregatesInput[]
     OR?: BrinquedoLocadoScalarWhereWithAggregatesInput[]
-    NOT?: BrinquedoLocadoScalarWhereWithAggregatesInput | BrinquedoLocadoScalarWhereWithAggregatesInput[]
-    cod?: UuidWithAggregatesFilter<"BrinquedoLocado"> | string
-    valor_unitario?: DecimalWithAggregatesFilter<"BrinquedoLocado"> | Decimal | DecimalJsLike | number | string
-    nome?: StringWithAggregatesFilter<"BrinquedoLocado"> | string
-    cod_locacao?: UuidWithAggregatesFilter<"BrinquedoLocado"> | string
-    data_devolucao?: DateTimeWithAggregatesFilter<"BrinquedoLocado"> | Date | string
-    cod_brinquedo?: UuidWithAggregatesFilter<"BrinquedoLocado"> | string
+    NOT?:
+      | BrinquedoLocadoScalarWhereWithAggregatesInput
+      | BrinquedoLocadoScalarWhereWithAggregatesInput[]
+    cod?: UuidWithAggregatesFilter<'BrinquedoLocado'> | string
+    valor_unitario?:
+      | DecimalWithAggregatesFilter<'BrinquedoLocado'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    nome?: StringWithAggregatesFilter<'BrinquedoLocado'> | string
+    cod_locacao?: UuidWithAggregatesFilter<'BrinquedoLocado'> | string
+    data_devolucao?:
+      | DateTimeWithAggregatesFilter<'BrinquedoLocado'>
+      | Date
+      | string
+    cod_brinquedo?: UuidWithAggregatesFilter<'BrinquedoLocado'> | string
   }
 
   export type ClienteWhereInput = {
     AND?: ClienteWhereInput | ClienteWhereInput[]
     OR?: ClienteWhereInput[]
     NOT?: ClienteWhereInput | ClienteWhereInput[]
-    cpf?: StringFilter<"Cliente"> | string
-    nome?: StringFilter<"Cliente"> | string
-    endereco?: StringFilter<"Cliente"> | string
-    data_nascimento?: DateTimeFilter<"Cliente"> | Date | string
-    telefone?: StringFilter<"Cliente"> | string
+    cpf?: StringFilter<'Cliente'> | string
+    nome?: StringFilter<'Cliente'> | string
+    endereco?: StringFilter<'Cliente'> | string
+    data_nascimento?: DateTimeFilter<'Cliente'> | Date | string
+    telefone?: StringFilter<'Cliente'> | string
     locacoes?: LocacaoListRelationFilter
     pagamentos?: PagamentoListRelationFilter
   }
@@ -9477,18 +11490,21 @@ export namespace Prisma {
     pagamentos?: PagamentoOrderByRelationAggregateInput
   }
 
-  export type ClienteWhereUniqueInput = Prisma.AtLeast<{
-    cpf?: string
-    AND?: ClienteWhereInput | ClienteWhereInput[]
-    OR?: ClienteWhereInput[]
-    NOT?: ClienteWhereInput | ClienteWhereInput[]
-    nome?: StringFilter<"Cliente"> | string
-    endereco?: StringFilter<"Cliente"> | string
-    data_nascimento?: DateTimeFilter<"Cliente"> | Date | string
-    telefone?: StringFilter<"Cliente"> | string
-    locacoes?: LocacaoListRelationFilter
-    pagamentos?: PagamentoListRelationFilter
-  }, "cpf">
+  export type ClienteWhereUniqueInput = Prisma.AtLeast<
+    {
+      cpf?: string
+      AND?: ClienteWhereInput | ClienteWhereInput[]
+      OR?: ClienteWhereInput[]
+      NOT?: ClienteWhereInput | ClienteWhereInput[]
+      nome?: StringFilter<'Cliente'> | string
+      endereco?: StringFilter<'Cliente'> | string
+      data_nascimento?: DateTimeFilter<'Cliente'> | Date | string
+      telefone?: StringFilter<'Cliente'> | string
+      locacoes?: LocacaoListRelationFilter
+      pagamentos?: PagamentoListRelationFilter
+    },
+    'cpf'
+  >
 
   export type ClienteOrderByWithAggregationInput = {
     cpf?: SortOrder
@@ -9502,25 +11518,29 @@ export namespace Prisma {
   }
 
   export type ClienteScalarWhereWithAggregatesInput = {
-    AND?: ClienteScalarWhereWithAggregatesInput | ClienteScalarWhereWithAggregatesInput[]
+    AND?:
+      | ClienteScalarWhereWithAggregatesInput
+      | ClienteScalarWhereWithAggregatesInput[]
     OR?: ClienteScalarWhereWithAggregatesInput[]
-    NOT?: ClienteScalarWhereWithAggregatesInput | ClienteScalarWhereWithAggregatesInput[]
-    cpf?: StringWithAggregatesFilter<"Cliente"> | string
-    nome?: StringWithAggregatesFilter<"Cliente"> | string
-    endereco?: StringWithAggregatesFilter<"Cliente"> | string
-    data_nascimento?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
-    telefone?: StringWithAggregatesFilter<"Cliente"> | string
+    NOT?:
+      | ClienteScalarWhereWithAggregatesInput
+      | ClienteScalarWhereWithAggregatesInput[]
+    cpf?: StringWithAggregatesFilter<'Cliente'> | string
+    nome?: StringWithAggregatesFilter<'Cliente'> | string
+    endereco?: StringWithAggregatesFilter<'Cliente'> | string
+    data_nascimento?: DateTimeWithAggregatesFilter<'Cliente'> | Date | string
+    telefone?: StringWithAggregatesFilter<'Cliente'> | string
   }
 
   export type FuncionarioWhereInput = {
     AND?: FuncionarioWhereInput | FuncionarioWhereInput[]
     OR?: FuncionarioWhereInput[]
     NOT?: FuncionarioWhereInput | FuncionarioWhereInput[]
-    cpf?: StringFilter<"Funcionario"> | string
-    nome?: StringFilter<"Funcionario"> | string
-    telefone?: StringFilter<"Funcionario"> | string
-    funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
-    senha?: StringFilter<"Funcionario"> | string
+    cpf?: StringFilter<'Funcionario'> | string
+    nome?: StringFilter<'Funcionario'> | string
+    telefone?: StringFilter<'Funcionario'> | string
+    funcao?: EnumFuncaoFilter<'Funcionario'> | $Enums.Funcao
+    senha?: StringFilter<'Funcionario'> | string
   }
 
   export type FuncionarioOrderByWithRelationInput = {
@@ -9531,16 +11551,19 @@ export namespace Prisma {
     senha?: SortOrder
   }
 
-  export type FuncionarioWhereUniqueInput = Prisma.AtLeast<{
-    cpf?: string
-    AND?: FuncionarioWhereInput | FuncionarioWhereInput[]
-    OR?: FuncionarioWhereInput[]
-    NOT?: FuncionarioWhereInput | FuncionarioWhereInput[]
-    nome?: StringFilter<"Funcionario"> | string
-    telefone?: StringFilter<"Funcionario"> | string
-    funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
-    senha?: StringFilter<"Funcionario"> | string
-  }, "cpf">
+  export type FuncionarioWhereUniqueInput = Prisma.AtLeast<
+    {
+      cpf?: string
+      AND?: FuncionarioWhereInput | FuncionarioWhereInput[]
+      OR?: FuncionarioWhereInput[]
+      NOT?: FuncionarioWhereInput | FuncionarioWhereInput[]
+      nome?: StringFilter<'Funcionario'> | string
+      telefone?: StringFilter<'Funcionario'> | string
+      funcao?: EnumFuncaoFilter<'Funcionario'> | $Enums.Funcao
+      senha?: StringFilter<'Funcionario'> | string
+    },
+    'cpf'
+  >
 
   export type FuncionarioOrderByWithAggregationInput = {
     cpf?: SortOrder
@@ -9554,26 +11577,33 @@ export namespace Prisma {
   }
 
   export type FuncionarioScalarWhereWithAggregatesInput = {
-    AND?: FuncionarioScalarWhereWithAggregatesInput | FuncionarioScalarWhereWithAggregatesInput[]
+    AND?:
+      | FuncionarioScalarWhereWithAggregatesInput
+      | FuncionarioScalarWhereWithAggregatesInput[]
     OR?: FuncionarioScalarWhereWithAggregatesInput[]
-    NOT?: FuncionarioScalarWhereWithAggregatesInput | FuncionarioScalarWhereWithAggregatesInput[]
-    cpf?: StringWithAggregatesFilter<"Funcionario"> | string
-    nome?: StringWithAggregatesFilter<"Funcionario"> | string
-    telefone?: StringWithAggregatesFilter<"Funcionario"> | string
-    funcao?: EnumFuncaoWithAggregatesFilter<"Funcionario"> | $Enums.Funcao
-    senha?: StringWithAggregatesFilter<"Funcionario"> | string
+    NOT?:
+      | FuncionarioScalarWhereWithAggregatesInput
+      | FuncionarioScalarWhereWithAggregatesInput[]
+    cpf?: StringWithAggregatesFilter<'Funcionario'> | string
+    nome?: StringWithAggregatesFilter<'Funcionario'> | string
+    telefone?: StringWithAggregatesFilter<'Funcionario'> | string
+    funcao?: EnumFuncaoWithAggregatesFilter<'Funcionario'> | $Enums.Funcao
+    senha?: StringWithAggregatesFilter<'Funcionario'> | string
   }
 
   export type LocacaoWhereInput = {
     AND?: LocacaoWhereInput | LocacaoWhereInput[]
     OR?: LocacaoWhereInput[]
     NOT?: LocacaoWhereInput | LocacaoWhereInput[]
-    cod?: UuidFilter<"Locacao"> | string
-    data_hora?: DateTimeFilter<"Locacao"> | Date | string
-    cpf_cliente?: StringFilter<"Locacao"> | string
+    cod?: UuidFilter<'Locacao'> | string
+    data_hora?: DateTimeFilter<'Locacao'> | Date | string
+    cpf_cliente?: StringFilter<'Locacao'> | string
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
-    pagamento?: XOR<PagamentoNullableScalarRelationFilter, PagamentoWhereInput> | null
+    pagamento?: XOR<
+      PagamentoNullableScalarRelationFilter,
+      PagamentoWhereInput
+    > | null
   }
 
   export type LocacaoOrderByWithRelationInput = {
@@ -9585,17 +11615,23 @@ export namespace Prisma {
     pagamento?: PagamentoOrderByWithRelationInput
   }
 
-  export type LocacaoWhereUniqueInput = Prisma.AtLeast<{
-    cod?: string
-    AND?: LocacaoWhereInput | LocacaoWhereInput[]
-    OR?: LocacaoWhereInput[]
-    NOT?: LocacaoWhereInput | LocacaoWhereInput[]
-    data_hora?: DateTimeFilter<"Locacao"> | Date | string
-    cpf_cliente?: StringFilter<"Locacao"> | string
-    brinquedosLocados?: BrinquedoLocadoListRelationFilter
-    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
-    pagamento?: XOR<PagamentoNullableScalarRelationFilter, PagamentoWhereInput> | null
-  }, "cod">
+  export type LocacaoWhereUniqueInput = Prisma.AtLeast<
+    {
+      cod?: string
+      AND?: LocacaoWhereInput | LocacaoWhereInput[]
+      OR?: LocacaoWhereInput[]
+      NOT?: LocacaoWhereInput | LocacaoWhereInput[]
+      data_hora?: DateTimeFilter<'Locacao'> | Date | string
+      cpf_cliente?: StringFilter<'Locacao'> | string
+      brinquedosLocados?: BrinquedoLocadoListRelationFilter
+      cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+      pagamento?: XOR<
+        PagamentoNullableScalarRelationFilter,
+        PagamentoWhereInput
+      > | null
+    },
+    'cod'
+  >
 
   export type LocacaoOrderByWithAggregationInput = {
     cod?: SortOrder
@@ -9607,24 +11643,38 @@ export namespace Prisma {
   }
 
   export type LocacaoScalarWhereWithAggregatesInput = {
-    AND?: LocacaoScalarWhereWithAggregatesInput | LocacaoScalarWhereWithAggregatesInput[]
+    AND?:
+      | LocacaoScalarWhereWithAggregatesInput
+      | LocacaoScalarWhereWithAggregatesInput[]
     OR?: LocacaoScalarWhereWithAggregatesInput[]
-    NOT?: LocacaoScalarWhereWithAggregatesInput | LocacaoScalarWhereWithAggregatesInput[]
-    cod?: UuidWithAggregatesFilter<"Locacao"> | string
-    data_hora?: DateTimeWithAggregatesFilter<"Locacao"> | Date | string
-    cpf_cliente?: StringWithAggregatesFilter<"Locacao"> | string
+    NOT?:
+      | LocacaoScalarWhereWithAggregatesInput
+      | LocacaoScalarWhereWithAggregatesInput[]
+    cod?: UuidWithAggregatesFilter<'Locacao'> | string
+    data_hora?: DateTimeWithAggregatesFilter<'Locacao'> | Date | string
+    cpf_cliente?: StringWithAggregatesFilter<'Locacao'> | string
   }
 
   export type PagamentoWhereInput = {
     AND?: PagamentoWhereInput | PagamentoWhereInput[]
     OR?: PagamentoWhereInput[]
     NOT?: PagamentoWhereInput | PagamentoWhereInput[]
-    cod?: UuidFilter<"Pagamento"> | string
-    cpf_cliente?: StringFilter<"Pagamento"> | string
-    cod_locacao?: UuidFilter<"Pagamento"> | string
-    data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
-    valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    cod?: UuidFilter<'Pagamento'> | string
+    cpf_cliente?: StringFilter<'Pagamento'> | string
+    cod_locacao?: UuidFilter<'Pagamento'> | string
+    data_pagamento?: DateTimeFilter<'Pagamento'> | Date | string
+    valor_pagamento?:
+      | DecimalFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
   }
@@ -9640,19 +11690,32 @@ export namespace Prisma {
     cliente?: ClienteOrderByWithRelationInput
   }
 
-  export type PagamentoWhereUniqueInput = Prisma.AtLeast<{
-    cod?: string
-    cod_locacao?: string
-    AND?: PagamentoWhereInput | PagamentoWhereInput[]
-    OR?: PagamentoWhereInput[]
-    NOT?: PagamentoWhereInput | PagamentoWhereInput[]
-    cpf_cliente?: StringFilter<"Pagamento"> | string
-    data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
-    valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
-    locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
-    cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
-  }, "cod" | "cod_locacao">
+  export type PagamentoWhereUniqueInput = Prisma.AtLeast<
+    {
+      cod?: string
+      cod_locacao?: string
+      AND?: PagamentoWhereInput | PagamentoWhereInput[]
+      OR?: PagamentoWhereInput[]
+      NOT?: PagamentoWhereInput | PagamentoWhereInput[]
+      cpf_cliente?: StringFilter<'Pagamento'> | string
+      data_pagamento?: DateTimeFilter<'Pagamento'> | Date | string
+      valor_pagamento?:
+        | DecimalFilter<'Pagamento'>
+        | Decimal
+        | DecimalJsLike
+        | number
+        | string
+      valor_locacao?:
+        | DecimalFilter<'Pagamento'>
+        | Decimal
+        | DecimalJsLike
+        | number
+        | string
+      locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
+      cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
+    },
+    'cod' | 'cod_locacao'
+  >
 
   export type PagamentoOrderByWithAggregationInput = {
     cod?: SortOrder
@@ -9669,23 +11732,37 @@ export namespace Prisma {
   }
 
   export type PagamentoScalarWhereWithAggregatesInput = {
-    AND?: PagamentoScalarWhereWithAggregatesInput | PagamentoScalarWhereWithAggregatesInput[]
+    AND?:
+      | PagamentoScalarWhereWithAggregatesInput
+      | PagamentoScalarWhereWithAggregatesInput[]
     OR?: PagamentoScalarWhereWithAggregatesInput[]
-    NOT?: PagamentoScalarWhereWithAggregatesInput | PagamentoScalarWhereWithAggregatesInput[]
-    cod?: UuidWithAggregatesFilter<"Pagamento"> | string
-    cpf_cliente?: StringWithAggregatesFilter<"Pagamento"> | string
-    cod_locacao?: UuidWithAggregatesFilter<"Pagamento"> | string
-    data_pagamento?: DateTimeWithAggregatesFilter<"Pagamento"> | Date | string
-    valor_pagamento?: DecimalWithAggregatesFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalWithAggregatesFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    NOT?:
+      | PagamentoScalarWhereWithAggregatesInput
+      | PagamentoScalarWhereWithAggregatesInput[]
+    cod?: UuidWithAggregatesFilter<'Pagamento'> | string
+    cpf_cliente?: StringWithAggregatesFilter<'Pagamento'> | string
+    cod_locacao?: UuidWithAggregatesFilter<'Pagamento'> | string
+    data_pagamento?: DateTimeWithAggregatesFilter<'Pagamento'> | Date | string
+    valor_pagamento?:
+      | DecimalWithAggregatesFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalWithAggregatesFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type TipoBrinquedoWhereInput = {
     AND?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
     OR?: TipoBrinquedoWhereInput[]
     NOT?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
-    cod?: UuidFilter<"TipoBrinquedo"> | string
-    nome?: StringFilter<"TipoBrinquedo"> | string
+    cod?: UuidFilter<'TipoBrinquedo'> | string
+    nome?: StringFilter<'TipoBrinquedo'> | string
     brinquedos?: BrinquedoListRelationFilter
   }
 
@@ -9695,14 +11772,17 @@ export namespace Prisma {
     brinquedos?: BrinquedoOrderByRelationAggregateInput
   }
 
-  export type TipoBrinquedoWhereUniqueInput = Prisma.AtLeast<{
-    cod?: string
-    nome?: string
-    AND?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
-    OR?: TipoBrinquedoWhereInput[]
-    NOT?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
-    brinquedos?: BrinquedoListRelationFilter
-  }, "cod" | "nome">
+  export type TipoBrinquedoWhereUniqueInput = Prisma.AtLeast<
+    {
+      cod?: string
+      nome?: string
+      AND?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
+      OR?: TipoBrinquedoWhereInput[]
+      NOT?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
+      brinquedos?: BrinquedoListRelationFilter
+    },
+    'cod' | 'nome'
+  >
 
   export type TipoBrinquedoOrderByWithAggregationInput = {
     cod?: SortOrder
@@ -9713,11 +11793,15 @@ export namespace Prisma {
   }
 
   export type TipoBrinquedoScalarWhereWithAggregatesInput = {
-    AND?: TipoBrinquedoScalarWhereWithAggregatesInput | TipoBrinquedoScalarWhereWithAggregatesInput[]
+    AND?:
+      | TipoBrinquedoScalarWhereWithAggregatesInput
+      | TipoBrinquedoScalarWhereWithAggregatesInput[]
     OR?: TipoBrinquedoScalarWhereWithAggregatesInput[]
-    NOT?: TipoBrinquedoScalarWhereWithAggregatesInput | TipoBrinquedoScalarWhereWithAggregatesInput[]
-    cod?: UuidWithAggregatesFilter<"TipoBrinquedo"> | string
-    nome?: StringWithAggregatesFilter<"TipoBrinquedo"> | string
+    NOT?:
+      | TipoBrinquedoScalarWhereWithAggregatesInput
+      | TipoBrinquedoScalarWhereWithAggregatesInput[]
+    cod?: UuidWithAggregatesFilter<'TipoBrinquedo'> | string
+    nome?: StringWithAggregatesFilter<'TipoBrinquedo'> | string
   }
 
   export type BrinquedoCreateInput = {
@@ -9745,7 +11829,12 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     tipoBrinquedo?: TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutBrinquedoNestedInput
   }
@@ -9756,7 +11845,12 @@ export namespace Prisma {
     tipo_brinquedo?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -9774,7 +11868,12 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoUncheckedUpdateManyInput = {
@@ -9783,7 +11882,12 @@ export namespace Prisma {
     tipo_brinquedo?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoLocadoCreateInput = {
@@ -9806,7 +11910,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     locacao?: LocacaoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
@@ -9815,7 +11924,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUncheckedUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9833,14 +11947,24 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUpdateManyMutationInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10037,8 +12161,18 @@ export namespace Prisma {
   export type PagamentoUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     locacao?: LocacaoUpdateOneRequiredWithoutPagamentoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutPagamentosNestedInput
   }
@@ -10048,8 +12182,18 @@ export namespace Prisma {
     cpf_cliente?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type PagamentoCreateManyInput = {
@@ -10064,8 +12208,18 @@ export namespace Prisma {
   export type PagamentoUpdateManyMutationInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type PagamentoUncheckedUpdateManyInput = {
@@ -10073,8 +12227,18 @@ export namespace Prisma {
     cpf_cliente?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type TipoBrinquedoCreateInput = {
@@ -10155,14 +12319,54 @@ export namespace Prisma {
   }
 
   export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    equals?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    in?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    lt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    lte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    not?:
+      | NestedDecimalFilter<$PrismaModel>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type TipoBrinquedoScalarRelationFilter = {
@@ -10263,14 +12467,54 @@ export namespace Prisma {
   }
 
   export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    equals?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    in?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    lt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    lte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    not?:
+      | NestedDecimalWithAggregatesFilter<$PrismaModel>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedDecimalFilter<$PrismaModel>
     _sum?: NestedDecimalFilter<$PrismaModel>
@@ -10499,23 +12743,46 @@ export namespace Prisma {
   }
 
   export type TipoBrinquedoCreateNestedOneWithoutBrinquedosInput = {
-    create?: XOR<TipoBrinquedoCreateWithoutBrinquedosInput, TipoBrinquedoUncheckedCreateWithoutBrinquedosInput>
+    create?: XOR<
+      TipoBrinquedoCreateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedCreateWithoutBrinquedosInput
+    >
     connectOrCreate?: TipoBrinquedoCreateOrConnectWithoutBrinquedosInput
     connect?: TipoBrinquedoWhereUniqueInput
   }
 
   export type BrinquedoLocadoCreateNestedManyWithoutBrinquedoInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput> | BrinquedoLocadoCreateWithoutBrinquedoInput[] | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutBrinquedoInput,
+          BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+        >
+      | BrinquedoLocadoCreateWithoutBrinquedoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
     createMany?: BrinquedoLocadoCreateManyBrinquedoInputEnvelope
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
   }
 
   export type BrinquedoLocadoUncheckedCreateNestedManyWithoutBrinquedoInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput> | BrinquedoLocadoCreateWithoutBrinquedoInput[] | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutBrinquedoInput,
+          BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+        >
+      | BrinquedoLocadoCreateWithoutBrinquedoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
     createMany?: BrinquedoLocadoCreateManyBrinquedoInputEnvelope
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -10535,150 +12802,311 @@ export namespace Prisma {
   }
 
   export type TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput = {
-    create?: XOR<TipoBrinquedoCreateWithoutBrinquedosInput, TipoBrinquedoUncheckedCreateWithoutBrinquedosInput>
+    create?: XOR<
+      TipoBrinquedoCreateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedCreateWithoutBrinquedosInput
+    >
     connectOrCreate?: TipoBrinquedoCreateOrConnectWithoutBrinquedosInput
     upsert?: TipoBrinquedoUpsertWithoutBrinquedosInput
     connect?: TipoBrinquedoWhereUniqueInput
-    update?: XOR<XOR<TipoBrinquedoUpdateToOneWithWhereWithoutBrinquedosInput, TipoBrinquedoUpdateWithoutBrinquedosInput>, TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput>
+    update?: XOR<
+      XOR<
+        TipoBrinquedoUpdateToOneWithWhereWithoutBrinquedosInput,
+        TipoBrinquedoUpdateWithoutBrinquedosInput
+      >,
+      TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput
+    >
   }
 
   export type BrinquedoLocadoUpdateManyWithoutBrinquedoNestedInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput> | BrinquedoLocadoCreateWithoutBrinquedoInput[] | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
-    upsert?: BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutBrinquedoInput,
+          BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+        >
+      | BrinquedoLocadoCreateWithoutBrinquedoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
+    upsert?:
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput[]
     createMany?: BrinquedoLocadoCreateManyBrinquedoInputEnvelope
     set?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    disconnect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    disconnect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
     delete?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    update?: BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput[]
-    updateMany?: BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput[]
-    deleteMany?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
+    update?:
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput[]
+    updateMany?:
+      | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput
+      | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput[]
+    deleteMany?:
+      | BrinquedoLocadoScalarWhereInput
+      | BrinquedoLocadoScalarWhereInput[]
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoNestedInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput> | BrinquedoLocadoCreateWithoutBrinquedoInput[] | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
-    upsert?: BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutBrinquedoInput,
+          BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+        >
+      | BrinquedoLocadoCreateWithoutBrinquedoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput
+      | BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput[]
+    upsert?:
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput[]
     createMany?: BrinquedoLocadoCreateManyBrinquedoInputEnvelope
     set?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    disconnect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    disconnect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
     delete?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    update?: BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput[]
-    updateMany?: BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput[]
-    deleteMany?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
+    update?:
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput[]
+    updateMany?:
+      | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput
+      | BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput[]
+    deleteMany?:
+      | BrinquedoLocadoScalarWhereInput
+      | BrinquedoLocadoScalarWhereInput[]
   }
 
   export type LocacaoCreateNestedOneWithoutBrinquedosLocadosInput = {
-    create?: XOR<LocacaoCreateWithoutBrinquedosLocadosInput, LocacaoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create?: XOR<
+      LocacaoCreateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     connectOrCreate?: LocacaoCreateOrConnectWithoutBrinquedosLocadosInput
     connect?: LocacaoWhereUniqueInput
   }
 
   export type BrinquedoCreateNestedOneWithoutBrinquedosLocadosInput = {
-    create?: XOR<BrinquedoCreateWithoutBrinquedosLocadosInput, BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create?: XOR<
+      BrinquedoCreateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     connectOrCreate?: BrinquedoCreateOrConnectWithoutBrinquedosLocadosInput
     connect?: BrinquedoWhereUniqueInput
   }
 
   export type LocacaoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput = {
-    create?: XOR<LocacaoCreateWithoutBrinquedosLocadosInput, LocacaoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create?: XOR<
+      LocacaoCreateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     connectOrCreate?: LocacaoCreateOrConnectWithoutBrinquedosLocadosInput
     upsert?: LocacaoUpsertWithoutBrinquedosLocadosInput
     connect?: LocacaoWhereUniqueInput
-    update?: XOR<XOR<LocacaoUpdateToOneWithWhereWithoutBrinquedosLocadosInput, LocacaoUpdateWithoutBrinquedosLocadosInput>, LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput>
+    update?: XOR<
+      XOR<
+        LocacaoUpdateToOneWithWhereWithoutBrinquedosLocadosInput,
+        LocacaoUpdateWithoutBrinquedosLocadosInput
+      >,
+      LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type BrinquedoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput = {
-    create?: XOR<BrinquedoCreateWithoutBrinquedosLocadosInput, BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create?: XOR<
+      BrinquedoCreateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     connectOrCreate?: BrinquedoCreateOrConnectWithoutBrinquedosLocadosInput
     upsert?: BrinquedoUpsertWithoutBrinquedosLocadosInput
     connect?: BrinquedoWhereUniqueInput
-    update?: XOR<XOR<BrinquedoUpdateToOneWithWhereWithoutBrinquedosLocadosInput, BrinquedoUpdateWithoutBrinquedosLocadosInput>, BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput>
+    update?: XOR<
+      XOR<
+        BrinquedoUpdateToOneWithWhereWithoutBrinquedosLocadosInput,
+        BrinquedoUpdateWithoutBrinquedosLocadosInput
+      >,
+      BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type LocacaoCreateNestedManyWithoutClienteInput = {
-    create?: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput> | LocacaoCreateWithoutClienteInput[] | LocacaoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: LocacaoCreateOrConnectWithoutClienteInput | LocacaoCreateOrConnectWithoutClienteInput[]
+    create?:
+      | XOR<
+          LocacaoCreateWithoutClienteInput,
+          LocacaoUncheckedCreateWithoutClienteInput
+        >
+      | LocacaoCreateWithoutClienteInput[]
+      | LocacaoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | LocacaoCreateOrConnectWithoutClienteInput
+      | LocacaoCreateOrConnectWithoutClienteInput[]
     createMany?: LocacaoCreateManyClienteInputEnvelope
     connect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
   }
 
   export type PagamentoCreateNestedManyWithoutClienteInput = {
-    create?: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput> | PagamentoCreateWithoutClienteInput[] | PagamentoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: PagamentoCreateOrConnectWithoutClienteInput | PagamentoCreateOrConnectWithoutClienteInput[]
+    create?:
+      | XOR<
+          PagamentoCreateWithoutClienteInput,
+          PagamentoUncheckedCreateWithoutClienteInput
+        >
+      | PagamentoCreateWithoutClienteInput[]
+      | PagamentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | PagamentoCreateOrConnectWithoutClienteInput
+      | PagamentoCreateOrConnectWithoutClienteInput[]
     createMany?: PagamentoCreateManyClienteInputEnvelope
     connect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
   }
 
   export type LocacaoUncheckedCreateNestedManyWithoutClienteInput = {
-    create?: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput> | LocacaoCreateWithoutClienteInput[] | LocacaoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: LocacaoCreateOrConnectWithoutClienteInput | LocacaoCreateOrConnectWithoutClienteInput[]
+    create?:
+      | XOR<
+          LocacaoCreateWithoutClienteInput,
+          LocacaoUncheckedCreateWithoutClienteInput
+        >
+      | LocacaoCreateWithoutClienteInput[]
+      | LocacaoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | LocacaoCreateOrConnectWithoutClienteInput
+      | LocacaoCreateOrConnectWithoutClienteInput[]
     createMany?: LocacaoCreateManyClienteInputEnvelope
     connect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
   }
 
   export type PagamentoUncheckedCreateNestedManyWithoutClienteInput = {
-    create?: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput> | PagamentoCreateWithoutClienteInput[] | PagamentoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: PagamentoCreateOrConnectWithoutClienteInput | PagamentoCreateOrConnectWithoutClienteInput[]
+    create?:
+      | XOR<
+          PagamentoCreateWithoutClienteInput,
+          PagamentoUncheckedCreateWithoutClienteInput
+        >
+      | PagamentoCreateWithoutClienteInput[]
+      | PagamentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | PagamentoCreateOrConnectWithoutClienteInput
+      | PagamentoCreateOrConnectWithoutClienteInput[]
     createMany?: PagamentoCreateManyClienteInputEnvelope
     connect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
   }
 
   export type LocacaoUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput> | LocacaoCreateWithoutClienteInput[] | LocacaoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: LocacaoCreateOrConnectWithoutClienteInput | LocacaoCreateOrConnectWithoutClienteInput[]
-    upsert?: LocacaoUpsertWithWhereUniqueWithoutClienteInput | LocacaoUpsertWithWhereUniqueWithoutClienteInput[]
+    create?:
+      | XOR<
+          LocacaoCreateWithoutClienteInput,
+          LocacaoUncheckedCreateWithoutClienteInput
+        >
+      | LocacaoCreateWithoutClienteInput[]
+      | LocacaoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | LocacaoCreateOrConnectWithoutClienteInput
+      | LocacaoCreateOrConnectWithoutClienteInput[]
+    upsert?:
+      | LocacaoUpsertWithWhereUniqueWithoutClienteInput
+      | LocacaoUpsertWithWhereUniqueWithoutClienteInput[]
     createMany?: LocacaoCreateManyClienteInputEnvelope
     set?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     disconnect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     delete?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     connect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
-    update?: LocacaoUpdateWithWhereUniqueWithoutClienteInput | LocacaoUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: LocacaoUpdateManyWithWhereWithoutClienteInput | LocacaoUpdateManyWithWhereWithoutClienteInput[]
+    update?:
+      | LocacaoUpdateWithWhereUniqueWithoutClienteInput
+      | LocacaoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?:
+      | LocacaoUpdateManyWithWhereWithoutClienteInput
+      | LocacaoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: LocacaoScalarWhereInput | LocacaoScalarWhereInput[]
   }
 
   export type PagamentoUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput> | PagamentoCreateWithoutClienteInput[] | PagamentoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: PagamentoCreateOrConnectWithoutClienteInput | PagamentoCreateOrConnectWithoutClienteInput[]
-    upsert?: PagamentoUpsertWithWhereUniqueWithoutClienteInput | PagamentoUpsertWithWhereUniqueWithoutClienteInput[]
+    create?:
+      | XOR<
+          PagamentoCreateWithoutClienteInput,
+          PagamentoUncheckedCreateWithoutClienteInput
+        >
+      | PagamentoCreateWithoutClienteInput[]
+      | PagamentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | PagamentoCreateOrConnectWithoutClienteInput
+      | PagamentoCreateOrConnectWithoutClienteInput[]
+    upsert?:
+      | PagamentoUpsertWithWhereUniqueWithoutClienteInput
+      | PagamentoUpsertWithWhereUniqueWithoutClienteInput[]
     createMany?: PagamentoCreateManyClienteInputEnvelope
     set?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     disconnect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     delete?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     connect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
-    update?: PagamentoUpdateWithWhereUniqueWithoutClienteInput | PagamentoUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: PagamentoUpdateManyWithWhereWithoutClienteInput | PagamentoUpdateManyWithWhereWithoutClienteInput[]
+    update?:
+      | PagamentoUpdateWithWhereUniqueWithoutClienteInput
+      | PagamentoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?:
+      | PagamentoUpdateManyWithWhereWithoutClienteInput
+      | PagamentoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: PagamentoScalarWhereInput | PagamentoScalarWhereInput[]
   }
 
   export type LocacaoUncheckedUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput> | LocacaoCreateWithoutClienteInput[] | LocacaoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: LocacaoCreateOrConnectWithoutClienteInput | LocacaoCreateOrConnectWithoutClienteInput[]
-    upsert?: LocacaoUpsertWithWhereUniqueWithoutClienteInput | LocacaoUpsertWithWhereUniqueWithoutClienteInput[]
+    create?:
+      | XOR<
+          LocacaoCreateWithoutClienteInput,
+          LocacaoUncheckedCreateWithoutClienteInput
+        >
+      | LocacaoCreateWithoutClienteInput[]
+      | LocacaoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | LocacaoCreateOrConnectWithoutClienteInput
+      | LocacaoCreateOrConnectWithoutClienteInput[]
+    upsert?:
+      | LocacaoUpsertWithWhereUniqueWithoutClienteInput
+      | LocacaoUpsertWithWhereUniqueWithoutClienteInput[]
     createMany?: LocacaoCreateManyClienteInputEnvelope
     set?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     disconnect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     delete?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
     connect?: LocacaoWhereUniqueInput | LocacaoWhereUniqueInput[]
-    update?: LocacaoUpdateWithWhereUniqueWithoutClienteInput | LocacaoUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: LocacaoUpdateManyWithWhereWithoutClienteInput | LocacaoUpdateManyWithWhereWithoutClienteInput[]
+    update?:
+      | LocacaoUpdateWithWhereUniqueWithoutClienteInput
+      | LocacaoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?:
+      | LocacaoUpdateManyWithWhereWithoutClienteInput
+      | LocacaoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: LocacaoScalarWhereInput | LocacaoScalarWhereInput[]
   }
 
   export type PagamentoUncheckedUpdateManyWithoutClienteNestedInput = {
-    create?: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput> | PagamentoCreateWithoutClienteInput[] | PagamentoUncheckedCreateWithoutClienteInput[]
-    connectOrCreate?: PagamentoCreateOrConnectWithoutClienteInput | PagamentoCreateOrConnectWithoutClienteInput[]
-    upsert?: PagamentoUpsertWithWhereUniqueWithoutClienteInput | PagamentoUpsertWithWhereUniqueWithoutClienteInput[]
+    create?:
+      | XOR<
+          PagamentoCreateWithoutClienteInput,
+          PagamentoUncheckedCreateWithoutClienteInput
+        >
+      | PagamentoCreateWithoutClienteInput[]
+      | PagamentoUncheckedCreateWithoutClienteInput[]
+    connectOrCreate?:
+      | PagamentoCreateOrConnectWithoutClienteInput
+      | PagamentoCreateOrConnectWithoutClienteInput[]
+    upsert?:
+      | PagamentoUpsertWithWhereUniqueWithoutClienteInput
+      | PagamentoUpsertWithWhereUniqueWithoutClienteInput[]
     createMany?: PagamentoCreateManyClienteInputEnvelope
     set?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     disconnect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     delete?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
     connect?: PagamentoWhereUniqueInput | PagamentoWhereUniqueInput[]
-    update?: PagamentoUpdateWithWhereUniqueWithoutClienteInput | PagamentoUpdateWithWhereUniqueWithoutClienteInput[]
-    updateMany?: PagamentoUpdateManyWithWhereWithoutClienteInput | PagamentoUpdateManyWithWhereWithoutClienteInput[]
+    update?:
+      | PagamentoUpdateWithWhereUniqueWithoutClienteInput
+      | PagamentoUpdateWithWhereUniqueWithoutClienteInput[]
+    updateMany?:
+      | PagamentoUpdateManyWithWhereWithoutClienteInput
+      | PagamentoUpdateManyWithWhereWithoutClienteInput[]
     deleteMany?: PagamentoScalarWhereInput | PagamentoScalarWhereInput[]
   }
 
@@ -10687,160 +13115,324 @@ export namespace Prisma {
   }
 
   export type BrinquedoLocadoCreateNestedManyWithoutLocacaoInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput> | BrinquedoLocadoCreateWithoutLocacaoInput[] | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutLocacaoInput | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutLocacaoInput,
+          BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+        >
+      | BrinquedoLocadoCreateWithoutLocacaoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
     createMany?: BrinquedoLocadoCreateManyLocacaoInputEnvelope
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
   }
 
   export type ClienteCreateNestedOneWithoutLocacoesInput = {
-    create?: XOR<ClienteCreateWithoutLocacoesInput, ClienteUncheckedCreateWithoutLocacoesInput>
+    create?: XOR<
+      ClienteCreateWithoutLocacoesInput,
+      ClienteUncheckedCreateWithoutLocacoesInput
+    >
     connectOrCreate?: ClienteCreateOrConnectWithoutLocacoesInput
     connect?: ClienteWhereUniqueInput
   }
 
   export type PagamentoCreateNestedOneWithoutLocacaoInput = {
-    create?: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    create?: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
     connectOrCreate?: PagamentoCreateOrConnectWithoutLocacaoInput
     connect?: PagamentoWhereUniqueInput
   }
 
   export type BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput> | BrinquedoLocadoCreateWithoutLocacaoInput[] | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutLocacaoInput | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutLocacaoInput,
+          BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+        >
+      | BrinquedoLocadoCreateWithoutLocacaoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
     createMany?: BrinquedoLocadoCreateManyLocacaoInputEnvelope
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
   }
 
   export type PagamentoUncheckedCreateNestedOneWithoutLocacaoInput = {
-    create?: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    create?: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
     connectOrCreate?: PagamentoCreateOrConnectWithoutLocacaoInput
     connect?: PagamentoWhereUniqueInput
   }
 
   export type BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput> | BrinquedoLocadoCreateWithoutLocacaoInput[] | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutLocacaoInput | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
-    upsert?: BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutLocacaoInput,
+          BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+        >
+      | BrinquedoLocadoCreateWithoutLocacaoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
+    upsert?:
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput[]
     createMany?: BrinquedoLocadoCreateManyLocacaoInputEnvelope
     set?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    disconnect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    disconnect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
     delete?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    update?: BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput[]
-    updateMany?: BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput[]
-    deleteMany?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
+    update?:
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput[]
+    updateMany?:
+      | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput
+      | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput[]
+    deleteMany?:
+      | BrinquedoLocadoScalarWhereInput
+      | BrinquedoLocadoScalarWhereInput[]
   }
 
   export type ClienteUpdateOneRequiredWithoutLocacoesNestedInput = {
-    create?: XOR<ClienteCreateWithoutLocacoesInput, ClienteUncheckedCreateWithoutLocacoesInput>
+    create?: XOR<
+      ClienteCreateWithoutLocacoesInput,
+      ClienteUncheckedCreateWithoutLocacoesInput
+    >
     connectOrCreate?: ClienteCreateOrConnectWithoutLocacoesInput
     upsert?: ClienteUpsertWithoutLocacoesInput
     connect?: ClienteWhereUniqueInput
-    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutLocacoesInput, ClienteUpdateWithoutLocacoesInput>, ClienteUncheckedUpdateWithoutLocacoesInput>
+    update?: XOR<
+      XOR<
+        ClienteUpdateToOneWithWhereWithoutLocacoesInput,
+        ClienteUpdateWithoutLocacoesInput
+      >,
+      ClienteUncheckedUpdateWithoutLocacoesInput
+    >
   }
 
   export type PagamentoUpdateOneWithoutLocacaoNestedInput = {
-    create?: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    create?: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
     connectOrCreate?: PagamentoCreateOrConnectWithoutLocacaoInput
     upsert?: PagamentoUpsertWithoutLocacaoInput
     disconnect?: PagamentoWhereInput | boolean
     delete?: PagamentoWhereInput | boolean
     connect?: PagamentoWhereUniqueInput
-    update?: XOR<XOR<PagamentoUpdateToOneWithWhereWithoutLocacaoInput, PagamentoUpdateWithoutLocacaoInput>, PagamentoUncheckedUpdateWithoutLocacaoInput>
+    update?: XOR<
+      XOR<
+        PagamentoUpdateToOneWithWhereWithoutLocacaoInput,
+        PagamentoUpdateWithoutLocacaoInput
+      >,
+      PagamentoUncheckedUpdateWithoutLocacaoInput
+    >
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput = {
-    create?: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput> | BrinquedoLocadoCreateWithoutLocacaoInput[] | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
-    connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutLocacaoInput | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
-    upsert?: BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput[]
+    create?:
+      | XOR<
+          BrinquedoLocadoCreateWithoutLocacaoInput,
+          BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+        >
+      | BrinquedoLocadoCreateWithoutLocacaoInput[]
+      | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
+    connectOrCreate?:
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput
+      | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
+    upsert?:
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput
+      | BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput[]
     createMany?: BrinquedoLocadoCreateManyLocacaoInputEnvelope
     set?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    disconnect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
+    disconnect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
     delete?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    connect?: BrinquedoLocadoWhereUniqueInput | BrinquedoLocadoWhereUniqueInput[]
-    update?: BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput[]
-    updateMany?: BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput[]
-    deleteMany?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
+    connect?:
+      | BrinquedoLocadoWhereUniqueInput
+      | BrinquedoLocadoWhereUniqueInput[]
+    update?:
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput
+      | BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput[]
+    updateMany?:
+      | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput
+      | BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput[]
+    deleteMany?:
+      | BrinquedoLocadoScalarWhereInput
+      | BrinquedoLocadoScalarWhereInput[]
   }
 
   export type PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput = {
-    create?: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    create?: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
     connectOrCreate?: PagamentoCreateOrConnectWithoutLocacaoInput
     upsert?: PagamentoUpsertWithoutLocacaoInput
     disconnect?: PagamentoWhereInput | boolean
     delete?: PagamentoWhereInput | boolean
     connect?: PagamentoWhereUniqueInput
-    update?: XOR<XOR<PagamentoUpdateToOneWithWhereWithoutLocacaoInput, PagamentoUpdateWithoutLocacaoInput>, PagamentoUncheckedUpdateWithoutLocacaoInput>
+    update?: XOR<
+      XOR<
+        PagamentoUpdateToOneWithWhereWithoutLocacaoInput,
+        PagamentoUpdateWithoutLocacaoInput
+      >,
+      PagamentoUncheckedUpdateWithoutLocacaoInput
+    >
   }
 
   export type LocacaoCreateNestedOneWithoutPagamentoInput = {
-    create?: XOR<LocacaoCreateWithoutPagamentoInput, LocacaoUncheckedCreateWithoutPagamentoInput>
+    create?: XOR<
+      LocacaoCreateWithoutPagamentoInput,
+      LocacaoUncheckedCreateWithoutPagamentoInput
+    >
     connectOrCreate?: LocacaoCreateOrConnectWithoutPagamentoInput
     connect?: LocacaoWhereUniqueInput
   }
 
   export type ClienteCreateNestedOneWithoutPagamentosInput = {
-    create?: XOR<ClienteCreateWithoutPagamentosInput, ClienteUncheckedCreateWithoutPagamentosInput>
+    create?: XOR<
+      ClienteCreateWithoutPagamentosInput,
+      ClienteUncheckedCreateWithoutPagamentosInput
+    >
     connectOrCreate?: ClienteCreateOrConnectWithoutPagamentosInput
     connect?: ClienteWhereUniqueInput
   }
 
   export type LocacaoUpdateOneRequiredWithoutPagamentoNestedInput = {
-    create?: XOR<LocacaoCreateWithoutPagamentoInput, LocacaoUncheckedCreateWithoutPagamentoInput>
+    create?: XOR<
+      LocacaoCreateWithoutPagamentoInput,
+      LocacaoUncheckedCreateWithoutPagamentoInput
+    >
     connectOrCreate?: LocacaoCreateOrConnectWithoutPagamentoInput
     upsert?: LocacaoUpsertWithoutPagamentoInput
     connect?: LocacaoWhereUniqueInput
-    update?: XOR<XOR<LocacaoUpdateToOneWithWhereWithoutPagamentoInput, LocacaoUpdateWithoutPagamentoInput>, LocacaoUncheckedUpdateWithoutPagamentoInput>
+    update?: XOR<
+      XOR<
+        LocacaoUpdateToOneWithWhereWithoutPagamentoInput,
+        LocacaoUpdateWithoutPagamentoInput
+      >,
+      LocacaoUncheckedUpdateWithoutPagamentoInput
+    >
   }
 
   export type ClienteUpdateOneRequiredWithoutPagamentosNestedInput = {
-    create?: XOR<ClienteCreateWithoutPagamentosInput, ClienteUncheckedCreateWithoutPagamentosInput>
+    create?: XOR<
+      ClienteCreateWithoutPagamentosInput,
+      ClienteUncheckedCreateWithoutPagamentosInput
+    >
     connectOrCreate?: ClienteCreateOrConnectWithoutPagamentosInput
     upsert?: ClienteUpsertWithoutPagamentosInput
     connect?: ClienteWhereUniqueInput
-    update?: XOR<XOR<ClienteUpdateToOneWithWhereWithoutPagamentosInput, ClienteUpdateWithoutPagamentosInput>, ClienteUncheckedUpdateWithoutPagamentosInput>
+    update?: XOR<
+      XOR<
+        ClienteUpdateToOneWithWhereWithoutPagamentosInput,
+        ClienteUpdateWithoutPagamentosInput
+      >,
+      ClienteUncheckedUpdateWithoutPagamentosInput
+    >
   }
 
   export type BrinquedoCreateNestedManyWithoutTipoBrinquedoInput = {
-    create?: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput> | BrinquedoCreateWithoutTipoBrinquedoInput[] | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
-    connectOrCreate?: BrinquedoCreateOrConnectWithoutTipoBrinquedoInput | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoCreateWithoutTipoBrinquedoInput,
+          BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+        >
+      | BrinquedoCreateWithoutTipoBrinquedoInput[]
+      | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
     createMany?: BrinquedoCreateManyTipoBrinquedoInputEnvelope
     connect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
   }
 
   export type BrinquedoUncheckedCreateNestedManyWithoutTipoBrinquedoInput = {
-    create?: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput> | BrinquedoCreateWithoutTipoBrinquedoInput[] | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
-    connectOrCreate?: BrinquedoCreateOrConnectWithoutTipoBrinquedoInput | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoCreateWithoutTipoBrinquedoInput,
+          BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+        >
+      | BrinquedoCreateWithoutTipoBrinquedoInput[]
+      | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
     createMany?: BrinquedoCreateManyTipoBrinquedoInputEnvelope
     connect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
   }
 
   export type BrinquedoUpdateManyWithoutTipoBrinquedoNestedInput = {
-    create?: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput> | BrinquedoCreateWithoutTipoBrinquedoInput[] | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
-    connectOrCreate?: BrinquedoCreateOrConnectWithoutTipoBrinquedoInput | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
-    upsert?: BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoCreateWithoutTipoBrinquedoInput,
+          BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+        >
+      | BrinquedoCreateWithoutTipoBrinquedoInput[]
+      | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
+    upsert?:
+      | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput
+      | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput[]
     createMany?: BrinquedoCreateManyTipoBrinquedoInputEnvelope
     set?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     disconnect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     delete?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     connect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
-    update?: BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput[]
-    updateMany?: BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput[]
+    update?:
+      | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput
+      | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput[]
+    updateMany?:
+      | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput
+      | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput[]
     deleteMany?: BrinquedoScalarWhereInput | BrinquedoScalarWhereInput[]
   }
 
   export type BrinquedoUncheckedUpdateManyWithoutTipoBrinquedoNestedInput = {
-    create?: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput> | BrinquedoCreateWithoutTipoBrinquedoInput[] | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
-    connectOrCreate?: BrinquedoCreateOrConnectWithoutTipoBrinquedoInput | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
-    upsert?: BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput[]
+    create?:
+      | XOR<
+          BrinquedoCreateWithoutTipoBrinquedoInput,
+          BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+        >
+      | BrinquedoCreateWithoutTipoBrinquedoInput[]
+      | BrinquedoUncheckedCreateWithoutTipoBrinquedoInput[]
+    connectOrCreate?:
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput
+      | BrinquedoCreateOrConnectWithoutTipoBrinquedoInput[]
+    upsert?:
+      | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput
+      | BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput[]
     createMany?: BrinquedoCreateManyTipoBrinquedoInputEnvelope
     set?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     disconnect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     delete?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
     connect?: BrinquedoWhereUniqueInput | BrinquedoWhereUniqueInput[]
-    update?: BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput[]
-    updateMany?: BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput[]
+    update?:
+      | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput
+      | BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput[]
+    updateMany?:
+      | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput
+      | BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput[]
     deleteMany?: BrinquedoScalarWhereInput | BrinquedoScalarWhereInput[]
   }
 
@@ -10881,14 +13473,54 @@ export namespace Prisma {
   }
 
   export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    equals?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    in?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    lt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    lte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    not?:
+      | NestedDecimalFilter<$PrismaModel>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
@@ -10948,14 +13580,54 @@ export namespace Prisma {
   }
 
   export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel>
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+    equals?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    in?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    notIn?:
+      | Decimal[]
+      | DecimalJsLike[]
+      | number[]
+      | string[]
+      | ListDecimalFieldRefInput<$PrismaModel>
+    lt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    lte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gt?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    gte?:
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+      | DecimalFieldRefInput<$PrismaModel>
+    not?:
+      | NestedDecimalWithAggregatesFilter<$PrismaModel>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     _count?: NestedIntFilter<$PrismaModel>
     _avg?: NestedDecimalFilter<$PrismaModel>
     _sum?: NestedDecimalFilter<$PrismaModel>
@@ -10992,7 +13664,10 @@ export namespace Prisma {
 
   export type TipoBrinquedoCreateOrConnectWithoutBrinquedosInput = {
     where: TipoBrinquedoWhereUniqueInput
-    create: XOR<TipoBrinquedoCreateWithoutBrinquedosInput, TipoBrinquedoUncheckedCreateWithoutBrinquedosInput>
+    create: XOR<
+      TipoBrinquedoCreateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedCreateWithoutBrinquedosInput
+    >
   }
 
   export type BrinquedoLocadoCreateWithoutBrinquedoInput = {
@@ -11013,23 +13688,37 @@ export namespace Prisma {
 
   export type BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    create: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput>
+    create: XOR<
+      BrinquedoLocadoCreateWithoutBrinquedoInput,
+      BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+    >
   }
 
   export type BrinquedoLocadoCreateManyBrinquedoInputEnvelope = {
-    data: BrinquedoLocadoCreateManyBrinquedoInput | BrinquedoLocadoCreateManyBrinquedoInput[]
+    data:
+      | BrinquedoLocadoCreateManyBrinquedoInput
+      | BrinquedoLocadoCreateManyBrinquedoInput[]
     skipDuplicates?: boolean
   }
 
   export type TipoBrinquedoUpsertWithoutBrinquedosInput = {
-    update: XOR<TipoBrinquedoUpdateWithoutBrinquedosInput, TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput>
-    create: XOR<TipoBrinquedoCreateWithoutBrinquedosInput, TipoBrinquedoUncheckedCreateWithoutBrinquedosInput>
+    update: XOR<
+      TipoBrinquedoUpdateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput
+    >
+    create: XOR<
+      TipoBrinquedoCreateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedCreateWithoutBrinquedosInput
+    >
     where?: TipoBrinquedoWhereInput
   }
 
   export type TipoBrinquedoUpdateToOneWithWhereWithoutBrinquedosInput = {
     where?: TipoBrinquedoWhereInput
-    data: XOR<TipoBrinquedoUpdateWithoutBrinquedosInput, TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput>
+    data: XOR<
+      TipoBrinquedoUpdateWithoutBrinquedosInput,
+      TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput
+    >
   }
 
   export type TipoBrinquedoUpdateWithoutBrinquedosInput = {
@@ -11044,30 +13733,47 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    update: XOR<BrinquedoLocadoUpdateWithoutBrinquedoInput, BrinquedoLocadoUncheckedUpdateWithoutBrinquedoInput>
-    create: XOR<BrinquedoLocadoCreateWithoutBrinquedoInput, BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput>
+    update: XOR<
+      BrinquedoLocadoUpdateWithoutBrinquedoInput,
+      BrinquedoLocadoUncheckedUpdateWithoutBrinquedoInput
+    >
+    create: XOR<
+      BrinquedoLocadoCreateWithoutBrinquedoInput,
+      BrinquedoLocadoUncheckedCreateWithoutBrinquedoInput
+    >
   }
 
   export type BrinquedoLocadoUpdateWithWhereUniqueWithoutBrinquedoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    data: XOR<BrinquedoLocadoUpdateWithoutBrinquedoInput, BrinquedoLocadoUncheckedUpdateWithoutBrinquedoInput>
+    data: XOR<
+      BrinquedoLocadoUpdateWithoutBrinquedoInput,
+      BrinquedoLocadoUncheckedUpdateWithoutBrinquedoInput
+    >
   }
 
   export type BrinquedoLocadoUpdateManyWithWhereWithoutBrinquedoInput = {
     where: BrinquedoLocadoScalarWhereInput
-    data: XOR<BrinquedoLocadoUpdateManyMutationInput, BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoInput>
+    data: XOR<
+      BrinquedoLocadoUpdateManyMutationInput,
+      BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoInput
+    >
   }
 
   export type BrinquedoLocadoScalarWhereInput = {
     AND?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
     OR?: BrinquedoLocadoScalarWhereInput[]
     NOT?: BrinquedoLocadoScalarWhereInput | BrinquedoLocadoScalarWhereInput[]
-    cod?: UuidFilter<"BrinquedoLocado"> | string
-    valor_unitario?: DecimalFilter<"BrinquedoLocado"> | Decimal | DecimalJsLike | number | string
-    nome?: StringFilter<"BrinquedoLocado"> | string
-    cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
-    data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
-    cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
+    cod?: UuidFilter<'BrinquedoLocado'> | string
+    valor_unitario?:
+      | DecimalFilter<'BrinquedoLocado'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    nome?: StringFilter<'BrinquedoLocado'> | string
+    cod_locacao?: UuidFilter<'BrinquedoLocado'> | string
+    data_devolucao?: DateTimeFilter<'BrinquedoLocado'> | Date | string
+    cod_brinquedo?: UuidFilter<'BrinquedoLocado'> | string
   }
 
   export type LocacaoCreateWithoutBrinquedosLocadosInput = {
@@ -11086,7 +13792,10 @@ export namespace Prisma {
 
   export type LocacaoCreateOrConnectWithoutBrinquedosLocadosInput = {
     where: LocacaoWhereUniqueInput
-    create: XOR<LocacaoCreateWithoutBrinquedosLocadosInput, LocacaoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create: XOR<
+      LocacaoCreateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type BrinquedoCreateWithoutBrinquedosLocadosInput = {
@@ -11109,18 +13818,30 @@ export namespace Prisma {
 
   export type BrinquedoCreateOrConnectWithoutBrinquedosLocadosInput = {
     where: BrinquedoWhereUniqueInput
-    create: XOR<BrinquedoCreateWithoutBrinquedosLocadosInput, BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput>
+    create: XOR<
+      BrinquedoCreateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type LocacaoUpsertWithoutBrinquedosLocadosInput = {
-    update: XOR<LocacaoUpdateWithoutBrinquedosLocadosInput, LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput>
-    create: XOR<LocacaoCreateWithoutBrinquedosLocadosInput, LocacaoUncheckedCreateWithoutBrinquedosLocadosInput>
+    update: XOR<
+      LocacaoUpdateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
+    create: XOR<
+      LocacaoCreateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     where?: LocacaoWhereInput
   }
 
   export type LocacaoUpdateToOneWithWhereWithoutBrinquedosLocadosInput = {
     where?: LocacaoWhereInput
-    data: XOR<LocacaoUpdateWithoutBrinquedosLocadosInput, LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput>
+    data: XOR<
+      LocacaoUpdateWithoutBrinquedosLocadosInput,
+      LocacaoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type LocacaoUpdateWithoutBrinquedosLocadosInput = {
@@ -11138,14 +13859,23 @@ export namespace Prisma {
   }
 
   export type BrinquedoUpsertWithoutBrinquedosLocadosInput = {
-    update: XOR<BrinquedoUpdateWithoutBrinquedosLocadosInput, BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput>
-    create: XOR<BrinquedoCreateWithoutBrinquedosLocadosInput, BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput>
+    update: XOR<
+      BrinquedoUpdateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
+    create: XOR<
+      BrinquedoCreateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedCreateWithoutBrinquedosLocadosInput
+    >
     where?: BrinquedoWhereInput
   }
 
   export type BrinquedoUpdateToOneWithWhereWithoutBrinquedosLocadosInput = {
     where?: BrinquedoWhereInput
-    data: XOR<BrinquedoUpdateWithoutBrinquedosLocadosInput, BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput>
+    data: XOR<
+      BrinquedoUpdateWithoutBrinquedosLocadosInput,
+      BrinquedoUncheckedUpdateWithoutBrinquedosLocadosInput
+    >
   }
 
   export type BrinquedoUpdateWithoutBrinquedosLocadosInput = {
@@ -11153,7 +13883,12 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     tipoBrinquedo?: TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput
   }
 
@@ -11163,7 +13898,12 @@ export namespace Prisma {
     tipo_brinquedo?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type LocacaoCreateWithoutClienteInput = {
@@ -11182,7 +13922,10 @@ export namespace Prisma {
 
   export type LocacaoCreateOrConnectWithoutClienteInput = {
     where: LocacaoWhereUniqueInput
-    create: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput>
+    create: XOR<
+      LocacaoCreateWithoutClienteInput,
+      LocacaoUncheckedCreateWithoutClienteInput
+    >
   }
 
   export type LocacaoCreateManyClienteInputEnvelope = {
@@ -11208,7 +13951,10 @@ export namespace Prisma {
 
   export type PagamentoCreateOrConnectWithoutClienteInput = {
     where: PagamentoWhereUniqueInput
-    create: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput>
+    create: XOR<
+      PagamentoCreateWithoutClienteInput,
+      PagamentoUncheckedCreateWithoutClienteInput
+    >
   }
 
   export type PagamentoCreateManyClienteInputEnvelope = {
@@ -11218,55 +13964,89 @@ export namespace Prisma {
 
   export type LocacaoUpsertWithWhereUniqueWithoutClienteInput = {
     where: LocacaoWhereUniqueInput
-    update: XOR<LocacaoUpdateWithoutClienteInput, LocacaoUncheckedUpdateWithoutClienteInput>
-    create: XOR<LocacaoCreateWithoutClienteInput, LocacaoUncheckedCreateWithoutClienteInput>
+    update: XOR<
+      LocacaoUpdateWithoutClienteInput,
+      LocacaoUncheckedUpdateWithoutClienteInput
+    >
+    create: XOR<
+      LocacaoCreateWithoutClienteInput,
+      LocacaoUncheckedCreateWithoutClienteInput
+    >
   }
 
   export type LocacaoUpdateWithWhereUniqueWithoutClienteInput = {
     where: LocacaoWhereUniqueInput
-    data: XOR<LocacaoUpdateWithoutClienteInput, LocacaoUncheckedUpdateWithoutClienteInput>
+    data: XOR<
+      LocacaoUpdateWithoutClienteInput,
+      LocacaoUncheckedUpdateWithoutClienteInput
+    >
   }
 
   export type LocacaoUpdateManyWithWhereWithoutClienteInput = {
     where: LocacaoScalarWhereInput
-    data: XOR<LocacaoUpdateManyMutationInput, LocacaoUncheckedUpdateManyWithoutClienteInput>
+    data: XOR<
+      LocacaoUpdateManyMutationInput,
+      LocacaoUncheckedUpdateManyWithoutClienteInput
+    >
   }
 
   export type LocacaoScalarWhereInput = {
     AND?: LocacaoScalarWhereInput | LocacaoScalarWhereInput[]
     OR?: LocacaoScalarWhereInput[]
     NOT?: LocacaoScalarWhereInput | LocacaoScalarWhereInput[]
-    cod?: UuidFilter<"Locacao"> | string
-    data_hora?: DateTimeFilter<"Locacao"> | Date | string
-    cpf_cliente?: StringFilter<"Locacao"> | string
+    cod?: UuidFilter<'Locacao'> | string
+    data_hora?: DateTimeFilter<'Locacao'> | Date | string
+    cpf_cliente?: StringFilter<'Locacao'> | string
   }
 
   export type PagamentoUpsertWithWhereUniqueWithoutClienteInput = {
     where: PagamentoWhereUniqueInput
-    update: XOR<PagamentoUpdateWithoutClienteInput, PagamentoUncheckedUpdateWithoutClienteInput>
-    create: XOR<PagamentoCreateWithoutClienteInput, PagamentoUncheckedCreateWithoutClienteInput>
+    update: XOR<
+      PagamentoUpdateWithoutClienteInput,
+      PagamentoUncheckedUpdateWithoutClienteInput
+    >
+    create: XOR<
+      PagamentoCreateWithoutClienteInput,
+      PagamentoUncheckedCreateWithoutClienteInput
+    >
   }
 
   export type PagamentoUpdateWithWhereUniqueWithoutClienteInput = {
     where: PagamentoWhereUniqueInput
-    data: XOR<PagamentoUpdateWithoutClienteInput, PagamentoUncheckedUpdateWithoutClienteInput>
+    data: XOR<
+      PagamentoUpdateWithoutClienteInput,
+      PagamentoUncheckedUpdateWithoutClienteInput
+    >
   }
 
   export type PagamentoUpdateManyWithWhereWithoutClienteInput = {
     where: PagamentoScalarWhereInput
-    data: XOR<PagamentoUpdateManyMutationInput, PagamentoUncheckedUpdateManyWithoutClienteInput>
+    data: XOR<
+      PagamentoUpdateManyMutationInput,
+      PagamentoUncheckedUpdateManyWithoutClienteInput
+    >
   }
 
   export type PagamentoScalarWhereInput = {
     AND?: PagamentoScalarWhereInput | PagamentoScalarWhereInput[]
     OR?: PagamentoScalarWhereInput[]
     NOT?: PagamentoScalarWhereInput | PagamentoScalarWhereInput[]
-    cod?: UuidFilter<"Pagamento"> | string
-    cpf_cliente?: StringFilter<"Pagamento"> | string
-    cod_locacao?: UuidFilter<"Pagamento"> | string
-    data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
-    valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    cod?: UuidFilter<'Pagamento'> | string
+    cpf_cliente?: StringFilter<'Pagamento'> | string
+    cod_locacao?: UuidFilter<'Pagamento'> | string
+    data_pagamento?: DateTimeFilter<'Pagamento'> | Date | string
+    valor_pagamento?:
+      | DecimalFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFilter<'Pagamento'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoLocadoCreateWithoutLocacaoInput = {
@@ -11287,11 +14067,16 @@ export namespace Prisma {
 
   export type BrinquedoLocadoCreateOrConnectWithoutLocacaoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    create: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput>
+    create: XOR<
+      BrinquedoLocadoCreateWithoutLocacaoInput,
+      BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+    >
   }
 
   export type BrinquedoLocadoCreateManyLocacaoInputEnvelope = {
-    data: BrinquedoLocadoCreateManyLocacaoInput | BrinquedoLocadoCreateManyLocacaoInput[]
+    data:
+      | BrinquedoLocadoCreateManyLocacaoInput
+      | BrinquedoLocadoCreateManyLocacaoInput[]
     skipDuplicates?: boolean
   }
 
@@ -11315,7 +14100,10 @@ export namespace Prisma {
 
   export type ClienteCreateOrConnectWithoutLocacoesInput = {
     where: ClienteWhereUniqueInput
-    create: XOR<ClienteCreateWithoutLocacoesInput, ClienteUncheckedCreateWithoutLocacoesInput>
+    create: XOR<
+      ClienteCreateWithoutLocacoesInput,
+      ClienteUncheckedCreateWithoutLocacoesInput
+    >
   }
 
   export type PagamentoCreateWithoutLocacaoInput = {
@@ -11336,34 +14124,58 @@ export namespace Prisma {
 
   export type PagamentoCreateOrConnectWithoutLocacaoInput = {
     where: PagamentoWhereUniqueInput
-    create: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    create: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
   }
 
   export type BrinquedoLocadoUpsertWithWhereUniqueWithoutLocacaoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    update: XOR<BrinquedoLocadoUpdateWithoutLocacaoInput, BrinquedoLocadoUncheckedUpdateWithoutLocacaoInput>
-    create: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput>
+    update: XOR<
+      BrinquedoLocadoUpdateWithoutLocacaoInput,
+      BrinquedoLocadoUncheckedUpdateWithoutLocacaoInput
+    >
+    create: XOR<
+      BrinquedoLocadoCreateWithoutLocacaoInput,
+      BrinquedoLocadoUncheckedCreateWithoutLocacaoInput
+    >
   }
 
   export type BrinquedoLocadoUpdateWithWhereUniqueWithoutLocacaoInput = {
     where: BrinquedoLocadoWhereUniqueInput
-    data: XOR<BrinquedoLocadoUpdateWithoutLocacaoInput, BrinquedoLocadoUncheckedUpdateWithoutLocacaoInput>
+    data: XOR<
+      BrinquedoLocadoUpdateWithoutLocacaoInput,
+      BrinquedoLocadoUncheckedUpdateWithoutLocacaoInput
+    >
   }
 
   export type BrinquedoLocadoUpdateManyWithWhereWithoutLocacaoInput = {
     where: BrinquedoLocadoScalarWhereInput
-    data: XOR<BrinquedoLocadoUpdateManyMutationInput, BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoInput>
+    data: XOR<
+      BrinquedoLocadoUpdateManyMutationInput,
+      BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoInput
+    >
   }
 
   export type ClienteUpsertWithoutLocacoesInput = {
-    update: XOR<ClienteUpdateWithoutLocacoesInput, ClienteUncheckedUpdateWithoutLocacoesInput>
-    create: XOR<ClienteCreateWithoutLocacoesInput, ClienteUncheckedCreateWithoutLocacoesInput>
+    update: XOR<
+      ClienteUpdateWithoutLocacoesInput,
+      ClienteUncheckedUpdateWithoutLocacoesInput
+    >
+    create: XOR<
+      ClienteCreateWithoutLocacoesInput,
+      ClienteUncheckedCreateWithoutLocacoesInput
+    >
     where?: ClienteWhereInput
   }
 
   export type ClienteUpdateToOneWithWhereWithoutLocacoesInput = {
     where?: ClienteWhereInput
-    data: XOR<ClienteUpdateWithoutLocacoesInput, ClienteUncheckedUpdateWithoutLocacoesInput>
+    data: XOR<
+      ClienteUpdateWithoutLocacoesInput,
+      ClienteUncheckedUpdateWithoutLocacoesInput
+    >
   }
 
   export type ClienteUpdateWithoutLocacoesInput = {
@@ -11385,21 +14197,40 @@ export namespace Prisma {
   }
 
   export type PagamentoUpsertWithoutLocacaoInput = {
-    update: XOR<PagamentoUpdateWithoutLocacaoInput, PagamentoUncheckedUpdateWithoutLocacaoInput>
-    create: XOR<PagamentoCreateWithoutLocacaoInput, PagamentoUncheckedCreateWithoutLocacaoInput>
+    update: XOR<
+      PagamentoUpdateWithoutLocacaoInput,
+      PagamentoUncheckedUpdateWithoutLocacaoInput
+    >
+    create: XOR<
+      PagamentoCreateWithoutLocacaoInput,
+      PagamentoUncheckedCreateWithoutLocacaoInput
+    >
     where?: PagamentoWhereInput
   }
 
   export type PagamentoUpdateToOneWithWhereWithoutLocacaoInput = {
     where?: PagamentoWhereInput
-    data: XOR<PagamentoUpdateWithoutLocacaoInput, PagamentoUncheckedUpdateWithoutLocacaoInput>
+    data: XOR<
+      PagamentoUpdateWithoutLocacaoInput,
+      PagamentoUncheckedUpdateWithoutLocacaoInput
+    >
   }
 
   export type PagamentoUpdateWithoutLocacaoInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     cliente?: ClienteUpdateOneRequiredWithoutPagamentosNestedInput
   }
 
@@ -11407,8 +14238,18 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type LocacaoCreateWithoutPagamentoInput = {
@@ -11427,7 +14268,10 @@ export namespace Prisma {
 
   export type LocacaoCreateOrConnectWithoutPagamentoInput = {
     where: LocacaoWhereUniqueInput
-    create: XOR<LocacaoCreateWithoutPagamentoInput, LocacaoUncheckedCreateWithoutPagamentoInput>
+    create: XOR<
+      LocacaoCreateWithoutPagamentoInput,
+      LocacaoUncheckedCreateWithoutPagamentoInput
+    >
   }
 
   export type ClienteCreateWithoutPagamentosInput = {
@@ -11450,18 +14294,30 @@ export namespace Prisma {
 
   export type ClienteCreateOrConnectWithoutPagamentosInput = {
     where: ClienteWhereUniqueInput
-    create: XOR<ClienteCreateWithoutPagamentosInput, ClienteUncheckedCreateWithoutPagamentosInput>
+    create: XOR<
+      ClienteCreateWithoutPagamentosInput,
+      ClienteUncheckedCreateWithoutPagamentosInput
+    >
   }
 
   export type LocacaoUpsertWithoutPagamentoInput = {
-    update: XOR<LocacaoUpdateWithoutPagamentoInput, LocacaoUncheckedUpdateWithoutPagamentoInput>
-    create: XOR<LocacaoCreateWithoutPagamentoInput, LocacaoUncheckedCreateWithoutPagamentoInput>
+    update: XOR<
+      LocacaoUpdateWithoutPagamentoInput,
+      LocacaoUncheckedUpdateWithoutPagamentoInput
+    >
+    create: XOR<
+      LocacaoCreateWithoutPagamentoInput,
+      LocacaoUncheckedCreateWithoutPagamentoInput
+    >
     where?: LocacaoWhereInput
   }
 
   export type LocacaoUpdateToOneWithWhereWithoutPagamentoInput = {
     where?: LocacaoWhereInput
-    data: XOR<LocacaoUpdateWithoutPagamentoInput, LocacaoUncheckedUpdateWithoutPagamentoInput>
+    data: XOR<
+      LocacaoUpdateWithoutPagamentoInput,
+      LocacaoUncheckedUpdateWithoutPagamentoInput
+    >
   }
 
   export type LocacaoUpdateWithoutPagamentoInput = {
@@ -11479,14 +14335,23 @@ export namespace Prisma {
   }
 
   export type ClienteUpsertWithoutPagamentosInput = {
-    update: XOR<ClienteUpdateWithoutPagamentosInput, ClienteUncheckedUpdateWithoutPagamentosInput>
-    create: XOR<ClienteCreateWithoutPagamentosInput, ClienteUncheckedCreateWithoutPagamentosInput>
+    update: XOR<
+      ClienteUpdateWithoutPagamentosInput,
+      ClienteUncheckedUpdateWithoutPagamentosInput
+    >
+    create: XOR<
+      ClienteCreateWithoutPagamentosInput,
+      ClienteUncheckedCreateWithoutPagamentosInput
+    >
     where?: ClienteWhereInput
   }
 
   export type ClienteUpdateToOneWithWhereWithoutPagamentosInput = {
     where?: ClienteWhereInput
-    data: XOR<ClienteUpdateWithoutPagamentosInput, ClienteUncheckedUpdateWithoutPagamentosInput>
+    data: XOR<
+      ClienteUpdateWithoutPagamentosInput,
+      ClienteUncheckedUpdateWithoutPagamentosInput
+    >
   }
 
   export type ClienteUpdateWithoutPagamentosInput = {
@@ -11527,40 +14392,62 @@ export namespace Prisma {
 
   export type BrinquedoCreateOrConnectWithoutTipoBrinquedoInput = {
     where: BrinquedoWhereUniqueInput
-    create: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput>
+    create: XOR<
+      BrinquedoCreateWithoutTipoBrinquedoInput,
+      BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+    >
   }
 
   export type BrinquedoCreateManyTipoBrinquedoInputEnvelope = {
-    data: BrinquedoCreateManyTipoBrinquedoInput | BrinquedoCreateManyTipoBrinquedoInput[]
+    data:
+      | BrinquedoCreateManyTipoBrinquedoInput
+      | BrinquedoCreateManyTipoBrinquedoInput[]
     skipDuplicates?: boolean
   }
 
   export type BrinquedoUpsertWithWhereUniqueWithoutTipoBrinquedoInput = {
     where: BrinquedoWhereUniqueInput
-    update: XOR<BrinquedoUpdateWithoutTipoBrinquedoInput, BrinquedoUncheckedUpdateWithoutTipoBrinquedoInput>
-    create: XOR<BrinquedoCreateWithoutTipoBrinquedoInput, BrinquedoUncheckedCreateWithoutTipoBrinquedoInput>
+    update: XOR<
+      BrinquedoUpdateWithoutTipoBrinquedoInput,
+      BrinquedoUncheckedUpdateWithoutTipoBrinquedoInput
+    >
+    create: XOR<
+      BrinquedoCreateWithoutTipoBrinquedoInput,
+      BrinquedoUncheckedCreateWithoutTipoBrinquedoInput
+    >
   }
 
   export type BrinquedoUpdateWithWhereUniqueWithoutTipoBrinquedoInput = {
     where: BrinquedoWhereUniqueInput
-    data: XOR<BrinquedoUpdateWithoutTipoBrinquedoInput, BrinquedoUncheckedUpdateWithoutTipoBrinquedoInput>
+    data: XOR<
+      BrinquedoUpdateWithoutTipoBrinquedoInput,
+      BrinquedoUncheckedUpdateWithoutTipoBrinquedoInput
+    >
   }
 
   export type BrinquedoUpdateManyWithWhereWithoutTipoBrinquedoInput = {
     where: BrinquedoScalarWhereInput
-    data: XOR<BrinquedoUpdateManyMutationInput, BrinquedoUncheckedUpdateManyWithoutTipoBrinquedoInput>
+    data: XOR<
+      BrinquedoUpdateManyMutationInput,
+      BrinquedoUncheckedUpdateManyWithoutTipoBrinquedoInput
+    >
   }
 
   export type BrinquedoScalarWhereInput = {
     AND?: BrinquedoScalarWhereInput | BrinquedoScalarWhereInput[]
     OR?: BrinquedoScalarWhereInput[]
     NOT?: BrinquedoScalarWhereInput | BrinquedoScalarWhereInput[]
-    cod?: UuidFilter<"Brinquedo"> | string
-    nome?: StringFilter<"Brinquedo"> | string
-    tipo_brinquedo?: UuidFilter<"Brinquedo"> | string
-    marca?: StringFilter<"Brinquedo"> | string
-    data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
-    valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    cod?: UuidFilter<'Brinquedo'> | string
+    nome?: StringFilter<'Brinquedo'> | string
+    tipo_brinquedo?: UuidFilter<'Brinquedo'> | string
+    marca?: StringFilter<'Brinquedo'> | string
+    data_aquisicao?: DateTimeFilter<'Brinquedo'> | Date | string
+    valor_locacao?:
+      | DecimalFilter<'Brinquedo'>
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoLocadoCreateManyBrinquedoInput = {
@@ -11573,7 +14460,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUpdateWithoutBrinquedoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     locacao?: LocacaoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
@@ -11581,7 +14473,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUncheckedUpdateWithoutBrinquedoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11589,7 +14486,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11630,8 +14532,18 @@ export namespace Prisma {
   export type PagamentoUpdateWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     locacao?: LocacaoUpdateOneRequiredWithoutPagamentoNestedInput
   }
 
@@ -11639,16 +14551,36 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type PagamentoUncheckedUpdateManyWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_pagamento?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
 
   export type BrinquedoLocadoCreateManyLocacaoInput = {
@@ -11661,7 +14593,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUpdateWithoutLocacaoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     brinquedo?: BrinquedoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
@@ -11669,7 +14606,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUncheckedUpdateWithoutLocacaoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
@@ -11677,7 +14619,12 @@ export namespace Prisma {
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoInput = {
     cod?: StringFieldUpdateOperationsInput | string
-    valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_unitario?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
@@ -11696,7 +14643,12 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -11705,7 +14657,12 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -11714,10 +14671,13 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
-    valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    valor_locacao?:
+      | DecimalFieldUpdateOperationsInput
+      | Decimal
+      | DecimalJsLike
+      | number
+      | string
   }
-
-
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany

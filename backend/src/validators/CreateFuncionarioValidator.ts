@@ -13,13 +13,19 @@ export const FuncaoEnum = z.enum([
 ])
 export const CreateFuncionarioValidator = z
   .object({
-    cpf: z.string().refine(GeneralValidator.validateCpf, {
-      message: 'Invalid CPF format. Please provide a valid CPF.',
-    }),
+    cpf: z
+      .string()
+      .transform(str => str.replace(/\D/g, ''))
+      .refine(GeneralValidator.validateCpf, {
+        message: 'Invalid CPF format. Please provide a valid CPF.',
+      }),
     nome: z.string().min(3).max(255),
-    telefone: z.string().refine(GeneralValidator.validatePhone, {
-      message: 'Please provide a valid Phone.',
-    }),
+    telefone: z
+      .string()
+      .transform(str => str.replace(/\D/g, ''))
+      .refine(GeneralValidator.validatePhone, {
+        message: 'Please provide a valid Phone.',
+      }),
     senha: z.string().refine(GeneralValidator.isValidPwd, {
       message: `
             // - Pelo menos 8 caracteres

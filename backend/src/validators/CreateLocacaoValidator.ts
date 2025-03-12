@@ -6,8 +6,11 @@ import GeneralValidator from './GeneralValidator'
    ====================================== */
 export const CreateLocacaoValidator = z
   .object({
-    cpf_cliente: z.string().refine(GeneralValidator.validateCpf, {
-      message: 'Invalid CPF format. Please provide a valid CPF.',
-    }),
+    cpf_cliente: z
+      .string()
+      .transform(str => str.replace(/\D/g, ''))
+      .refine(GeneralValidator.validateCpf, {
+        message: 'Invalid CPF format. Please provide a valid CPF.',
+      }),
   })
   .strict()

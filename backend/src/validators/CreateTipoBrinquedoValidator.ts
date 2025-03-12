@@ -1,6 +1,4 @@
 import { z } from 'zod'
-import GeneralValidator from './GeneralValidator'
-import { dateSchema } from './dateSchema'
 
 /* ======================================
    Schema validação para o modelo TipoBrinquedo

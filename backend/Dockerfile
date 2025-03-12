@@ -8,7 +8,4 @@ RUN npm ci
 
 COPY . .
 
-# para deploy
 CMD ["sh", "-c", "npm run db:deploy && npm run dev"]
-
-# CMD ["sh", "-c", "npm run db:dev && npm run dev"]

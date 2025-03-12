@@ -55,7 +55,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       if (!brinquedo) {
         res.status(201).json(brinquedo)
         return
-      } 
+      }
       res.status(404).json({ message: 'Toy not created' })
       return
     } catch (error) {

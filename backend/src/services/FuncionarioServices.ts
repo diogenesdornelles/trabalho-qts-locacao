@@ -1,7 +1,4 @@
-import {
-  PrismaClient,
-  Funcao,
-} from '../../generated/prisma_client'
+import { PrismaClient, Funcao } from '../../generated/prisma_client'
 import { z } from 'zod'
 import { BaseService } from './BaseService'
 import hashPassword from '../utils/hashPwd'
@@ -49,7 +46,7 @@ export default class FuncionarioServices extends BaseService<
           telefone: true,
           funcao: true,
           senha: false,
-        }
+        },
       })
     } catch (error: unknown) {
       if (error instanceof Error) {

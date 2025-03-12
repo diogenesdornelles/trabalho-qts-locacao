@@ -1,20 +1,20 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.0.3",
   "info": {
-    "title": "API Documentation",
+    "title": "Locação API",
     "version": "1.0.0",
-    "description": "API documentation generated from Prisma schema"
+    "description": "API para gerenciamento de locações e brinquedos."
   },
   "servers": [
     {
       "url": "http://localhost:3000/api",
-      "description": "Servidor local"
+      "description": "Servidor Local"
     }
   ],
   "paths": {
     "/brinquedos": {
       "get": {
-        "summary": "Lista todos os brinquedos",
+        "summary": "Listar todos os brinquedos",
         "operationId": "getBrinquedos",
         "responses": {
           "200": {
@@ -23,7 +23,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/Brinquedo" }
+                  "items": {
+                    "$ref": "#/components/schemas/BrinquedoResponseComTipoDTO"
+                  }
                 }
               }
             }
@@ -31,23 +33,26 @@
         }
       },
       "post": {
-        "summary": "Cria um novo brinquedo",
+        "summary": "Criar um novo brinquedo",
         "operationId": "createBrinquedo",
         "requestBody": {
-          "description": "Objeto do brinquedo",
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Brinquedo" }
+              "schema": {
+                "$ref": "#/components/schemas/CreateBrinquedoDTO"
+              }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Brinquedo criado",
+            "description": "Brinquedo criado com sucesso",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Brinquedo" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoResponseDTO"
+                }
               }
             }
           }
@@ -59,44 +64,39 @@
         {
           "name": "cod",
           "in": "path",
-          "description": "UUID do brinquedo",
           "required": true,
-          "schema": { "type": "string", "format": "uuid" }
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
         }
       ],
       "get": {
-        "summary": "Obtém um brinquedo pelo código",
+        "summary": "Obter um brinquedo pelo código",
         "operationId": "getBrinquedoById",
         "responses": {
           "200": {
             "description": "Brinquedo encontrado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Brinquedo" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoResponseDTO"
+                }
               }
             }
-          },
-          "404": { "description": "Brinquedo não encontrado" }
+          }
         }
       },
       "put": {
-        "summary": "Atualiza um brinquedo pelo código",
+        "summary": "Atualizar um brinquedo",
         "operationId": "updateBrinquedo",
-        "parameters": [
-          {
-            "name": "cod",
-            "in": "path",
-            "description": "UUID do brinquedo",
-            "required": true,
-            "schema": { "type": "string", "format": "uuid" }
-          }
-        ],
         "requestBody": {
-          "description": "Objeto do brinquedo com os dados a atualizar",
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/Brinquedo" }
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBrinquedoDTO"
+              }
             }
           }
         },
@@ -105,490 +105,27 @@
             "description": "Brinquedo atualizado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/Brinquedo" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoResponseDTO"
+                }
               }
             }
-          },
-          "404": { "description": "Brinquedo não encontrado" }
+          }
         }
       },
       "delete": {
-        "summary": "Exclui um brinquedo pelo código",
+        "summary": "Excluir um brinquedo",
         "operationId": "deleteBrinquedo",
-        "parameters": [
-          {
-            "name": "cod",
-            "in": "path",
-            "description": "UUID do brinquedo",
-            "required": true,
-            "schema": { "type": "string", "format": "uuid" }
-          }
-        ],
         "responses": {
-          "200": { "description": "Brinquedo excluído" },
-          "404": { "description": "Brinquedo não encontrado" }
-        }
-      }
-    },
-    "/clientes": {
-      "get": {
-        "summary": "Lista todos os clientes",
-        "operationId": "getClientes",
-        "responses": {
-          "200": {
-            "description": "Lista de clientes",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Cliente" }
-                }
-              }
-            }
+          "204": {
+            "description": "Brinquedo removido"
           }
-        }
-      },
-      "post": {
-        "summary": "Cria um novo cliente",
-        "operationId": "createCliente",
-        "requestBody": {
-          "description": "Objeto do cliente",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Cliente" }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Cliente criado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Cliente" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/clientes/{cpf}": {
-      "parameters": [
-        {
-          "name": "cpf",
-          "in": "path",
-          "description": "CPF do cliente",
-          "required": true,
-          "schema": { "type": "string", "minLength": 11, "maxLength": 11 }
-        }
-      ],
-      "get": {
-        "summary": "Obtém um cliente pelo CPF",
-        "operationId": "getClienteByCpf",
-        "responses": {
-          "200": {
-            "description": "Cliente encontrado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Cliente" }
-              }
-            }
-          },
-          "404": { "description": "Cliente não encontrado" }
-        }
-      },
-      "put": {
-        "summary": "Atualiza um cliente pelo CPF",
-        "operationId": "updateCliente",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "path",
-            "description": "CPF do cliente",
-            "required": true,
-            "schema": { "type": "string", "minLength": 11, "maxLength": 11 }
-          }
-        ],
-        "requestBody": {
-          "description": "Objeto do cliente com os dados a atualizar",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Cliente" }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Cliente atualizado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Cliente" }
-              }
-            }
-          },
-          "404": { "description": "Cliente não encontrado" }
-        }
-      }
-    },
-    "/funcionarios": {
-      "get": {
-        "summary": "Lista todos os funcionários",
-        "operationId": "getFuncionarios",
-        "responses": {
-          "200": {
-            "description": "Lista de funcionários",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Funcionario" }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Cria um novo funcionário",
-        "operationId": "createFuncionario",
-        "requestBody": {
-          "description": "Objeto do funcionário",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Funcionario" }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Funcionário criado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Funcionario" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/funcionarios/{cpf}": {
-      "parameters": [
-        {
-          "name": "cpf",
-          "in": "path",
-          "description": "CPF do funcionário",
-          "required": true,
-          "schema": { "type": "string", "minLength": 11, "maxLength": 11 }
-        }
-      ],
-      "get": {
-        "summary": "Obtém um funcionário pelo CPF",
-        "operationId": "getFuncionarioByCpf",
-        "responses": {
-          "200": {
-            "description": "Funcionário encontrado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Funcionario" }
-              }
-            }
-          },
-          "404": { "description": "Funcionário não encontrado" }
-        }
-      },
-      "put": {
-        "summary": "Atualiza um funcionário pelo CPF",
-        "operationId": "updateFuncionario",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "path",
-            "description": "CPF do funcionário",
-            "required": true,
-            "schema": { "type": "string", "minLength": 11, "maxLength": 11 }
-          }
-        ],
-        "requestBody": {
-          "description": "Objeto do funcionário com os dados a atualizar",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Funcionario" }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Funcionário atualizado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Funcionario" }
-              }
-            }
-          },
-          "404": { "description": "Funcionário não encontrado" }
-        }
-      },
-      "delete": {
-        "summary": "Exclui um funcionário pelo CPF",
-        "operationId": "deleteFuncionario",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "path",
-            "description": "CPF do funcionário",
-            "required": true,
-            "schema": { "type": "string", "minLength": 11, "maxLength": 11 }
-          }
-        ],
-        "responses": {
-          "200": { "description": "Funcionário excluído" },
-          "404": { "description": "Funcionário não encontrado" }
-        }
-      }
-    },
-    "/locacoes": {
-      "get": {
-        "summary": "Lista todas as locações",
-        "operationId": "getLocacoes",
-        "responses": {
-          "200": {
-            "description": "Lista de locações",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Locacao" }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Cria uma nova locação",
-        "operationId": "createLocacao",
-        "requestBody": {
-          "description": "Objeto da locação",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Locacao" }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Locação criada",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Locacao" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/locacoes/{cod}": {
-      "parameters": [
-        {
-          "name": "cod",
-          "in": "path",
-          "description": "UUID da locação",
-          "required": true,
-          "schema": { "type": "string", "format": "uuid" }
-        }
-      ],
-      "get": {
-        "summary": "Obtém uma locação pelo código",
-        "operationId": "getLocacaoById",
-        "responses": {
-          "200": {
-            "description": "Locação encontrada",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Locacao" }
-              }
-            }
-          },
-          "404": { "description": "Locação não encontrada" }
-        }
-      }
-    },
-    "/pagamentos": {
-      "get": {
-        "summary": "Lista todos os pagamentos",
-        "operationId": "getPagamentos",
-        "responses": {
-          "200": {
-            "description": "Lista de pagamentos",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/Pagamento" }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Cria um novo pagamento",
-        "operationId": "createPagamento",
-        "requestBody": {
-          "description": "Objeto do pagamento",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/Pagamento" }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Pagamento criado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Pagamento" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/pagamentos/{cod}": {
-      "parameters": [
-        {
-          "name": "cod",
-          "in": "path",
-          "description": "UUID do pagamento",
-          "required": true,
-          "schema": { "type": "string", "format": "uuid" }
-        }
-      ],
-      "get": {
-        "summary": "Obtém um pagamento pelo código",
-        "operationId": "getPagamentoById",
-        "responses": {
-          "200": {
-            "description": "Pagamento encontrado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/Pagamento" }
-              }
-            }
-          },
-          "404": { "description": "Pagamento não encontrado" }
-        }
-      }
-    },
-    "/tiposBrinquedos": {
-      "get": {
-        "summary": "Lista todos os tipos de brinquedos",
-        "operationId": "getTiposBrinquedos",
-        "responses": {
-          "200": {
-            "description": "Lista de tipos de brinquedos",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": { "$ref": "#/components/schemas/TipoBrinquedo" }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Cria um novo tipo de brinquedo",
-        "operationId": "createTipoBrinquedo",
-        "requestBody": {
-          "description": "Objeto do tipo de brinquedo",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/TipoBrinquedo" }
-            }
-          }
-        },
-        "responses": {
-          "201": {
-            "description": "Tipo de brinquedo criado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/TipoBrinquedo" }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/tiposBrinquedos/{cod}": {
-      "parameters": [
-        {
-          "name": "cod",
-          "in": "path",
-          "description": "UUID do tipo de brinquedo",
-          "required": true,
-          "schema": { "type": "string", "format": "uuid" }
-        }
-      ],
-      "get": {
-        "summary": "Obtém um tipo de brinquedo pelo código",
-        "operationId": "getTipoBrinquedoById",
-        "responses": {
-          "200": {
-            "description": "Tipo de brinquedo encontrado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/TipoBrinquedo" }
-              }
-            }
-          },
-          "404": { "description": "Tipo de brinquedo não encontrado" }
-        }
-      },
-      "put": {
-        "summary": "Atualiza um tipo de brinquedo pelo código",
-        "operationId": "updateTipoBrinquedo",
-        "parameters": [
-          {
-            "name": "cod",
-            "in": "path",
-            "description": "UUID do tipo de brinquedo",
-            "required": true,
-            "schema": { "type": "string", "format": "uuid" }
-          }
-        ],
-        "requestBody": {
-          "description": "Objeto do tipo de brinquedo com os dados a atualizar",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/TipoBrinquedo" }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Tipo de brinquedo atualizado",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/TipoBrinquedo" }
-              }
-            }
-          },
-          "404": { "description": "Tipo de brinquedo não encontrado" }
         }
       }
     },
     "/brinquedosLocados": {
       "get": {
-        "summary": "Lista todos os brinquedos locados",
+        "summary": "Listar todos os brinquedos locados",
         "operationId": "getBrinquedosLocados",
         "responses": {
           "200": {
@@ -597,7 +134,9 @@
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": { "$ref": "#/components/schemas/BrinquedoLocado" }
+                  "items": {
+                    "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
+                  }
                 }
               }
             }
@@ -605,23 +144,26 @@
         }
       },
       "post": {
-        "summary": "Cria um novo brinquedo locado",
+        "summary": "Criar um novo brinquedo locado",
         "operationId": "createBrinquedoLocado",
         "requestBody": {
-          "description": "Objeto do brinquedo locado",
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/BrinquedoLocado" }
+              "schema": {
+                "$ref": "#/components/schemas/CreateBrinquedoLocadoDTO"
+              }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Brinquedo locado criado",
+            "description": "Brinquedo locado criado com sucesso",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BrinquedoLocado" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
+                }
               }
             }
           }
@@ -633,44 +175,39 @@
         {
           "name": "cod",
           "in": "path",
-          "description": "UUID do brinquedo locado",
           "required": true,
-          "schema": { "type": "string", "format": "uuid" }
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
         }
       ],
       "get": {
-        "summary": "Obtém um brinquedo locado pelo código",
+        "summary": "Obter um brinquedo locado pelo código",
         "operationId": "getBrinquedoLocadoById",
         "responses": {
           "200": {
             "description": "Brinquedo locado encontrado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BrinquedoLocado" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
+                }
               }
             }
-          },
-          "404": { "description": "Brinquedo locado não encontrado" }
+          }
         }
       },
       "put": {
-        "summary": "Atualiza um brinquedo locado pelo código",
+        "summary": "Atualizar um brinquedo locado",
         "operationId": "updateBrinquedoLocado",
-        "parameters": [
-          {
-            "name": "cod",
-            "in": "path",
-            "description": "UUID do brinquedo locado",
-            "required": true,
-            "schema": { "type": "string", "format": "uuid" }
-          }
-        ],
         "requestBody": {
-          "description": "Objeto do brinquedo locado com os dados a atualizar",
           "required": true,
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/BrinquedoLocado" }
+              "schema": {
+                "$ref": "#/components/schemas/UpdateBrinquedoLocadoDTO"
+              }
             }
           }
         },
@@ -679,128 +216,1169 @@
             "description": "Brinquedo locado atualizado",
             "content": {
               "application/json": {
-                "schema": { "$ref": "#/components/schemas/BrinquedoLocado" }
+                "schema": {
+                  "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
+                }
               }
             }
-          },
-          "404": { "description": "Brinquedo locado não encontrado" }
+          }
         }
       },
       "delete": {
-        "summary": "Exclui um brinquedo locado pelo código",
+        "summary": "Excluir um brinquedo locado",
         "operationId": "deleteBrinquedoLocado",
-        "parameters": [
-          {
-            "name": "cod",
-            "in": "path",
-            "description": "UUID do brinquedo locado",
-            "required": true,
-            "schema": { "type": "string", "format": "uuid" }
-          }
-        ],
         "responses": {
-          "200": { "description": "Brinquedo locado excluído" },
-          "404": { "description": "Brinquedo locado não encontrado" }
+          "204": {
+            "description": "Brinquedo locado removido"
+          }
+        }
+      }
+    },
+    "/clientes": {
+      "get": {
+        "summary": "Listar todos os clientes",
+        "operationId": "getClientes",
+        "responses": {
+          "200": {
+            "description": "Lista de clientes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ClienteResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo cliente",
+        "operationId": "createCliente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateClienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cliente criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/clientes/{cpf}": {
+      "parameters": [
+        {
+          "name": "cpf",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Obter um cliente pelo CPF",
+        "operationId": "getClienteByCpf",
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um cliente",
+        "operationId": "updateCliente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateClienteDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClienteResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um cliente",
+        "operationId": "deleteCliente",
+        "responses": {
+          "204": {
+            "description": "Cliente removido"
+          }
+        }
+      }
+    },
+    "/funcionarios": {
+      "get": {
+        "summary": "Listar todos os funcionários",
+        "operationId": "getFuncionarios",
+        "responses": {
+          "200": {
+            "description": "Lista de funcionários",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/FuncionarioResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo funcionário",
+        "operationId": "createFuncionario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFuncionarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Funcionário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/funcionarios/{cpf}": {
+      "parameters": [
+        {
+          "name": "cpf",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Obter um funcionário pelo CPF",
+        "operationId": "getFuncionarioByCpf",
+        "responses": {
+          "200": {
+            "description": "Funcionário encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um funcionário",
+        "operationId": "updateFuncionario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateFuncionarioDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Funcionário atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/FuncionarioResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um funcionário",
+        "operationId": "deleteFuncionario",
+        "responses": {
+          "204": {
+            "description": "Funcionário removido"
+          }
+        }
+      }
+    },
+    "/locacoes": {
+      "get": {
+        "summary": "Listar todas as locações",
+        "operationId": "getLocacoes",
+        "responses": {
+          "200": {
+            "description": "Lista de locações",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LocacaoResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar uma nova locação",
+        "operationId": "createLocacao",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateLocacaoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Locação criada com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocacaoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/locacoes/{cod}": {
+      "parameters": [
+        {
+          "name": "cod",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Obter uma locação pelo código",
+        "operationId": "getLocacaoById",
+        "responses": {
+          "200": {
+            "description": "Locação encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocacaoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar uma locação",
+        "operationId": "updateLocacao",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateLocacaoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Locação atualizada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LocacaoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir uma locação",
+        "operationId": "deleteLocacao",
+        "responses": {
+          "204": {
+            "description": "Locação removida"
+          }
+        }
+      }
+    },
+    "/pagamentos": {
+      "get": {
+        "summary": "Listar todos os pagamentos",
+        "operationId": "getPagamentos",
+        "responses": {
+          "200": {
+            "description": "Lista de pagamentos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PagamentoResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo pagamento",
+        "operationId": "createPagamento",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatePagamentoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pagamento criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagamentoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/pagamentos/{cod}": {
+      "parameters": [
+        {
+          "name": "cod",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Obter um pagamento pelo código",
+        "operationId": "getPagamentoById",
+        "responses": {
+          "200": {
+            "description": "Pagamento encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagamentoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um pagamento",
+        "operationId": "updatePagamento",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdatePagamentoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Pagamento atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PagamentoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um pagamento",
+        "operationId": "deletePagamento",
+        "responses": {
+          "204": {
+            "description": "Pagamento removido"
+          }
+        }
+      }
+    },
+    "/tiposBrinquedos": {
+      "get": {
+        "summary": "Listar todos os tipos de brinquedos",
+        "operationId": "getTiposBrinquedos",
+        "responses": {
+          "200": {
+            "description": "Lista de tipos de brinquedos",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Criar um novo tipo de brinquedo",
+        "operationId": "createTipoBrinquedo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTipoBrinquedoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tipo de brinquedo criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/tiposBrinquedos/{cod}": {
+      "parameters": [
+        {
+          "name": "cod",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      ],
+      "get": {
+        "summary": "Obter um tipo de brinquedo pelo código",
+        "operationId": "getTipoBrinquedoById",
+        "responses": {
+          "200": {
+            "description": "Tipo de brinquedo encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um tipo de brinquedo",
+        "operationId": "updateTipoBrinquedo",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTipoBrinquedoDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Tipo de brinquedo atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Excluir um tipo de brinquedo",
+        "operationId": "deleteTipoBrinquedo",
+        "responses": {
+          "204": {
+            "description": "Tipo de brinquedo removido"
+          }
+        }
+      }
+    },
+    "/token": {
+      "post": {
+        "summary": "Autenticar e gerar token",
+        "operationId": "createToken",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTokenDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Token gerado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TokenResponseDTO"
+                }
+              }
+            }
+          }
         }
       }
     }
   },
   "components": {
     "schemas": {
-      "Brinquedo": {
+      "CreateBrinquedoDTO": {
         "type": "object",
-        "properties": {
-          "cod": { "type": "string", "format": "uuid" },
-          "nome": { "type": "string", "maxLength": 255 },
-          "tipo_bringuedo": { "type": "string", "format": "uuid" },
-          "marca": { "type": "string", "maxLength": 255 },
-          "data_aquisicao": { "type": "string", "format": "date" },
-          "valor_locacao": { "type": "number" }
-        },
         "required": [
-          "cod",
           "nome",
-          "tipo_bringuedo",
+          "tipo_brinquedo",
           "marca",
           "data_aquisicao",
           "valor_locacao"
-        ]
-      },
-      "Cliente": {
-        "type": "object",
+        ],
         "properties": {
-          "cpf": { "type": "string", "minLength": 11, "maxLength": 11 },
-          "nome": { "type": "string", "maxLength": 255 },
-          "endereco": { "type": "string", "maxLength": 255 },
-          "data_nascimento": { "type": "string", "format": "date" },
-          "telefone": { "type": "string", "maxLength": 11 }
+          "nome": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 255,
+            "example": "Brinquedo X"
+          },
+          "tipo_brinquedo": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-tipo"
+          },
+          "marca": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 255,
+            "example": "Marca Y"
+          },
+          "data_aquisicao": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-31"
+          },
+          "valor_locacao": {
+            "type": "number",
+            "minimum": 0,
+            "example": 100.5
+          }
         },
-        "required": ["cpf", "nome", "endereco", "data_nascimento", "telefone"]
+        "additionalProperties": false
       },
-      "Funcionario": {
+      "UpdateBrinquedoDTO": {
         "type": "object",
         "properties": {
-          "cpf": { "type": "string", "minLength": 11, "maxLength": 11 },
-          "nome": { "type": "string", "maxLength": 255 },
-          "telefone": { "type": "string", "maxLength": 11 },
+          "nome": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 255
+          },
+          "tipo_brinquedo": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "marca": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 255
+          },
+          "data_aquisicao": {
+            "type": "string",
+            "format": "date"
+          },
+          "valor_locacao": {
+            "type": "number",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      },
+      "BrinquedoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-brinquedo"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Brinquedo X"
+          },
+          "tipo_brinquedo": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-tipo"
+          },
+          "marca": {
+            "type": "string",
+            "example": "Marca Y"
+          },
+          "data_aquisicao": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-31"
+          },
+          "valor_locacao": {
+            "type": "number",
+            "example": 100.5
+          }
+        }
+      },
+      "BrinquedoResponseComTipoDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-brinquedo"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Brinquedo X"
+          },
+          "tipo_brinquedo": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-tipo"
+          },
+          "marca": {
+            "type": "string",
+            "example": "Marca Y"
+          },
+          "data_aquisicao": {
+            "type": "string",
+            "format": "date",
+            "example": "2023-12-31"
+          },
+          "valor_locacao": {
+            "type": "number",
+            "example": 100.5
+          },
+          "tipoBrinquedo": {
+            "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+          }
+        }
+      },
+      "CreateBrinquedoLocadoDTO": {
+        "type": "object",
+        "required": [
+          "cod_locacao",
+          "data_devolucao",
+          "cod_brinquedo"
+        ],
+        "properties": {
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-locacao"
+          },
+          "data_devolucao": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-01"
+          },
+          "cod_brinquedo": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-brinquedo"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateBrinquedoLocadoDTO": {
+        "type": "object",
+        "properties": {
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data_devolucao": {
+            "type": "string",
+            "format": "date"
+          },
+          "cod_brinquedo": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BrinquedoLocadoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-brinquedo-locado"
+          },
+          "valor_unitario": {
+            "type": "number",
+            "example": 50.0
+          },
+          "nome": {
+            "type": "string",
+            "example": "Brinquedo Locado X"
+          },
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-locacao"
+          },
+          "data_devolucao": {
+            "type": "string",
+            "format": "date",
+            "example": "2024-01-01"
+          },
+          "cod_brinquedo": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-brinquedo"
+          }
+        }
+      },
+      "CreateClienteDTO": {
+        "type": "object",
+        "required": [
+          "cpf",
+          "nome",
+          "endereco",
+          "data_nascimento",
+          "telefone"
+        ],
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$",
+            "example": "12345678901"
+          },
+          "nome": {
+            "type": "string",
+            "example": "João Silva"
+          },
+          "endereco": {
+            "type": "string",
+            "example": "Rua Exemplo, 123"
+          },
+          "data_nascimento": {
+            "type": "string",
+            "format": "date",
+            "example": "1990-01-01"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "11987654321"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateClienteDTO": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "endereco": {
+            "type": "string"
+          },
+          "data_nascimento": {
+            "type": "string",
+            "format": "date"
+          },
+          "telefone": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ClienteResponseDTO": {
+        "type": "object",
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "endereco": {
+            "type": "string"
+          },
+          "data_nascimento": {
+            "type": "string",
+            "format": "date"
+          },
+          "telefone": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateFuncionarioDTO": {
+        "type": "object",
+        "required": [
+          "cpf",
+          "nome",
+          "telefone",
+          "funcao",
+          "senha"
+        ],
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$",
+            "example": "12345678901"
+          },
+          "nome": {
+            "type": "string",
+            "example": "Maria Souza"
+          },
+          "telefone": {
+            "type": "string",
+            "example": "11987654321"
+          },
           "funcao": {
             "type": "string",
             "enum": [
               "GERENTE",
+              "CAIXA",
               "ALMOXARIFE",
-              "ANALISTA_CADASTRO",
-              "ANALISTA_LOCACAO"
+              "ANALISTA_LOCACAO",
+              "ANALISTA_CADASTRO"
+            ],
+            "example": "GERENTE"
+          },
+          "senha": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 128,
+            "example": "senhaSegura123!"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateFuncionarioDTO": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "funcao": {
+            "type": "string",
+            "enum": [
+              "GERENTE",
+              "CAIXA",
+              "ALMOXARIFE",
+              "ANALISTA_LOCACAO",
+              "ANALISTA_CADASTRO"
             ]
           },
-          "senha": { "type": "string", "maxLength": 30 }
+          "senha": {
+            "type": "string",
+            "minLength": 8,
+            "maxLength": 128
+          }
         },
-        "required": ["cpf", "nome", "telefone", "funcao", "senha"]
+        "additionalProperties": false
       },
-      "Locacao": {
+      "FuncionarioResponseDTO": {
         "type": "object",
         "properties": {
-          "cod": { "type": "string", "format": "uuid" },
-          "data_hora": { "type": "string", "format": "date-time" },
-          "cpf_cliente": { "type": "string", "minLength": 11, "maxLength": 11 }
-        },
-        "required": ["cod", "data_hora", "cpf_cliente"]
+          "cpf": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "telefone": {
+            "type": "string"
+          },
+          "funcao": {
+            "type": "string"
+          }
+        }
       },
-      "Pagamento": {
+      "CreateLocacaoDTO": {
         "type": "object",
-        "properties": {
-          "cod": { "type": "string", "format": "uuid" },
-          "cpf_cliente": { "type": "string", "minLength": 11, "maxLength": 11 },
-          "cod_locacao": { "type": "string", "format": "uuid" },
-          "data_pagamento": { "type": "string", "format": "date-time" },
-          "valor_pagamento": { "type": "number" },
-          "valor_locacao": { "type": "number" }
-        },
         "required": [
-          "cod",
+          "cpf_cliente"
+        ],
+        "properties": {
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$",
+            "example": "12345678901"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateLocacaoDTO": {
+        "type": "object",
+        "properties": {
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LocacaoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data_hora": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          }
+        }
+      },
+      "CreatePagamentoDTO": {
+        "type": "object",
+        "required": [
           "cpf_cliente",
           "cod_locacao",
-          "data_pagamento",
-          "valor_pagamento",
-          "valor_locacao"
-        ]
+          "valor_pagamento"
+        ],
+        "properties": {
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$",
+            "example": "12345678901"
+          },
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid",
+            "example": "uuid-locacao"
+          },
+          "valor_pagamento": {
+            "type": "number",
+            "example": 200.75
+          }
+        },
+        "additionalProperties": false
       },
-      "TipoBrinquedo": {
+      "UpdatePagamentoDTO": {
         "type": "object",
         "properties": {
-          "cod": { "type": "string", "format": "uuid" },
-          "nome": { "type": "string", "maxLength": 255 }
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          },
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "valor_pagamento": {
+            "type": "number"
+          }
         },
-        "required": ["cod", "nome"]
+        "additionalProperties": false
       },
-      "BrinquedoLocado": {
+      "PagamentoResponseDTO": {
         "type": "object",
         "properties": {
-          "cod": { "type": "string", "format": "uuid" },
-          "valor_unitario": { "type": "number" },
-          "cod_locacao": { "type": "string", "format": "uuid" },
-          "data_devolucao": { "type": "string", "format": "date" }
+          "cod": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          },
+          "cod_locacao": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "data_pagamento": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "valor_pagamento": {
+            "type": "number"
+          },
+          "valor_locacao": {
+            "type": "number"
+          }
+        }
+      },
+      "CreateTipoBrinquedoDTO": {
+        "type": "object",
+        "required": [
+          "nome"
+        ],
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Carrinho"
+          }
         },
-        "required": ["cod", "valor_unitario", "cod_locacao", "data_devolucao"]
+        "additionalProperties": false
+      },
+      "UpdateTipoBrinquedoDTO": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TipoBrinquedoResponseDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "nome": {
+            "type": "string"
+          }
+        }
+      },
+      "CreateTokenDTO": {
+        "type": "object",
+        "required": [
+          "cpf",
+          "senha"
+        ],
+        "properties": {
+          "cpf": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$",
+            "example": "12345678901"
+          },
+          "senha": {
+            "type": "string",
+            "example": "senhaSegura123!"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TokenResponseDTO": {
+        "type": "object",
+        "properties": {
+          "funcionario": {
+            "type": "object",
+            "properties": {
+              "cpf": {
+                "type": "string",
+                "pattern": "^[0-9]{11}$"
+              },
+              "nome": {
+                "type": "string"
+              }
+            }
+          },
+          "token": {
+            "type": "string",
+            "example": "jwt.token.aqui"
+          }
+        }
       }
     }
   }

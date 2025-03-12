@@ -6,9 +6,12 @@ import GeneralValidator from './GeneralValidator'
    ====================================== */
 export const CreateLoginValidator = z
   .object({
-    cpf: z.string().refine(GeneralValidator.validateCpf, {
-      message: 'Invalid CPF format. Please provide a valid CPF.',
-    }),
+    cpf: z
+      .string()
+      .transform(str => str.replace(/\D/g, ''))
+      .refine(GeneralValidator.validateCpf, {
+        message: 'Invalid CPF format. Please provide a valid CPF.',
+      }),
     senha: z.string().refine(GeneralValidator.isValidPwd, {
       message: `
             // - Pelo menos 8 caracteres
