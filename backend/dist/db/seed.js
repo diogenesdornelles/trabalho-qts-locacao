@@ -46,63 +46,56 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const zod_1 = require("zod");
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const prisma_client_1 = require("../generated/prisma_client");
+const schemas_1 = require("../src/schemas/schemas");
+const hashPwd_1 = __importDefault(require("../src/utils/hashPwd"));
 const dotenv = __importStar(require("dotenv"));
-const BaseService_1 = require("./BaseService");
-const prisma_client_1 = require("../../generated/prisma_client");
 dotenv.config();
-const SECRET_KEY = process.env.SECRET_KEY || 'r34534erfefgdf7576ghfg4455456';
-class LoginServices extends BaseService_1.BaseService {
-    constructor() {
-        super(new prisma_client_1.PrismaClient());
-        this.create = (data) => __awaiter(this, void 0, void 0, function* () {
-            try {
-                const dbFuncionario = yield this.prisma.funcionario.findUnique({
-                    where: { cpf: data.cpf },
-                });
-                if (!dbFuncionario) {
-                    throw new Error('Cpf of password is not correct');
-                }
-                const isMatch = bcrypt_1.default.compareSync(data.senha, dbFuncionario.senha);
-                if (isMatch) {
-                    const token = jsonwebtoken_1.default.sign({
-                        cpf: dbFuncionario.cpf,
-                        nome: dbFuncionario.nome,
-                        funcao: dbFuncionario.funcao,
-                    }, SECRET_KEY, {
-                        expiresIn: '2 days',
-                    });
-                    return {
-                        funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome },
-                        token: token,
-                    };
-                }
-                else {
-                    throw new Error('Password is not correct');
-                }
+const NOME = process.env.SUPER_USER_NOME;
+const PWD = process.env.SUPER_USER_PWD;
+const CPF = process.env.SUPER_USER_CPF;
+const prisma = new prisma_client_1.PrismaClient();
+function main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const data = {
+                cpf: CPF,
+                nome: NOME,
+                telefone: '1111111111',
+                funcao: prisma_client_1.Funcao.GERENTE, // Use os valores do enum como string
+                senha: PWD,
+            };
+            const validatedData = schemas_1.FuncionarioSchema.parse(data);
+            validatedData.senha = yield (0, hashPwd_1.default)(validatedData.senha);
+            yield prisma.funcionario.create({
+                data: {
+                    cpf: validatedData.cpf,
+                    telefone: validatedData.telefone,
+                    funcao: validatedData.funcao,
+                    nome: validatedData.nome,
+                    senha: validatedData.senha,
+                },
+            });
+        }
+        catch (error) {
+            // Trata erros de validação do Zod
+            if (error instanceof zod_1.z.ZodError) {
+                console.error('Validation error on create employee:', error.errors);
+                throw new Error(`Validation error: ${error.errors.map(err => err.message).join(', ')}`);
             }
-            catch (error) {
-                // Trata erros de validação do Zod
-                if (error instanceof zod_1.z.ZodError) {
-                    console.error('Validation error on create token:', error.errors);
-                    throw new Error(`Validation error: ${error.errors.map(err => err.message).join(', ')}`);
-                }
-                throw new Error('An unknown error occurred while creating token.');
+            // Trata erros genéricos (incluindo erros do Prisma)
+            if (error instanceof Error) {
+                console.error('Database error on create employee:', error.message);
+                throw new Error(`Database error: ${error.message}`);
             }
-        });
-    }
-    getAll() {
-        throw new Error('Method not implemented.');
-    }
-    getOne(pk) {
-        throw new Error('Method not implemented.');
-    }
-    update(pk, data) {
-        throw new Error('Method not implemented.');
-    }
-    delete(pk) {
-        throw new Error('Method not implemented.');
-    }
+            throw new Error('An unknown error occurred while saving employee.');
+        }
+    });
 }
-exports.default = LoginServices;
+main()
+    .catch(e => {
+    console.error(e);
+})
+    .finally(() => __awaiter(void 0, void 0, void 0, function* () {
+    yield prisma.$disconnect();
+}));

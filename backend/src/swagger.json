@@ -67,7 +67,8 @@
           "required": true,
           "schema": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       ],
@@ -80,7 +81,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/BrinquedoResponseDTO"
+                  "$ref": "#/components/schemas/BrinquedoResponseComTipoDTO"
                 }
               }
             }
@@ -110,15 +111,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Excluir um brinquedo",
-        "operationId": "deleteBrinquedo",
-        "responses": {
-          "204": {
-            "description": "Brinquedo removido"
           }
         }
       }
@@ -178,7 +170,8 @@
           "required": true,
           "schema": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       ],
@@ -511,7 +504,8 @@
           "required": true,
           "schema": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       ],
@@ -524,45 +518,10 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/LocacaoResponseDTO"
+                  "$ref": "#/components/schemas/LocacaoResponseComBrinquedosDTO"
                 }
               }
             }
-          }
-        }
-      },
-      "put": {
-        "summary": "Atualizar uma locação",
-        "operationId": "updateLocacao",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateLocacaoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Locação atualizada",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LocacaoResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Excluir uma locação",
-        "operationId": "deleteLocacao",
-        "responses": {
-          "204": {
-            "description": "Locação removida"
           }
         }
       }
@@ -622,7 +581,8 @@
           "required": true,
           "schema": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       ],
@@ -639,41 +599,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "put": {
-        "summary": "Atualizar um pagamento",
-        "operationId": "updatePagamento",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdatePagamentoDTO"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Pagamento atualizado",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PagamentoResponseDTO"
-                }
-              }
-            }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Excluir um pagamento",
-        "operationId": "deletePagamento",
-        "responses": {
-          "204": {
-            "description": "Pagamento removido"
           }
         }
       }
@@ -733,7 +658,8 @@
           "required": true,
           "schema": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       ],
@@ -778,18 +704,9 @@
             }
           }
         }
-      },
-      "delete": {
-        "summary": "Excluir um tipo de brinquedo",
-        "operationId": "deleteTipoBrinquedo",
-        "responses": {
-          "204": {
-            "description": "Tipo de brinquedo removido"
-          }
-        }
       }
     },
-    "/token": {
+    "/login": {
       "post": {
         "summary": "Autenticar e gerar token",
         "operationId": "createToken",
@@ -894,7 +811,7 @@
           "cod": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-brinquedo"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "nome": {
             "type": "string",
@@ -903,7 +820,7 @@
           "tipo_brinquedo": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-tipo"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "marca": {
             "type": "string",
@@ -926,7 +843,7 @@
           "cod": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-brinquedo"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "nome": {
             "type": "string",
@@ -966,7 +883,7 @@
           "cod_locacao": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-locacao"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "data_devolucao": {
             "type": "string",
@@ -976,7 +893,7 @@
           "cod_brinquedo": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-brinquedo"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         },
         "additionalProperties": false
@@ -986,7 +903,8 @@
         "properties": {
           "cod_locacao": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "data_devolucao": {
             "type": "string",
@@ -994,7 +912,8 @@
           },
           "cod_brinquedo": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         },
         "additionalProperties": false
@@ -1005,7 +924,7 @@
           "cod": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-brinquedo-locado"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "valor_unitario": {
             "type": "number",
@@ -1018,7 +937,7 @@
           "cod_locacao": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-locacao"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "data_devolucao": {
             "type": "string",
@@ -1028,7 +947,7 @@
           "cod_brinquedo": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-brinquedo"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           }
         }
       },
@@ -1225,7 +1144,8 @@
         "properties": {
           "cod": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "data_hora": {
             "type": "string",
@@ -1235,6 +1155,25 @@
             "type": "string",
             "pattern": "^[0-9]{11}$"
           }
+        }
+      },
+      "LocacaoResponseComBrinquedosDTO": {
+        "type": "object",
+        "properties": {
+          "cod": {
+            "type": "string",
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
+          },
+          "data_hora": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "cpf_cliente": {
+            "type": "string",
+            "pattern": "^[0-9]{11}$"
+          },
+          "brinquedosLocados": {"$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"}
         }
       },
       "CreatePagamentoDTO": {
@@ -1253,7 +1192,7 @@
           "cod_locacao": {
             "type": "string",
             "format": "uuid",
-            "example": "uuid-locacao"
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "valor_pagamento": {
             "type": "number",
@@ -1271,7 +1210,8 @@
           },
           "cod_locacao": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "valor_pagamento": {
             "type": "number"
@@ -1284,7 +1224,8 @@
         "properties": {
           "cod": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "cpf_cliente": {
             "type": "string",
@@ -1292,7 +1233,8 @@
           },
           "cod_locacao": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "data_pagamento": {
             "type": "string",
@@ -1333,7 +1275,8 @@
         "properties": {
           "cod": {
             "type": "string",
-            "format": "uuid"
+            "format": "uuid",
+            "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
           "nome": {
             "type": "string"

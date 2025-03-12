@@ -15,7 +15,7 @@ export default class LocacaoServices extends BaseService<
     super(new PrismaClient())
   }
 
-  public getAll = async (): Promise<Locacao[]> => {
+  public getAll = async (): Promise<LocacaoResponseDTO[]> => {
     try {
       return await this.prisma.locacao.findMany()
     } catch (error: unknown) {
