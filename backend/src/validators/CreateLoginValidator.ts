@@ -14,11 +14,11 @@ export const CreateLoginValidator = z
       }),
     senha: z.string().refine(GeneralValidator.isValidPwd, {
       message: `
-            // - Pelo menos 8 caracteres
-            // - Pelo menos uma letra minúscula
-            // - Pelo menos uma letra maiúscula
-            // - Pelo menos um dígito
-            // - Pelo menos um caractere especial
+            // - At least 8 chars
+            // - At least one lower char
+            // - At least one upper char
+            // - At least one digit
+            // - At least one special char
         `,
     }),
   })

@@ -13,6 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const bcrypt_1 = __importDefault(require("bcrypt"));
+/**
+ * Hashes a plain text password using bcrypt.
+ *
+ * @param plainPassword - The plain text password to be hashed.
+ * @returns A promise that resolves to the hashed password.
+ */
 const hashPassword = (plainPassword) => __awaiter(void 0, void 0, void 0, function* () {
     return yield bcrypt_1.default.hash(plainPassword, 10);
 });

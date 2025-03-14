@@ -52,6 +52,7 @@ const BaseService_1 = require("./BaseService");
 const prisma_client_1 = require("../../generated/prisma_client");
 dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY || 'r34534erfefgdf7576ghfg4455456';
+const EXPIRES_IN = process.env.EXPIRES_IN || '2d';
 class LoginServices extends BaseService_1.BaseService {
     constructor() {
         super(new prisma_client_1.PrismaClient());
@@ -69,10 +70,10 @@ class LoginServices extends BaseService_1.BaseService {
                     nome: dbFuncionario.nome,
                     funcao: dbFuncionario.funcao,
                 }, SECRET_KEY, {
-                    expiresIn: '2 days',
+                    expiresIn: EXPIRES_IN,
                 });
                 return {
-                    funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome },
+                    funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome, funcao: dbFuncionario.funcao },
                     token: token,
                 };
             }

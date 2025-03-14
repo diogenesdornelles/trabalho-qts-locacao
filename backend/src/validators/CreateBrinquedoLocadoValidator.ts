@@ -7,8 +7,9 @@ import { dateSchema } from './dateSchema'
 export const CreateBrinquedoLocadoValidator = z
   .object({
     cod_locacao: z.string().uuid(),
-    // Campo adicionado conforme o Prisma
     cod_brinquedo: z.string().uuid(),
-    data_devolucao: dateSchema,
+    data_devolucao: dateSchema.refine(date => date >= new Date(), {
+      message: 'Date must be greater than equal to the current date',
+    })
   })
   .strict()

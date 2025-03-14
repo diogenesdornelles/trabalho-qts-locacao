@@ -50,11 +50,12 @@ class BrinquedosLocadosController extends BaseController_1.BaseController {
             try {
                 const validatedData = CreateBrinquedoLocadoValidator_1.CreateBrinquedoLocadoValidator.parse(req.body);
                 const brinquedo = yield this.service.create(validatedData);
-                if (!brinquedo) {
+                if (brinquedo) {
                     res.status(201).json(brinquedo);
-                    return;
                 }
-                res.status(404).json({ message: 'Toy not created' });
+                else {
+                    res.status(404).json({ message: 'Toy not created' });
+                }
                 return;
             }
             catch (error) {

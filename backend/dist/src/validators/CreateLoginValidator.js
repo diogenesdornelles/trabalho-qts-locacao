@@ -19,11 +19,11 @@ exports.CreateLoginValidator = zod_1.z
     }),
     senha: zod_1.z.string().refine(GeneralValidator_1.default.isValidPwd, {
         message: `
-            // - Pelo menos 8 caracteres
-            // - Pelo menos uma letra minúscula
-            // - Pelo menos uma letra maiúscula
-            // - Pelo menos um dígito
-            // - Pelo menos um caractere especial
+            // - At least 8 chars
+            // - At least one lower char
+            // - At least one upper char
+            // - At least one digit
+            // - At least one special char
         `,
     }),
 })

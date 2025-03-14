@@ -33,5 +33,12 @@
     "endereco": "Rua 5, 202",
     "data_nascimento": "1994-05-05",
     "telefone": "5555555555"
+  },
+  {
+    "cpf": "68127521000",
+    "nome": "Maria",
+    "endereco": "Rua 2, 456",
+    "data_nascimento": "1991-02-02T00:00:00.000Z",
+    "telefone": "2222222222"
   }
 ]

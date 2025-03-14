@@ -6,10 +6,12 @@ import { PrismaClient } from '../../generated/prisma_client'
 import { TokenResponseDTO } from '../dtos/response/TokenResponseDTO'
 import { CreateTokenDTO } from '../dtos/create/CreateTokenDTO'
 import { UpdateTokenDTO } from '../dtos/update/UpdateTokenDTO'
+import ms from 'ms'
 
 dotenv.config()
 
 const SECRET_KEY = process.env.SECRET_KEY || 'r34534erfefgdf7576ghfg4455456'
+const EXPIRES_IN = process.env.EXPIRES_IN || '2d'
 
 export default class LoginServices extends BaseService<
   TokenResponseDTO,
@@ -40,12 +42,12 @@ export default class LoginServices extends BaseService<
         },
         SECRET_KEY,
         {
-          expiresIn: '2 days',
+          expiresIn: EXPIRES_IN as ms.StringValue,
         },
       )
 
       return {
-        funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome },
+        funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome, funcao: dbFuncionario.funcao },
         token: token,
       }
     } else {

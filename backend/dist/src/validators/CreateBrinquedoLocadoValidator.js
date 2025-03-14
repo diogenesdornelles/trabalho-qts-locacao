@@ -9,8 +9,9 @@ const dateSchema_1 = require("./dateSchema");
 exports.CreateBrinquedoLocadoValidator = zod_1.z
     .object({
     cod_locacao: zod_1.z.string().uuid(),
-    // Campo adicionado conforme o Prisma
     cod_brinquedo: zod_1.z.string().uuid(),
-    data_devolucao: dateSchema_1.dateSchema,
+    data_devolucao: dateSchema_1.dateSchema.refine(date => date >= new Date(), {
+        message: 'Date must be greater than equal to the current date',
+    })
 })
     .strict();

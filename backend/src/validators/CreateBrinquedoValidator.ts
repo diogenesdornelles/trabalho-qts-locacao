@@ -10,7 +10,9 @@ export const CreateBrinquedoValidator = z
     // Nome da chave ajustado para corresponder ao Prisma (tipo_brinquedo)
     tipo_brinquedo: z.string().uuid(),
     marca: z.string().min(3).max(255),
-    data_aquisicao: dateSchema,
+    data_aquisicao: dateSchema.refine(date => date <= new Date(), {
+      message: 'Date must be less than equal to the current date',
+    }),
     valor_locacao: z
       .number()
       .gte(0)

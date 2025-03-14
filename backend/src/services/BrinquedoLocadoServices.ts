@@ -33,6 +33,8 @@ export default class BrinquedoLocadoServices extends BaseService<
       where: { cod: data.cod_brinquedo },
     })
 
+    
+
     if (brinquedoDB) {
       // Salva o novo brinquedo locado utilizando o método create do Prisma
       const createdBrinquedoLocado = await this.prisma.brinquedoLocado.create({

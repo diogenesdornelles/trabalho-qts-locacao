@@ -1040,7 +1040,7 @@
               "GERENTE",
               "CAIXA",
               "ALMOXARIFE",
-              "ANALISTA_LOCACAO",
+              "AGENTE_LOCACAO",
               "ANALISTA_CADASTRO"
             ],
             "example": "GERENTE"
@@ -1069,7 +1069,7 @@
               "GERENTE",
               "CAIXA",
               "ALMOXARIFE",
-              "ANALISTA_LOCACAO",
+              "AGENTE_LOCACAO",
               "ANALISTA_CADASTRO"
             ]
           },
@@ -1287,8 +1287,15 @@
                 "type": "string",
                 "pattern": "^[0-9]{11}$"
               },
-              "nome": {
-                "type": "string"
+              "funcao": {
+                "type": "string",
+                "enum": [
+                  "GERENTE",
+                  "CAIXA",
+                  "ALMOXARIFE",
+                  "AGENTE_LOCACAO",
+                  "ANALISTA_CADASTRO"
+                ]
               }
             }
           },
