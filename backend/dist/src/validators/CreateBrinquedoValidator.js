@@ -13,6 +13,9 @@ exports.CreateBrinquedoValidator = zod_1.z
     tipo_brinquedo: zod_1.z.string().uuid(),
     marca: zod_1.z.string().min(3).max(255),
     data_aquisicao: dateSchema_1.dateSchema,
-    valor_locacao: zod_1.z.number().gte(0).transform((num) => Math.round(num * 100) / 100),
+    valor_locacao: zod_1.z
+        .number()
+        .gte(0)
+        .transform(num => Math.round(num * 100) / 100),
 })
     .strict();

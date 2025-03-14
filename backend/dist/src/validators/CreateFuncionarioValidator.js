@@ -11,7 +11,7 @@ const GeneralValidator_1 = __importDefault(require("./GeneralValidator"));
    ====================================== */
 exports.FuncaoEnum = zod_1.z.enum([
     'GERENTE',
-    'ANALISTA_LOCACAO',
+    'AGENTE_LOCACAO',
     'ANALISTA_CADASTRO',
     'ALMOXARIFE',
     'CAIXA',

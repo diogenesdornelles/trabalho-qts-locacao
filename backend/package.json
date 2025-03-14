@@ -9,9 +9,9 @@
     "dev": "nodemon src/index.ts",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "db:dev": "npx prisma migrate dev --name init && npm db:seed",
-    "db:deploy": "npx prisma migrate deploy && npx prisma generate && npm db:seed",
-    "db:seed": "npx ts-node db/seed.ts"
+    "db:dev": "npx prisma migrate dev --name init && npx ts-node seed.ts",
+    "db:deploy": "npx prisma migrate deploy && npx prisma generate && npx ts-node seed.ts",
+    "db:seed": "npx ts-node seed.ts"
   },
   "keywords": [],
   "author": "",

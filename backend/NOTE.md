@@ -50,3 +50,22 @@ URIS de conexão
 ### para desenvolvimento local, use
 
 - DATABASE_URL="postgresql://postgres:123456@localhost:5433/locacaotest?schema=public"
+
+
+## Conexão PgAdmin4
+
+Create -> Server group
+
+Register -> Server
+
+General -> Name: qualquer
+
+Connection -> Host -> localhost
+
+Username -> postgres
+
+Port -> 5433
+
+Senha - xxx
+
+Save

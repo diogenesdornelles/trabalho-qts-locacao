@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const PagamentoServices_1 = __importDefault(require("../services/PagamentoServices"));
 const BaseController_1 = require("./BaseController");
-const schemas_1 = require("../schemas/schemas");
+const CreatePagamentoValidator_1 = require("../validators/CreatePagamentoValidator");
 class PagamentosController extends BaseController_1.BaseController {
     constructor() {
         super(new PagamentoServices_1.default());
@@ -26,6 +26,7 @@ class PagamentosController extends BaseController_1.BaseController {
             }
             catch (error) {
                 next(error);
+                return;
             }
         });
         this.getOne = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
@@ -47,7 +48,7 @@ class PagamentosController extends BaseController_1.BaseController {
         });
         this.create = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
-                const validatedData = schemas_1.PagamentoSchema.parse(req.body);
+                const validatedData = CreatePagamentoValidator_1.CreatePagamentoValidator.parse(req.body);
                 const locacao = yield this.service.create(validatedData);
                 res.status(201).json(locacao);
                 return;

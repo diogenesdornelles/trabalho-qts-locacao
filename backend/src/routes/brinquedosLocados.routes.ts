@@ -1,5 +1,3 @@
-import { RequestHandler } from 'express'
-
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import BrinquedosLocadosController from '../controllers/BrinquedosLocadosController'
 import { BaseRouter } from './BaseRouter'
@@ -14,24 +12,24 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
       '/',
       GeneralMiddleware.authentication,
       this.controller.getAll,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.get(
       '/:cod',
       GeneralMiddleware.authentication,
       GeneralMiddleware.validateUUID,
-      this.controller.getOne as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.getOne,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationAnalistaLocacao,
-      GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
-      this.controller.create as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.validateBodyRequest,
+      this.controller.create,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.put(
@@ -39,8 +37,8 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationAnalistaLocacao,
       GeneralMiddleware.validateUUID,
-      this.controller.update as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.update,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.delete(
@@ -48,8 +46,8 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationAnalistaLocacao,
       GeneralMiddleware.validateUUID,
-      this.controller.delete as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.delete,
+      GeneralMiddleware.errorHandler,
     )
   }
 }

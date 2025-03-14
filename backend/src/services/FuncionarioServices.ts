@@ -1,5 +1,4 @@
 import { PrismaClient, Funcao } from '../../generated/prisma_client'
-import { z } from 'zod'
 import { BaseService } from './BaseService'
 import hashPassword from '../utils/hashPwd'
 import { FuncionarioResponseDTO } from '../dtos/response/FuncionarioResponseDTO'
@@ -15,77 +14,52 @@ export default class FuncionarioServices extends BaseService<
     super(new PrismaClient())
   }
   public getAll = async (): Promise<FuncionarioResponseDTO[]> => {
-    try {
-      return await this.prisma.funcionario.findMany({
-        select: {
-          cpf: true,
-          nome: true,
-          telefone: true,
-          funcao: true,
-          senha: false,
-        },
-      })
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Error fetching all employees:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while fetching employees.')
-    }
+    return await this.prisma.funcionario.findMany({
+      select: {
+        cpf: true,
+        nome: true,
+        telefone: true,
+        funcao: true,
+        senha: false,
+      },
+    })
   }
 
   public getOne = async (
     pk: string,
   ): Promise<FuncionarioResponseDTO | null> => {
-    try {
-      return await this.prisma.funcionario.findUnique({
-        where: { cpf: pk },
-        select: {
-          cpf: true,
-          nome: true,
-          telefone: true,
-          funcao: true,
-          senha: false,
-        },
-      })
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        console.error('Error fetching employee:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while fetching employee.')
-    }
+    return await this.prisma.funcionario.findUnique({
+      where: { cpf: pk },
+      select: {
+        cpf: true,
+        nome: true,
+        telefone: true,
+        funcao: true,
+        senha: false,
+      },
+    })
   }
 
   public create = async (
     data: CreateFuncionarioDTO,
   ): Promise<FuncionarioResponseDTO> => {
-    try {
-      // tornar oculto o pwd no bd
-      data.senha = await hashPassword(data.senha)
+    // tornar oculto o pwd no bd
+    data.senha = await hashPassword(data.senha)
 
-      // Salva o novo funcionário utilizando o método create do Prisma
-      const createdFuncionario = await this.prisma.funcionario.create({
-        data: {
-          ...data,
-          funcao: data.funcao as Funcao,
-        },
-      })
-      return createdFuncionario
-    } catch (error: unknown) {
-      // Trata erros de validação do Zod
-      if (error instanceof z.ZodError) {
-        console.error('Validation error on create employee:', error.errors)
-        throw new Error(
-          `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
-        )
-      }
-      // Trata erros genéricos (incluindo erros do Prisma)
-      if (error instanceof Error) {
-        console.error('Database error on create employee:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while saving employee.')
+    // Salva o novo funcionário utilizando o método create do Prisma
+    const createdFuncionario = await this.prisma.funcionario.create({
+      data: {
+        ...data,
+        funcao: data.funcao as Funcao,
+      },
+    })
+    createdFuncionario.senha = ""
+    return {
+      cpf: createdFuncionario.cpf,
+      nome: createdFuncionario.nome,
+      telefone: createdFuncionario.telefone,
+      funcao: createdFuncionario.funcao,
+
     }
   }
 
@@ -93,33 +67,25 @@ export default class FuncionarioServices extends BaseService<
     pk: string,
     data: UpdateFuncionarioDTO,
   ): Promise<Partial<FuncionarioResponseDTO>> => {
-    try {
-      if (data.senha) {
-        data.senha = await hashPassword(data.senha)
-      }
+    if (data.senha) {
+      data.senha = await hashPassword(data.senha)
+    }
 
-      // Atualiza o funcionário utilizando o método update do Prisma
-      const updatedFuncionario = await this.prisma.funcionario.update({
-        where: { cpf: pk },
-        data: {
-          ...data,
-          funcao: data.funcao as Funcao,
-        },
-      })
+    // Atualiza o funcionário utilizando o método update do Prisma
+    const updatedFuncionario = await this.prisma.funcionario.update({
+      where: { cpf: pk },
+      data: {
+        ...data,
+        funcao: data.funcao as Funcao,
+      },
+    })
 
-      return updatedFuncionario
-    } catch (error: unknown) {
-      if (error instanceof z.ZodError) {
-        console.error('Validation error on update employee:', error.errors)
-        throw new Error(
-          `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
-        )
-      }
-      if (error instanceof Error) {
-        console.error('Database error on update employee:', error.message)
-        throw new Error(`Database error: ${error.message}`)
-      }
-      throw new Error('An unknown error occurred while updating employee.')
+    return {
+      cpf: updatedFuncionario.cpf,
+      nome: updatedFuncionario.nome,
+      telefone: updatedFuncionario.telefone,
+      funcao: updatedFuncionario.funcao,
+
     }
   }
 

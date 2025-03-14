@@ -3,7 +3,8 @@ import GeneralValidator from '../validators/GeneralValidator'
 import { Prisma } from '../../generated/prisma_client'
 import jwt, { Secret, JwtPayload } from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
-import { FuncaoEnum } from '../schemas/schemas'
+import { FuncaoEnum } from '../validators/CreateFuncionarioValidator'
+import { z } from 'zod'
 
 dotenv.config()
 
@@ -57,47 +58,58 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ): void | Response => {
+  ): void => {
     console.error('Error:', error)
 
-    // Trata erros conhecidos do Prisma
-    if (error instanceof Prisma.PrismaClientKnownRequestError) {
-      // Exemplo: Violação de restrição de unicidade (código P2002)
-      if (error.code === 'P2002') {
-        res.status(409).json({
-          message: 'Unique violation.',
-          details: error.meta,
-        })
-        return
-      }
-      res.status(500).json({
-        message: 'Database error.',
-        details: error.message,
-      })
-      return
-    }
-
-    // Erros de validação do Prisma
-    if (error instanceof Prisma.PrismaClientValidationError) {
+    // Trata erros de validação do Zod
+    if (error instanceof z.ZodError) {
+      console.error(`Validation error on ${req.method} resource:`, error.errors)
       res.status(400).json({
-        message: 'Prisma error validation.',
-        details: error.message,
+        error: 'Validation error',
+        details: error.errors,
       })
       return
     }
 
-    // Erros desconhecidos do Prisma
-    if (error instanceof Prisma.PrismaClientUnknownRequestError) {
+    // Função auxiliar para capturar mensagens do Prisma
+    const extractPrismaErrorMessage = (error: Error) => {
+      const errorSplitted = error.message.split('\n')
+      return errorSplitted[errorSplitted.length - 1] // Retorna a última linha do erro
+    }
+
+    // Trata erros do Prisma
+    if (
+      error instanceof Prisma.PrismaClientInitializationError ||
+      error instanceof Prisma.PrismaClientKnownRequestError ||
+      error instanceof Prisma.PrismaClientValidationError
+    ) {
+      const errorMessage = extractPrismaErrorMessage(error)
+      console.error(`Database error on ${req.method} resource:`, error.message)
       res.status(500).json({
-        message: 'Unknow database error.',
+        error: 'Database error',
+        details: errorMessage,
+      })
+      return
+    }
+
+    // Trata erros genéricos
+    if (error instanceof Error) {
+      console.error(
+        `Unexpected error on ${req.method} resource:`,
+        error.message,
+      )
+      res.status(500).json({
+        error: 'Internal server error',
         details: error.message,
       })
       return
     }
 
-    // Outros erros genéricos
-    res.status(error.status || 500).json({
-      message: error.message || 'Internal Server Error',
+    // Caso nenhum dos tratamentos anteriores se aplique
+    console.error('An unknown error occurred:', error)
+    res.status(500).json({
+      error: 'Unknown error',
+      details: 'An unexpected error occurred while processing the request.',
     })
     return
   }
@@ -121,7 +133,7 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     try {
       const token = req.header('Authorization')?.replace('Bearer ', '')
 
@@ -143,7 +155,7 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     const { token } = req as CustomRequest
     // Verifica se há token e se a função é "GERENTE"
     if (!token || token.funcao !== FuncaoEnum.Values.GERENTE) {
@@ -157,7 +169,7 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     const { token } = req as CustomRequest
     // Verifica se há token e se a função é "ALMOXARIFE"
     if (!token || token.funcao !== FuncaoEnum.Values.ALMOXARIFE) {
@@ -171,7 +183,7 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     const { token } = req as CustomRequest
     // Verifica se há token e se a função é "ANALISTA_CADASTRO"
     if (!token || token.funcao !== FuncaoEnum.Values.ANALISTA_CADASTRO) {
@@ -185,11 +197,11 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     const { token } = req as CustomRequest
-    // Verifica se há token e se a função é "ANALISTA_LOCACAO"
-    if (!token || token.funcao !== FuncaoEnum.Values.ANALISTA_LOCACAO) {
-      res.status(403).json({ message: 'Access denied: analista locacao only' })
+    // Verifica se há token e se a função é "AGENTE_LOCACAO"
+    if (!token || token.funcao !== FuncaoEnum.Values.AGENTE_LOCACAO) {
+      res.status(403).json({ message: 'Access denied: agente locacao only' })
       return
     }
     next()
@@ -198,7 +210,7 @@ export default class GeneralMiddleware {
     req: Request,
     res: Response,
     next: NextFunction,
-  ) => {
+  ): void => {
     const { token } = req as CustomRequest
     // Verifica se há token e se a função é "CAIXA"
     if (!token || token.funcao !== FuncaoEnum.Values.CAIXA) {

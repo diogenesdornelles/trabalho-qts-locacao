@@ -18,6 +18,9 @@ exports.CreatePagamentoValidator = zod_1.z
         message: 'Invalid CPF format. Please provide a valid CPF.',
     }),
     cod_locacao: zod_1.z.string().uuid(),
-    valor_pagamento: zod_1.z.number().gte(0).transform((num) => Math.round(num * 100) / 100),
+    valor_pagamento: zod_1.z
+        .number()
+        .gte(0)
+        .transform(num => Math.round(num * 100) / 100),
 })
     .strict();

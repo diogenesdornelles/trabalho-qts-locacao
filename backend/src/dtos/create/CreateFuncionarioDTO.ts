@@ -9,7 +9,7 @@ export interface CreateFuncionarioDTO {
     | 'GERENTE'
     | 'CAIXA'
     | 'ALMOXARIFE'
-    | 'ANALISTA_LOCACAO'
+    | 'AGENTE_LOCACAO'
     | 'ANALISTA_CADASTRO'
   senha: string
 }

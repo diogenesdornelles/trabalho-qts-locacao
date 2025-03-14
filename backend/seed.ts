@@ -1,9 +1,10 @@
 import { z } from 'zod'
-import { Funcao, PrismaClient } from '../generated/prisma_client'
-import { FuncionarioSchema } from '../src/schemas/schemas'
-import hashPassword from '../src/utils/hashPwd'
-import * as dotenv from 'dotenv'
+import { Funcao, PrismaClient } from './generated/prisma_client'
+import { CreateFuncionarioValidator } from './src/validators/CreateFuncionarioValidator'
 
+import * as dotenv from 'dotenv'
+import hashPassword from './src/utils/hashPwd'
+// Carrega o .env de um nível acima
 dotenv.config()
 
 const NOME = process.env.SUPER_USER_NOME
@@ -22,11 +23,21 @@ async function main() {
       senha: PWD,
     }
 
-    const validatedData = FuncionarioSchema.parse(data)
+    
+
+    console.log(data)
+
+    const validatedData = CreateFuncionarioValidator.parse(data)
+
+    const papwd = await hashPassword(validatedData.senha)
+
+    console.log(papwd)
 
     validatedData.senha = await hashPassword(validatedData.senha)
 
-    await prisma.funcionario.create({
+    console.log(validatedData)
+
+    const gerente = await prisma.funcionario.create({
       data: {
         cpf: validatedData.cpf,
         telefone: validatedData.telefone,

@@ -13,6 +13,9 @@ export const CreatePagamentoValidator = z
         message: 'Invalid CPF format. Please provide a valid CPF.',
       }),
     cod_locacao: z.string().uuid(),
-    valor_pagamento: z.number().gte(0).transform((num) => Math.round(num * 100) / 100),
+    valor_pagamento: z
+      .number()
+      .gte(0)
+      .transform(num => Math.round(num * 100) / 100),
   })
   .strict()

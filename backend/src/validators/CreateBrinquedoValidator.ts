@@ -11,6 +11,9 @@ export const CreateBrinquedoValidator = z
     tipo_brinquedo: z.string().uuid(),
     marca: z.string().min(3).max(255),
     data_aquisicao: dateSchema,
-    valor_locacao: z.number().gte(0).transform((num) => Math.round(num * 100) / 100),
+    valor_locacao: z
+      .number()
+      .gte(0)
+      .transform(num => Math.round(num * 100) / 100),
   })
   .strict()

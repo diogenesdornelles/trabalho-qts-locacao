@@ -1,4 +1,3 @@
-import { Router, RequestHandler } from 'express'
 import FuncionariosController from '../controllers/FuncionariosController'
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import { BaseRouter } from './BaseRouter'
@@ -13,24 +12,24 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
       '/',
       GeneralMiddleware.authentication,
       this.controller.getAll,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.get(
       '/:cpf',
       GeneralMiddleware.authentication,
       GeneralMiddleware.validateCpf,
-      this.controller.getOne as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.getOne,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationGerente,
-      GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
-      this.controller.create as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.validateBodyRequest,
+      this.controller.create,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.put(
@@ -38,8 +37,8 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationGerente,
       GeneralMiddleware.validateCpf,
-      this.controller.update as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.update,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.delete(
@@ -47,8 +46,8 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationGerente,
       GeneralMiddleware.validateCpf,
-      this.controller.delete as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.delete,
+      GeneralMiddleware.errorHandler,
     )
   }
 }

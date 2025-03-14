@@ -1,4 +1,3 @@
-import { z } from 'zod'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
@@ -22,46 +21,35 @@ export default class LoginServices extends BaseService<
   }
 
   public create = async (data: CreateTokenDTO): Promise<TokenResponseDTO> => {
-    try {
-      const dbFuncionario = await this.prisma.funcionario.findUnique({
-        where: { cpf: data.cpf },
-      })
+    const dbFuncionario = await this.prisma.funcionario.findUnique({
+      where: { cpf: data.cpf },
+    })
 
-      if (!dbFuncionario) {
-        throw new Error('Cpf of password is not correct')
+    if (!dbFuncionario) {
+      throw new Error('Cpf of password is not correct')
+    }
+
+    const isMatch = bcrypt.compareSync(data.senha, dbFuncionario.senha)
+
+    if (isMatch) {
+      const token = jwt.sign(
+        {
+          cpf: dbFuncionario.cpf,
+          nome: dbFuncionario.nome,
+          funcao: dbFuncionario.funcao,
+        },
+        SECRET_KEY,
+        {
+          expiresIn: '2 days',
+        },
+      )
+
+      return {
+        funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome },
+        token: token,
       }
-
-      const isMatch = bcrypt.compareSync(data.senha, dbFuncionario.senha)
-
-      if (isMatch) {
-        const token = jwt.sign(
-          {
-            cpf: dbFuncionario.cpf,
-            nome: dbFuncionario.nome,
-            funcao: dbFuncionario.funcao,
-          },
-          SECRET_KEY,
-          {
-            expiresIn: '2 days',
-          },
-        )
-
-        return {
-          funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome },
-          token: token,
-        }
-      } else {
-        throw new Error('Password is not correct')
-      }
-    } catch (error: unknown) {
-      // Trata erros de validação do Zod
-      if (error instanceof z.ZodError) {
-        console.error('Validation error on create token:', error.errors)
-        throw new Error(
-          `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
-        )
-      }
-      throw new Error('An unknown error occurred while creating token.')
+    } else {
+      throw new Error('Password is not correct')
     }
   }
 

@@ -874,11 +874,7 @@
       },
       "CreateBrinquedoLocadoDTO": {
         "type": "object",
-        "required": [
-          "cod_locacao",
-          "data_devolucao",
-          "cod_brinquedo"
-        ],
+        "required": ["cod_locacao", "data_devolucao", "cod_brinquedo"],
         "properties": {
           "cod_locacao": {
             "type": "string",
@@ -953,13 +949,7 @@
       },
       "CreateClienteDTO": {
         "type": "object",
-        "required": [
-          "cpf",
-          "nome",
-          "endereco",
-          "data_nascimento",
-          "telefone"
-        ],
+        "required": ["cpf", "nome", "endereco", "data_nascimento", "telefone"],
         "properties": {
           "cpf": {
             "type": "string",
@@ -1029,13 +1019,7 @@
       },
       "CreateFuncionarioDTO": {
         "type": "object",
-        "required": [
-          "cpf",
-          "nome",
-          "telefone",
-          "funcao",
-          "senha"
-        ],
+        "required": ["cpf", "nome", "telefone", "funcao", "senha"],
         "properties": {
           "cpf": {
             "type": "string",
@@ -1117,9 +1101,7 @@
       },
       "CreateLocacaoDTO": {
         "type": "object",
-        "required": [
-          "cpf_cliente"
-        ],
+        "required": ["cpf_cliente"],
         "properties": {
           "cpf_cliente": {
             "type": "string",
@@ -1173,16 +1155,14 @@
             "type": "string",
             "pattern": "^[0-9]{11}$"
           },
-          "brinquedosLocados": {"$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"}
+          "brinquedosLocados": {
+            "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
+          }
         }
       },
       "CreatePagamentoDTO": {
         "type": "object",
-        "required": [
-          "cpf_cliente",
-          "cod_locacao",
-          "valor_pagamento"
-        ],
+        "required": ["cpf_cliente", "cod_locacao", "valor_pagamento"],
         "properties": {
           "cpf_cliente": {
             "type": "string",
@@ -1250,9 +1230,7 @@
       },
       "CreateTipoBrinquedoDTO": {
         "type": "object",
-        "required": [
-          "nome"
-        ],
+        "required": ["nome"],
         "properties": {
           "nome": {
             "type": "string",
@@ -1285,10 +1263,7 @@
       },
       "CreateTokenDTO": {
         "type": "object",
-        "required": [
-          "cpf",
-          "senha"
-        ],
+        "required": ["cpf", "senha"],
         "properties": {
           "cpf": {
             "type": "string",

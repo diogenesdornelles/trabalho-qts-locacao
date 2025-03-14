@@ -1,4 +1,3 @@
-import { Router, RequestHandler } from 'express'
 import PagamentosController from '../controllers/PagamentosController'
 import GeneralMiddleware from '../middlewares/GeneralMiddleware'
 import { BaseRouter } from './BaseRouter'
@@ -13,24 +12,24 @@ export default class PagamentosRouter extends BaseRouter<PagamentosController> {
       '/',
       GeneralMiddleware.authentication,
       this.controller.getAll,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.get(
       '/:cod',
       GeneralMiddleware.authentication,
       GeneralMiddleware.validateUUID,
-      this.controller.getOne as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      this.controller.getOne,
+      GeneralMiddleware.errorHandler,
     )
 
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
       GeneralMiddleware.authorizationCaixa,
-      GeneralMiddleware.validateBodyRequest as unknown as RequestHandler,
-      this.controller.create as unknown as RequestHandler,
-      GeneralMiddleware.errorHandler as unknown as RequestHandler,
+      GeneralMiddleware.validateBodyRequest,
+      this.controller.create,
+      GeneralMiddleware.errorHandler,
     )
   }
 }

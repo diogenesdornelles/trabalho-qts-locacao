@@ -6,7 +6,7 @@ import GeneralValidator from './GeneralValidator'
    ====================================== */
 export const FuncaoEnum = z.enum([
   'GERENTE',
-  'ANALISTA_LOCACAO',
+  'AGENTE_LOCACAO',
   'ANALISTA_CADASTRO',
   'ALMOXARIFE',
   'CAIXA',

@@ -46,13 +46,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const zod_1 = require("zod");
-const prisma_client_1 = require("../generated/prisma_client");
-const CreateFuncionarioValidator_1 = require("../src/validators/CreateFuncionarioValidator");
-const hashPwd_1 = __importDefault(require("../src/utils/hashPwd"));
-const path_1 = require("path");
+const prisma_client_1 = require("./generated/prisma_client");
+const CreateFuncionarioValidator_1 = require("./src/validators/CreateFuncionarioValidator");
 const dotenv = __importStar(require("dotenv"));
+const hashPwd_1 = __importDefault(require("./src/utils/hashPwd"));
 // Carrega o .env de um nível acima
-dotenv.config({ path: (0, path_1.join)(__dirname, '../.env') });
+dotenv.config();
 const NOME = process.env.SUPER_USER_NOME;
 const PWD = process.env.SUPER_USER_PWD;
 const CPF = process.env.SUPER_USER_CPF;
@@ -67,10 +66,13 @@ function main() {
                 funcao: prisma_client_1.Funcao.GERENTE, // Use os valores do enum como string
                 senha: PWD,
             };
+            console.log(data);
             const validatedData = CreateFuncionarioValidator_1.CreateFuncionarioValidator.parse(data);
+            const papwd = yield (0, hashPwd_1.default)(validatedData.senha);
+            console.log(papwd);
             validatedData.senha = yield (0, hashPwd_1.default)(validatedData.senha);
             console.log(validatedData);
-            yield prisma.funcionario.create({
+            const gerente = yield prisma.funcionario.create({
                 data: {
                     cpf: validatedData.cpf,
                     telefone: validatedData.telefone,
