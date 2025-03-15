@@ -23,15 +23,9 @@ async function main() {
       senha: PWD,
     }
 
-    
-
-    console.log(data)
-
     const validatedData = CreateFuncionarioValidator.parse(data)
 
     const papwd = await hashPassword(validatedData.senha)
-
-    console.log(papwd)
 
     validatedData.senha = await hashPassword(validatedData.senha)
 

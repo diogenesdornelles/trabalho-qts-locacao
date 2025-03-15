@@ -61,46 +61,154 @@ especificações:
 6. Diagrama de Classes
 ```
 
+## Descrição geral do Negócio
+
+O sistema será utilizado pelo gerente e funcionários da empresa, cada um com funções específicas, como almoxarife, analista de cadastro, agente de locação e caixa. De forma resumida, as principais funcionalidades incluem:
+
+- Cadastro, alteração e remoção de funcionários e brinquedos;
+
+- Cadastro e alteração de clientes e tipos de brinquedos;
+
+- Inclusão de locações e pagamentos;
+
+- Controle de acesso com diferentes níveis de permissão.
+
+O desenvolvimento seguirá as etapas do modelo incremental, garantindo entregas frequentes e melhoria contínua com base em feedbacks.
+
+## Atividades a serem executadas
+
+No modelo incremental, o desenvolvimento do software ocorre em etapas chamadas de incrementos. Cada incremento adiciona funcionalidades ao sistema, permitindo que versões utilizáveis sejam entregues progressivamente.
+
+Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo.
+
+As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, faz-se necessário a realização de reuniões, a análise de requisitos, modelagem e design, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD, bem como testes e entrega.
+
+Portanto, as atividades executadas serão as seguintes:
+
+1. **Reunião**, em que serão definidos os papéis de cada membro da equipe, atividades e cronograma de execução. Essa etapa fica ao encargo do Líder;
+2. **Planejamento e Análise de Requisitos**, cujo ator principal será o Analista de projeto, ao qual incumbe:
+
+    - *Verificar os Requisitos funcionais*;
+    - *A escrita do caso de uso principal* do incremento de forma detalhada;
+    - *O levantamento de Requisitos funcionais* e das *regras de negócio*;
+    - *A elaboração do Diagrama de Casos de Uso*;
+
+3. **Design e Arquitetura**, cujo ator principal será o Analista de projeto, ao qual compete:
+
+    - *A elaboração do Diagrama ER* e
+    - *A elaboração do Diagrama UML de classes*;
+    - *Planejar, em linhas gerais, a UI/UX*;
+
+4. **Implementação e Desenvolvimento**, cujos atores principais são os desenvolvedores de Backend e Frontend da aplicação, notadamente:
+
+    - *Construção das respectivas rotas de acesso aos recursos da aplicação no backend*:
+        - Funcionários;
+        - Clientes;
+        - Brinquedos;
+        - Tipo Brinquedos;
+        - Locações;
+        - Pagamentos;
+        - Brinquedos Locados;
+        - Login;
+
+    - *Construção das telas junto ao frontend*:
+        - Leitura, inclusão, alteração e deleção de Funcionários;
+        - Leitura, inclusão e alteração de Clientes;
+        - Leitura, inclusão, alteração e deleção Brinquedos;
+        - Leitura, inclusão e alteração de Tipo Brinquedos;
+        - Leitura e inclusão de Locações;
+        - Leitura e inclusão de Pagamento;
+        - Leitura, inclusão, alteração e deleção de Brinquedos Locados;
+        - De Login e Autenticação;
+
+5. **Testes curtos e Validação** (Responsáveis: Backend e Frontend):
+
+    - Testes funcionais e de integração para garantir a comunicação entre os módulos;
+    - Testes de usabilidade na interface do usuário.
+
+6. **Entrega e Reunião Final**:
+
+    - Revisão do software desenvolvido;
+    - Documentação final e apresentação dos resultados.
+
+## Cronograma
+
+| #  | Atividade | Tempo de Execução | Prazo | Responsável | Ferramentas |
+|----|-----------|----------------|-------|--------------|--------------|
+| 01 | Reunião inicial | 1 dia | 07/03/2025 | Líder | Presencial |
+| 02 | Análise de requisitos | 2 dias | 09/03/2025 | Analista | Editor de texto |
+| 03 | Caso de uso principal | 3 dias | 12/03/2025 | Analista | Editor de texto |
+| 04 | Regras de negócio | 2 dias | 14/03/2025 | Analista | Editor de texto |
+| 05 | Diagrama de Casos de Uso | 2 dias | 16/03/2025 | Analista | DrawIO |
+| 06 | Diagrama ER | 2 dias | 18/03/2025 | Analista | PgAdmin4 |
+| 07 | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO |
+| 08 | Planejamento UI/UX | 2 dias | 23/03/2025 | Analista e Dev Frontend | Figma |
+| 09 | Reunião intermediária 1 | 1 dia | 24/04/2025 | Líder | Presencial |
+| 10 | Desenvolvimento Backend | 20 dias | 14/04/2025 | Dev Backend | NodeJS/Express/Postgres/Prisma |
+| 11 | Desenvolvimento Frontend | 20 dias | 24/04/2025 | Dev Frontend | React/TypeScript/Git |
+| 12 | Reunião intermediária 2 | 1 dia | 25/04/2025 | Líder | Presencial |
+| 13 | Testes funcionais  | 7 dias | 02/05/2025 | Equipe | Ambiente NodeJS |
+| 14 | Revisão de código | 4 dias | 06/05/2025 | Equipe | Tecnologias acima |
+| 15 | Testes funcionais  | 2 dias | 08/05/2025 | Equipe | Ambiente NodeJS |
+| 16 | Reunião final | 1 dia | 09/05/2025 | Líder | Presencial |
+| 17 | Entrega final | 1 dia | 15/05/2025 | Líder | Moodle |
+
+## Responsáveis pela Execução
+
+- **Líder do projeto**: Organiza as atividades e acompanha a execução;
+
+- **Analista de Projeto**: Responsável pela documentação e modelagem do sistema;
+
+- **Desenvolvedores Backend**: Implementam a API e banco de dados; e
+
+- **Desenvolvedores Frontend**: Criam a interface do usuário e conectam ao backend.
+
+## Recursos Tecnológicos
+
+- **Backend**: Node.js, Express, PostgreSQL, Prisma, TypeScript, JWT, Docker;
+
+- **Frontend**: React, TypeScript, Styled-components, Bootstrap;
+
+- **Ferramentas de Modelagem**: Draw.io, PgAdmin4, Figma; e
+
+- **Versionamento**: Git, GitHub.
+
 ## Parte 1: Backend da aplicação
 
-### Descrição dos requisitos funcionais
+### Requisitos funcionais (RF)
 
-|RF|Requisito|Ator|Requisitos relacionados|
-|:-:|:-|:-:|:-:|
-|RF01|O sistema deve **gerenciar** informações sobre funcionários: *cpf, nome, senha, telefone e função*|Gerente(Administrador so site)||
-|RF02|O sistema deve **gerenciar** informações sobre brinquedos: *código único, nome, tipo de brinquedo, marca, data da aquisição e valor da locação*|Almoxárife|RF03|
-|RF03|O sistema deve **manter** informações sobre tipo de brinquedos: *código único e nome do tipo*|Almoxárife||
-|RF04|O sistema deve **manter** informações sobre clientes: *cpf, nome, endereço, data de nascimento e telefone*|Analista de cadastro||
-|RF05|O sistema deve **incluir** informações sobre locações:*código único da locação, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado, valor total da locação e data para devolução*|Agente de locação|RF02,RF04|
-|RF06|O sistema deve **incluir** informações sobre pagamento: *código único da locação, nome e cpf do cliente, data do pagamento, o valor da locação e o valor do pagamento*|Caixa|RF02,RF05|
+| **Código** | **Requisito** | **Ator** | **Relacionados** |
+|------------|--------------|----------|------------------|
+| **RF01** | O sistema deve **gerenciar** informações sobre funcionários: *CPF, nome, senha, telefone e função*. | Gerente (Administrador do site) | - |
+| **RF02** | O sistema deve **gerenciar** informações sobre brinquedos: *código único, nome, tipo de brinquedo, marca, data da aquisição e valor da locação*. | Almoxarife | RF03 |
+| **RF03** | O sistema deve **manter** informações sobre tipos de brinquedos: *código único e nome do tipo*. | Almoxarife | - |
+| **RF04** | O sistema deve **manter** informações sobre clientes: *CPF, nome, endereço, data de nascimento e telefone*. | Analista de cadastro | - |
+| **RF05** | O sistema deve **incluir** informações sobre locações: *código único da locação, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado, valor total da locação e data para devolução*. | Agente de locação | RF02, RF04 |
+| **RF06** | O sistema deve **incluir** informações sobre pagamento: *código único da locação, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*. | Caixa | RF02, RF05 |
 
-**Definições**:
+### Definições
 
-<dl>
-  <dt><strong>Gerenciar:</strong></dt>
-  <dd>Incluir, alterar e excluir.</dd>
-  <dt><strong>Manter:</strong></dt>
-  <dd>Incluir e alterar.</dd>
-</dl>
+- **Gerenciar:** Incluir, alterar e excluir.
+- **Manter:** Incluir e alterar.
 
-### Descrição dos requisitos não funcionais
+### Requisitos Não Funcionais (RNF)
 
-|RNF|Requisito|Ator (usuário)|Requisitos relacionados|
-|:-:|:-:|:-:|:-:|
-|RNF01|O sistema deve ser desenvolvido para utilizar na *internet*|xxx||
-|RNF02|O sistema deve ser suportado nos navegadores Google *Chrome e Mozilla Firefox*|xxx||
-|RNF03|O sistema deve ser fácil de utilizar|xxx||
-|RNF04|O sistema deve ser seguro quanto à acessos indesejados e confiável|xxx||
-|RNF05|O sistema deve possuir medidas de privacidade de dados|xxx||
-|RNF06|O sistema deve permitir cadastrar diferentes níveis de acessos aos usuários|xxx||
+| **Código** | **Requisito** | **Atores** | **Relacionados** |
+|------------|--------------|------------|------------------|
+| **RNF01** | O sistema deve ser acessível via internet, utilizando uma arquitetura cliente-servidor baseada nos protocolos **HTTP/HTTPS**. Deve-se priorizar **HTTPS** para garantir segurança na transmissão de dados por meio do protocolo **TLS (Transport Layer Security)**. | Usuário final, Administrador | - |
+| **RNF02** | O sistema deve ser totalmente compatível e funcional nos navegadores **Google Chrome e Mozilla Firefox**, garantindo suporte para suas versões mais recentes e futuras atualizações. | Usuário final | - |
+| **RNF03** | O sistema deve oferecer uma interface intuitiva, seguindo diretrizes reconhecidas de usabilidade, como os princípios de **Jakob Nielsen**. Para melhorar a experiência do usuário, a interface deve:<br> - Utilizar **listas de seleção** para facilitar a inserção de dados.<br> - Exibir **notificações sobre campos inválidos** e fornecer sugestões de preenchimento.<br> - Seguir um **padrão de design visual** baseado em uma paleta de três cores principais, aplicando o conceito de **Color Harmony** para garantir consistência estética. | Usuário final | - |
+| **RNF04** | O sistema deve implementar **mecanismos seguros de autenticação** para impedir acessos não autorizados. Os métodos podem incluir:<br> - **OAuth 2.0** ou **JWT (JSON Web Token)** para autenticação baseada em tokens.<br> - **Criptografia de credenciais** para proteção dos dados de login. | Administrador, Usuário final | RNF06 |
+| **RNF05** | O sistema deve garantir a **privacidade e segurança dos dados** dos usuários por meio das seguintes medidas:<br> - **Criptografia de armazenamento** usando **AES-256** para dados sensíveis.<br> - **Restrições de acesso** baseadas em regras de permissão.<br> - Implementação de **UUIDs (Identificadores Únicos Universais)** para a identificação de recursos, garantindo rastreabilidade e segurança. | Administrador, Usuário final | RNF04, RNF06 |
+| **RNF06** | O sistema deve permitir a **criação e gestão de perfis de usuários** com diferentes níveis de acesso, garantindo que cada perfil tenha permissões apropriadas. Exemplos de níveis incluem:<br> - **Caixa** – Acesso a operações financeiras.<br> - **Gerente** – Controle total e gerenciamento de usuários.<br> - **Analista de Cadastro** – Permissão para modificar registros cadastrais.<br> - **Agente de Locação** – Gerenciamento de locações e contratos.<br> - **Almoxarife** – Controle de estoque e produtos. | Administrador | RNF04, RNF05 |
 
-### Descrição das regras de negócio
+### Descrição das regras de negócio (RN)
 
-|RN|Regra de negócio|
-|:-:|:-:|
-|RNF01|O sistema deve permitir a inclusão de mais de um brinquedo na mesma locação|
-|RNF02|A locação deve ser feita somente presencialmente na loja|
-|RNF03|O pagamento é feito no momento da locação e em dinheiro|
+| **Código** | **Regra de Negócio** |
+|------------|----------------------|
+| **RN01** | O sistema deve permitir a inclusão de mais de um brinquedo na mesma locação. |
+| **RN02** | A locação deve ser feita somente presencialmente na loja. |
+| **RN03** | O pagamento é feito no momento da locação e em dinheiro. |
 
 ### Diagrama de Casos de Uso
 
@@ -424,9 +532,10 @@ especificações:
 
 13. **Sistema** calcula valor total da locação.
 14. **Sistema** registra data e hora atual.
-15. **Sistema** registra código único.
-16. **Sistema** salva dados.
-17. **Sistema** mostra mensagem “Operação realizada com sucesso”;
+15. **Sistema** inclui status pagamento *pendente*.
+16. **Sistema** registra código único.
+17. **Sistema** salva dados.
+18. **Sistema** mostra mensagem “Operação realizada com sucesso”;
 
 ---
 
@@ -485,9 +594,10 @@ especificações:
 10. **Caixa** preenche o campo.
 11. **Sistema** valida o campo.
 12. **Sistema** registra data e hora atual.
-13. **Sistema** registra código único.
-14. **Sistema** salva dados.
-15. **Sistema** mostra mensagem *Operação realizada com sucesso*;
+13. **Sistema** registra locação com status de pagamento *efetuado*.
+14. **Sistema** registra código único.
+15. **Sistema** salva dados.
+16. **Sistema** mostra mensagem *Operação realizada com sucesso*;
 
 ---
 
@@ -554,7 +664,7 @@ Um funcionario (analista de cadastro) pode cadastrar muitos clientes.
 
 tabela locacoes
 
-- código único da locação(pk), data e horário atual, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)
+- código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)
 
 Um funcionario (agente de locação) pode incluir muitas locações.
 Um cliente pode possuir várias locações. Por outro lado, uma locação pode pertencer a somente um cliente.
@@ -583,122 +693,122 @@ Código SQL para a geração das tabelas:
 ```sql
 -- This script was generated by the ERD tool in pgAdmin 4.
 -- Please log an issue at https://github.com/pgadmin-org/pgadmin4/issues/new/choose if you find any bugs, including reproduction steps.
+-- CreateEnum
+CREATE TYPE "Funcao" AS ENUM ('GERENTE', 'CAIXA', 'AGENTE_LOCACAO', 'ANALISTA_CADASTRO', 'ALMOXARIFE');
 
-CREATE TYPE funcao AS ENUM ('CAIXA', 'GERENTE', 'AGENTE_LOCACAO', 'ANALISTA_CADASTRO', 'ALMOXARIFE');
+-- CreateEnum
+CREATE TYPE "PgtoStatus" AS ENUM ('PENDENTE', 'PAGO', 'ATRASO');
 
-CREATE TABLE IF NOT EXISTS public.brinquedos_locados
-(
-    cod uuid NOT NULL,
-    valor_unitario numeric(10, 2) NOT NULL,
-    cod_locacao uuid NOT NULL,
-    data_devolucao date NOT NULL,
-    cod_brinquedo uuid NOT NULL,
-    nome character varying(255) NOT NULL,
-    CONSTRAINT pk_cod_brinquedo_locado PRIMARY KEY (cod)
+-- CreateTable
+CREATE TABLE "brinquedos" (
+    "cod" UUID NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "tipo_brinquedo" UUID NOT NULL,
+    "marca" VARCHAR(255) NOT NULL,
+    "data_aquisicao" DATE NOT NULL,
+    "valor_locacao" MONEY NOT NULL,
+
+    CONSTRAINT "brinquedos_pkey" PRIMARY KEY ("cod")
 );
 
-CREATE TABLE IF NOT EXISTS public.clientes
-(
-    cpf character(11) COLLATE pg_catalog."default" NOT NULL,
-    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    endereco character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    data_nascimento date NOT NULL,
-    telefone character varying(11) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT pk_cpf_cliente PRIMARY KEY (cpf)
+-- CreateTable
+CREATE TABLE "brinquedos_locados" (
+    "cod" UUID NOT NULL,
+    "valor_unitario" MONEY NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "cod_locacao" UUID NOT NULL,
+    "data_devolucao" DATE NOT NULL,
+    "cod_brinquedo" UUID NOT NULL,
+
+    CONSTRAINT "brinquedos_locados_pkey" PRIMARY KEY ("cod")
 );
 
-CREATE TABLE IF NOT EXISTS public.funcionarios
-(
-    cpf character(11) COLLATE pg_catalog."default" NOT NULL,
-    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    telefone character varying(11) COLLATE pg_catalog."default" NOT NULL,
-    funcao funcao NOT NULL,
-    senha character varying(128) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT pk_cpf_funcionario PRIMARY KEY (cpf)
+-- CreateTable
+CREATE TABLE "clientes" (
+    "cpf" CHAR(11) NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "endereco" VARCHAR(255) NOT NULL,
+    "data_nascimento" DATE NOT NULL,
+    "telefone" VARCHAR(11) NOT NULL,
+
+    CONSTRAINT "clientes_pkey" PRIMARY KEY ("cpf")
 );
 
-CREATE TABLE IF NOT EXISTS public.locacoes
-(
-    cod uuid NOT NULL,
-    data_hora date NOT NULL DEFAULT now(),
-    cpf_cliente character(11) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT fk_cod_locacao PRIMARY KEY (cod)
+-- CreateTable
+CREATE TABLE "funcionarios" (
+    "cpf" CHAR(11) NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
+    "telefone" VARCHAR(11) NOT NULL,
+    "funcao" "Funcao" NOT NULL,
+    "senha" VARCHAR(128) NOT NULL,
+
+    CONSTRAINT "funcionarios_pkey" PRIMARY KEY ("cpf")
 );
 
-CREATE TABLE IF NOT EXISTS public.pagamentos
-(
-    cod uuid NOT NULL,
-    cpf_cliente character(11) COLLATE pg_catalog."default" NOT NULL,
-    cod_locacao uuid NOT NULL,
-    data_pagamento date NOT NULL DEFAULT now(),
-    valor_pagamento numeric(10, 2) NOT NULL,
-    valor_locacao numeric(10, 2) NOT NULL,
-    CONSTRAINT pk_cod_pagamento PRIMARY KEY (cod),
-    CONSTRAINT unique_cod_locacao UNIQUE (cod_locacao)
+-- CreateTable
+CREATE TABLE "locacoes" (
+    "cod" UUID NOT NULL,
+    "data_hora" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "cpf_cliente" CHAR(11) NOT NULL,
+    "pgto_status" "PgtoStatus" NOT NULL DEFAULT 'PENDENTE',
+
+    CONSTRAINT "locacoes_pkey" PRIMARY KEY ("cod")
 );
 
-CREATE TABLE IF NOT EXISTS public.tipos_brinquedos
-(
-    cod uuid NOT NULL,
-    nome character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    CONSTRAINT pk_cod_tipo_brinquedo PRIMARY KEY (cod),
-    CONSTRAINT unique_nome_tipo_brinquedo UNIQUE (nome)
+-- CreateTable
+CREATE TABLE "pagamentos" (
+    "cod" UUID NOT NULL,
+    "cpf_cliente" CHAR(11) NOT NULL,
+    "cod_locacao" UUID NOT NULL,
+    "data_pagamento" DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "valor_pagamento" MONEY NOT NULL,
+    "valor_locacao" MONEY NOT NULL,
+
+    CONSTRAINT "pagamentos_pkey" PRIMARY KEY ("cod")
 );
 
-ALTER TABLE IF EXISTS public.brinquedos
-    ADD CONSTRAINT fk_brinquedo_tipo_brinquedo FOREIGN KEY (tipo_brinquedo)
-    REFERENCES public.tipos_brinquedos (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+-- CreateTable
+CREATE TABLE "tipos_brinquedos" (
+    "cod" UUID NOT NULL,
+    "nome" VARCHAR(255) NOT NULL,
 
+    CONSTRAINT "tipos_brinquedos_pkey" PRIMARY KEY ("cod")
+);
 
-ALTER TABLE IF EXISTS public.brinquedos_locados
-    ADD CONSTRAINT fk_brinquedo_locado_locacao FOREIGN KEY (cod_locacao)
-    REFERENCES public.locacoes (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+-- CreateIndex
+CREATE UNIQUE INDEX "brinquedos_nome_key" ON "brinquedos"("nome");
 
+-- CreateIndex
+CREATE UNIQUE INDEX "pagamentos_cod_locacao_key" ON "pagamentos"("cod_locacao");
 
-ALTER TABLE IF EXISTS public.brinquedos_locados
-    ADD CONSTRAINT fk_brinquedo_locado_brinquedo FOREIGN KEY (cod_brinquedo)
-    REFERENCES public.brinquedos (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+-- CreateIndex
+CREATE UNIQUE INDEX "tipos_brinquedos_nome_key" ON "tipos_brinquedos"("nome");
 
+-- AddForeignKey
+ALTER TABLE "brinquedos" ADD CONSTRAINT "brinquedos_tipo_brinquedo_fkey" FOREIGN KEY ("tipo_brinquedo") REFERENCES "tipos_brinquedos"("cod") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-ALTER TABLE IF EXISTS public.locacoes
-    ADD CONSTRAINT fk_cpf_cliente_cliente FOREIGN KEY (cpf_cliente)
-    REFERENCES public.clientes (cpf) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+-- AddForeignKey
+ALTER TABLE "brinquedos_locados" ADD CONSTRAINT "brinquedos_locados_cod_locacao_fkey" FOREIGN KEY ("cod_locacao") REFERENCES "locacoes"("cod") ON DELETE RESTRICT ON UPDATE CASCADE;
 
+-- AddForeignKey
+ALTER TABLE "brinquedos_locados" ADD CONSTRAINT "brinquedos_locados_cod_brinquedo_fkey" FOREIGN KEY ("cod_brinquedo") REFERENCES "brinquedos"("cod") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-ALTER TABLE IF EXISTS public.pagamentos
-    ADD CONSTRAINT fk_cod_locacao_pagamento FOREIGN KEY (cod_locacao)
-    REFERENCES public.locacoes (cod) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
-CREATE INDEX IF NOT EXISTS unique_cod_locacao
-    ON public.pagamentos(cod_locacao);
+-- AddForeignKey
+ALTER TABLE "locacoes" ADD CONSTRAINT "locacoes_cpf_cliente_fkey" FOREIGN KEY ("cpf_cliente") REFERENCES "clientes"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
 
+-- AddForeignKey
+ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_cod_locacao_fkey" FOREIGN KEY ("cod_locacao") REFERENCES "locacoes"("cod") ON DELETE RESTRICT ON UPDATE CASCADE;
 
-ALTER TABLE IF EXISTS public.pagamentos
-    ADD CONSTRAINT fk_cpf_cliente_pagamento FOREIGN KEY (cpf_cliente)
-    REFERENCES public.clientes (cpf) MATCH SIMPLE
-    ON UPDATE NO ACTION
-    ON DELETE NO ACTION
-    NOT VALID;
+-- AddForeignKey
+ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_cpf_cliente_fkey" FOREIGN KEY ("cpf_cliente") REFERENCES "clientes"("cpf") ON DELETE RESTRICT ON UPDATE CASCADE;
+
 
 ```
 
 Schema Prisma para a geração da Database PG
 
 ```prisma
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -765,10 +875,17 @@ model Funcionario {
   @@map("funcionarios")
 }
 
+enum PgtoStatus {
+  PENDENTE
+  PAGO
+  ATRASO
+}
+
 model Locacao {
   cod               String            @id @default(uuid()) @db.Uuid
   data_hora         DateTime          @default(now()) @db.Date
   cpf_cliente       String            @db.Char(11)
+  pgto_status       PgtoStatus        @default(PENDENTE)
   brinquedosLocados BrinquedoLocado[]
   cliente           Cliente           @relation(fields: [cpf_cliente], references: [cpf])
   pagamento         Pagamento?
@@ -796,7 +913,6 @@ model TipoBrinquedo {
 
   @@map("tipos_brinquedos")
 }
-
 ```
 
 ### UML

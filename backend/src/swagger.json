@@ -1117,6 +1117,14 @@
           "cpf_cliente": {
             "type": "string",
             "pattern": "^[0-9]{11}$"
+          },
+          "pgto_status": {
+            "type": "string",
+            "enum": [
+              "PAGO",
+              "PENDENTE",
+              "ATRASO"
+            ]
           }
         },
         "additionalProperties": false

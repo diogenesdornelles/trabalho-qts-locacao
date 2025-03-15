@@ -1,7 +1,25 @@
-import { CreateLocacaoValidator } from './CreateLocacaoValidator'
+import { z } from 'zod'
+import GeneralValidator from './GeneralValidator'
 
 /* ======================================
    Schema de validação para o update do modelo Locacao
    ====================================== */
 
-export const UpdateLocacaoValidator = CreateLocacaoValidator.partial()
+
+export const PgtoStatusEnum = z.enum([
+   'PAGO',
+   'PENDENTE',
+   'ATRASO'
+ ])
+
+export const CreateLocacaoValidator = z
+  .object({
+    cpf_cliente: z
+      .string()
+      .transform(str => str.replace(/\D/g, ''))
+      .refine(GeneralValidator.validateCpf, {
+        message: 'CPF inválido',
+      }),
+   pgto_status: PgtoStatusEnum
+  })
+  .strict()

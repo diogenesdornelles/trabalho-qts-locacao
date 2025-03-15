@@ -63,11 +63,24 @@ export namespace $Enums {
 
 export type Funcao = (typeof Funcao)[keyof typeof Funcao]
 
+
+export const PgtoStatus: {
+  PENDENTE: 'PENDENTE',
+  PAGO: 'PAGO',
+  ATRASO: 'ATRASO'
+};
+
+export type PgtoStatus = (typeof PgtoStatus)[keyof typeof PgtoStatus]
+
 }
 
 export type Funcao = $Enums.Funcao
 
 export const Funcao: typeof $Enums.Funcao
+
+export type PgtoStatus = $Enums.PgtoStatus
+
+export const PgtoStatus: typeof $Enums.PgtoStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -5922,18 +5935,21 @@ export namespace Prisma {
     cod: string | null
     data_hora: Date | null
     cpf_cliente: string | null
+    pgto_status: $Enums.PgtoStatus | null
   }
 
   export type LocacaoMaxAggregateOutputType = {
     cod: string | null
     data_hora: Date | null
     cpf_cliente: string | null
+    pgto_status: $Enums.PgtoStatus | null
   }
 
   export type LocacaoCountAggregateOutputType = {
     cod: number
     data_hora: number
     cpf_cliente: number
+    pgto_status: number
     _all: number
   }
 
@@ -5942,18 +5958,21 @@ export namespace Prisma {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    pgto_status?: true
   }
 
   export type LocacaoMaxAggregateInputType = {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    pgto_status?: true
   }
 
   export type LocacaoCountAggregateInputType = {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    pgto_status?: true
     _all?: true
   }
 
@@ -6033,6 +6052,7 @@ export namespace Prisma {
     cod: string
     data_hora: Date
     cpf_cliente: string
+    pgto_status: $Enums.PgtoStatus
     _count: LocacaoCountAggregateOutputType | null
     _min: LocacaoMinAggregateOutputType | null
     _max: LocacaoMaxAggregateOutputType | null
@@ -6056,6 +6076,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    pgto_status?: boolean
     brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
     pagamento?: boolean | Locacao$pagamentoArgs<ExtArgs>
@@ -6066,6 +6087,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    pgto_status?: boolean
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["locacao"]>
 
@@ -6073,6 +6095,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    pgto_status?: boolean
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["locacao"]>
 
@@ -6080,9 +6103,10 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    pgto_status?: boolean
   }
 
-  export type LocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "data_hora" | "cpf_cliente", ExtArgs["result"]["locacao"]>
+  export type LocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "data_hora" | "cpf_cliente" | "pgto_status", ExtArgs["result"]["locacao"]>
   export type LocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -6107,6 +6131,7 @@ export namespace Prisma {
       cod: string
       data_hora: Date
       cpf_cliente: string
+      pgto_status: $Enums.PgtoStatus
     }, ExtArgs["result"]["locacao"]>
     composites: {}
   }
@@ -6536,6 +6561,7 @@ export namespace Prisma {
     readonly cod: FieldRef<"Locacao", 'String'>
     readonly data_hora: FieldRef<"Locacao", 'DateTime'>
     readonly cpf_cliente: FieldRef<"Locacao", 'String'>
+    readonly pgto_status: FieldRef<"Locacao", 'PgtoStatus'>
   }
     
 
@@ -9204,7 +9230,8 @@ export namespace Prisma {
   export const LocacaoScalarFieldEnum: {
     cod: 'cod',
     data_hora: 'data_hora',
-    cpf_cliente: 'cpf_cliente'
+    cpf_cliente: 'cpf_cliente',
+    pgto_status: 'pgto_status'
   };
 
   export type LocacaoScalarFieldEnum = (typeof LocacaoScalarFieldEnum)[keyof typeof LocacaoScalarFieldEnum]
@@ -9304,6 +9331,20 @@ export namespace Prisma {
    * Reference to a field of type 'Funcao[]'
    */
   export type ListEnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'PgtoStatus'
+   */
+  export type EnumPgtoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PgtoStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'PgtoStatus[]'
+   */
+  export type ListEnumPgtoStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PgtoStatus[]'>
     
 
 
@@ -9571,6 +9612,7 @@ export namespace Prisma {
     cod?: UuidFilter<"Locacao"> | string
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     pagamento?: XOR<PagamentoNullableScalarRelationFilter, PagamentoWhereInput> | null
@@ -9580,6 +9622,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    pgto_status?: SortOrder
     brinquedosLocados?: BrinquedoLocadoOrderByRelationAggregateInput
     cliente?: ClienteOrderByWithRelationInput
     pagamento?: PagamentoOrderByWithRelationInput
@@ -9592,6 +9635,7 @@ export namespace Prisma {
     NOT?: LocacaoWhereInput | LocacaoWhereInput[]
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
     pagamento?: XOR<PagamentoNullableScalarRelationFilter, PagamentoWhereInput> | null
@@ -9601,6 +9645,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    pgto_status?: SortOrder
     _count?: LocacaoCountOrderByAggregateInput
     _max?: LocacaoMaxOrderByAggregateInput
     _min?: LocacaoMinOrderByAggregateInput
@@ -9613,6 +9658,7 @@ export namespace Prisma {
     cod?: UuidWithAggregatesFilter<"Locacao"> | string
     data_hora?: DateTimeWithAggregatesFilter<"Locacao"> | Date | string
     cpf_cliente?: StringWithAggregatesFilter<"Locacao"> | string
+    pgto_status?: EnumPgtoStatusWithAggregatesFilter<"Locacao"> | $Enums.PgtoStatus
   }
 
   export type PagamentoWhereInput = {
@@ -9970,6 +10016,7 @@ export namespace Prisma {
   export type LocacaoCreateInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
     pagamento?: PagamentoCreateNestedOneWithoutLocacaoInput
@@ -9979,6 +10026,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
   }
@@ -9986,6 +10034,7 @@ export namespace Prisma {
   export type LocacaoUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
     pagamento?: PagamentoUpdateOneWithoutLocacaoNestedInput
@@ -9995,6 +10044,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
   }
@@ -10003,17 +10053,20 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    pgto_status?: $Enums.PgtoStatus
   }
 
   export type LocacaoUpdateManyMutationInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
   export type LocacaoUncheckedUpdateManyInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
   export type PagamentoCreateInput = {
@@ -10408,6 +10461,13 @@ export namespace Prisma {
     _max?: NestedEnumFuncaoFilter<$PrismaModel>
   }
 
+  export type EnumPgtoStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PgtoStatus | EnumPgtoStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPgtoStatusFilter<$PrismaModel> | $Enums.PgtoStatus
+  }
+
   export type ClienteScalarRelationFilter = {
     is?: ClienteWhereInput
     isNot?: ClienteWhereInput
@@ -10422,18 +10482,31 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    pgto_status?: SortOrder
   }
 
   export type LocacaoMaxOrderByAggregateInput = {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    pgto_status?: SortOrder
   }
 
   export type LocacaoMinOrderByAggregateInput = {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    pgto_status?: SortOrder
+  }
+
+  export type EnumPgtoStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PgtoStatus | EnumPgtoStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPgtoStatusWithAggregatesFilter<$PrismaModel> | $Enums.PgtoStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPgtoStatusFilter<$PrismaModel>
+    _max?: NestedEnumPgtoStatusFilter<$PrismaModel>
   }
 
   export type PagamentoCountOrderByAggregateInput = {
@@ -10718,6 +10791,10 @@ export namespace Prisma {
     connect?: PagamentoWhereUniqueInput
   }
 
+  export type EnumPgtoStatusFieldUpdateOperationsInput = {
+    set?: $Enums.PgtoStatus
+  }
+
   export type BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput = {
     create?: XOR<BrinquedoLocadoCreateWithoutLocacaoInput, BrinquedoLocadoUncheckedCreateWithoutLocacaoInput> | BrinquedoLocadoCreateWithoutLocacaoInput[] | BrinquedoLocadoUncheckedCreateWithoutLocacaoInput[]
     connectOrCreate?: BrinquedoLocadoCreateOrConnectWithoutLocacaoInput | BrinquedoLocadoCreateOrConnectWithoutLocacaoInput[]
@@ -10980,6 +11057,23 @@ export namespace Prisma {
     _max?: NestedEnumFuncaoFilter<$PrismaModel>
   }
 
+  export type NestedEnumPgtoStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.PgtoStatus | EnumPgtoStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPgtoStatusFilter<$PrismaModel> | $Enums.PgtoStatus
+  }
+
+  export type NestedEnumPgtoStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.PgtoStatus | EnumPgtoStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.PgtoStatus[] | ListEnumPgtoStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumPgtoStatusWithAggregatesFilter<$PrismaModel> | $Enums.PgtoStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumPgtoStatusFilter<$PrismaModel>
+    _max?: NestedEnumPgtoStatusFilter<$PrismaModel>
+  }
+
   export type TipoBrinquedoCreateWithoutBrinquedosInput = {
     cod?: string
     nome: string
@@ -11073,6 +11167,7 @@ export namespace Prisma {
   export type LocacaoCreateWithoutBrinquedosLocadosInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
     pagamento?: PagamentoCreateNestedOneWithoutLocacaoInput
   }
@@ -11081,6 +11176,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    pgto_status?: $Enums.PgtoStatus
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
   }
 
@@ -11126,6 +11222,7 @@ export namespace Prisma {
   export type LocacaoUpdateWithoutBrinquedosLocadosInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
     pagamento?: PagamentoUpdateOneWithoutLocacaoNestedInput
   }
@@ -11134,6 +11231,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
   }
 
@@ -11169,6 +11267,7 @@ export namespace Prisma {
   export type LocacaoCreateWithoutClienteInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoCreateNestedOneWithoutLocacaoInput
   }
@@ -11176,6 +11275,7 @@ export namespace Prisma {
   export type LocacaoUncheckedCreateWithoutClienteInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
   }
@@ -11239,6 +11339,7 @@ export namespace Prisma {
     cod?: UuidFilter<"Locacao"> | string
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
   }
 
   export type PagamentoUpsertWithWhereUniqueWithoutClienteInput = {
@@ -11414,6 +11515,7 @@ export namespace Prisma {
   export type LocacaoCreateWithoutPagamentoInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
   }
@@ -11422,6 +11524,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
   }
 
@@ -11467,6 +11570,7 @@ export namespace Prisma {
   export type LocacaoUpdateWithoutPagamentoInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
   }
@@ -11475,6 +11579,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
   }
 
@@ -11598,6 +11703,7 @@ export namespace Prisma {
   export type LocacaoCreateManyClienteInput = {
     cod?: string
     data_hora?: Date | string
+    pgto_status?: $Enums.PgtoStatus
   }
 
   export type PagamentoCreateManyClienteInput = {
@@ -11611,6 +11717,7 @@ export namespace Prisma {
   export type LocacaoUpdateWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUpdateOneWithoutLocacaoNestedInput
   }
@@ -11618,6 +11725,7 @@ export namespace Prisma {
   export type LocacaoUncheckedUpdateWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
   }
@@ -11625,6 +11733,7 @@ export namespace Prisma {
   export type LocacaoUncheckedUpdateManyWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
   export type PagamentoUpdateWithoutClienteInput = {

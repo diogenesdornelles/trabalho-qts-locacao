@@ -10,7 +10,7 @@ export const CreateLocacaoValidator = z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validateCpf, {
-        message: 'Invalid CPF format. Please provide a valid CPF.',
+        message: 'CPF inválido.',
       }),
   })
   .strict()

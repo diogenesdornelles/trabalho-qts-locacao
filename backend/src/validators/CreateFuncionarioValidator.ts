@@ -17,22 +17,22 @@ export const CreateFuncionarioValidator = z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validateCpf, {
-        message: 'Invalid CPF format. Please provide a valid CPF.',
+        message: 'Forneça um CPF válido.',
       }),
-    nome: z.string().min(3).max(255),
+    nome: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres').max(255, 'Nome deve ter no máximo 3 caracteres'),
     telefone: z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validatePhone, {
-        message: 'Please provide a valid Phone.',
+        message: 'Telefone deve ter entre 10 e 11 dígitos',
       }),
     senha: z.string().refine(GeneralValidator.isValidPwd, {
       message: `
-            // - At least 8 chars
-            // - At least one lower char
-            // - At least one upper char
-            // - At least one digit
-            // - At least one special char
+            Ao menos 8 caracteres
+            Ao menos um caracter minúsculo
+            Ao meno um caracterer maiúsculo
+            Ao menos um dígito
+            Ao menos um caracterer especial 
         `,
     }),
     funcao: FuncaoEnum,

@@ -1,3 +1,7 @@
 import { CreateLocacaoDTO } from '../create/CreateLocacaoDTO'
 
-export type UpdateLocacaoDTO = Partial<CreateLocacaoDTO>
+type PgtoStatus = 'PENDENTE' | 'PAGO' | 'ATRASO'
+
+type CreateLocacaoDTOWithStatus = CreateLocacaoDTO & { status?: PgtoStatus }
+
+export type UpdateLocacaoDTO = Partial<CreateLocacaoDTOWithStatus>

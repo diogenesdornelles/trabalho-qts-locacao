@@ -23,13 +23,5 @@
     "cod_locacao": "locacao-placeholder-5",
     "cod_brinquedo": "brinquedo-placeholder-5",
     "data_devolucao": "2022-07-05"
-  },
-  {
-    "cod": "0df83884-fca5-426b-82ca-0ff6c0a68bc0",
-    "valor_unitario": "125",
-    "nome": "Piscina de bolinhas",
-    "cod_locacao": "6a513528-9973-4b8b-b1db-e26a0491a1c4",
-    "data_devolucao": "2022-07-05T00:00:00.000Z",
-    "cod_brinquedo": "22aa1adc-080f-4335-b5fb-9c91ff90b0d4"
   }
 ]

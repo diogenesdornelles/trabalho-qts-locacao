@@ -154,7 +154,8 @@ exports.Prisma.FuncionarioScalarFieldEnum = {
 exports.Prisma.LocacaoScalarFieldEnum = {
   cod: 'cod',
   data_hora: 'data_hora',
-  cpf_cliente: 'cpf_cliente'
+  cpf_cliente: 'cpf_cliente',
+  pgto_status: 'pgto_status'
 };
 
 exports.Prisma.PagamentoScalarFieldEnum = {
@@ -186,6 +187,12 @@ exports.Funcao = exports.$Enums.Funcao = {
   AGENTE_LOCACAO: 'AGENTE_LOCACAO',
   ANALISTA_CADASTRO: 'ANALISTA_CADASTRO',
   ALMOXARIFE: 'ALMOXARIFE'
+};
+
+exports.PgtoStatus = exports.$Enums.PgtoStatus = {
+  PENDENTE: 'PENDENTE',
+  PAGO: 'PAGO',
+  ATRASO: 'ATRASO'
 };
 
 exports.Prisma.ModelName = {

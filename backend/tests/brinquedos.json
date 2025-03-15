@@ -47,21 +47,6 @@
     "marca": "Marca G",
     "data_aquisicao": "2023-08-27",
     "valor_locacao": 50.0
-  },
-  {
-"nome": "Cama elástica",
-"tipo_brinquedo": "133169b8-434a-43c4-a7b9-08ca30906cc0",
-"marca": "Marca A",
-"data_aquisicao": "2022-01-01",
-"valor_locacao": 200.0
-  },
-  {
-    "cod": "22aa1adc-080f-4335-b5fb-9c91ff90b0d4",
-    "nome": "Piscina de bolinhas",
-    "tipo_brinquedo": "133169b8-434a-43c4-a7b9-08ca30906cc0",
-    "marca": "Marca C",
-    "data_aquisicao": "2022-03-01T00:00:00.000Z",
-    "valor_locacao": "125"
   }
 ]
 

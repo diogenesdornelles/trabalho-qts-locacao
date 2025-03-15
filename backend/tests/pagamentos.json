@@ -28,13 +28,5 @@
     "cpf_cliente": "68127521000",
     "cod_locacao": "6a513528-9973-4b8b-b1db-e26a0491a1c4",
     "valor_pagamento": 400
-  },
-  {
-    "cod": "077fa6e7-c828-42f5-8a26-7355a743cea5",
-    "cpf_cliente": "68127521000",
-    "cod_locacao": "6a513528-9973-4b8b-b1db-e26a0491a1c4",
-    "data_pagamento": "2025-03-14T00:00:00.000Z",
-    "valor_pagamento": "400",
-    "valor_locacao": "375"
   }
 ]

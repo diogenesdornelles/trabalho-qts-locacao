@@ -70,10 +70,17 @@ model Funcionario {
   @@map("funcionarios")
 }
 
+enum PgtoStatus {
+  PENDENTE
+  PAGO
+  ATRASO
+}
+
 model Locacao {
   cod               String            @id @default(uuid()) @db.Uuid
   data_hora         DateTime          @default(now()) @db.Date
   cpf_cliente       String            @db.Char(11)
+  pgto_status       PgtoStatus        @default(PENDENTE)
   brinquedosLocados BrinquedoLocado[]
   cliente           Cliente           @relation(fields: [cpf_cliente], references: [cpf])
   pagamento         Pagamento?

@@ -11,18 +11,18 @@ export const CreateClienteValidator = z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validateCpf, {
-        message: 'Invalid CPF format. Please provide a valid CPF.',
+        message: 'CPF inválido',
       }),
     nome: z.string().min(3).max(255),
     endereco: z.string().min(3).max(255),
     data_nascimento: dateSchema.refine(date => date <= new Date(), {
-      message: 'Date must be less than equal to the current date',
+      message: 'Data de nascimento deve ser menor ou igual a atual',
     }),
     telefone: z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validatePhone, {
-        message: 'Please provide a valid Phone. Only 10 or 11 digits',
+        message: 'Forneça um telefone entre 10 e 11 dígitos',
       }),
   })
   .strict()

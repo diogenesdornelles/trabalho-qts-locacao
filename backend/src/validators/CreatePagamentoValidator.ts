@@ -10,12 +10,12 @@ export const CreatePagamentoValidator = z
       .string()
       .transform(str => str.replace(/\D/g, ''))
       .refine(GeneralValidator.validateCpf, {
-        message: 'Invalid CPF format. Please provide a valid CPF.',
+        message: 'CPF inválido.',
       }),
-    cod_locacao: z.string().uuid(),
+    cod_locacao: z.string().uuid('Forneça um UUID de locação correto'),
     valor_pagamento: z
       .number()
-      .gte(0)
+      .gt(0, 'Valor mínimo de compra deve ser R$ 0,01')
       .transform(num => Math.round(num * 100) / 100),
   })
   .strict()
