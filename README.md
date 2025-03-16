@@ -216,477 +216,402 @@ Portanto, as atividades executadas serão as seguintes:
 
 ### Escrita do caso de uso principal do incremento de forma detalhada
 
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Gerenciar funcionário|
-|**Escopo**|Permite incluir, alterar e excluir informações de funcionário|
-|**Ator(es)**|Gerente|
-|**Interessados e interesses**| Gerente: controle de dados da equipe|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de funcionário sejam incluídas, alteradas e excluídas com sucesso|
-
 ---
 
-#### **Fluxo principal**
+#### 1. Gerenciar Funcionário
 
-1. **Gerente** escolhe a opção **gerenciar funcionário**.
-2. **Sistema** mostra três opções: *incluir*, *alterar* e *excluir*.
-3. **Gerente** escolhe uma opção.
-4. **Sistema** mostra a mensagem *Operação realizada com sucesso*.
+| **Nome do caso de uso**         | Gerenciar funcionário                                                             |
+|---------------------------------|:---------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir, alterar e excluir informações de funcionário                     |
+| **Ator(es)**                    | Gerente                                                                           |
+| **Interessados e interesses**   | Gerente: controle de dados da equipe                                              |
+| **Pré-condição**                | Estar logado                                                                      |
+| **Pós-condição**                | Que as informações de funcionário sejam incluídas, alteradas e excluídas com sucesso |
 
----
+##### Fluxo Principal
 
-#### **Fluxo alternativo**
+1. **Gerente** escolhe a opção **Gerenciar funcionário**.
+2. **Sistema** mostra as opções: *incluir*, *alterar* e *excluir*.
+3. **Gerente** seleciona uma opção.
+4. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
-##### 3.a. Opção Incluir
+##### Fluxo Alternativo
+
+###### 3.a. Opção Incluir
 
 1. **Sistema** mostra o campo de preenchimento: **CPF**.
 2. **Gerente** preenche o campo.
-3. **Sistema** valida o campo:
+3. **Sistema** valida o CPF:
    - **CPF já cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
    - **CPF em branco ou incorreto:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 1 do fluxo alternativo 3.a (opção incluir).
-4. **Sistema** mostra os campos para preenchimento: **nome, telefone, senha, repete e senha**.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 1** deste fluxo.
+4. **Sistema** mostra os campos para preenchimento: **nome, telefone, senha e repete senha**.
 5. **Gerente** preenche os campos.
 6. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.4 do fluxo alternativo.
-   - **Senha não atinge os requisitos mínimos ou senhas não conferem:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.4 do fluxo alternativo.
-7. **Sistema** mostra seleção *Função*:
-8. **Gerente** escolhe opção:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.7 do fluxo alternativo.
-9. **Sistema** armazena os dados.
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 4** deste fluxo.
+   - Se a **senha não atingir os requisitos mínimos ou as senhas não conferirem**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 4** deste fluxo.
+7. **Sistema** mostra a seleção de **Função**.
+8. **Gerente** escolhe a função:
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 7** deste fluxo.
+9. **Sistema** armazena os dados do funcionário.
 
-##### 3.b. Opção Alterar
+###### 3.b. Opção Alterar
 
 1. **Sistema** mostra o campo de preenchimento: **CPF**.
 2. **Gerente** preenche o campo.
-3. **Sistema** valida o campo:
+3. **Sistema** valida o CPF:
    - **CPF não cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
+   - **CPF em branco ou incorreto:**
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 1** deste fluxo.
 4. **Sistema** busca e mostra os campos para alteração: **nome, telefone, senha e repete senha**.
-5. **Gerente** altera os campos.
+5. **Gerente** altera os campos desejados.
 6. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.b.4 do fluxo alternativo.
-7. **Sistema** mostra seleção *Função*:
-8. **Gerente** escolhe opção:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.7 do fluxo alternativo.
-9. **Sistema** insere os dados.
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 4** deste fluxo.
+7. **Sistema** mostra a seleção de **Função**.
+8. **Gerente** escolhe a função:
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 7** deste fluxo.
+9. **Sistema** insere (atualiza) os dados do funcionário.
 
-##### 3.c. Operação Excluir
+###### 3.c. Operação Excluir
 
 1. **Sistema** mostra o campo de preenchimento: **CPF**.
 2. **Gerente** preenche o campo.
-3. **Sistema** valida o campo:
-   - **CPF não cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca os dados e mostra: **nome, função, cpf, telefone**.
-5. **Sistema** mostra a mensagem: “Deseja excluir?”.
-6. **Sistema** apresenta duas opções: **excluir** e **cancelar**.
-7. Dependendo da escolha:
-   - **Opção Cancelar:**
-     1. **Sistema** finaliza a operação.
-   - **Opção Excluir:**
-     1. **Sistema** exclui os dados.
+3. **Sistema** mostra uma lista com os funcionários compatíveis.
+4. **Gerente** seleciona o funcionário desejado.
+5. **Sistema** busca e mostra os dados do funcionário: **nome, função, CPF, telefone**.
+6. **Sistema** exibe a mensagem: “Deseja excluir?”.
+7. **Sistema** apresenta as opções: **excluir** e **cancelar**.
+8. Dependendo da escolha:
+   - **Opção Cancelar:**  
+     - O **Sistema** finaliza a operação.
+   - **Opção Excluir:**  
+     - O **Sistema** exclui os dados do funcionário.
 
 ---
 
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Gerenciar brinquedo|
-|**Escopo**|Permite incluir, alterar e excluir informações de brinquedos|
-|**Ator(es)**|Almoxárife|
-|**Interessados e interesses**|Almoxárife: controle de dados sobre brinquedos|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de brinquedo sejam incluídas, alteradas e excluídas com sucesso|
+#### 2. Gerenciar Brinquedo
 
----
+| **Nome do caso de uso**         | Gerenciar brinquedo                                                             |
+|---------------------------------|:--------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir, alterar e excluir informações de brinquedos                      |
+| **Ator(es)**                    | Almoxárife                                                                       |
+| **Interessados e interesses**   | Almoxárife: controle de dados sobre brinquedos                                   |
+| **Pré-condição**                | Estar logado                                                                     |
+| **Pós-condição**                | Que as informações de brinquedo sejam incluídas, alteradas e excluídas com sucesso |
 
-#### **Fluxo principal**
+##### Fluxo Principal
 
 1. **Almoxárife** escolhe a opção **Gerenciar brinquedo**.
-2. **Sistema** mostra três opções: *incluir*, *alterar* e *excluir*.
-3. **Almoxárife** escolhe uma opção.
-4. **Sistema** mostra a mensagem *Operação realizada com sucesso*.
+2. **Sistema** mostra as opções: *incluir*, *alterar* e *excluir*.
+3. **Almoxárife** seleciona uma opção.
+4. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
----
+##### Fluxo Alternativo
 
-#### **Fluxo alternativo**
-
-##### 3.a. Opção Incluir
+###### 2.a. Opção Incluir
 
 1. **Sistema** mostra o campo de preenchimento: **NOME**.
 2. **Almoxárife** preenche o campo.
-3. **Sistema** mostra lista com nomes compatíveis.
-4. **Sistema** valida o campo:
+3. **Sistema** mostra uma lista com nomes compatíveis.
+4. **Sistema** valida o nome:
    - **Brinquedo já cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
    - **Nome em branco ou incorreto:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 1 do fluxo alternativo 3.a (opção incluir).
-5. **Sistema** mostra lista com **tipo de brinquedo**.
-6. **Almoxárife** seleciona tipo.
-7. **Sistema** mostra os campos de preenchimento: **marca, data da aquisição e valor para locação**.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 1** deste fluxo.
+5. **Sistema** mostra uma lista com os **tipos de brinquedo**.
+6. **Almoxárife** seleciona o tipo desejado.
+7. **Sistema** solicita o preenchimento dos campos: **marca, data da aquisição e valor para locação**.
 8. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.7 do fluxo alternativo.
-9. **Sistema** gera código único.
-10. **Sistema** armazena os dados.
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 7** deste fluxo.
+9. **Sistema** gera um código único para o brinquedo.
+10. **Sistema** armazena os dados do brinquedo.
 
-##### 3.b. Opção Alterar
+###### 2.b. Opção Alterar
 
-1. **Sistema** mostra o campo de preenchimento: **CÓDIGO**.
+1. **Sistema** mostra o campo de preenchimento: **NOME**.
 2. **Almoxárife** preenche o campo.
-3. **Sistema** valida o campo:
-   - **CÓDIGO não cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca e mostra os campos para alteração: **nome, tipo de brinquedo, marca, data da aquisição e valor da locação**
-5. **Almoxárife** altera os campos.
-6. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.b.4 do fluxo alternativo.
+3. **Sistema** mostra uma lista com nomes compatíveis.
+4. **Almoxárife** seleciona o brinquedo desejado.
+5. **Sistema** busca e mostra os campos para alteração: **nome, tipo de brinquedo, marca, data da aquisição e valor da locação**.
+6. **Almoxárife** altera os campos desejados.
+7. **Sistema** valida os campos:
+   - Se houver **campos obrigatórios não preenchidos ou incorretos**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 5** deste fluxo.
+   - Se o **nome já consta no cadastro**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 5** deste fluxo.
+8. **Sistema** insere (atualiza) os dados do brinquedo.
 
-   - **Nome já consta do cadastro:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.b.4 do fluxo alternativo.
+###### 2.c. Operação Excluir
 
-7. **Sistema** insere os dados.
-
-##### 3.c. Operação Excluir
-
-1. **Sistema** mostra o campo de preenchimento: **CÓDIGO**.
+1. **Sistema** mostra o campo de preenchimento: **NOME**.
 2. **Almoxárife** preenche o campo.
-3. **Sistema** valida o campo:
-   - **CÓDIGO não encontrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca os dados e mostra: **nome, tipo, marca, código, data da aquisição e valor da locação**.
-5. **Sistema** mostra a mensagem: “Deseja excluir?”.
-6. **Sistema** apresenta duas opções: **excluir** e **cancelar**.
-7. Dependendo da escolha:
-   - **Opção Cancelar:**
-     1. **Sistema** finaliza a operação.
-   - **Opção Excluir:**
-     1. **Sistema** exclui os dados.
+3. **Sistema** mostra uma lista com os brinquedos compatíveis.
+4. **Almoxárife** seleciona o brinquedo desejado.
+5. **Sistema** busca e mostra os dados do brinquedo: **nome, tipo, marca, código, data da aquisição e valor da locação**.
+6. **Sistema** exibe a mensagem: “Deseja excluir?”.
+7. **Sistema** apresenta as opções: **excluir** e **cancelar**.
+8. Dependendo da escolha:
+   - **Opção Cancelar:**  
+     - O **Sistema** finaliza a operação.
+   - **Opção Excluir:**  
+     - O **Sistema** exclui os dados do brinquedo.
 
 ---
 
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Manter tipo de brinquedo|
-|**Escopo**|Permite incluir e alterar informações de tipo de brinquedos|
-|**Ator(es)**|Almoxárife|
-|**Interessados e interesses**|Almoxárife: controle de dados sobre tipo de brinquedos|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de tipo de brinquedo sejam incluídas e alteradas com sucesso|
+### 3. Manter Tipo de Brinquedo
 
----
+| **Nome do caso de uso**         | Manter tipo de brinquedo                                                       |
+|---------------------------------|:-------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir e alterar informações de tipo de brinquedos                     |
+| **Ator(es)**                    | Almoxárife                                                                      |
+| **Interessados e interesses**   | Almoxárife: controle de dados sobre tipo de brinquedos                          |
+| **Pré-condição**                | Estar logado                                                                    |
+| **Pós-condição**                | Que as informações de tipo de brinquedo sejam incluídas e alteradas com sucesso |
 
-#### **Fluxo principal**
+##### Fluxo Principal
 
 1. **Almoxárife** escolhe a opção **Manter tipo de brinquedo**.
-2. **Sistema** mostra três opções: *incluir* e *alterar*.
-3. **Almoxárife** escolhe uma opção.
-4. **Sistema** mostra a mensagem *Operação realizada com sucesso*.
+2. **Sistema** mostra as opções: *incluir* e *alterar*.
+3. **Almoxárife** seleciona uma opção.
+4. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
----
+##### Fluxo Alternativo
 
-#### **Fluxo alternativo**
-
-##### 3.a. Opção Incluir
+###### 3.a. Opção Incluir
 
 1. **Sistema** mostra o campo de preenchimento: **NOME**.
 2. **Almoxárife** preenche o campo.
-3. **Sistema** mostra lista com autocomplete contendo os nomes de tipos compatíveis.
-4. **Sistema** valida o campo preenchido:
+3. **Sistema** mostra uma lista com os nomes compatíveis.
+4. **Sistema** valida o nome:
    - **Tipo de brinquedo já cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
    - **Nome em branco ou incorreto:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 1 do fluxo alternativo 3.a (opção incluir).
-5. **Sistema** gera código único.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 1** deste fluxo.
+5. **Sistema** gera um código único para o tipo de brinquedo.
 6. **Sistema** armazena os dados.
 
-##### 3.b. Opção Alterar
+###### 3.b. Opção Alterar
 
-1. **Sistema** mostra o campo de preenchimento: **CÓDIGO**.
+1. **Sistema** mostra o campo de preenchimento: **NOME**.
 2. **Almoxárife** preenche o campo.
-3. **Sistema** valida o campo:
-   - **CÓDIGO não cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca e mostra os campos para alteração: **nome**
-5. **Almoxárife** altera os campos.
-6. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 4 do fluxo alternativo.
-7. **Sistema** insere os dados.
+3. **Sistema** mostra uma lista com os tipos compatíveis.
+4. **Almoxárife** seleciona o item desejado.
+5. **Sistema** busca e mostra o campo para alteração: **nome**.
+6. **Almoxárife** altera o nome.
+7. **Sistema** valida o campo:
+   - Se houver **campo obrigatório em branco ou incorreto**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 5** deste fluxo.
+8. **Sistema** insere (atualiza) os dados do tipo de brinquedo.
 
 ---
 
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Manter cliente|
-|**Escopo**|Permite incluir e alterar informações de clientes|
-|**Ator(es)**|Analista de cadastro|
-|**Interessados e interesses**|Analista de cadastro: controle de dados sobre clientes|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de cliente sejam incluídas e alteradas com sucesso|
+### 4. Manter Cliente
 
----
+| **Nome do caso de uso**         | Manter cliente                                                                 |
+|---------------------------------|:------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir e alterar informações de clientes                              |
+| **Ator(es)**                    | Analista de cadastro                                                           |
+| **Interessados e interesses**   | Analista de cadastro: controle de dados sobre clientes                         |
+| **Pré-condição**                | Estar logado                                                                   |
+| **Pós-condição**                | Que as informações de cliente sejam incluídas e alteradas com sucesso            |
 
-#### **Fluxo principal**
+##### Fluxo Principal
 
 1. **Analista de cadastro** escolhe a opção **Manter cliente**.
-2. **Sistema** mostra três opções: *incluir* e *alterar*.
-3. **Analista de cadastro** escolhe uma opção.
-4. **Sistema** mostra a mensagem *Operação realizada com sucesso*.
+2. **Sistema** mostra as opções: *incluir* e *alterar*.
+3. **Analista de cadastro** seleciona uma opção.
+4. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
----
+##### Fluxo Alternativo
 
-#### **Fluxo alternativo**
-
-##### 3.a. Opção Incluir
+###### 4.a. Opção Incluir
 
 1. **Sistema** mostra o campo de preenchimento: **CPF**.
 2. **Analista de cadastro** preenche o campo.
-3. **Sistema** valida o campo:
+3. **Sistema** valida o CPF:
    - **CPF já cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
    - **CPF em branco ou incorreto:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 1 do fluxo alternativo 3.a (opção incluir).
-4. **Sistema** mostra os campos para preenchimento: **nome, endereço, data de nascimento e telefone**.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 1** deste fluxo.
+4. **Sistema** solicita o preenchimento dos campos: **nome, endereço, data de nascimento e telefone**.
 5. **Analista de cadastro** preenche os campos.
 6. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 3.a.4 do fluxo alternativo.
-7. **Sistema** armazena os dados.
+   - Se houver **campo obrigatório em branco ou incorreto**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 4** deste fluxo.
+7. **Sistema** armazena os dados do cliente.
 
-##### 3.b. Opção Alterar
+##### 4.b. Opção Alterar
 
 1. **Sistema** mostra o campo de preenchimento: **CPF**.
 2. **Analista de cadastro** preenche o campo.
-3. **Sistema** valida o campo:
+3. **Sistema** valida o CPF:
    - **CPF não cadastrado:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 2 do fluxo principal.
-4. **Sistema** busca e mostra os campos para alteração: **nome, cpf, endereço, data de nascimento e telefone** altera os campos.
-5. **Sistema** valida os campos:
-   - **Campos obrigatórios não preenchidos ou incorretos:**
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao passo 4 do fluxo alternativo.
-6. **Sistema** insere os dados.
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 2** do Fluxo Principal.
+4. **Sistema** busca e mostra os campos para alteração: **nome, CPF, endereço, data de nascimento e telefone**.
+5. **Analista de cadastro** altera os campos desejados.
+6. **Sistema** valida os campos:
+   - Se houver **campo obrigatório em branco ou incorreto**:
+     1. Exibe mensagem de erro.
+     2. Retorna ao **passo 4** deste fluxo.
+7. **Sistema** insere (atualiza) os dados do cliente.
 
 ---
 
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Incluir locações|
-|**Escopo**|Permite incluir informações de locações|
-|**Ator(es)**|Agente de locação|
-|**Interessados e interesses**|Agente de locação: controle de dados sobre locações|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de locação sejam incluídas e alteradas com sucesso|
+### 5. Incluir Locações
+
+| **Nome do caso de uso**         | Incluir locações                                                              |
+|---------------------------------|:-------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir informações de locações                                       |
+| **Ator(es)**                    | Agente de locação                                                             |
+| **Interessados e interesses**   | Agente de locação: controle de dados sobre locações                           |
+| **Pré-condição**                | Estar logado                                                                  |
+| **Pós-condição**                | Que as informações de locação sejam incluídas e alteradas com sucesso           |
+
+##### Fluxo Principal
+
+1. **Agente de locação** clica na opção *Incluir locação*.
+2. **Sistema** solicita o preenchimento do campo **CPF do Cliente**.
+3. **Agente de locação** informa o CPF.
+4. **Sistema** mostra uma lista de clientes compatíveis.
+5. **Agente de locação** seleciona o cliente.
+6. **Sistema** solicita o preenchimento do campo **Nome do Brinquedo**.
+7. **Agente de locação** informa o nome do brinquedo.
+8. **Sistema** mostra uma lista com brinquedos compatíveis.
+9. **Agente de locação** seleciona o brinquedo desejado.
+10. **Sistema** solicita o preenchimento do campo **Data de Devolução**.
+11. **Agente de locação** informa a data.
+12. **Sistema** valida a data:
+    - Se **em branco ou incorreta**:
+      1. Exibe mensagem de erro.
+      2. Retorna ao **passo 10**.
+13. **Sistema** gera um código único para o brinquedo locado.
+14. **Sistema** insere o nome do brinquedo e o valor unitário.
+15. **Sistema** exibe a mensagem: *Item incluído com sucesso*.
+16. **Sistema** pergunta: *Deseja locar outro brinquedo?*
+    - Se **Sim**: Retoma a partir do **passo 6** (mantendo o mesmo cliente).
+    - Se **Não**: Prossegue.
+17. **Sistema** calcula o valor total da locação.
+18. **Sistema** registra a data e hora atual.
+19. **Sistema** define o status do pagamento como *pendente*.
+20. **Sistema** gera um código único para a locação.
+21. **Sistema** salva os dados.
+22. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
 ---
 
-**Fluxo principal**
+#### 6. Incluir Pagamentos
 
-1. **Agente de locação** clica sobre a opção *Incluir locação*.
-2. **Sistema** mostra campo preenchimento: **CPF**.
-3. **Agente de locação** preenche o campo.
-4. **Sistema** valida campo.
-5. **Sistema** mostra listagem com **códigos únicos, nome de brinquedos e valor unitário dos brinquedos**.
-6. **Agente de locação** seleciona o brinquedo.
-7. **Sistema** valida a seleção.
-8. **Sistema** mostra campo: **Data de devolução**.
-9. **Agente de locação** preenche campo.
-10. **Sistema** valida o campo.
-11. **Sistema** mostra mensagem *Item incluído com sucesso*.
-12. **Sistema** mostra mensagem *Deseja locar outro brinquedo?*.
+| **Nome do caso de uso**         | Incluir pagamentos                                                           |
+|---------------------------------|:----------------------------------------------------------------------------:|
+| **Escopo**                      | Permite incluir informações de pagamento                                    |
+| **Ator(es)**                    | Caixa                                                                       |
+| **Interessados e interesses**   | Caixa: controle de dados sobre pagamentos                                  |
+| **Pré-condição**                | Estar logado                                                                 |
+| **Pós-condição**                | Que as informações de pagamento sejam incluídas e alteradas com sucesso       |
 
-- caso resposta *Sim*, repete passos 5 a 12. Caso resposta *Não*, segue:
+##### Fluxo Principal
 
-13. **Sistema** calcula valor total da locação.
-14. **Sistema** registra data e hora atual.
-15. **Sistema** inclui status pagamento *pendente*.
-16. **Sistema** registra código único.
-17. **Sistema** salva dados.
-18. **Sistema** mostra mensagem “Operação realizada com sucesso”;
-
----
-
-**Fluxo alternativo**
-
-##### Item 4 do fluxo principal
-
-- **CPF não cadastrado:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao menu principal.
-
-- **CPF em branco ou incorreto:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 2 (opção informar CPF).
-
-##### Item 7 do fluxo principal
-
-- **O(s) brinquedo(s) se encontra(m) locado(s):**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 5 (listagem de itens).
-
-##### Item 10 do fluxo principal
-
-- **Data em branco ou incorreta:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 8 (informar data de devolução).
-
----
-
-|||
-|:-|:-:|
-|**Nome do caso de uso**|Incluir pagamentos|
-|**Escopo**|Permite incluir informações de pagamento|
-|**Ator(es)**|Caixa|
-|**Interessados e interesses**|Caixa: controle de dados sobre pagamentos|
-|**Pré-condição**|Estar logado|
-|**Pós-condição**|Que as informações de pagamento sejam incluídas e alteradas com sucesso|
-
----
-
-**Fluxo principal**
-
-1. **Caixa** clica sobre a opção *Incluir pagamento*.
-2. **Sistema** mostra campo preenchimento: **CPF**.
-3. **Caixa** preenche o campo.
-4. **Sistema** valida campo.
-5. **Sistema** mostra nome e cpf do cliente.
-6. **Sistema** mostra listagem com locações em aberto
-7. **Caixa** seleciona a locação objeto de pagamento.
-8. **Sistema** mostra itens da locação: **código único, nomes de brinquedos, valor unitário dos brinquedos e valor total da locação**.
-9. **Sistema** mostra campo: **Valor do pagamento**.
-10. **Caixa** preenche o campo.
-11. **Sistema** valida o campo.
-12. **Sistema** registra data e hora atual.
-13. **Sistema** registra locação com status de pagamento *efetuado*.
-14. **Sistema** registra código único.
-15. **Sistema** salva dados.
-16. **Sistema** mostra mensagem *Operação realizada com sucesso*;
-
----
-
-**Fluxo alternativo**
-
-##### Item 4 do fluxo principal
-
-- **CPF não cadastrado:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao menu principal.
-
-- **CPF em branco ou incorreto:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 2 (opção informar CPF).
-
-##### Item 6 do fluxo principal
-
-- **Não há locações em aberto:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal.
-
-##### Item 10 do fluxo principal
-
-- **Valor em branco ou incorreto:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 8 (informar valor).
-
-- **Valor insuficiente:**
-
-     1. **Sistema** mostra mensagem.
-     2. **Sistema** retorna ao fluxo principal 8 (informar valor).
-
----
+1. **Caixa** clica na opção *Incluir pagamento*.
+2. **Sistema** solicita o preenchimento do campo **CPF**.
+3. **Caixa** informa o CPF.
+4. **Sistema** mostra uma lista de clientes compatíveis.
+5. **Caixa** seleciona o cliente.
+6. **Sistema** exibe o nome e o CPF do cliente.
+7. **Sistema** mostra uma lista com as locações em aberto.
+8. **Caixa** seleciona a locação a ser paga.
+9. **Sistema** exibe os itens da locação: **Código Único, Nomes dos Brinquedos, Valor Unitário e Valor Total**.
+10. **Sistema** solicita o preenchimento do campo **Valor do Pagamento**.
+11. **Caixa** informa o valor.
+12. **Sistema** valida o valor:
+    - Se **em branco, incorreto ou insuficiente**:
+      1. Exibe mensagem de erro.
+      2. Retorna ao **passo 10**.
+13. **Sistema** registra a data e hora atual.
+14. **Sistema** atualiza o status da locação para *efetuado*.
+15. **Sistema** gera um código único para o pagamento.
+16. **Sistema** salva os dados.
+17. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
 ### ERD
 
-tabela funcionarios
+#### tabela funcionarios
 
-- cpf(pk), nome, telefone, senha e função (senha para permitir autenticação e autorização) (função é um enum de  CAIXA, GERENTE, ALMOXARIFE, ANALISTA_CADASTRO, AGENTE_LOCACAO)
+- **Campos:** cpf(pk), nome, telefone, senha e função (senha para permitir autenticação e autorização) (função é um enum de  CAIXA, GERENTE, ALMOXARIFE, ANALISTA_CADASTRO, AGENTE_LOCACAO)
 
-Um funcionario (gerente) pode cadastrar muitos funcionários.
+- **Relações:** Um funcionario (gerente) pode cadastrar muitos funcionários.
 
-tabela brinquedos
+#### tabela brinquedos
 
-- código único(pk), nome (único), tipo de brinquedo, marca, data da aquisição, valor da locação
+- **Campos:** código único(pk), nome (único), tipo de brinquedo, marca, data da aquisição, valor da locação
 
-Um funcionario (almoxárife) pode cadastrar muitos brinquedos.
+- **Relações:** Um funcionario (almoxárife) pode cadastrar muitos brinquedos.
 
-tabela tipo_brinquedo
+#### tabela tipo_brinquedo
 
-- código único(pk), nome do tipo (único)
+- **Campos:** código único(pk), nome do tipo (único)
 
-Um funcionario (almoxárife) pode cadastrar muitos tipos de brinquedos.
+- **Relações:** Um funcionario (almoxárife) pode cadastrar muitos tipos de brinquedos.
 
-tabela clientes
+#### tabela clientes
 
-- cpf(pk), nome, endereço, data de nascimento, telefone
+- **Campos:** cpf(pk), nome, endereço, data de nascimento, telefone
 
-Um funcionario (analista de cadastro) pode cadastrar muitos clientes.
+- **Relações:** Um funcionario (analista de cadastro) pode cadastrar muitos clientes.
 
-tabela locacoes
+#### tabela locacoes
 
-- código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)
+- **Campos:** código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)
 
-Um funcionario (agente de locação) pode incluir muitas locações.
-Um cliente pode possuir várias locações. Por outro lado, uma locação pode pertencer a somente um cliente.
+- **Relações:** Um funcionario (agente de locação) pode incluir muitas locações.
+- **Relações:** Um cliente pode possuir várias locações. Por outro lado, uma locação pode pertencer a somente um cliente.
 
-tabela brinquedos_locacoes
+#### tabela brinquedos_locacoes
 
-- código único (pk), nome, valor unitário, código da locação (fk), código do brinquedo (fk) e data de devolução
+- **Campos:** código único (pk), nome, valor unitário, código da locação (fk), código do brinquedo (fk) e data de devolução
 
-Um funcionario (agente de locação) pode incluir muitos brinquedos em uma mesma locação.
-Uma locação pode possuir vários brinquedos. Um brinquedo locado pode estar em apenas uma locação.
+- **Relações:** Um funcionario (agente de locação) pode incluir muitos brinquedos em uma mesma locação.
+- **Relações:** Uma locação pode possuir vários brinquedos. Um brinquedo locado pode estar em apenas uma locação.
 
-tabela pagamentos
+#### tabela pagamentos
 
-- código único do pagamento(pk), código único da locação(fk), código único cliente(fk), data do pagamento, o valor do pagamento (obtidos por query: nome e cpf do cliente em clientes e o valor da locação c/ soma de valores em locacoes_brinquedos)
+- **Campos:** código único do pagamento(pk), código único da locação(fk), código único cliente(fk), data do pagamento, o valor do pagamento (obtidos por query: nome e cpf do cliente em clientes e o valor da locação c/ soma de valores em locacoes_brinquedos)
 
-Um funcionario (caixa) pode incluir muitos pagamentos.
-Um cliente pode efetuar vários pagamentos. Uma locação sofre um pagamento de um cliente específico.
+- **Relações:** Um funcionario (caixa) pode incluir muitos pagamentos.
+- **Relações:** Um cliente pode efetuar vários pagamentos. Uma locação sofre um pagamento de um cliente específico.
 Um pagamento se refere a somente uma locação. Uma locação possui apenas um pagamento.
 
 O Schema da aplicação fica melhor delineado no ERD abaixo:
 
-![ERD](/artifacts/erd_locacao_incremento_1.png "Erd para o sistema de locação")
+![ERD](/artifacts/erd_incremento_1.png "Erd para o sistema de locação")
 
 Código SQL para a geração das tabelas:
 
