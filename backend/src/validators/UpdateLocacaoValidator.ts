@@ -7,7 +7,7 @@ import GeneralValidator from './GeneralValidator'
 
 export const PgtoStatusEnum = z.enum(['PAGO', 'PENDENTE', 'ATRASO'])
 
-export const CreateLocacaoValidator = z
+export const UpdateLocacaoValidator = z
   .object({
     cpf_cliente: z
       .string()

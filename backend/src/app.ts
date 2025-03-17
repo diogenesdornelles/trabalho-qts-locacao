@@ -88,6 +88,17 @@ class App {
     })
   }
 
+
+  /**
+   * Starts the server and listens on the specified port using the given protocol.
+   * 
+   * @param {TServerProtocol} [protocol='http'] - The protocol to use for the server ('http' or 'https').
+   * 
+   * If the protocol is 'https', it creates an HTTPS server with the provided SSL options.
+   * Otherwise, it creates an HTTP server.
+   * 
+   * The server listens on the port specified by the `PORT` constant and logs the host and port information to the console.
+   */
   public listen(protocol: TServerProtocol = 'http'): void {
     if (protocol === 'https') {
       https.createServer(sslOptions, this.app).listen(PORT, () => {

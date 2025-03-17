@@ -141,7 +141,7 @@ Portanto, as atividades executadas serão as seguintes:
 | 04 | Regras de negócio | 2 dias | 14/03/2025 | Analista | Editor de texto |
 | 05 | Diagrama de Casos de Uso | 2 dias | 16/03/2025 | Analista | DrawIO |
 | 06 | Diagrama ER | 2 dias | 18/03/2025 | Analista | PgAdmin4 |
-| 07 | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO |
+| 07 | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO/PlantUML |
 | 08 | Planejamento UI/UX | 2 dias | 23/03/2025 | Analista e Dev Frontend | Figma |
 | 09 | Reunião intermediária 1 | 1 dia | 24/04/2025 | Líder | Presencial |
 | 10 | Desenvolvimento Backend | 20 dias | 14/04/2025 | Dev Backend | NodeJS/Express/Postgres/Prisma |
@@ -169,7 +169,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 - **Frontend**: React, TypeScript, Styled-components, Bootstrap, Tailwind (ou outra ferramenta framework de estilização);
 
-- **Ferramentas de Modelagem**: Draw.io, PgAdmin4, Figma; e
+- **Ferramentas de Modelagem**: Draw.io, PgAdmin4, Figma, PlantUML; e
 
 - **Versionamento**: Git, GitHub.
   
