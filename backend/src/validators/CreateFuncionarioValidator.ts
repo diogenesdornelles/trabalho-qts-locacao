@@ -19,7 +19,10 @@ export const CreateFuncionarioValidator = z
       .refine(GeneralValidator.validateCpf, {
         message: 'Forneça um CPF válido.',
       }),
-    nome: z.string().min(3, 'Nome deve ter no mínimo 3 caracteres').max(255, 'Nome deve ter no máximo 3 caracteres'),
+    nome: z
+      .string()
+      .min(3, 'Nome deve ter no mínimo 3 caracteres')
+      .max(255, 'Nome deve ter no máximo 3 caracteres'),
     telefone: z
       .string()
       .transform(str => str.replace(/\D/g, ''))

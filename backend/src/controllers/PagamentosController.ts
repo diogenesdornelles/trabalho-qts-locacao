@@ -3,7 +3,6 @@ import PagamentoServices from '../services/PagamentoServices'
 import { BaseController } from './BaseController'
 import { CreatePagamentoValidator } from '../validators/CreatePagamentoValidator'
 
-
 export default class PagamentosController extends BaseController<PagamentoServices> {
   constructor() {
     super(new PagamentoServices())

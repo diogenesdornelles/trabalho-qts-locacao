@@ -6,10 +6,11 @@ import { dateSchema } from './dateSchema'
    ====================================== */
 export const CreateBrinquedoLocadoValidator = z
   .object({
-    cod_locacao: z.string().uuid("Deve informar UUID de locação válido"),
-    cod_brinquedo: z.string().uuid("Deve informar UUID de brinquedo válido"),
+    cod_locacao: z.string().uuid('Deve informar UUID de locação válido'),
+    cod_brinquedo: z.string().uuid('Deve informar UUID de brinquedo válido'),
     data_devolucao: dateSchema.refine(date => date >= new Date(), {
-      message: 'Data de devolução do brinquedo deve ser maior ou igual a data atual',
-    })
+      message:
+        'Data de devolução do brinquedo deve ser maior ou igual a data atual',
+    }),
   })
   .strict()

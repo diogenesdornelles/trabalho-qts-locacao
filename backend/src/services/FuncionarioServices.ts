@@ -53,13 +53,12 @@ export default class FuncionarioServices extends BaseService<
         funcao: data.funcao as Funcao,
       },
     })
-    createdFuncionario.senha = ""
+    createdFuncionario.senha = ''
     return {
       cpf: createdFuncionario.cpf,
       nome: createdFuncionario.nome,
       telefone: createdFuncionario.telefone,
       funcao: createdFuncionario.funcao,
-
     }
   }
 
@@ -85,7 +84,6 @@ export default class FuncionarioServices extends BaseService<
       nome: updatedFuncionario.nome,
       telefone: updatedFuncionario.telefone,
       funcao: updatedFuncionario.funcao,
-
     }
   }
 

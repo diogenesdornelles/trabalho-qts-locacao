@@ -17,7 +17,9 @@ import BrinquedoLocadoRouter from './routes/brinquedosLocados.routes'
  *
  */
 
-const allRoutes: TRouteConfig[] = [
+
+// cadastra as rotas e os paths
+const appRoutes: TRouteConfig[] = [
   {
     baseRouter: new FuncionarioRouter(),
     basePath: '/api/funcionarios',
@@ -53,10 +55,10 @@ const allRoutes: TRouteConfig[] = [
 ]
 
 export default class Start {
-  private app: App = new App(allRoutes)
+  private app: App = new App(appRoutes)
 
   constructor() {
-    this.app = new App(allRoutes)
+    this.app = new App(appRoutes)
     this.app.listen('https')
   }
 }

@@ -5,6 +5,7 @@ import jwt, { Secret, JwtPayload } from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { FuncaoEnum } from '../validators/CreateFuncionarioValidator'
 import { z } from 'zod'
+import { ApiError } from '../utils/ApiError'
 
 dotenv.config()
 
@@ -88,6 +89,18 @@ export default class GeneralMiddleware {
       res.status(500).json({
         error: 'Database error',
         details: errorMessage,
+      })
+      return
+    }
+
+    if (error instanceof ApiError) {
+      console.error(
+        `Unexpected error on ${req.method} resource:`,
+        error.message,
+      )
+      res.status(error.statusCode).json({
+        error: error.message,
+        details: error.message,
       })
       return
     }

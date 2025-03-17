@@ -1120,11 +1120,7 @@
           },
           "pgto_status": {
             "type": "string",
-            "enum": [
-              "PAGO",
-              "PENDENTE",
-              "ATRASO"
-            ]
+            "enum": ["PAGO", "PENDENTE", "ATRASO"]
           }
         },
         "additionalProperties": false

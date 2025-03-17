@@ -81,7 +81,7 @@ No modelo incremental, o desenvolvimento do software ocorre em etapas chamadas d
 
 Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo.
 
-As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, faz-se necessário a realização de reuniões, a análise de requisitos, modelagem e design, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD, bem como testes e entrega.
+As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, serão necessários a realização de reuniões, a análise de requisitos, modelagem e design do software, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD de dados, bem como testes e entrega.
 
 Portanto, as atividades executadas serão as seguintes:
 
@@ -167,11 +167,13 @@ Portanto, as atividades executadas serão as seguintes:
 
 - **Backend**: Node.js, Express, PostgreSQL, Prisma, TypeScript, JWT, Docker;
 
-- **Frontend**: React, TypeScript, Styled-components, Bootstrap;
+- **Frontend**: React, TypeScript, Styled-components, Bootstrap, Tailwind (ou outra ferramenta framework de estilização);
 
 - **Ferramentas de Modelagem**: Draw.io, PgAdmin4, Figma; e
 
 - **Versionamento**: Git, GitHub.
+  
+- **Virtualização**: Docker e Compose.
 
 ## Parte 1: Backend da aplicação
 

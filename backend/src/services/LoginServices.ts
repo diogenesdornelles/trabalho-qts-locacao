@@ -47,7 +47,11 @@ export default class LoginServices extends BaseService<
       )
 
       return {
-        funcionario: { cpf: dbFuncionario.cpf, nome: dbFuncionario.nome, funcao: dbFuncionario.funcao },
+        funcionario: {
+          cpf: dbFuncionario.cpf,
+          nome: dbFuncionario.nome,
+          funcao: dbFuncionario.funcao,
+        },
         token: token,
       }
     } else {

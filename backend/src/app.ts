@@ -20,7 +20,7 @@ import https from 'https'
 import fs from 'fs'
 import path from 'path'
 
-// Caminho para os arquivos de certificado
+// Caminho para os arquivos de certificado a fim de rodar a aplicação em https
 const sslOptions = {
   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
   cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
@@ -28,6 +28,7 @@ const sslOptions = {
 
 dotenv.config()
 
+// configuraçãod e CORS
 const corsOptions: cors.CorsOptions = {
   origin: '*', // All origins
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // allowed
@@ -37,16 +38,18 @@ const corsOptions: cors.CorsOptions = {
 
 type TServerProtocol = 'https' | 'http'
 
+type TBaseRouter = BaseRouter<
+  BaseController<
+    BaseService<Record<string, any>, Record<string, any>, Record<string, any>>
+  >
+>
+
 const PORT = process.env.PORT || 3000
 const HOST = process.env.HOST || ''
 
 export type TRouteConfig = {
   basePath: string
-  baseRouter: BaseRouter<
-    BaseController<
-      BaseService<Record<string, any>, Record<string, any>, Record<string, any>>
-    >
-  >
+  baseRouter: TBaseRouter
 }
 
 class App {
@@ -72,9 +75,10 @@ class App {
         crossOriginResourcePolicy: false,
       }),
     )
+    // Terminal de forma amigável
     this.app.use(morgan('dev'))
     // para acessar docs: https://localhost:3000/api-docs/ ou http://localhost:3000/api-docs/
-    this.app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+    this.app.use('api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   }
 
   // initialize routes

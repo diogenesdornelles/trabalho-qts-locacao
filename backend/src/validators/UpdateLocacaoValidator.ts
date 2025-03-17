@@ -5,12 +5,7 @@ import GeneralValidator from './GeneralValidator'
    Schema de validação para o update do modelo Locacao
    ====================================== */
 
-
-export const PgtoStatusEnum = z.enum([
-   'PAGO',
-   'PENDENTE',
-   'ATRASO'
- ])
+export const PgtoStatusEnum = z.enum(['PAGO', 'PENDENTE', 'ATRASO'])
 
 export const CreateLocacaoValidator = z
   .object({
@@ -20,6 +15,6 @@ export const CreateLocacaoValidator = z
       .refine(GeneralValidator.validateCpf, {
         message: 'CPF inválido',
       }),
-   pgto_status: PgtoStatusEnum
+    pgto_status: PgtoStatusEnum,
   })
   .strict()
