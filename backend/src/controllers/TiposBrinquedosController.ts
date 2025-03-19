@@ -3,6 +3,9 @@ import TipoBrinquedoServices from '../services/TipoBrinquedoServices'
 import { BaseController } from './BaseController'
 import { CreateTipoBrinquedoValidator } from '../validators/CreateTipoBrinquedoValidator'
 import { UpdateTipoBrinquedoValidator } from '../validators/UpdateTipoBrinquedoValidator'
+import { TipoBrinquedoResponseDTO } from '../dtos/response/TipoBrinquedoResponseDTO'
+import { CreateTipoBrinquedoDTO } from '../dtos/create/CreateTipoBrinquedoDTO'
+import { UpdateTipoBrinquedoDTO } from '../dtos/update/UpdateTipoBrinquedoDTO'
 
 export default class TiposBrinquedosController extends BaseController<TipoBrinquedoServices> {
   constructor() {
@@ -14,7 +17,7 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const tipos = await this.service.getAll()
+      const tipos: TipoBrinquedoResponseDTO[] = await this.service.getAll()
       res.status(200).json(tipos)
       return
     } catch (error) {
@@ -30,7 +33,7 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const tipo = await this.service.getOne(cod)
+      const tipo: TipoBrinquedoResponseDTO | null = await this.service.getOne(cod)
       if (!tipo) {
         res.status(404).json({ message: 'Type toy not found' })
         return
@@ -49,8 +52,8 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData = CreateTipoBrinquedoValidator.parse(req.body)
-      const tipo = await this.service.create(validatedData)
+      const validatedData: CreateTipoBrinquedoDTO = CreateTipoBrinquedoValidator.parse(req.body)
+      const tipo: TipoBrinquedoResponseDTO = await this.service.create(validatedData)
       res.status(201).json(tipo)
       return
     } catch (error) {
@@ -66,8 +69,8 @@ export default class TiposBrinquedosController extends BaseController<TipoBrinqu
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const validatedData = UpdateTipoBrinquedoValidator.parse(req.body)
-      const updatedTipo = await this.service.update(cod, validatedData)
+      const validatedData: UpdateTipoBrinquedoDTO = UpdateTipoBrinquedoValidator.parse(req.body)
+      const updatedTipo: Partial<TipoBrinquedoResponseDTO> = await this.service.update(cod, validatedData)
       if (!updatedTipo) {
         res.status(404).json({ message: 'Type toy not found' })
         return

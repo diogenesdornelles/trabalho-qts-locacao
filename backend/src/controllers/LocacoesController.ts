@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express'
 import LocacaoServices from '../services/LocacaoServices'
 import { BaseController } from './BaseController'
 import { CreateLocacaoValidator } from '../validators/CreateLocacaoValidator'
+import { LocacaoResponseDTO } from '../dtos/response/LocacaoResponseDTO'
+import { CreateLocacaoDTO } from '../dtos/create/CreateLocacaoDTO'
 
 export default class LocacoesController extends BaseController<LocacaoServices> {
   constructor() {
@@ -13,7 +15,7 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const locacoes = await this.service.getAll()
+      const locacoes: LocacaoResponseDTO[] = await this.service.getAll()
       res.status(200).json(locacoes)
       return
     } catch (error) {
@@ -29,7 +31,7 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const locacao = await this.service.getOne(cod)
+      const locacao: LocacaoResponseDTO | null = await this.service.getOne(cod)
       if (!locacao) {
         res.status(404).json({ message: 'Rental not found' })
         return
@@ -48,8 +50,8 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData = CreateLocacaoValidator.parse(req.body)
-      const locacao = await this.service.create(validatedData)
+      const validatedData: CreateLocacaoDTO = CreateLocacaoValidator.parse(req.body)
+      const locacao: LocacaoResponseDTO = await this.service.create(validatedData)
       res.status(201).json(locacao)
       return
     } catch (error) {

@@ -81,7 +81,7 @@ No modelo incremental, o desenvolvimento do software ocorre em etapas chamadas d
 
 Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo.
 
-As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, serão necessários a realização de reuniões, a análise de requisitos, modelagem e design do software, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD de dados, bem como testes e entrega.
+As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, serão necessários a realização de reuniões, a análise de requisitos, modelagem e design do software, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD de dados disponíveis através de uma API Rest, bem como testes e entrega.
 
 Portanto, as atividades executadas serão as seguintes:
 
@@ -101,7 +101,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 4. **Implementação e Desenvolvimento**, cujos atores principais são os desenvolvedores de Backend e Frontend da aplicação, notadamente:
 
-    - *Construção das respectivas rotas de acesso aos recursos da aplicação no backend*:
+    - *NodeJS API Rest: Construção das respectivas rotas de acesso aos recursos da aplicação no backend*:
         - Funcionários;
         - Clientes;
         - Brinquedos;
@@ -111,7 +111,7 @@ Portanto, as atividades executadas serão as seguintes:
         - Brinquedos Locados;
         - Login;
 
-    - *Construção das telas junto ao frontend*:
+    - *React/Next: Construção das telas junto ao frontend*:
         - Leitura, inclusão, alteração e deleção de Funcionários;
         - Leitura, inclusão e alteração de Clientes;
         - Leitura, inclusão, alteração e deleção Brinquedos;
@@ -848,7 +848,7 @@ model TipoBrinquedo {
 
 #### Imagem no drive para melhor visualização
 
-[Link para o diagrama](https://drive.google.com/file/d/1H4PxNRNaiQ9_31KxHOeHkm2vv-d7FAcE/view?usp=sharing "Acesse no google drive")
+[Link para o diagrama](https://drive.google.com/file/d/13nvguGyV7Tko0G7zV33Pw9NZL0UtLM1p/view?usp=sharing "Acesse no google drive")
 
 ### Estruturação de pastas no Backend
 

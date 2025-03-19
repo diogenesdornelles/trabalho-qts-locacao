@@ -2,6 +2,8 @@ import { Request, Response, NextFunction } from 'express'
 import LoginServices from '../services/LoginServices'
 import { BaseController } from './BaseController'
 import { CreateLoginValidator } from '../validators/CreateLoginValidator'
+import { CreateTokenDTO } from '../dtos/create/CreateTokenDTO'
+import { TokenResponseDTO } from '../dtos/response/TokenResponseDTO'
 
 export default class LoginController extends BaseController<LoginServices> {
   constructor() {
@@ -14,8 +16,8 @@ export default class LoginController extends BaseController<LoginServices> {
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData = CreateLoginValidator.parse(req.body)
-      const result = await this.service.create(validatedData)
+      const validatedData: CreateTokenDTO = CreateLoginValidator.parse(req.body)
+      const result: TokenResponseDTO = await this.service.create(validatedData)
       res.status(201).json(result)
       return
     } catch (error) {
