@@ -1,7 +1,3 @@
-"use client";
-
-import Image from "next/image";
-
 import {
   Table,
   TableBody,
@@ -23,58 +19,8 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as Yup from "yup";
-import { Input } from "@/components/ui/input";
 
-const formSchema = Yup.object().shape({
-  cpf_cliente: Yup.string().required(),
-  data_devolucao: Yup.string().required(),
-});
-
-const RentalForm = () => {
-  const { handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
-  });
-
-  const onSubmit = (data: unknown) => {
-    console.log(data); // Exemplo de como você pode usar os dados
-  };
-
-  return (
-    <form
-      className="flex flex-col gap-4 w-[70%]"
-      onSubmit={handleSubmit(onSubmit)}
-    >
-      <div className="flex gap-4">
-        <div className="w-50">
-          <label htmlFor="data_locacao">Data da locação</label>
-          <Input type="date" name="data_locacao" className="bg-white" />
-        </div>
-
-        <div className="w-50">
-          <label htmlFor="data_devolucao">Data de devolução</label>
-          <Input type="date" name="data_devolucao" className="bg-white" />
-        </div>
-      </div>
-
-      <div className="flex gap-4">
-        <div>
-          <label htmlFor="cpf_cliente">CPF do cliente</label>
-          <Input type="text" name="cpf_cliente" className="bg-white" />
-        </div>
-
-        <div className="grow-1">
-          <label htmlFor="nome_cliente">Nome do cliente</label>
-          <Input type="text" name="nome_cliente" className="bg-white" />
-        </div>
-      </div>
-    </form>
-  );
-};
-
-const ToysTable = () => {
+export const ToysTable = () => {
   return (
     <div className="flex flex-col w-[70%] gap-3 mt-6">
       <div className="flex items-end justify-between">
@@ -128,11 +74,3 @@ const ToysTable = () => {
     </div>
   );
 };
-
-export default function Home() {
-  return (
-    <div className="flex flex-col items-center w-full h-full min-h-screen">
-      Home page
-    </div>
-  );
-}
