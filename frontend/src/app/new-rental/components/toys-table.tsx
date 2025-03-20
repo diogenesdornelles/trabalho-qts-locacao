@@ -19,6 +19,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { PlusCircle } from "lucide-react";
+import { ToysSelectionForm } from "./toys-selection-form";
 
 export const ToysTable = () => {
   return (
@@ -37,10 +38,11 @@ export const ToysTable = () => {
               </div>
             </Button>
           </DialogTrigger>
-          <DialogContent>
+          <DialogContent className="min-w-fit">
             <DialogHeader>
               <DialogTitle>Seleção de brinquedo</DialogTitle>
             </DialogHeader>
+            <ToysSelectionForm />
           </DialogContent>
         </Dialog>
       </div>
