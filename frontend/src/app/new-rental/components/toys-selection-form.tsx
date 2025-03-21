@@ -10,6 +10,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useEffect } from "react";
+import { useApi } from "@/lib/api-instance/api";
 
 const formSchema = Yup.object().shape({
   brinquedo_id: Yup.number().required().positive(),
@@ -20,6 +22,22 @@ export const ToysSelectionForm = () => {
   const { handleSubmit, register } = useForm({
     resolver: yupResolver(formSchema),
   });
+
+  const api = useApi();
+
+  useEffect(() => {
+    console.log('entrou')
+    const fetchToyTypes = async () => {
+      try {
+        const response = await api.get("/tiposBrinquedos");
+        console.log(response);
+      } catch (error) {
+        console.log("Erro ao buscar os tipos de brinquedo: ", error);
+      }
+    };
+
+    fetchToyTypes();
+  }, [api]);
 
   const onSubmit = () => {};
 
