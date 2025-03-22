@@ -881,11 +881,6 @@
             "format": "uuid",
             "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
           },
-          "data_devolucao": {
-            "type": "string",
-            "format": "date",
-            "example": "2024-01-01"
-          },
           "cod_brinquedo": {
             "type": "string",
             "format": "uuid",
@@ -901,10 +896,6 @@
             "type": "string",
             "format": "uuid",
             "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
-          },
-          "data_devolucao": {
-            "type": "string",
-            "format": "date"
           },
           "cod_brinquedo": {
             "type": "string",

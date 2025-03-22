@@ -4,7 +4,6 @@ dotenv.config()
 import App from './app'
 import appRoutes from './appRoutes'
 
-
 /**
  * Clase que tem como objetivo rodar o server app
  *

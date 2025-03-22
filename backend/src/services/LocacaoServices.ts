@@ -39,7 +39,7 @@ export default class LocacaoServices extends BaseService<
     return await this.prisma.locacao.findUnique({
       where: { cod: pk },
       include: {
-        brinquedosLocados: true, // consulta populada: nome usaso no prisma schema
+        brinquedosLocados: true, // consulta populada: nome usado no prisma schema
       },
     })
   }

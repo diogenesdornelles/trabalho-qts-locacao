@@ -1,15 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
 import BrinquedoLocadoServices from '../services/BrinquedoLocadoServices'
 import { BaseController } from './BaseController'
-import { CreateBrinquedoLocadoValidator } from '../validators/CreateBrinquedoLocadoValidator'
-import { UpdateBrinquedoLocadoValidator } from '../validators/UpdateBrinquedoLocadoValidator'
 import { BrinquedoLocadoResponseDTO } from '../dtos/response/BrinquedoLocadoResponseDTO'
 import { CreateBrinquedoLocadoDTO } from '../dtos/create/CreateBrinquedoLocadoDTO'
 import { UpdateBrinquedoLocadoDTO } from '../dtos/update/UpdateBrinquedoLocadoDTO'
+import DTOValidator from '../validators/DTOValidator'
 
 export default class BrinquedosLocadosController extends BaseController<BrinquedoLocadoServices> {
   constructor() {
-    super(new BrinquedoLocadoServices())
+    super(new BrinquedoLocadoServices(), new DTOValidator())
   }
 
   public getAll = async (
@@ -18,7 +17,8 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const brinquedos: BrinquedoLocadoResponseDTO[] = await this.service.getAll()
+      const brinquedos: BrinquedoLocadoResponseDTO[] =
+        await this.service.getAll()
       res.status(200).json(brinquedos)
       return
     } catch (error) {
@@ -34,7 +34,8 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const brinquedo: BrinquedoLocadoResponseDTO | null = await this.service.getOne(cod)
+      const brinquedo: BrinquedoLocadoResponseDTO | null =
+        await this.service.getOne(cod)
       if (!brinquedo) {
         res.status(404).json({ message: 'Toy not found' })
         return
@@ -53,8 +54,10 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData: CreateBrinquedoLocadoDTO = CreateBrinquedoLocadoValidator.parse(req.body)
-      const brinquedo:  BrinquedoLocadoResponseDTO | null = await this.service.create(validatedData)
+      const validatedData: CreateBrinquedoLocadoDTO =
+        this.validator.createBrinquedoLocado<CreateBrinquedoLocadoDTO>(req.body)
+      const brinquedo: BrinquedoLocadoResponseDTO | null =
+        await this.service.create(validatedData)
       if (brinquedo) {
         res.status(201).json(brinquedo)
       } else {
@@ -74,8 +77,10 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
   ): Promise<void> => {
     try {
       const { cod } = req.params
-      const validatedData: UpdateBrinquedoLocadoDTO = UpdateBrinquedoLocadoValidator.parse(req.body)
-      const updatedBrinquedo: Partial<BrinquedoLocadoResponseDTO | null> = await this.service.update(cod, validatedData)
+      const validatedData: UpdateBrinquedoLocadoDTO =
+        this.validator.updateBrinquedoLocado<UpdateBrinquedoLocadoDTO>(req.body)
+      const updatedBrinquedo: Partial<BrinquedoLocadoResponseDTO | null> =
+        await this.service.update(cod, validatedData)
       if (!updatedBrinquedo) {
         res.status(404).json({ message: 'Toy not found' })
         return

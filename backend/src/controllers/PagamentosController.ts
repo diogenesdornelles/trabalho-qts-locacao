@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import PagamentoServices from '../services/PagamentoServices'
 import { BaseController } from './BaseController'
-import { CreatePagamentoValidator } from '../validators/CreatePagamentoValidator'
 import { PagamentoResponseDTO } from '../dtos/response/PagamentoResponseDTO'
 import { CreatePagamentoDTO } from '../dtos/create/CreatePagamentoDTO'
+import DTOValidator from '../validators/DTOValidator'
 
 export default class PagamentosController extends BaseController<PagamentoServices> {
   constructor() {
-    super(new PagamentoServices())
+    super(new PagamentoServices(), new DTOValidator())
   }
   public getAll = async (
     req: Request,
@@ -32,7 +32,8 @@ export default class PagamentosController extends BaseController<PagamentoServic
     try {
       const { cod } = req.params
 
-      const pagamento: PagamentoResponseDTO | null = await this.service.getOne(cod)
+      const pagamento: PagamentoResponseDTO | null =
+        await this.service.getOne(cod)
       if (!pagamento) {
         res.status(404).json({ message: 'Payment not found' })
         return
@@ -51,8 +52,10 @@ export default class PagamentosController extends BaseController<PagamentoServic
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData: CreatePagamentoDTO = CreatePagamentoValidator.parse(req.body)
-      const pagamento: PagamentoResponseDTO = await this.service.create(validatedData)
+      const validatedData: CreatePagamentoDTO =
+        this.validator.createPagamento<CreatePagamentoDTO>(req.body)
+      const pagamento: PagamentoResponseDTO =
+        await this.service.create(validatedData)
       res.status(201).json(pagamento)
       return
     } catch (error) {

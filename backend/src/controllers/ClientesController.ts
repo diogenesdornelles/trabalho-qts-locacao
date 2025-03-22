@@ -1,15 +1,14 @@
 import { Request, Response, NextFunction } from 'express'
 import ClienteServices from '../services/ClienteServices'
 import { BaseController } from './BaseController'
-import { CreateClienteValidator } from '../validators/CreateClienteValidator'
-import { UpdateBrinquedoValidator } from '../validators/UpdateBrinquedoValidator'
 import { ClienteResponseDTO } from '../dtos/response/ClienteResponseDTO'
 import { CreateClienteDTO } from '../dtos/create/CreateClienteDTO'
-import { UpdateBrinquedoDTO } from '../dtos/update/UpdateBrinquedoDTO'
+import DTOValidator from '../validators/DTOValidator'
+import { UpdateClienteDTO } from '../dtos/update/UpdateClienteDTO'
 
 export default class ClientesController extends BaseController<ClienteServices> {
   constructor() {
-    super(new ClienteServices())
+    super(new ClienteServices(), new DTOValidator())
   }
 
   public getAll = async (
@@ -53,8 +52,10 @@ export default class ClientesController extends BaseController<ClienteServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData: CreateClienteDTO = CreateClienteValidator.parse(req.body)
-      const cliente: ClienteResponseDTO = await this.service.create(validatedData)
+      const validatedData: CreateClienteDTO =
+        this.validator.createCliente<CreateClienteDTO>(req.body)
+      const cliente: ClienteResponseDTO =
+        await this.service.create(validatedData)
       res.status(201).json(cliente)
       return
     } catch (error) {
@@ -70,8 +71,10 @@ export default class ClientesController extends BaseController<ClienteServices> 
   ): Promise<void> => {
     try {
       const { cpf } = req.params
-      const validatedData: UpdateBrinquedoDTO = UpdateBrinquedoValidator.parse(req.body)
-      const updatedCliente: Partial<ClienteResponseDTO> = await this.service.update(cpf, validatedData)
+      const validatedData: UpdateClienteDTO =
+        this.validator.updateCliente<UpdateClienteDTO>(req.body)
+      const updatedCliente: Partial<ClienteResponseDTO> =
+        await this.service.update(cpf, validatedData)
       if (!updatedCliente) {
         res.status(404).json({ message: 'Customer not found' })
         return

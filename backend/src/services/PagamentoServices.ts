@@ -34,7 +34,9 @@ export default class PagamentoServices extends BaseService<
     data: CreatePagamentoDTO,
   ): Promise<PagamentoResponseDTO> => {
     // É preciso atualizar o status de pagamento
-    const locacaoDB = await this.prisma.locacao.findUnique({where: {cod: data.cod_locacao}})
+    const locacaoDB = await this.prisma.locacao.findUnique({
+      where: { cod: data.cod_locacao },
+    })
     if (!locacaoDB) {
       throw new ApiError(404, 'Rental not found')
     }

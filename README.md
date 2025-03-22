@@ -185,8 +185,9 @@ Portanto, as atividades executadas serão as seguintes:
 | **RF02** | O sistema deve **gerenciar** informações sobre brinquedos: *código único, nome, tipo de brinquedo, marca, data da aquisição e valor da locação*. | Almoxarife | RF03 |
 | **RF03** | O sistema deve **manter** informações sobre tipos de brinquedos: *código único e nome do tipo*. | Almoxarife | - |
 | **RF04** | O sistema deve **manter** informações sobre clientes: *CPF, nome, endereço, data de nascimento e telefone*. | Analista de cadastro | - |
-| **RF05** | O sistema deve **incluir** informações sobre locações: *código único da locação, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado, valor total da locação e data para devolução*. | Agente de locação | RF02, RF04 |
-| **RF06** | O sistema deve **incluir** informações sobre pagamento: *código único da locação, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*. | Caixa | RF02, RF05 |
+| **RF05** | O sistema deve **incluir** informações sobre locações: *código único da locação, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado, valor total da locação e data para devolução*. | Agente de locação | RF02, RF04, RN02 |
+| **RF06** | O sistema deve **incluir** informações sobre pagamento: *código único da locação, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*. | Caixa | RF02, RF05, RN01 |
+| **RF07** | O sistema deve **permitir** acesso aos recursos mediante login com *senha* e *CPF*. | Sistema | RF01, RNF06 |
 
 ### Definições
 
@@ -208,9 +209,8 @@ Portanto, as atividades executadas serão as seguintes:
 
 | **Código** | **Regra de Negócio** |
 |------------|----------------------|
-| **RN01** | O sistema deve permitir a inclusão de mais de um brinquedo na mesma locação. |
-| **RN02** | A locação deve ser feita somente presencialmente na loja. |
-| **RN03** | O pagamento é feito no momento da locação e em dinheiro. |
+| **RN01** | O pagamento é feito no momento da locação e em dinheiro. |
+| **RN02** | O prazo máximo para devolução dos brinquedos é de 01 dia (ou seja, 1 dia após a entrega do brinquedo locado). |
 
 ### Diagrama de Casos de Uso
 
@@ -372,7 +372,7 @@ Portanto, as atividades executadas serão as seguintes:
 3. **Sistema** mostra uma lista com os brinquedos compatíveis.
 4. **Almoxárife** seleciona o brinquedo desejado.
 5. **Sistema** busca e mostra os dados do brinquedo: **nome, tipo, marca, código, data da aquisição e valor da locação**.
-6. **Sistema** exibe a mensagem: “Deseja excluir?”.
+6. **Sistema** exibe a mensagem: *“Deseja excluir?”*.
 7. **Sistema** apresenta as opções: **excluir** e **cancelar**.
 8. Dependendo da escolha:
    - **Opção Cancelar:**  
@@ -509,24 +509,19 @@ Portanto, as atividades executadas serão as seguintes:
 7. **Agente de locação** informa o nome do brinquedo.
 8. **Sistema** mostra uma lista com brinquedos compatíveis.
 9. **Agente de locação** seleciona o brinquedo desejado.
-10. **Sistema** solicita o preenchimento do campo **Data de Devolução**.
-11. **Agente de locação** informa a data.
-12. **Sistema** valida a data:
-    - Se **em branco ou incorreta**:
-      1. Exibe mensagem de erro.
-      2. Retorna ao **passo 10**.
-13. **Sistema** gera um código único para o brinquedo locado.
-14. **Sistema** insere o nome do brinquedo e o valor unitário.
-15. **Sistema** exibe a mensagem: *Item incluído com sucesso*.
-16. **Sistema** pergunta: *Deseja locar outro brinquedo?*
+10. **Sistema** inclui devolução como sendo *"Data atual + 1"*.
+11. **Sistema** gera um código único para o brinquedo locado.
+12. **Sistema** insere o nome do brinquedo e o valor unitário.
+13. **Sistema** exibe a mensagem: *Item incluído com sucesso*.
+14. **Sistema** pergunta: *Deseja locar outro brinquedo?*
     - Se **Sim**: Retoma a partir do **passo 6** (mantendo o mesmo cliente).
     - Se **Não**: Prossegue.
-17. **Sistema** calcula o valor total da locação.
-18. **Sistema** registra a data e hora atual.
-19. **Sistema** define o status do pagamento como *pendente*.
-20. **Sistema** gera um código único para a locação.
-21. **Sistema** salva os dados.
-22. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
+15. **Sistema** calcula o valor total da locação.
+16. **Sistema** registra a data e hora atual.
+17. **Sistema** define o status do pagamento como *pendente*.
+18. **Sistema** gera um código único para a locação.
+19. **Sistema** salva os dados.
+20. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
 ---
 
@@ -563,6 +558,36 @@ Portanto, as atividades executadas serão as seguintes:
 16. **Sistema** salva os dados.
 17. **Sistema** exibe a mensagem: *Operação realizada com sucesso*.
 
+### 7. Fazer login
+
+| **Nome do caso de uso**         | Fazer login                                                              |
+|---------------------------------|:-------------------------------------------------------------------------------:|
+| **Escopo**                      | Permite que o funcionário seja autenticado e autorizado junto ao sistema                                       |
+| **Ator(es)**                    | Qualquer funcionário                                                             |
+| **Interessados e interesses**   | Funcionário: acesso ao sistema de locações                           |
+| **Pré-condição**                | Estar registrado junto ao sistema                                    |
+| **Pós-condição**                | Que adquira acesso às funcionalidades parta as quais é autorizado           |
+
+##### Fluxo Principal
+
+1. **Funcionário** clica na opção *Fazer login*.
+2. **Sistema** solicita o preenchimento do campo **CPF** e **senha**.
+3. **Funcionário** informa o CPF e senha.
+4. **Sistema** valida as informações.
+   - Se **CPF em branco ou inválido**:
+      1. Exibe mensagem de erro.
+      2. Retorna ao **passo 2**.
+   - Se **CPF não cadastrado**:
+      1. Exibe mensagem de erro.
+      2. Retorna ao **passo 2**.
+   - Se **Senha incorreta**:
+      1. Exibe mensagem de erro.
+      2. Retorna ao **passo 2**.
+5. **Sistema** fornece o token de autenticação e autorização.
+6. **Sistema** armazena o token junto ao frontend da aplicação.
+7. **Sistema** mostra mensagem *login efetuado com sucesso*.
+8. **Sistema** exibe o painel principal.
+
 ### ERD
 
 #### tabela funcionarios
@@ -591,7 +616,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 #### tabela locacoes
 
-- **Campos:** código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)
+- **Campos:** código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)(status do pagamento é um enum de PAGO, PENDENTE, ATRASO)
 
 - **Relações:** Um funcionario (agente de locação) pode incluir muitas locações.
 - **Relações:** Um cliente pode possuir várias locações. Por outro lado, uma locação pode pertencer a somente um cliente.

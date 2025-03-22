@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { BaseService } from '../services/BaseService'
+import DTOValidator from '../validators/DTOValidator'
 
 export abstract class BaseController<
   T extends BaseService<
@@ -9,8 +10,10 @@ export abstract class BaseController<
   >,
 > {
   public service: T
-  constructor(service: T) {
+  public validator: DTOValidator
+  constructor(service: T, validator: DTOValidator) {
     this.service = service
+    this.validator = validator
   }
 
   public abstract getAll(

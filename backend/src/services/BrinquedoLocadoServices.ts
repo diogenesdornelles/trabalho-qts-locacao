@@ -34,12 +34,17 @@ export default class BrinquedoLocadoServices extends BaseService<
     })
 
     if (brinquedoDB) {
+      // RN02: obter a data de amanhã
+      let today = new Date()
+      let tomorrow = new Date()
+      tomorrow.setDate(today.getDate() + 1)
       // Salva o novo brinquedo locado utilizando o método create do Prisma
       const createdBrinquedoLocado = await this.prisma.brinquedoLocado.create({
         data: {
           ...data,
           valor_unitario: brinquedoDB.valor_locacao,
           nome: brinquedoDB.nome,
+          data_devolucao: tomorrow,
         },
       })
       return createdBrinquedoLocado

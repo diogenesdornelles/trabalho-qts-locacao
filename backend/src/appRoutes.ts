@@ -10,38 +10,38 @@ import BrinquedoLocadoRouter from './routes/brinquedosLocados.routes'
 
 // cadastra as rotas e os paths
 const appRoutes: TRouteConfig[] = [
-    {
-      baseRouter: new FuncionarioRouter(),
-      basePath: '/api/funcionarios',
-    },
-    {
-      baseRouter: new BrinquedoRouter(),
-      basePath: '/api/brinquedos',
-    },
-    {
-      baseRouter: new BrinquedoLocadoRouter(),
-      basePath: '/api/brinquedosLocados',
-    },
-    {
-      baseRouter: new TipoBrinquedoRouter(),
-      basePath: '/api/tiposBrinquedos',
-    },
-    {
-      baseRouter: new ClienteRouter(),
-      basePath: '/api/clientes',
-    },
-    {
-      baseRouter: new LocacaoRouter(),
-      basePath: '/api/locacoes',
-    },
-    {
-      baseRouter: new PagamentoRouter(),
-      basePath: '/api/pagamentos',
-    },
-    {
-      baseRouter: new LoginRouter(),
-      basePath: '/api/login',
-    },
-  ]
+  {
+    baseRouter: new FuncionarioRouter(),
+    basePath: '/api/funcionarios',
+  },
+  {
+    baseRouter: new BrinquedoRouter(),
+    basePath: '/api/brinquedos',
+  },
+  {
+    baseRouter: new BrinquedoLocadoRouter(),
+    basePath: '/api/brinquedosLocados',
+  },
+  {
+    baseRouter: new TipoBrinquedoRouter(),
+    basePath: '/api/tiposBrinquedos',
+  },
+  {
+    baseRouter: new ClienteRouter(),
+    basePath: '/api/clientes',
+  },
+  {
+    baseRouter: new LocacaoRouter(),
+    basePath: '/api/locacoes',
+  },
+  {
+    baseRouter: new PagamentoRouter(),
+    basePath: '/api/pagamentos',
+  },
+  {
+    baseRouter: new LoginRouter(),
+    basePath: '/api/login',
+  },
+]
 
 export default appRoutes

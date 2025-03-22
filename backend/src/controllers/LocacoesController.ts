@@ -1,13 +1,13 @@
 import { Request, Response, NextFunction } from 'express'
 import LocacaoServices from '../services/LocacaoServices'
 import { BaseController } from './BaseController'
-import { CreateLocacaoValidator } from '../validators/CreateLocacaoValidator'
 import { LocacaoResponseDTO } from '../dtos/response/LocacaoResponseDTO'
 import { CreateLocacaoDTO } from '../dtos/create/CreateLocacaoDTO'
+import DTOValidator from '../validators/DTOValidator'
 
 export default class LocacoesController extends BaseController<LocacaoServices> {
   constructor() {
-    super(new LocacaoServices())
+    super(new LocacaoServices(), new DTOValidator())
   }
   public getAll = async (
     req: Request,
@@ -50,8 +50,10 @@ export default class LocacoesController extends BaseController<LocacaoServices> 
     next: NextFunction,
   ): Promise<void> => {
     try {
-      const validatedData: CreateLocacaoDTO = CreateLocacaoValidator.parse(req.body)
-      const locacao: LocacaoResponseDTO = await this.service.create(validatedData)
+      const validatedData: CreateLocacaoDTO =
+        this.validator.createLocacao<CreateLocacaoDTO>(req.body)
+      const locacao: LocacaoResponseDTO =
+        await this.service.create(validatedData)
       res.status(201).json(locacao)
       return
     } catch (error) {
