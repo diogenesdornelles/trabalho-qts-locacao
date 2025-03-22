@@ -1,6 +1,6 @@
-import TiposBrinquedosController from '../controllers/TiposBrinquedosController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import TiposBrinquedosController from '../controllers/tipos-brinquedos.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class TiposBrinquedosRouter extends BaseRouter<TiposBrinquedosController> {
   constructor() {

@@ -1,6 +1,6 @@
-import FuncionariosController from '../controllers/FuncionariosController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import FuncionariosController from '../controllers/funcionarios.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class FuncionariosRouter extends BaseRouter<FuncionariosController> {
   constructor() {

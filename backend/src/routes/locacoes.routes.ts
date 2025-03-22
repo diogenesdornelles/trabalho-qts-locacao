@@ -1,6 +1,6 @@
-import LocacoesController from '../controllers/LocacoesController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import LocacoesController from '../controllers/locacoes.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class LocacoesRouter extends BaseRouter<LocacoesController> {
   constructor() {

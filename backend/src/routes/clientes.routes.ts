@@ -1,6 +1,6 @@
-import ClientesController from '../controllers/ClientesController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import ClientesController from '../controllers/clientes.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class ClientesRouter extends BaseRouter<ClientesController> {
   constructor() {

@@ -79,7 +79,7 @@ O desenvolvimento seguirá as etapas do modelo incremental, garantindo entregas 
 
 No modelo incremental, o desenvolvimento do software ocorre em etapas chamadas de incrementos. Cada incremento adiciona funcionalidades ao sistema, permitindo que versões utilizáveis sejam entregues progressivamente.
 
-Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo.
+Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. A garantia de que uma determinada locação pode ser concluída vem pelo seu status de pagamento. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo. Por fim, no intuito de implementar o sistema de login, deve ser gerado um token de autenticação e de autorização. Optou-se pela autenticação com JWT (JSON Web Token) que é stateless, significando que o servidor não precisa manter informações de sessão, o que facilita a escalabilidade e a segurança.
 
 As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, serão necessários a realização de reuniões, a análise de requisitos, modelagem e design do software, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD de dados disponíveis através de uma API Rest, bem como testes e entrega.
 
@@ -616,7 +616,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 #### tabela locacoes
 
-- **Campos:** código único da locação(pk), data e horário atual, status do pagamento, CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)(status do pagamento é um enum de PAGO, PENDENTE, ATRASO)
+- **Campos:** código único da locação(pk), data e horário atual, status do pagamento (para permitir a locação, vide RN), CPF do cliente(fk) (obtidos por query: valor total da locação c/ soma em locacoes_brinquedos)(status do pagamento é um enum de PAGO, PENDENTE, ATRASO)
 
 - **Relações:** Um funcionario (agente de locação) pode incluir muitas locações.
 - **Relações:** Um cliente pode possuir várias locações. Por outro lado, uma locação pode pertencer a somente um cliente.

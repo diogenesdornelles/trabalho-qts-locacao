@@ -1,6 +1,6 @@
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
-import LoginController from '../controllers/LoginController'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
+import LoginController from '../controllers/login.controller'
 
 export default class LoginRouter extends BaseRouter<LoginController> {
   constructor() {

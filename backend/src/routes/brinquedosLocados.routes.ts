@@ -1,6 +1,6 @@
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import BrinquedosLocadosController from '../controllers/BrinquedosLocadosController'
-import { BaseRouter } from './BaseRouter'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import BrinquedosLocadosController from '../controllers/brinquedos-locados.controller'
+import { BaseRouter } from './base.routes'
 
 export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocadosController> {
   constructor() {
