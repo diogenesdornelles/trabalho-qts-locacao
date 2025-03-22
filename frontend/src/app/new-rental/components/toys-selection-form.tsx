@@ -1,7 +1,8 @@
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { Input } from "@/components/ui/input";
+import { Plus } from "lucide-react";
 
 import {
   Select,
@@ -10,59 +11,141 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useApi } from "@/lib/api-instance/api";
+import { Brinquedo, TipoBrinquedo } from "@/domains/types";
+import { Button } from "@/components/ui/button";
 
 const formSchema = Yup.object().shape({
-  brinquedo_id: Yup.number().required().positive(),
-  quantidade: Yup.number().required().positive(),
+  cod_brinquedo: Yup.string().required(),
+  quantidade: Yup.string().required(),
+  valor_locacao: Yup.string().required(),
 });
 
 export const ToysSelectionForm = () => {
-  const { handleSubmit, register } = useForm({
+  const [toyTypes, setToyTypes] = useState<TipoBrinquedo[]>();
+  const [toys, setToys] = useState<Brinquedo[]>();
+  const [selectedToyType, setSelectedToyType] = useState<string>();
+  const [filteredToys, setFilteredToys] = useState<Brinquedo[]>();
+
+  const { handleSubmit, register, watch, control } = useForm({
     resolver: yupResolver(formSchema),
   });
+
+  const quantity = watch("quantidade");
+  const rental_price = watch("valor_locacao");
 
   const api = useApi();
 
   useEffect(() => {
-    console.log('entrou')
     const fetchToyTypes = async () => {
       try {
         const response = await api.get("/tiposBrinquedos");
-        console.log(response);
+        setToyTypes(response.data);
+      } catch (error) {
+        console.log("Erro ao buscar os tipos de brinquedo: ", error);
+      }
+    };
+
+    const fetchToys = async () => {
+      try {
+        const response = await api.get("/brinquedos");
+        setToys(response.data);
       } catch (error) {
         console.log("Erro ao buscar os tipos de brinquedo: ", error);
       }
     };
 
     fetchToyTypes();
-  }, [api]);
+    fetchToys();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  const onSubmit = () => {};
+  const handleFilterToys = (toyType: string) => {
+    setFilteredToys(toys?.filter((toy) => toy.tipo_brinquedo === toyType));
+  };
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
-    <form onSubmit={() => handleSubmit(onSubmit)}>
-      <div className="flex gap-6">
-        <div>
-          <label htmlFor="brinquedo_id">Brinquedo</label>
-          <Select name="brinquedo_id">
-            <SelectTrigger className="w-[400px] border-gray-800">
+    <form className="flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+      <div className="flex gap-4">
+        <div className="w-full">
+          <label htmlFor="tipo_brinquedo">Tipo de brinquedo</label>
+
+          <Select onValueChange={(type) => handleFilterToys(type)}>
+            <SelectTrigger className="w-full border-gray-800">
               <SelectValue placeholder="Nenhum selecionado" />
             </SelectTrigger>
             <SelectContent className="border-gray-800">
-              <SelectItem value="light">Light</SelectItem>
-              <SelectItem value="dark">Dark</SelectItem>
-              <SelectItem value="system">System</SelectItem>
+              {toyTypes?.map((type) => {
+                return (
+                  <SelectItem key={type.cod} value={type.cod}>
+                    {type.nome}
+                  </SelectItem>
+                );
+              })}
             </SelectContent>
           </Select>
         </div>
 
-        <div>
-          <label htmlFor="quantidade">Quantidade</label>
-          <Input type="number" />
+        <div className="w-full">
+          <label htmlFor="cod_brinquedo">Brinquedo</label>
+          <Controller
+            name="cod_brinquedo"
+            control={control}
+            render={({ field }) => {
+              return (
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className="w-full border-gray-800">
+                    <SelectValue placeholder="Escolha uma opção" />
+                  </SelectTrigger>
+                  <SelectContent className="border-gray-800">
+                    {filteredToys && filteredToys.length ? (
+                      filteredToys?.map((toy) => {
+                        return (
+                          <SelectItem key={toy.cod} value={toy.cod}>
+                            {toy.nome}
+                          </SelectItem>
+                        );
+                      })
+                    ) : (
+                      <SelectItem disabled={true} value="nenhum-valor">
+                        Nenhum brinquedo disponível
+                      </SelectItem>
+                    )}
+                  </SelectContent>
+                </Select>
+              );
+            }}
+          />
         </div>
       </div>
+
+      <div className="flex gap-4 items-end">
+        <div className="w-full">
+          <label htmlFor="quantidade">Quantidade</label>
+          <Input {...register("quantidade")} type="text" />
+        </div>
+
+        <div className="w-full">
+          <label htmlFor="valor_locacao">Valor de locação</label>
+          <Input {...register("valor_locacao")} type="text" />
+        </div>
+      </div>
+
+      {rental_price && quantity && (
+        <span className="text-2xl w-1/2 font-semibold">
+          Total: {+rental_price * +quantity}
+        </span>
+      )}
+
+      <Button className="flex text-base font-bold w-fullcursor-pointer bg-pink-700 hover:bg-pink-600">
+        Adicionar
+        <Plus></Plus>
+      </Button>
     </form>
   );
 };
