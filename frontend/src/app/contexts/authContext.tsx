@@ -1,8 +1,10 @@
 "use client";
 
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { Funcionario } from "./types";
+import { Funcionario } from "../../domains/types";
 import axios from "axios";
+import { setCookie } from "nookies";
+import { api } from "@/lib/api-instance/api";
 
 interface AuthContextData {
   user: Funcionario;
@@ -15,12 +17,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fetchCredentials = async () => {
+      console.log("entrou");
       try {
-        console.log(process.env.NEXT_PUBLIC_BASE_URL);
-        const { data } = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/login`, {
-          cpf: "00480171084",
-          senha: "@123abcABC",
-        });
+        const { data } = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
+          {
+            cpf: "00480171084",
+            senha: "@123abcABC",
+          }
+        );
 
         const newFuncionario: Funcionario = {
           cpf: data.funcionario.cpf,
@@ -31,7 +36,14 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
         setFuncionario(newFuncionario);
 
-        console.log(funcionario);
+        if (data?.token) {
+          setCookie(undefined, "token", data.token, {
+            maxAge: 60 * 30, // 30 minutes
+            path: "/",
+          });
+
+          api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
+        }
       } catch (error) {
         console.log(error);
       }

@@ -12,30 +12,40 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useEffect, useState } from "react";
-import { useApi } from "@/lib/api-instance/api";
-import { Brinquedo, TipoBrinquedo } from "@/domains/types";
+import { api } from "@/lib/api-instance/api";
+import { Brinquedo, SelectedToy, TipoBrinquedo } from "@/domains/types";
 import { Button } from "@/components/ui/button";
 
-const formSchema = Yup.object().shape({
-  cod_brinquedo: Yup.string().required(),
-  quantidade: Yup.string().required(),
-  valor_locacao: Yup.string().required(),
+export const toyFormSchema = Yup.object().shape({
+  cod_brinquedo: Yup.string().required("Um brinquedo deve ser selecionado"),
+  quantidade: Yup.number()
+    .transform((value, originalValue) => (!originalValue ? null : value))
+    .required("Informe a quantidade")
+    .positive("A quantidade não pode ser negativa"),
+  valor_locacao: Yup.number()
+    .transform((value, originalValue) => (!originalValue ? null : value))
+    .required()
+    .positive(),
 });
 
-export const ToysSelectionForm = () => {
+interface ToysSelectionFormProps {
+  updateToys: (newToy: SelectedToy) => void;
+}
+
+export const ToysSelectionForm = ({ updateToys }: ToysSelectionFormProps) => {
   const [toyTypes, setToyTypes] = useState<TipoBrinquedo[]>();
   const [toys, setToys] = useState<Brinquedo[]>();
-  const [selectedToyType, setSelectedToyType] = useState<string>();
   const [filteredToys, setFilteredToys] = useState<Brinquedo[]>();
+  const [selectedToy, setSelectedToy] = useState<Brinquedo>();
 
-  const { handleSubmit, register, watch, control } = useForm({
-    resolver: yupResolver(formSchema),
-  });
+  const { handleSubmit, register, watch, control, reset, formState, setValue } =
+    useForm<Omit<SelectedToy, "nome">>({
+      resolver: yupResolver(toyFormSchema),
+    });
 
   const quantity = watch("quantidade");
-  const rental_price = watch("valor_locacao");
-
-  const api = useApi();
+  const rentalPrice = watch("valor_locacao");
+  const toyCode = watch("cod_brinquedo");
 
   useEffect(() => {
     const fetchToyTypes = async () => {
@@ -58,15 +68,44 @@ export const ToysSelectionForm = () => {
 
     fetchToyTypes();
     fetchToys();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    const filteredToy = toys?.filter((t) => t.cod === toyCode);
+
+    if (filteredToy && filteredToy.length) {
+      setValue("valor_locacao", +filteredToy[0].valor_locacao);
+      setSelectedToy(filteredToy[0]);
+    }
+  }, [setValue, toyCode, toys]);
 
   const handleFilterToys = (toyType: string) => {
     setFilteredToys(toys?.filter((toy) => toy.tipo_brinquedo === toyType));
   };
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = (data: Omit<SelectedToy, "nome">) => {
+    const newToy = {
+      ...data,
+      nome: selectedToy?.nome,
+    };
+
+    updateToys(newToy);
+
+    reset({
+      cod_brinquedo: "",
+      quantidade: null,
+      valor_locacao: null,
+    });
+  };
+
+  const FormErrors = () => {
+    return Object.keys(formState.errors).map((key) => {
+      return formState.errors[key] ? (
+        <span className="leading-none text-destructive font-semibold" key={key}>
+          {formState.errors[key].message}
+        </span>
+      ) : null;
+    });
   };
 
   return (
@@ -127,24 +166,31 @@ export const ToysSelectionForm = () => {
       <div className="flex gap-4 items-end">
         <div className="w-full">
           <label htmlFor="quantidade">Quantidade</label>
-          <Input {...register("quantidade")} type="text" />
+          <Input {...register("quantidade")} type="number" />
         </div>
 
         <div className="w-full">
           <label htmlFor="valor_locacao">Valor de locação</label>
-          <Input {...register("valor_locacao")} type="text" />
+          <Input
+            {...register("valor_locacao")}
+            disabled
+            className="disabled:bg-gray-300"
+            type="number"
+          />
         </div>
       </div>
 
-      {rental_price && quantity && (
+      {rentalPrice && quantity && (
         <span className="text-2xl w-1/2 font-semibold">
-          Total: {+rental_price * +quantity}
+          Total: {+rentalPrice * +quantity}
         </span>
       )}
 
+      <FormErrors />
+
       <Button className="flex text-base font-bold w-fullcursor-pointer bg-pink-700 hover:bg-pink-600">
         Adicionar
-        <Plus></Plus>
+        <Plus strokeWidth={3} />
       </Button>
     </form>
   );

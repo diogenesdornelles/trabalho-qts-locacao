@@ -19,3 +19,10 @@ export interface Brinquedo {
   valor_locacao: string;
   tipoBrinquedo: TipoBrinquedo;
 }
+
+export type SelectedToy = {
+  valor_locacao: number;
+  cod_brinquedo: string;
+  quantidade: number;
+  nome: string | undefined;
+};

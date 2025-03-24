@@ -2,11 +2,25 @@
 
 import Image from "next/image";
 
-
 import { RentalForm } from "./components/rental-form";
 import { ToysTable } from "./components/toys-table";
+import { useCallback, useEffect, useState } from "react";
+import { SelectedToy } from "@/domains/types";
 
-export default function Home() {
+export default function NewRental() {
+  const [selectedToys, setSelectedToys] = useState<SelectedToy[]>([]);
+
+  const updateToys = useCallback(
+    (newToy: SelectedToy) => {
+      setSelectedToys((previous) => [...previous, newToy]);
+    },
+    [selectedToys, setSelectedToys]
+  );
+
+  useEffect(() => {
+    console.log(selectedToys);
+  }, [selectedToys]);
+
   return (
     <div className="flex flex-col items-center w-full h-full min-h-screen">
       <div className="p-4 flex justify-between w-full">
@@ -20,9 +34,9 @@ export default function Home() {
 
       <h1 className="text-2xl font-bold self-start p-4">Nova locação</h1>
 
-      <div className="flex flex-col w-full items-center gap-6 mt-20 p-20 bg-sky-100">
+      <div className="flex flex-col w-full items-center gap-6 mt-20 p-20 bg-cyan-200">
         <RentalForm />
-        <ToysTable />
+        <ToysTable selectedToys={selectedToys} updateToys={updateToys} />
       </div>
     </div>
   );
