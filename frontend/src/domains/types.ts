@@ -20,6 +20,14 @@ export interface Brinquedo {
   tipoBrinquedo: TipoBrinquedo;
 }
 
+export interface Cliente {
+  cpf: string;
+  nome: string;
+  endereco: string;
+  data_nascimento: string;
+  telefone: string;
+}
+
 export type SelectedToy = {
   valor_locacao: number;
   cod_brinquedo: string;

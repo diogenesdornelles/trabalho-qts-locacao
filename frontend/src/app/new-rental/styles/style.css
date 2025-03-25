@@ -1,0 +1,16 @@
+/* Estiliza a largura da barra de rolagem */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px; /* Largura da barra */
+}
+
+/* Estiliza a "pegada" da barra de rolagem */
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: oklch(0.592 0.249 0.584);
+  border-radius: 4px;
+}
+
+/* Estiliza o fundo da barra de rolagem */
+.custom-scrollbar::-webkit-scrollbar-track {
+  background-color: #f1f5f9; /* Cinza claro */
+  border-radius: 4px;
+}

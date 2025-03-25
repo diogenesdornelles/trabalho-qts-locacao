@@ -24,15 +24,15 @@ export const toyFormSchema = Yup.object().shape({
     .positive("A quantidade não pode ser negativa"),
   valor_locacao: Yup.number()
     .transform((value, originalValue) => (!originalValue ? null : value))
-    .required()
-    .positive(),
+    .required("")
+    .positive(""),
 });
 
 interface ToysSelectionFormProps {
-  updateToys: (newToy: SelectedToy) => void;
+  addToy: (newToy: SelectedToy) => void;
 }
 
-export const ToysSelectionForm = ({ updateToys }: ToysSelectionFormProps) => {
+export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
   const [toyTypes, setToyTypes] = useState<TipoBrinquedo[]>();
   const [toys, setToys] = useState<Brinquedo[]>();
   const [filteredToys, setFilteredToys] = useState<Brinquedo[]>();
@@ -89,7 +89,7 @@ export const ToysSelectionForm = ({ updateToys }: ToysSelectionFormProps) => {
       nome: selectedToy?.nome,
     };
 
-    updateToys(newToy);
+    addToy(newToy);
 
     reset({
       cod_brinquedo: "",
