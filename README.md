@@ -79,7 +79,13 @@ O desenvolvimento seguirá as etapas do modelo incremental, garantindo entregas 
 
 No modelo incremental, o desenvolvimento do software ocorre em etapas chamadas de incrementos. Cada incremento adiciona funcionalidades ao sistema, permitindo que versões utilizáveis sejam entregues progressivamente.
 
-Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar a operação, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa. A garantia de que uma determinada locação pode ser concluída vem pelo seu status de pagamento. Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo. Por fim, no intuito de implementar o sistema de login, deve ser gerado um token de autenticação e de autorização. Optou-se pela autenticação com JWT (JSON Web Token) que é stateless, significando que o servidor não precisa manter informações de sessão, o que facilita a escalabilidade e a segurança.
+Foi nos proposta a inclusão de uma locação, que é a atividade fim de todo o fluxo de trabalho da empresa. Portanto, deve-se ter no mínimo um funcionário de cada categoria para perfectibilizar cada operação ligada à inclusão, à exceção do caixa, que é responsável pela inclusão de pagamento. Porém, como suas atividades e propriedades vieram definidas no corpo do problema, optou-se por incluí-lo no incremento, desde já. Afinal, uma locação deve ensejar um pagamento para viabilizar financeiramente a empresa, bem como a efetiva entrega dos brinquedos.
+
+Ainda, é preciso implementar, por óbvio, um tipo de brinquedo, um brinquedo, uma locação, um cliente e um brinquedo locado, para que o processo de incluir uma locação seja realizado com sucesso. Basta ver a dependência de requisitos estabelecidos em cada requisitos e suas dependências, conforme se verá abaixo. Optou-se, ainda, por não incluir quantidades de brinquedos e de brinquedos locados para não ampliar demasiadamente a lógica de validação da locação e de inclusão das referidas entidades, simplificando a proposta que nos foi passada.
+
+A garantia de que uma determinada locação somente pode ser concluída pelo pagamento (ou seja, a entrega de brinquedos ao cliente é condicionada ao pagamento) vem pela definição do campo *status de pagamento*, que deve ser altrado de *pendente* para *pago*.
+
+Por fim, no intuito de implementar o sistema de login, deve ser gerado um token de autenticação e de autorização. Optou-se pela autenticação com *JWT* (JSON Web Token) que é stateless, significando que o servidor não precisa manter informações de sessão, o que facilita a escalabilidade e a segurança.
 
 As atividades a serem feitas, de forma resumida, envolvem a execução sucessiva das etapas relacionadas à produção de software seguindo o modelo incremental. Em apertada síntese, serão necessários a realização de reuniões, a análise de requisitos, modelagem e design do software, implementação do software, mediante construção de telas e da lógica de acesso às rotas para o CRUD de dados disponíveis através de uma API Rest, bem como testes e entrega.
 
@@ -135,23 +141,23 @@ Portanto, as atividades executadas serão as seguintes:
 
 | #  | Atividade | Tempo de Execução | Prazo | Responsável | Ferramentas |
 |----|-----------|----------------|-------|--------------|--------------|
-| 01 | Reunião inicial | 1 dia | 07/03/2025 | Líder | Presencial |
-| 02 | Análise de requisitos | 2 dias | 09/03/2025 | Analista | Editor de texto |
-| 03 | Caso de uso principal | 3 dias | 12/03/2025 | Analista | Editor de texto |
-| 04 | Regras de negócio | 2 dias | 14/03/2025 | Analista | Editor de texto |
-| 05 | Diagrama de Casos de Uso | 2 dias | 16/03/2025 | Analista | DrawIO |
-| 06 | Diagrama ER | 2 dias | 18/03/2025 | Analista | PgAdmin4 |
-| 07 | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO/PlantUML |
-| 08 | Planejamento UI/UX | 2 dias | 23/03/2025 | Analista e Dev Frontend | Figma |
-| 09 | Reunião intermediária 1 | 1 dia | 24/04/2025 | Líder | Presencial |
-| 10 | Desenvolvimento Backend | 20 dias | 14/04/2025 | Dev Backend | NodeJS/Express/Postgres/Prisma |
-| 11 | Desenvolvimento Frontend | 20 dias | 24/04/2025 | Dev Frontend | React/TypeScript/Git |
-| 12 | Reunião intermediária 2 | 1 dia | 25/04/2025 | Líder | Presencial |
-| 13 | Testes funcionais  | 7 dias | 02/05/2025 | Equipe | Ambiente NodeJS |
-| 14 | Revisão de código | 4 dias | 06/05/2025 | Equipe | Tecnologias acima |
-| 15 | Testes funcionais  | 2 dias | 08/05/2025 | Equipe | Ambiente NodeJS |
-| 16 | Reunião final | 1 dia | 09/05/2025 | Líder | Presencial |
-| 17 | Entrega final | 1 dia | 15/05/2025 | Líder | Moodle |
+| **01** | Reunião inicial | 1 dia | 07/03/2025 | Líder | Presencial |
+| **02** | Análise de requisitos | 2 dias | 09/03/2025 | Analista | Editor de texto |
+| **03** | Caso de uso principal | 3 dias | 12/03/2025 | Analista | Editor de texto |
+| **04** | Regras de negócio | 2 dias | 14/03/2025 | Analista | Editor de texto |
+| **05** | Diagrama de Casos de Uso | 2 dias | 16/03/2025 | Analista | DrawIO |
+| **06** | Diagrama ER | 2 dias | 18/03/2025 | Analista | PgAdmin4 |
+| **07** | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO/PlantUML |
+| **08** | Planejamento UI/UX | 2 dias | 23/03/2025 | Analista e Dev Frontend | Figma |
+| **09** | Reunião intermediária 1 | 1 dia | 24/04/2025 | Líder | Presencial |
+| **10** | Desenvolvimento Backend | 20 dias | 14/04/2025 | Dev Backend | NodeJS/Express/Postgres/Prisma |
+| **11** | Desenvolvimento Frontend | 20 dias | 24/04/2025 | Dev Frontend | React/TypeScript/Git |
+| **12** | Reunião intermediária 2 | 1 dia | 25/04/2025 | Líder | Presencial |
+| **13** | Testes funcionais  | 7 dias | 02/05/2025 | Equipe | Ambiente NodeJS |
+| **14** | Revisão de código | 4 dias | 06/05/2025 | Equipe | Tecnologias acima |
+| **15** | Testes funcionais  | 2 dias | 08/05/2025 | Equipe | Ambiente NodeJS |
+| **16** | Reunião final | 1 dia | 09/05/2025 | Líder | Presencial |
+| **17** | Entrega final | 1 dia | 15/05/2025 | Líder | Moodle |
 
 ## Responsáveis pela Execução
 
@@ -165,15 +171,15 @@ Portanto, as atividades executadas serão as seguintes:
 
 ## Recursos Tecnológicos
 
-- **Backend**: Node.js, Express, PostgreSQL, Prisma, TypeScript, JWT, Docker;
+- **Backend**: [Node.js](https://nodejs.org/en), [Express](https://expressjs.com/pt-br/), [PostgreSQL](https://www.postgresql.org/), [Prisma ORM](https://www.prisma.io/), [TypeScript](https://www.typescriptlang.org/), [JWT (Json Web Token)](https://www.npmjs.com/package/jsonwebtoken), [Docker](https://www.docker.com/);
 
-- **Frontend**: React, TypeScript, Styled-components, Bootstrap, Tailwind (ou outra ferramenta framework de estilização);
+- **Frontend**: [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Styled-components](https://styled-components.com/), [Bootstrap](https://getbootstrap.com/), [Tailwind](https://tailwindcss.com/) (ou outra ferramenta framework de estilização);
 
-- **Ferramentas de Modelagem**: Draw.io, PgAdmin4, Figma, PlantUML; e
+- **Ferramentas de Modelagem**: [Draw.io](https://app.diagrams.net/), [PgAdmin4](https://www.pgadmin.org/), [Figma](https://www.figma.com/), [PlantUML](https://plantuml.com/); e
 
-- **Versionamento**: Git, GitHub.
+- **Versionamento**: [Git](https://git-scm.com/downloads), [GitHub](https://github.com/).
   
-- **Virtualização**: Docker e Compose.
+- **Virtualização**: [Docker](https://www.docker.com/) e [Compose](https://docs.docker.com/compose/).
 
 ## Parte 1: Backend da aplicação
 
@@ -199,10 +205,10 @@ Portanto, as atividades executadas serão as seguintes:
 | **Código** | **Requisito** | **Atores** | **Relacionados** |
 |------------|--------------|------------|------------------|
 | **RNF01** | O sistema deve ser acessível via internet, utilizando uma arquitetura cliente-servidor baseada nos protocolos **HTTP/HTTPS**. Deve-se priorizar **HTTPS** para garantir segurança na transmissão de dados por meio do protocolo **TLS (Transport Layer Security)**. | Usuário final, Administrador | - |
-| **RNF02** | O sistema deve ser totalmente compatível e funcional nos navegadores **Google Chrome e Mozilla Firefox**, garantindo suporte para suas versões mais recentes e futuras atualizações. | Usuário final | - |
+| **RNF02** | O sistema deve ser totalmente compatível e funcional nos navegadores **Google Chrome e Mozilla Firefox** versões Desktop, garantindo suporte para suas versões mais recentes e futuras atualizações. | Usuário final | - |
 | **RNF03** | O sistema deve oferecer uma interface intuitiva, seguindo diretrizes reconhecidas de usabilidade, como os princípios de **Jakob Nielsen**. Para melhorar a experiência do usuário, a interface deve:<br> - Utilizar **listas de seleção** para facilitar a inserção de dados.<br> - Exibir **notificações sobre campos inválidos** e fornecer sugestões de preenchimento.<br> - Seguir um **padrão de design visual** baseado em uma paleta de três cores principais, aplicando o conceito de **Color Harmony** para garantir consistência estética. | Usuário final | - |
 | **RNF04** | O sistema deve implementar **mecanismos seguros de autenticação** para impedir acessos não autorizados. Os métodos podem incluir:<br> - **OAuth 2.0** ou **JWT (JSON Web Token)** para autenticação baseada em tokens.<br> - **Criptografia de credenciais** para proteção dos dados de login. | Administrador, Usuário final | RNF06 |
-| **RNF05** | O sistema deve garantir a **privacidade e segurança dos dados** dos usuários por meio das seguintes medidas:<br> - **Criptografia de armazenamento** usando **AES-256** para dados sensíveis.<br> - **Restrições de acesso** baseadas em regras de permissão.<br> - Implementação de **UUIDs (Identificadores Únicos Universais)** para a identificação de recursos, garantindo rastreabilidade e segurança. | Administrador, Usuário final | RNF04, RNF06 |
+| **RNF05** | O sistema deve garantir a **privacidade e segurança dos dados** dos usuários por meio das seguintes medidas:<br> - **Criptografia de armazenamento** usando, por exemplo, **criptografia Bcrypt** para dados sensíveis como senhas.<br> - **Restrições de acesso** baseadas em regras de permissão.<br> - Implementação de **UUIDs (Identificadores Únicos Universais)** para a identificação de recursos, garantindo rastreabilidade e segurança. | Administrador, Usuário final | RNF04, RNF06 |
 | **RNF06** | O sistema deve permitir a **criação e gestão de perfis de usuários** com diferentes níveis de acesso, garantindo que cada perfil tenha permissões apropriadas. Exemplos de níveis incluem:<br> - **Caixa** – Acesso a operações financeiras.<br> - **Gerente** – Controle total e gerenciamento de usuários.<br> - **Analista de Cadastro** – Permissão para modificar registros cadastrais.<br> - **Agente de Locação** – Gerenciamento de locações e contratos.<br> - **Almoxarife** – Controle de estoque e produtos. | Administrador | RNF04, RNF05 |
 
 ### Descrição das regras de negócio (RN)
