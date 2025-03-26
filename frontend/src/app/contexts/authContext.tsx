@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
           {
-            cpf: "00480171084",
+            cpf: "44444444444",
             senha: "@123abcABC",
           }
         );
@@ -41,8 +41,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
             maxAge: 60 * 30, // 30 minutes
             path: "/",
           });
-
-          api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
         }
       } catch (error) {
         console.log(error);

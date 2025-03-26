@@ -65,20 +65,20 @@ export const ToysTable = ({
         <Table className="justify-self-center rounded-t-4">
           <TableHeader className="bg-sky-400">
             <TableRow className="hover:bg-transparent">
-              <TableHead className="w-[60%] text-white rounded-tl-2xl font-semibold text-base">
+              <TableHead className="w-[50%] text-white ml-0.5 rounded-tl-2xl font-semibold text-base">
                 Brinquedo
               </TableHead>
-              <TableHead className="w-[10%] text-white font-semibold text-base">
+              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
                 Valor unitário
               </TableHead>
-              <TableHead className="w-[10%] text-white font-semibold text-base">
+              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
                 Quantidade
               </TableHead>
-              <TableHead className="w-[10%] text-white font-semibold text-base">
+              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
                 Total
               </TableHead>
               <TableHead className="w-[10%] text-white rounded-tr-2xl font-semibold text-base">
-                Ações
+                
               </TableHead>
             </TableRow>
           </TableHeader>
@@ -95,9 +95,9 @@ export const ToysTable = ({
                   }
                   key={index}
                 >
-                  <TableCell className="w-[60%]">{toy.nome}</TableCell>
-                  <TableCell className="w-[10%]">{toy.valor_locacao}</TableCell>
-                  <TableCell className="w-[10%]">{toy.quantidade}</TableCell>
+                  <TableCell className="w-[50%]">{toy.nome}</TableCell>
+                  <TableCell className="w-[15%]">{toy.valor_locacao}</TableCell>
+                  <TableCell className="w-[15%]">{toy.quantidade}</TableCell>
                   <TableCell className="w-[10%]">
                     {toy.valor_locacao * toy.quantidade}
                   </TableCell>

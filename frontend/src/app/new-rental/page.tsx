@@ -20,14 +20,15 @@ export default function NewRental() {
     [setSelectedToys]
   );
 
-  const removeToy = useCallback(
-    (toyId: string) => {
-      const newToys = selectedToys.filter((toy) => toy.cod_brinquedo !== toyId);
-      setSelectedToys(newToys);
-    },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
+  const removeToy = useCallback((toyId: string) => {
+    setSelectedToys((previousToys) =>
+      previousToys.filter((toy) => toy.cod_brinquedo !== toyId)
+    );
+  }, []);
+
+  const resetToys = useCallback(() => {
+    setSelectedToys([]);
+  }, []);
 
   useEffect(() => {
     console.log(selectedToys);
@@ -47,7 +48,7 @@ export default function NewRental() {
       <h1 className="text-2xl font-bold self-start p-4">Nova locação</h1>
 
       <div className="flex flex-col w-full items-center align-self-center gap-6 p-20 min-h-[700px] bg-cyan-200">
-        <RentalForm />
+        <RentalForm selectedToys={selectedToys} resetToys={resetToys} />
         <ToysTable
           selectedToys={selectedToys}
           addToy={addToy}

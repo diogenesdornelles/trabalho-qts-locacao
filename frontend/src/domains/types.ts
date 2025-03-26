@@ -28,6 +28,12 @@ export interface Cliente {
   telefone: string;
 }
 
+export interface BrinquedoLocado {
+  cod_locacao: string;
+  data_devolucao: string;
+  cod_brinquedo: string;
+}
+
 export type SelectedToy = {
   valor_locacao: number;
   cod_brinquedo: string;

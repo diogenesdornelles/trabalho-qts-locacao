@@ -1,14 +1,17 @@
-import { useAuth } from "@/app/contexts/authContext";
 import { formatDate } from "@/app/utils/format-date";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Cliente } from "@/domains/types";
+import { Cliente, SelectedToy } from "@/domains/types";
 import { getCustomer } from "@/services/customer/getCustomer";
+import { createRental } from "@/services/rentals/createRental";
+import { rentToy } from "@/services/rentedToy/rentToy";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios from "axios";
+import axios, { isAxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as Yup from "yup";
+import { successToast } from "../styles/toast";
 
 const formSchema = Yup.object().shape({
   data_locacao: Yup.string().nullable(),
@@ -17,16 +20,22 @@ const formSchema = Yup.object().shape({
   nome_cliente: Yup.string().nullable(),
 });
 
-export const RentalForm = () => {
-  const [customer, setCustomer] = useState<Cliente>();
+interface RentalFormProps {
+  selectedToys: SelectedToy[];
+  resetToys: () => void;
+}
+
+export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
   const [isCustomerUnregistered, setIsCustomerUnregistered] = useState(true);
 
-  const { handleSubmit, register, watch, setValue, formState } = useForm({
-    resolver: yupResolver(formSchema),
-    defaultValues: {
-      data_locacao: formatDate(new Date(), "sv-SE"),
-    },
-  });
+  const { handleSubmit, register, watch, setValue, formState, reset } = useForm(
+    {
+      resolver: yupResolver(formSchema),
+      defaultValues: {
+        data_locacao: formatDate(new Date(), "sv-SE"),
+      },
+    }
+  );
 
   const { errors } = formState;
 
@@ -44,7 +53,6 @@ export const RentalForm = () => {
         const data: Cliente = await getCustomer(cpf);
 
         if (data) {
-          setCustomer(data);
           setValue("nome_cliente", data.nome);
           setIsCustomerUnregistered(false);
         }
@@ -60,10 +68,28 @@ export const RentalForm = () => {
     if (cpf) fetchCustomer();
   }, [cpf, setValue]);
 
-  const onSubmit = (data) => {
-    if (Object.keys(data).includes("valor_locacao")) return;
+  const onSubmit = async (data: Yup.InferType<typeof formSchema>) => {
+    let error = false;
+    if (isCustomerUnregistered || !selectedToys.length) return;
 
-    console.log("submit");
+    const rental = await createRental({ cpf_cliente: data.cpf_cliente });
+
+    selectedToys.forEach(async (toy) => {
+      error = await rentToy({
+        cod_brinquedo: toy.cod_brinquedo,
+        data_devolucao: data.data_devolucao,
+        cod_locacao: rental?.cod!,
+      });
+    });
+
+    if (!error && rental) {
+      toast("Locação criada com sucesso!", {
+        duration: 2000,
+        style: successToast,
+      });
+      reset();
+      resetToys();
+    }
   };
 
   return (
@@ -84,7 +110,7 @@ export const RentalForm = () => {
             disabled
             type="date"
             name="data_locacao"
-            className="bg-white"
+            className="bg-white relative"
           />
         </div>
 
@@ -98,6 +124,11 @@ export const RentalForm = () => {
             name="data_devolucao"
             className="bg-white"
           />
+          {errors.data_devolucao && (
+            <span className="absolute text-destructive font-semibold">
+              {errors.data_devolucao.message}
+            </span>
+          )}
         </div>
       </div>
 

@@ -14,3 +14,7 @@
   background-color: #f1f5f9; /* Cinza claro */
   border-radius: 4px;
 }
+
+.error-toast {
+  background-color: oklch(0.637 0.237 25.331);
+}
