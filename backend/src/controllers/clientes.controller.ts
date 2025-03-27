@@ -6,6 +6,7 @@ import { CreateClienteDTO } from '../dtos/create/create-cliente.dto'
 import DTOValidator from '../validators/dto.validator'
 import { UpdateClienteDTO } from '../dtos/update/update-cliente.dto'
 
+
 export default class ClientesController extends BaseController<ClienteServices> {
   constructor() {
     super(new ClienteServices(), new DTOValidator())

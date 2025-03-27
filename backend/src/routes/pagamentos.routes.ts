@@ -26,7 +26,7 @@ export default class PagamentosRouter extends BaseRouter<PagamentosController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationCaixa,
+      GeneralMiddleware.authorizationPagamentos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,

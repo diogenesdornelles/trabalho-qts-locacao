@@ -7,6 +7,7 @@ import { ResponseTokenDTO } from '../dtos/response/response-token.dto'
 import { CreateTokenDTO } from '../dtos/create/create-token.dto'
 import { UpdateTokenDTO } from '../dtos/update/update-token.dto'
 import ms from 'ms'
+import { ApiError } from '../utils/api-error.util'
 
 dotenv.config()
 
@@ -29,7 +30,7 @@ export default class LoginServices extends BaseService<
     })
 
     if (!dbFuncionario) {
-      throw new Error('CPF is not correct')
+      throw new ApiError(400, 'CPF not found or is not correct')
     }
     // Compare encripted pwds
     const isMatch = bcrypt.compareSync(data.senha, dbFuncionario.senha)

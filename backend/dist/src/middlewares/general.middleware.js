@@ -219,7 +219,7 @@ GeneralMiddleware.authentication = (req, res, next) => {
  * @param {Response} res - The Express Response object.
  * @param {NextFunction} next - The next middleware function.
  */
-GeneralMiddleware.authorizationGerente = (req, res, next) => {
+GeneralMiddleware.authorizationFuncionarios = (req, res, next) => {
     const { token } = req;
     // Check if token exists and if the user's role is 'GERENTE'
     if (!token || token.funcao !== prisma_client_2.Funcao.GERENTE) {
@@ -229,77 +229,115 @@ GeneralMiddleware.authorizationGerente = (req, res, next) => {
     next();
 };
 /**
- * Authorization middleware to restrict access to users with the 'ALMOXARIFE' role.
+ * Authorization middleware to restrict access to users with the 'ALMOXARIFE' or 'GERENTE' role.
  *
- * Checks the token attached to the request and ensures the function is 'ALMOXARIFE'.
+ * Checks the token attached to the request and ensures the function is 'ALMOXARIFE' or 'GERENTE'.
  * If not, it returns a 403 response.
  *
  * @param {Request} req - The Express Request object.
  * @param {Response} res - The Express Response object.
  * @param {NextFunction} next - The next middleware function.
  */
-GeneralMiddleware.authorizationAlmoxarife = (req, res, next) => {
+GeneralMiddleware.authorizationBrinquedos = (req, res, next) => {
     const { token } = req;
-    // Check if token exists and if the user's role is 'ALMOXARIFE'
-    if (!token || token.funcao !== prisma_client_2.Funcao.ALMOXARIFE) {
-        res.status(403).json({ message: 'Access denied: almoxarife only' });
+    // Check if token exists and if the user's role is 'ALMOXARIFE' or 'GERENTE'
+    if (!token || (token.funcao !== prisma_client_2.Funcao.ALMOXARIFE && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: almoxarife or gerente only' });
         return;
     }
     next();
 };
 /**
- * Authorization middleware to restrict access to users with the 'ANALISTA_CADASTRO' role.
- *
- * Checks the token attached to the request and ensures the function is 'ANALISTA_CADASTRO'.
- * If not, it returns a 403 response.
- *
- * @param {Request} req - The Express Request object.
- * @param {Response} res - The Express Response object.
- * @param {NextFunction} next - The next middleware function.
- */
-GeneralMiddleware.authorizationAnalistaCadastro = (req, res, next) => {
+* Authorization middleware to restrict access to users with the 'ALMOXARIFE' or 'GERENTE' role.
+*
+* Checks the token attached to the request and ensures the function is 'ALMOXARIFE' or 'GERENTE'.
+* If not, it returns a 403 response.
+*
+* @param {Request} req - The Express Request object.
+* @param {Response} res - The Express Response object.
+* @param {NextFunction} next - The next middleware function.
+*/
+GeneralMiddleware.authorizationTiposBrinquedos = (req, res, next) => {
     const { token } = req;
-    // Check if token exists and if the user's role is 'ANALISTA_CADASTRO'
-    if (!token || token.funcao !== prisma_client_2.Funcao.ANALISTA_CADASTRO) {
-        res.status(403).json({ message: 'Access denied: analista cadastro only' });
+    // Check if token exists and if the user's role is 'ALMOXARIFE' or 'GERENTE'.
+    if (!token || (token.funcao !== prisma_client_2.Funcao.ALMOXARIFE && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: almoxarife or gerente only' });
         return;
     }
     next();
 };
 /**
- * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' role.
+ * Authorization middleware to restrict access to users with the 'ANALISTA_CADASTRO' or 'GERENTE' role.
  *
- * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO'.
+ * Checks the token attached to the request and ensures the function is 'ANALISTA_CADASTRO' or 'GERENTE' .
  * If not, it returns a 403 response.
  *
  * @param {Request} req - The Express Request object.
  * @param {Response} res - The Express Response object.
  * @param {NextFunction} next - The next middleware function.
  */
-GeneralMiddleware.authorizationAnalistaLocacao = (req, res, next) => {
+GeneralMiddleware.authorizationClientes = (req, res, next) => {
     const { token } = req;
-    // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
-    if (!token || token.funcao !== prisma_client_2.Funcao.AGENTE_LOCACAO) {
-        res.status(403).json({ message: 'Access denied: agente locacao only' });
+    // Check if token exists and if the user's role is 'ANALISTA_CADASTRO' or 'GERENTE' 
+    if (!token || (token.funcao !== prisma_client_2.Funcao.ANALISTA_CADASTRO && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: analista cadastro or gerente only' });
         return;
     }
     next();
 };
 /**
- * Authorization middleware to restrict access to users with the 'CAIXA' role.
+ * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' or 'GERENTE'  role.
  *
- * Checks the token attached to the request and ensures the function is 'CAIXA'.
+ * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO' or 'GERENTE' .
  * If not, it returns a 403 response.
  *
  * @param {Request} req - The Express Request object.
  * @param {Response} res - The Express Response object.
  * @param {NextFunction} next - The next middleware function.
  */
-GeneralMiddleware.authorizationCaixa = (req, res, next) => {
+GeneralMiddleware.authorizationLocacoes = (req, res, next) => {
     const { token } = req;
-    // Check if token exists and if the user's role is 'CAIXA'
-    if (!token || token.funcao !== prisma_client_2.Funcao.CAIXA) {
-        res.status(403).json({ message: 'Access denied: caixa only' });
+    // Check if token exists and if the user's role is 'AGENTE_LOCACAO' or 'GERENTE' 
+    if (!token || (token.funcao !== prisma_client_2.Funcao.AGENTE_LOCACAO && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: agente locacao or gerente only' });
+        return;
+    }
+    next();
+};
+/**
+ * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' or 'GERENTE'  role.
+ *
+ * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO' or 'GERENTE' .
+ * If not, it returns a 403 response.
+ *
+ * @param {Request} req - The Express Request object.
+ * @param {Response} res - The Express Response object.
+ * @param {NextFunction} next - The next middleware function.
+ */
+GeneralMiddleware.authorizationBrinquedosLocados = (req, res, next) => {
+    const { token } = req;
+    // Check if token exists and if the user's role is 'AGENTE_LOCACAO' or 'GERENTE' 
+    if (!token || (token.funcao !== prisma_client_2.Funcao.AGENTE_LOCACAO && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: agente locacao or gerente only' });
+        return;
+    }
+    next();
+};
+/**
+ * Authorization middleware to restrict access to users with the 'CAIXA' or 'GERENTE' role.
+ *
+ * Checks the token attached to the request and ensures the function is 'CAIXA' or 'GERENTE'.
+ * If not, it returns a 403 response.
+ *
+ * @param {Request} req - The Express Request object.
+ * @param {Response} res - The Express Response object.
+ * @param {NextFunction} next - The next middleware function.
+ */
+GeneralMiddleware.authorizationPagamentos = (req, res, next) => {
+    const { token } = req;
+    // Check if token exists and if the user's role is 'CAIXA' or 'GERENTE'
+    if (!token || (token.funcao !== prisma_client_2.Funcao.CAIXA && token.funcao !== prisma_client_2.Funcao.GERENTE)) {
+        res.status(403).json({ message: 'Access denied: caixa or gerente only' });
         return;
     }
     next();

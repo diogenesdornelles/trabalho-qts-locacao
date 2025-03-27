@@ -13,8 +13,8 @@ class ClientesRouter extends base_routes_1.BaseRouter {
     initRoutes() {
         this.router.get('/', general_middleware_1.default.authentication, this.controller.getAll, general_middleware_1.default.errorHandler);
         this.router.get('/:cpf', general_middleware_1.default.authentication, general_middleware_1.default.validateCpf, this.controller.getOne, general_middleware_1.default.errorHandler);
-        this.router.post('/', general_middleware_1.default.authentication, general_middleware_1.default.authorizationAnalistaCadastro, general_middleware_1.default.validateBodyRequest, this.controller.create, general_middleware_1.default.errorHandler);
-        this.router.put('/:cpf', general_middleware_1.default.authentication, general_middleware_1.default.authorizationAnalistaCadastro, general_middleware_1.default.validateCpf, this.controller.update, general_middleware_1.default.errorHandler);
+        this.router.post('/', general_middleware_1.default.authentication, general_middleware_1.default.authorizationClientes, general_middleware_1.default.validateBodyRequest, this.controller.create, general_middleware_1.default.errorHandler);
+        this.router.put('/:cpf', general_middleware_1.default.authentication, general_middleware_1.default.authorizationClientes, general_middleware_1.default.validateCpf, this.controller.update, general_middleware_1.default.errorHandler);
     }
 }
 exports.default = ClientesRouter;

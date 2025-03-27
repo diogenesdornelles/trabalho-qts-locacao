@@ -26,7 +26,7 @@ export default class BrinquedosRouter extends BaseRouter<BrinquedosController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAlmoxarife,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -35,7 +35,7 @@ export default class BrinquedosRouter extends BaseRouter<BrinquedosController> {
     this.router.put(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAlmoxarife,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateUUID,
       this.controller.update,
       GeneralMiddleware.errorHandler,
@@ -44,7 +44,7 @@ export default class BrinquedosRouter extends BaseRouter<BrinquedosController> {
     this.router.delete(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAlmoxarife,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateUUID,
       this.controller.delete,
       GeneralMiddleware.errorHandler,

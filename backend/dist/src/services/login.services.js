@@ -50,6 +50,7 @@ const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dotenv = __importStar(require("dotenv"));
 const base_service_1 = require("./base.service");
 const prisma_client_1 = require("../../generated/prisma_client");
+const api_error_util_1 = require("../utils/api-error.util");
 dotenv.config();
 const SECRET_KEY = process.env.SECRET_KEY || 'r34534erfefgdf7576ghfg4455456';
 const EXPIRES_IN = process.env.EXPIRES_IN || '2d';
@@ -62,7 +63,7 @@ class LoginServices extends base_service_1.BaseService {
                 where: { cpf: data.cpf },
             });
             if (!dbFuncionario) {
-                throw new Error('CPF is not correct');
+                throw new api_error_util_1.ApiError(400, 'CPF not found or is not correct');
             }
             // Compare encripted pwds
             const isMatch = bcrypt_1.default.compareSync(data.senha, dbFuncionario.senha);

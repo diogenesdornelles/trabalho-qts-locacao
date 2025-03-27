@@ -26,7 +26,7 @@ export default class LocacoesRouter extends BaseRouter<LocacoesController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaLocacao,
+      GeneralMiddleware.authorizationLocacoes,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
