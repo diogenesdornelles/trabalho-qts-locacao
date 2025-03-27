@@ -33,12 +33,13 @@ export default class PagamentoServices extends BaseService<
   public create = async (
     data: CreatePagamentoDTO,
   ): Promise<ResponsePagamentoDTO> => {
-    // It is necessary to update the rental payment status (rental is only allowed if there is payment)
+    // It is necessary to update the rental payment status (rental is only allowed if there is payment). Rental must be active.
     const locacaoDB = await this.prisma.locacao.findUnique({
-      where: { cod: data.cod_locacao },
+      where: { cod: data.cod_locacao, ativo: true },
     })
+
     if (!locacaoDB) {
-      throw new ApiError(404, 'Rental not found')
+      throw new ApiError(404, 'Rental not found or not active')
     }
 
     // Get the total rental value
@@ -50,7 +51,7 @@ export default class PagamentoServices extends BaseService<
     }
 
     // Update rental payment status
-    const updatedLocadao = await this.locacaoService.update(data.cod_locacao, {
+    const updatedLocadao = await this.locacaoService.update(locacaoDB.cod, {
       pgto_status: 'PAGO',
     })
 
@@ -59,11 +60,9 @@ export default class PagamentoServices extends BaseService<
     }
 
     // Save the new payment using Prisma's create method
-    const createdPagamento = await this.prisma.pagamento.create({
+    return await this.prisma.pagamento.create({
       data: { ...data, valor_locacao: totalValue },
     })
-
-    return createdPagamento
   }
 
   public update = async (

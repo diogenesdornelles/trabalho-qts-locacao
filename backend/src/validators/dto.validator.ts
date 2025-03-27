@@ -173,15 +173,26 @@ export default class DTOValidator {
 
   // Esquemas de atualização
   private readonly updateBrinquedoLocadoSchema =
-    this.createBrinquedoLocadoSchema.partial()
-  private readonly updateBrinquedoSchema = this.createBrinquedoSchema.partial()
+    this.createBrinquedoLocadoSchema.partial().extend({
+      ativo: z.boolean().optional(),
+    })
+  private readonly updateBrinquedoSchema = this.createBrinquedoSchema
+    .partial()
+    .extend({
+      ativo: z.boolean().optional(),
+    })
   private readonly updateClienteSchema = this.createClienteSchema
     .omit({ cpf: true })
     .partial()
+    .extend({
+      ativo: z.boolean().optional(),
+    })
   private readonly updateFuncionarioSchema = this.createFuncionarioSchema
     .omit({ cpf: true })
     .partial()
-
+    .extend({
+      ativo: z.boolean().optional(),
+    })
   private readonly PgtoStatusEnum = z.enum(['PAGO', 'PENDENTE', 'ATRASO'])
   private readonly updateLocacaoSchema = z
     .object({
@@ -192,12 +203,16 @@ export default class DTOValidator {
           message: 'CPF inválido',
         }),
       pgto_status: this.PgtoStatusEnum,
+      ativo: z.boolean().optional(),
     })
     .strict()
 
   private readonly updatePagamentoSchema = this.createPagamentoSchema.partial()
-  private readonly updateTipoBrinquedoSchema =
-    this.createTipoBrinquedoSchema.partial()
+  private readonly updateTipoBrinquedoSchema = this.createTipoBrinquedoSchema
+    .partial()
+    .extend({
+      ativo: z.boolean().optional(),
+    })
 
   /*
       Métodos estáticos para validação, que recebem o objeto de entrada,

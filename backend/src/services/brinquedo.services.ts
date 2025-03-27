@@ -55,7 +55,7 @@ export default class BrinquedoServices extends BaseService<
   public delete = async (pk: string): Promise<boolean> => {
     try {
       await this.prisma.brinquedo.delete({
-        where: { cod: pk },
+        where: { cod: pk, ativo: true },
       })
       return true
     } catch (error: unknown) {

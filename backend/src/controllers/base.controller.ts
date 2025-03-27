@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { BaseService } from '../services/base.service';
-import DTOValidator from '../validators/dto.validator';
+import { Request, Response, NextFunction } from 'express'
+import { BaseService } from '../services/base.service'
+import DTOValidator from '../validators/dto.validator'
 
 /**
  * Abstract base controller class.
@@ -20,9 +20,9 @@ export abstract class BaseController<
   >,
 > {
   // The service instance used for business logic operations.
-  public service: T;
+  public service: T
   // The validator used to validate data transfer objects (DTOs).
-  public validator: DTOValidator;
+  public validator: DTOValidator
 
   /**
    * Creates an instance of BaseController.
@@ -31,8 +31,8 @@ export abstract class BaseController<
    * @param {DTOValidator} validator - The DTO validator instance.
    */
   constructor(service: T, validator: DTOValidator) {
-    this.service = service;
-    this.validator = validator;
+    this.service = service
+    this.validator = validator
   }
 
   /**
@@ -49,7 +49,7 @@ export abstract class BaseController<
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<void>;
+  ): Promise<void>
 
   /**
    * Retrieves a single record.
@@ -65,7 +65,7 @@ export abstract class BaseController<
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<void>;
+  ): Promise<void>
 
   /**
    * Creates a new record.
@@ -81,7 +81,7 @@ export abstract class BaseController<
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<void>;
+  ): Promise<void>
 
   /**
    * Updates an existing record.
@@ -97,7 +97,7 @@ export abstract class BaseController<
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<void>;
+  ): Promise<void>
 
   /**
    * Deletes a record.
@@ -113,5 +113,5 @@ export abstract class BaseController<
     req: Request,
     res: Response,
     next: NextFunction,
-  ): Promise<void>;
+  ): Promise<void>
 }

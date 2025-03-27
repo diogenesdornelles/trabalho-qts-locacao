@@ -1607,6 +1607,7 @@ export namespace Prisma {
     marca: string | null
     data_aquisicao: Date | null
     valor_locacao: Decimal | null
+    ativo: boolean | null
   }
 
   export type BrinquedoMaxAggregateOutputType = {
@@ -1616,6 +1617,7 @@ export namespace Prisma {
     marca: string | null
     data_aquisicao: Date | null
     valor_locacao: Decimal | null
+    ativo: boolean | null
   }
 
   export type BrinquedoCountAggregateOutputType = {
@@ -1625,6 +1627,7 @@ export namespace Prisma {
     marca: number
     data_aquisicao: number
     valor_locacao: number
+    ativo: number
     _all: number
   }
 
@@ -1644,6 +1647,7 @@ export namespace Prisma {
     marca?: true
     data_aquisicao?: true
     valor_locacao?: true
+    ativo?: true
   }
 
   export type BrinquedoMaxAggregateInputType = {
@@ -1653,6 +1657,7 @@ export namespace Prisma {
     marca?: true
     data_aquisicao?: true
     valor_locacao?: true
+    ativo?: true
   }
 
   export type BrinquedoCountAggregateInputType = {
@@ -1662,6 +1667,7 @@ export namespace Prisma {
     marca?: true
     data_aquisicao?: true
     valor_locacao?: true
+    ativo?: true
     _all?: true
   }
 
@@ -1758,6 +1764,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date
     valor_locacao: Decimal
+    ativo: boolean
     _count: BrinquedoCountAggregateOutputType | null
     _avg: BrinquedoAvgAggregateOutputType | null
     _sum: BrinquedoSumAggregateOutputType | null
@@ -1786,6 +1793,7 @@ export namespace Prisma {
     marca?: boolean
     data_aquisicao?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
     brinquedosLocados?: boolean | Brinquedo$brinquedosLocadosArgs<ExtArgs>
     _count?: boolean | BrinquedoCountOutputTypeDefaultArgs<ExtArgs>
@@ -1798,6 +1806,7 @@ export namespace Prisma {
     marca?: boolean
     data_aquisicao?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brinquedo"]>
 
@@ -1808,6 +1817,7 @@ export namespace Prisma {
     marca?: boolean
     data_aquisicao?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brinquedo"]>
 
@@ -1818,9 +1828,10 @@ export namespace Prisma {
     marca?: boolean
     data_aquisicao?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
   }
 
-  export type BrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome" | "tipo_brinquedo" | "marca" | "data_aquisicao" | "valor_locacao", ExtArgs["result"]["brinquedo"]>
+  export type BrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome" | "tipo_brinquedo" | "marca" | "data_aquisicao" | "valor_locacao" | "ativo", ExtArgs["result"]["brinquedo"]>
   export type BrinquedoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     tipoBrinquedo?: boolean | TipoBrinquedoDefaultArgs<ExtArgs>
     brinquedosLocados?: boolean | Brinquedo$brinquedosLocadosArgs<ExtArgs>
@@ -1846,6 +1857,7 @@ export namespace Prisma {
       marca: string
       data_aquisicao: Date
       valor_locacao: Prisma.Decimal
+      ativo: boolean
     }, ExtArgs["result"]["brinquedo"]>
     composites: {}
   }
@@ -2277,6 +2289,7 @@ export namespace Prisma {
     readonly marca: FieldRef<"Brinquedo", 'String'>
     readonly data_aquisicao: FieldRef<"Brinquedo", 'DateTime'>
     readonly valor_locacao: FieldRef<"Brinquedo", 'Decimal'>
+    readonly ativo: FieldRef<"Brinquedo", 'Boolean'>
   }
     
 
@@ -2742,6 +2755,7 @@ export namespace Prisma {
     cod_locacao: string | null
     data_devolucao: Date | null
     cod_brinquedo: string | null
+    ativo: boolean | null
   }
 
   export type BrinquedoLocadoMaxAggregateOutputType = {
@@ -2751,6 +2765,7 @@ export namespace Prisma {
     cod_locacao: string | null
     data_devolucao: Date | null
     cod_brinquedo: string | null
+    ativo: boolean | null
   }
 
   export type BrinquedoLocadoCountAggregateOutputType = {
@@ -2760,6 +2775,7 @@ export namespace Prisma {
     cod_locacao: number
     data_devolucao: number
     cod_brinquedo: number
+    ativo: number
     _all: number
   }
 
@@ -2779,6 +2795,7 @@ export namespace Prisma {
     cod_locacao?: true
     data_devolucao?: true
     cod_brinquedo?: true
+    ativo?: true
   }
 
   export type BrinquedoLocadoMaxAggregateInputType = {
@@ -2788,6 +2805,7 @@ export namespace Prisma {
     cod_locacao?: true
     data_devolucao?: true
     cod_brinquedo?: true
+    ativo?: true
   }
 
   export type BrinquedoLocadoCountAggregateInputType = {
@@ -2797,6 +2815,7 @@ export namespace Prisma {
     cod_locacao?: true
     data_devolucao?: true
     cod_brinquedo?: true
+    ativo?: true
     _all?: true
   }
 
@@ -2893,6 +2912,7 @@ export namespace Prisma {
     cod_locacao: string
     data_devolucao: Date
     cod_brinquedo: string
+    ativo: boolean
     _count: BrinquedoLocadoCountAggregateOutputType | null
     _avg: BrinquedoLocadoAvgAggregateOutputType | null
     _sum: BrinquedoLocadoSumAggregateOutputType | null
@@ -2921,6 +2941,7 @@ export namespace Prisma {
     cod_locacao?: boolean
     data_devolucao?: boolean
     cod_brinquedo?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brinquedoLocado"]>
@@ -2932,6 +2953,7 @@ export namespace Prisma {
     cod_locacao?: boolean
     data_devolucao?: boolean
     cod_brinquedo?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brinquedoLocado"]>
@@ -2943,6 +2965,7 @@ export namespace Prisma {
     cod_locacao?: boolean
     data_devolucao?: boolean
     cod_brinquedo?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["brinquedoLocado"]>
@@ -2954,9 +2977,10 @@ export namespace Prisma {
     cod_locacao?: boolean
     data_devolucao?: boolean
     cod_brinquedo?: boolean
+    ativo?: boolean
   }
 
-  export type BrinquedoLocadoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "valor_unitario" | "nome" | "cod_locacao" | "data_devolucao" | "cod_brinquedo", ExtArgs["result"]["brinquedoLocado"]>
+  export type BrinquedoLocadoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "valor_unitario" | "nome" | "cod_locacao" | "data_devolucao" | "cod_brinquedo" | "ativo", ExtArgs["result"]["brinquedoLocado"]>
   export type BrinquedoLocadoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     brinquedo?: boolean | BrinquedoDefaultArgs<ExtArgs>
@@ -2983,6 +3007,7 @@ export namespace Prisma {
       cod_locacao: string
       data_devolucao: Date
       cod_brinquedo: string
+      ativo: boolean
     }, ExtArgs["result"]["brinquedoLocado"]>
     composites: {}
   }
@@ -3414,6 +3439,7 @@ export namespace Prisma {
     readonly cod_locacao: FieldRef<"BrinquedoLocado", 'String'>
     readonly data_devolucao: FieldRef<"BrinquedoLocado", 'DateTime'>
     readonly cod_brinquedo: FieldRef<"BrinquedoLocado", 'String'>
+    readonly ativo: FieldRef<"BrinquedoLocado", 'Boolean'>
   }
     
 
@@ -3844,6 +3870,7 @@ export namespace Prisma {
     endereco: string | null
     data_nascimento: Date | null
     telefone: string | null
+    ativo: boolean | null
   }
 
   export type ClienteMaxAggregateOutputType = {
@@ -3852,6 +3879,7 @@ export namespace Prisma {
     endereco: string | null
     data_nascimento: Date | null
     telefone: string | null
+    ativo: boolean | null
   }
 
   export type ClienteCountAggregateOutputType = {
@@ -3860,6 +3888,7 @@ export namespace Prisma {
     endereco: number
     data_nascimento: number
     telefone: number
+    ativo: number
     _all: number
   }
 
@@ -3870,6 +3899,7 @@ export namespace Prisma {
     endereco?: true
     data_nascimento?: true
     telefone?: true
+    ativo?: true
   }
 
   export type ClienteMaxAggregateInputType = {
@@ -3878,6 +3908,7 @@ export namespace Prisma {
     endereco?: true
     data_nascimento?: true
     telefone?: true
+    ativo?: true
   }
 
   export type ClienteCountAggregateInputType = {
@@ -3886,6 +3917,7 @@ export namespace Prisma {
     endereco?: true
     data_nascimento?: true
     telefone?: true
+    ativo?: true
     _all?: true
   }
 
@@ -3967,6 +3999,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date
     telefone: string
+    ativo: boolean
     _count: ClienteCountAggregateOutputType | null
     _min: ClienteMinAggregateOutputType | null
     _max: ClienteMaxAggregateOutputType | null
@@ -3992,6 +4025,7 @@ export namespace Prisma {
     endereco?: boolean
     data_nascimento?: boolean
     telefone?: boolean
+    ativo?: boolean
     locacoes?: boolean | Cliente$locacoesArgs<ExtArgs>
     pagamentos?: boolean | Cliente$pagamentosArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
@@ -4003,6 +4037,7 @@ export namespace Prisma {
     endereco?: boolean
     data_nascimento?: boolean
     telefone?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["cliente"]>
 
   export type ClienteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4011,6 +4046,7 @@ export namespace Prisma {
     endereco?: boolean
     data_nascimento?: boolean
     telefone?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["cliente"]>
 
   export type ClienteSelectScalar = {
@@ -4019,9 +4055,10 @@ export namespace Prisma {
     endereco?: boolean
     data_nascimento?: boolean
     telefone?: boolean
+    ativo?: boolean
   }
 
-  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "endereco" | "data_nascimento" | "telefone", ExtArgs["result"]["cliente"]>
+  export type ClienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "endereco" | "data_nascimento" | "telefone" | "ativo", ExtArgs["result"]["cliente"]>
   export type ClienteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locacoes?: boolean | Cliente$locacoesArgs<ExtArgs>
     pagamentos?: boolean | Cliente$pagamentosArgs<ExtArgs>
@@ -4042,6 +4079,7 @@ export namespace Prisma {
       endereco: string
       data_nascimento: Date
       telefone: string
+      ativo: boolean
     }, ExtArgs["result"]["cliente"]>
     composites: {}
   }
@@ -4472,6 +4510,7 @@ export namespace Prisma {
     readonly endereco: FieldRef<"Cliente", 'String'>
     readonly data_nascimento: FieldRef<"Cliente", 'DateTime'>
     readonly telefone: FieldRef<"Cliente", 'String'>
+    readonly ativo: FieldRef<"Cliente", 'Boolean'>
   }
     
 
@@ -4942,6 +4981,7 @@ export namespace Prisma {
     telefone: string | null
     funcao: $Enums.Funcao | null
     senha: string | null
+    ativo: boolean | null
   }
 
   export type FuncionarioMaxAggregateOutputType = {
@@ -4950,6 +4990,7 @@ export namespace Prisma {
     telefone: string | null
     funcao: $Enums.Funcao | null
     senha: string | null
+    ativo: boolean | null
   }
 
   export type FuncionarioCountAggregateOutputType = {
@@ -4958,6 +4999,7 @@ export namespace Prisma {
     telefone: number
     funcao: number
     senha: number
+    ativo: number
     _all: number
   }
 
@@ -4968,6 +5010,7 @@ export namespace Prisma {
     telefone?: true
     funcao?: true
     senha?: true
+    ativo?: true
   }
 
   export type FuncionarioMaxAggregateInputType = {
@@ -4976,6 +5019,7 @@ export namespace Prisma {
     telefone?: true
     funcao?: true
     senha?: true
+    ativo?: true
   }
 
   export type FuncionarioCountAggregateInputType = {
@@ -4984,6 +5028,7 @@ export namespace Prisma {
     telefone?: true
     funcao?: true
     senha?: true
+    ativo?: true
     _all?: true
   }
 
@@ -5065,6 +5110,7 @@ export namespace Prisma {
     telefone: string
     funcao: $Enums.Funcao
     senha: string
+    ativo: boolean
     _count: FuncionarioCountAggregateOutputType | null
     _min: FuncionarioMinAggregateOutputType | null
     _max: FuncionarioMaxAggregateOutputType | null
@@ -5090,6 +5136,7 @@ export namespace Prisma {
     telefone?: boolean
     funcao?: boolean
     senha?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["funcionario"]>
 
   export type FuncionarioSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5098,6 +5145,7 @@ export namespace Prisma {
     telefone?: boolean
     funcao?: boolean
     senha?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["funcionario"]>
 
   export type FuncionarioSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5106,6 +5154,7 @@ export namespace Prisma {
     telefone?: boolean
     funcao?: boolean
     senha?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["funcionario"]>
 
   export type FuncionarioSelectScalar = {
@@ -5114,9 +5163,10 @@ export namespace Prisma {
     telefone?: boolean
     funcao?: boolean
     senha?: boolean
+    ativo?: boolean
   }
 
-  export type FuncionarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "telefone" | "funcao" | "senha", ExtArgs["result"]["funcionario"]>
+  export type FuncionarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cpf" | "nome" | "telefone" | "funcao" | "senha" | "ativo", ExtArgs["result"]["funcionario"]>
 
   export type $FuncionarioPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Funcionario"
@@ -5127,6 +5177,7 @@ export namespace Prisma {
       telefone: string
       funcao: $Enums.Funcao
       senha: string
+      ativo: boolean
     }, ExtArgs["result"]["funcionario"]>
     composites: {}
   }
@@ -5555,6 +5606,7 @@ export namespace Prisma {
     readonly telefone: FieldRef<"Funcionario", 'String'>
     readonly funcao: FieldRef<"Funcionario", 'Funcao'>
     readonly senha: FieldRef<"Funcionario", 'String'>
+    readonly ativo: FieldRef<"Funcionario", 'Boolean'>
   }
     
 
@@ -5935,6 +5987,7 @@ export namespace Prisma {
     cod: string | null
     data_hora: Date | null
     cpf_cliente: string | null
+    ativo: boolean | null
     pgto_status: $Enums.PgtoStatus | null
   }
 
@@ -5942,6 +5995,7 @@ export namespace Prisma {
     cod: string | null
     data_hora: Date | null
     cpf_cliente: string | null
+    ativo: boolean | null
     pgto_status: $Enums.PgtoStatus | null
   }
 
@@ -5949,6 +6003,7 @@ export namespace Prisma {
     cod: number
     data_hora: number
     cpf_cliente: number
+    ativo: number
     pgto_status: number
     _all: number
   }
@@ -5958,6 +6013,7 @@ export namespace Prisma {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    ativo?: true
     pgto_status?: true
   }
 
@@ -5965,6 +6021,7 @@ export namespace Prisma {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    ativo?: true
     pgto_status?: true
   }
 
@@ -5972,6 +6029,7 @@ export namespace Prisma {
     cod?: true
     data_hora?: true
     cpf_cliente?: true
+    ativo?: true
     pgto_status?: true
     _all?: true
   }
@@ -6052,6 +6110,7 @@ export namespace Prisma {
     cod: string
     data_hora: Date
     cpf_cliente: string
+    ativo: boolean
     pgto_status: $Enums.PgtoStatus
     _count: LocacaoCountAggregateOutputType | null
     _min: LocacaoMinAggregateOutputType | null
@@ -6076,6 +6135,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    ativo?: boolean
     pgto_status?: boolean
     brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -6087,6 +6147,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    ativo?: boolean
     pgto_status?: boolean
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["locacao"]>
@@ -6095,6 +6156,7 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    ativo?: boolean
     pgto_status?: boolean
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["locacao"]>
@@ -6103,10 +6165,11 @@ export namespace Prisma {
     cod?: boolean
     data_hora?: boolean
     cpf_cliente?: boolean
+    ativo?: boolean
     pgto_status?: boolean
   }
 
-  export type LocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "data_hora" | "cpf_cliente" | "pgto_status", ExtArgs["result"]["locacao"]>
+  export type LocacaoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "data_hora" | "cpf_cliente" | "ativo" | "pgto_status", ExtArgs["result"]["locacao"]>
   export type LocacaoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brinquedosLocados?: boolean | Locacao$brinquedosLocadosArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -6131,6 +6194,7 @@ export namespace Prisma {
       cod: string
       data_hora: Date
       cpf_cliente: string
+      ativo: boolean
       pgto_status: $Enums.PgtoStatus
     }, ExtArgs["result"]["locacao"]>
     composites: {}
@@ -6561,6 +6625,7 @@ export namespace Prisma {
     readonly cod: FieldRef<"Locacao", 'String'>
     readonly data_hora: FieldRef<"Locacao", 'DateTime'>
     readonly cpf_cliente: FieldRef<"Locacao", 'String'>
+    readonly ativo: FieldRef<"Locacao", 'Boolean'>
     readonly pgto_status: FieldRef<"Locacao", 'PgtoStatus'>
   }
     
@@ -7048,6 +7113,7 @@ export namespace Prisma {
     data_pagamento: Date | null
     valor_pagamento: Decimal | null
     valor_locacao: Decimal | null
+    ativo: boolean | null
   }
 
   export type PagamentoMaxAggregateOutputType = {
@@ -7057,6 +7123,7 @@ export namespace Prisma {
     data_pagamento: Date | null
     valor_pagamento: Decimal | null
     valor_locacao: Decimal | null
+    ativo: boolean | null
   }
 
   export type PagamentoCountAggregateOutputType = {
@@ -7066,6 +7133,7 @@ export namespace Prisma {
     data_pagamento: number
     valor_pagamento: number
     valor_locacao: number
+    ativo: number
     _all: number
   }
 
@@ -7087,6 +7155,7 @@ export namespace Prisma {
     data_pagamento?: true
     valor_pagamento?: true
     valor_locacao?: true
+    ativo?: true
   }
 
   export type PagamentoMaxAggregateInputType = {
@@ -7096,6 +7165,7 @@ export namespace Prisma {
     data_pagamento?: true
     valor_pagamento?: true
     valor_locacao?: true
+    ativo?: true
   }
 
   export type PagamentoCountAggregateInputType = {
@@ -7105,6 +7175,7 @@ export namespace Prisma {
     data_pagamento?: true
     valor_pagamento?: true
     valor_locacao?: true
+    ativo?: true
     _all?: true
   }
 
@@ -7201,6 +7272,7 @@ export namespace Prisma {
     data_pagamento: Date
     valor_pagamento: Decimal
     valor_locacao: Decimal
+    ativo: boolean
     _count: PagamentoCountAggregateOutputType | null
     _avg: PagamentoAvgAggregateOutputType | null
     _sum: PagamentoSumAggregateOutputType | null
@@ -7229,6 +7301,7 @@ export namespace Prisma {
     data_pagamento?: boolean
     valor_pagamento?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pagamento"]>
@@ -7240,6 +7313,7 @@ export namespace Prisma {
     data_pagamento?: boolean
     valor_pagamento?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pagamento"]>
@@ -7251,6 +7325,7 @@ export namespace Prisma {
     data_pagamento?: boolean
     valor_pagamento?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["pagamento"]>
@@ -7262,9 +7337,10 @@ export namespace Prisma {
     data_pagamento?: boolean
     valor_pagamento?: boolean
     valor_locacao?: boolean
+    ativo?: boolean
   }
 
-  export type PagamentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "cpf_cliente" | "cod_locacao" | "data_pagamento" | "valor_pagamento" | "valor_locacao", ExtArgs["result"]["pagamento"]>
+  export type PagamentoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "cpf_cliente" | "cod_locacao" | "data_pagamento" | "valor_pagamento" | "valor_locacao" | "ativo", ExtArgs["result"]["pagamento"]>
   export type PagamentoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locacao?: boolean | LocacaoDefaultArgs<ExtArgs>
     cliente?: boolean | ClienteDefaultArgs<ExtArgs>
@@ -7291,6 +7367,7 @@ export namespace Prisma {
       data_pagamento: Date
       valor_pagamento: Prisma.Decimal
       valor_locacao: Prisma.Decimal
+      ativo: boolean
     }, ExtArgs["result"]["pagamento"]>
     composites: {}
   }
@@ -7722,6 +7799,7 @@ export namespace Prisma {
     readonly data_pagamento: FieldRef<"Pagamento", 'DateTime'>
     readonly valor_pagamento: FieldRef<"Pagamento", 'Decimal'>
     readonly valor_locacao: FieldRef<"Pagamento", 'Decimal'>
+    readonly ativo: FieldRef<"Pagamento", 'Boolean'>
   }
     
 
@@ -8149,16 +8227,19 @@ export namespace Prisma {
   export type TipoBrinquedoMinAggregateOutputType = {
     cod: string | null
     nome: string | null
+    ativo: boolean | null
   }
 
   export type TipoBrinquedoMaxAggregateOutputType = {
     cod: string | null
     nome: string | null
+    ativo: boolean | null
   }
 
   export type TipoBrinquedoCountAggregateOutputType = {
     cod: number
     nome: number
+    ativo: number
     _all: number
   }
 
@@ -8166,16 +8247,19 @@ export namespace Prisma {
   export type TipoBrinquedoMinAggregateInputType = {
     cod?: true
     nome?: true
+    ativo?: true
   }
 
   export type TipoBrinquedoMaxAggregateInputType = {
     cod?: true
     nome?: true
+    ativo?: true
   }
 
   export type TipoBrinquedoCountAggregateInputType = {
     cod?: true
     nome?: true
+    ativo?: true
     _all?: true
   }
 
@@ -8254,6 +8338,7 @@ export namespace Prisma {
   export type TipoBrinquedoGroupByOutputType = {
     cod: string
     nome: string
+    ativo: boolean
     _count: TipoBrinquedoCountAggregateOutputType | null
     _min: TipoBrinquedoMinAggregateOutputType | null
     _max: TipoBrinquedoMaxAggregateOutputType | null
@@ -8276,6 +8361,7 @@ export namespace Prisma {
   export type TipoBrinquedoSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     cod?: boolean
     nome?: boolean
+    ativo?: boolean
     brinquedos?: boolean | TipoBrinquedo$brinquedosArgs<ExtArgs>
     _count?: boolean | TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tipoBrinquedo"]>
@@ -8283,19 +8369,22 @@ export namespace Prisma {
   export type TipoBrinquedoSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     cod?: boolean
     nome?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["tipoBrinquedo"]>
 
   export type TipoBrinquedoSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     cod?: boolean
     nome?: boolean
+    ativo?: boolean
   }, ExtArgs["result"]["tipoBrinquedo"]>
 
   export type TipoBrinquedoSelectScalar = {
     cod?: boolean
     nome?: boolean
+    ativo?: boolean
   }
 
-  export type TipoBrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome", ExtArgs["result"]["tipoBrinquedo"]>
+  export type TipoBrinquedoOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"cod" | "nome" | "ativo", ExtArgs["result"]["tipoBrinquedo"]>
   export type TipoBrinquedoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     brinquedos?: boolean | TipoBrinquedo$brinquedosArgs<ExtArgs>
     _count?: boolean | TipoBrinquedoCountOutputTypeDefaultArgs<ExtArgs>
@@ -8311,6 +8400,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       cod: string
       nome: string
+      ativo: boolean
     }, ExtArgs["result"]["tipoBrinquedo"]>
     composites: {}
   }
@@ -8737,6 +8827,7 @@ export namespace Prisma {
   interface TipoBrinquedoFieldRefs {
     readonly cod: FieldRef<"TipoBrinquedo", 'String'>
     readonly nome: FieldRef<"TipoBrinquedo", 'String'>
+    readonly ativo: FieldRef<"TipoBrinquedo", 'Boolean'>
   }
     
 
@@ -9187,7 +9278,8 @@ export namespace Prisma {
     tipo_brinquedo: 'tipo_brinquedo',
     marca: 'marca',
     data_aquisicao: 'data_aquisicao',
-    valor_locacao: 'valor_locacao'
+    valor_locacao: 'valor_locacao',
+    ativo: 'ativo'
   };
 
   export type BrinquedoScalarFieldEnum = (typeof BrinquedoScalarFieldEnum)[keyof typeof BrinquedoScalarFieldEnum]
@@ -9199,7 +9291,8 @@ export namespace Prisma {
     nome: 'nome',
     cod_locacao: 'cod_locacao',
     data_devolucao: 'data_devolucao',
-    cod_brinquedo: 'cod_brinquedo'
+    cod_brinquedo: 'cod_brinquedo',
+    ativo: 'ativo'
   };
 
   export type BrinquedoLocadoScalarFieldEnum = (typeof BrinquedoLocadoScalarFieldEnum)[keyof typeof BrinquedoLocadoScalarFieldEnum]
@@ -9210,7 +9303,8 @@ export namespace Prisma {
     nome: 'nome',
     endereco: 'endereco',
     data_nascimento: 'data_nascimento',
-    telefone: 'telefone'
+    telefone: 'telefone',
+    ativo: 'ativo'
   };
 
   export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
@@ -9221,7 +9315,8 @@ export namespace Prisma {
     nome: 'nome',
     telefone: 'telefone',
     funcao: 'funcao',
-    senha: 'senha'
+    senha: 'senha',
+    ativo: 'ativo'
   };
 
   export type FuncionarioScalarFieldEnum = (typeof FuncionarioScalarFieldEnum)[keyof typeof FuncionarioScalarFieldEnum]
@@ -9231,6 +9326,7 @@ export namespace Prisma {
     cod: 'cod',
     data_hora: 'data_hora',
     cpf_cliente: 'cpf_cliente',
+    ativo: 'ativo',
     pgto_status: 'pgto_status'
   };
 
@@ -9243,7 +9339,8 @@ export namespace Prisma {
     cod_locacao: 'cod_locacao',
     data_pagamento: 'data_pagamento',
     valor_pagamento: 'valor_pagamento',
-    valor_locacao: 'valor_locacao'
+    valor_locacao: 'valor_locacao',
+    ativo: 'ativo'
   };
 
   export type PagamentoScalarFieldEnum = (typeof PagamentoScalarFieldEnum)[keyof typeof PagamentoScalarFieldEnum]
@@ -9251,7 +9348,8 @@ export namespace Prisma {
 
   export const TipoBrinquedoScalarFieldEnum: {
     cod: 'cod',
-    nome: 'nome'
+    nome: 'nome',
+    ativo: 'ativo'
   };
 
   export type TipoBrinquedoScalarFieldEnum = (typeof TipoBrinquedoScalarFieldEnum)[keyof typeof TipoBrinquedoScalarFieldEnum]
@@ -9321,6 +9419,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Funcao'
    */
   export type EnumFuncaoFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Funcao'>
@@ -9375,6 +9480,7 @@ export namespace Prisma {
     marca?: StringFilter<"Brinquedo"> | string
     data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
     valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Brinquedo"> | boolean
     tipoBrinquedo?: XOR<TipoBrinquedoScalarRelationFilter, TipoBrinquedoWhereInput>
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
   }
@@ -9386,6 +9492,7 @@ export namespace Prisma {
     marca?: SortOrder
     data_aquisicao?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
     tipoBrinquedo?: TipoBrinquedoOrderByWithRelationInput
     brinquedosLocados?: BrinquedoLocadoOrderByRelationAggregateInput
   }
@@ -9400,6 +9507,7 @@ export namespace Prisma {
     marca?: StringFilter<"Brinquedo"> | string
     data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
     valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Brinquedo"> | boolean
     tipoBrinquedo?: XOR<TipoBrinquedoScalarRelationFilter, TipoBrinquedoWhereInput>
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
   }, "cod" | "nome">
@@ -9411,6 +9519,7 @@ export namespace Prisma {
     marca?: SortOrder
     data_aquisicao?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
     _count?: BrinquedoCountOrderByAggregateInput
     _avg?: BrinquedoAvgOrderByAggregateInput
     _max?: BrinquedoMaxOrderByAggregateInput
@@ -9428,6 +9537,7 @@ export namespace Prisma {
     marca?: StringWithAggregatesFilter<"Brinquedo"> | string
     data_aquisicao?: DateTimeWithAggregatesFilter<"Brinquedo"> | Date | string
     valor_locacao?: DecimalWithAggregatesFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolWithAggregatesFilter<"Brinquedo"> | boolean
   }
 
   export type BrinquedoLocadoWhereInput = {
@@ -9440,6 +9550,7 @@ export namespace Prisma {
     cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
     data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
     cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
+    ativo?: BoolFilter<"BrinquedoLocado"> | boolean
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     brinquedo?: XOR<BrinquedoScalarRelationFilter, BrinquedoWhereInput>
   }
@@ -9451,6 +9562,7 @@ export namespace Prisma {
     cod_locacao?: SortOrder
     data_devolucao?: SortOrder
     cod_brinquedo?: SortOrder
+    ativo?: SortOrder
     locacao?: LocacaoOrderByWithRelationInput
     brinquedo?: BrinquedoOrderByWithRelationInput
   }
@@ -9465,6 +9577,7 @@ export namespace Prisma {
     cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
     data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
     cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
+    ativo?: BoolFilter<"BrinquedoLocado"> | boolean
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     brinquedo?: XOR<BrinquedoScalarRelationFilter, BrinquedoWhereInput>
   }, "cod">
@@ -9476,6 +9589,7 @@ export namespace Prisma {
     cod_locacao?: SortOrder
     data_devolucao?: SortOrder
     cod_brinquedo?: SortOrder
+    ativo?: SortOrder
     _count?: BrinquedoLocadoCountOrderByAggregateInput
     _avg?: BrinquedoLocadoAvgOrderByAggregateInput
     _max?: BrinquedoLocadoMaxOrderByAggregateInput
@@ -9493,6 +9607,7 @@ export namespace Prisma {
     cod_locacao?: UuidWithAggregatesFilter<"BrinquedoLocado"> | string
     data_devolucao?: DateTimeWithAggregatesFilter<"BrinquedoLocado"> | Date | string
     cod_brinquedo?: UuidWithAggregatesFilter<"BrinquedoLocado"> | string
+    ativo?: BoolWithAggregatesFilter<"BrinquedoLocado"> | boolean
   }
 
   export type ClienteWhereInput = {
@@ -9504,6 +9619,7 @@ export namespace Prisma {
     endereco?: StringFilter<"Cliente"> | string
     data_nascimento?: DateTimeFilter<"Cliente"> | Date | string
     telefone?: StringFilter<"Cliente"> | string
+    ativo?: BoolFilter<"Cliente"> | boolean
     locacoes?: LocacaoListRelationFilter
     pagamentos?: PagamentoListRelationFilter
   }
@@ -9514,6 +9630,7 @@ export namespace Prisma {
     endereco?: SortOrder
     data_nascimento?: SortOrder
     telefone?: SortOrder
+    ativo?: SortOrder
     locacoes?: LocacaoOrderByRelationAggregateInput
     pagamentos?: PagamentoOrderByRelationAggregateInput
   }
@@ -9527,6 +9644,7 @@ export namespace Prisma {
     endereco?: StringFilter<"Cliente"> | string
     data_nascimento?: DateTimeFilter<"Cliente"> | Date | string
     telefone?: StringFilter<"Cliente"> | string
+    ativo?: BoolFilter<"Cliente"> | boolean
     locacoes?: LocacaoListRelationFilter
     pagamentos?: PagamentoListRelationFilter
   }, "cpf">
@@ -9537,6 +9655,7 @@ export namespace Prisma {
     endereco?: SortOrder
     data_nascimento?: SortOrder
     telefone?: SortOrder
+    ativo?: SortOrder
     _count?: ClienteCountOrderByAggregateInput
     _max?: ClienteMaxOrderByAggregateInput
     _min?: ClienteMinOrderByAggregateInput
@@ -9551,6 +9670,7 @@ export namespace Prisma {
     endereco?: StringWithAggregatesFilter<"Cliente"> | string
     data_nascimento?: DateTimeWithAggregatesFilter<"Cliente"> | Date | string
     telefone?: StringWithAggregatesFilter<"Cliente"> | string
+    ativo?: BoolWithAggregatesFilter<"Cliente"> | boolean
   }
 
   export type FuncionarioWhereInput = {
@@ -9562,6 +9682,7 @@ export namespace Prisma {
     telefone?: StringFilter<"Funcionario"> | string
     funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringFilter<"Funcionario"> | string
+    ativo?: BoolFilter<"Funcionario"> | boolean
   }
 
   export type FuncionarioOrderByWithRelationInput = {
@@ -9570,6 +9691,7 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+    ativo?: SortOrder
   }
 
   export type FuncionarioWhereUniqueInput = Prisma.AtLeast<{
@@ -9581,6 +9703,7 @@ export namespace Prisma {
     telefone?: StringFilter<"Funcionario"> | string
     funcao?: EnumFuncaoFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringFilter<"Funcionario"> | string
+    ativo?: BoolFilter<"Funcionario"> | boolean
   }, "cpf">
 
   export type FuncionarioOrderByWithAggregationInput = {
@@ -9589,6 +9712,7 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+    ativo?: SortOrder
     _count?: FuncionarioCountOrderByAggregateInput
     _max?: FuncionarioMaxOrderByAggregateInput
     _min?: FuncionarioMinOrderByAggregateInput
@@ -9603,6 +9727,7 @@ export namespace Prisma {
     telefone?: StringWithAggregatesFilter<"Funcionario"> | string
     funcao?: EnumFuncaoWithAggregatesFilter<"Funcionario"> | $Enums.Funcao
     senha?: StringWithAggregatesFilter<"Funcionario"> | string
+    ativo?: BoolWithAggregatesFilter<"Funcionario"> | boolean
   }
 
   export type LocacaoWhereInput = {
@@ -9612,6 +9737,7 @@ export namespace Prisma {
     cod?: UuidFilter<"Locacao"> | string
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    ativo?: BoolFilter<"Locacao"> | boolean
     pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
@@ -9622,6 +9748,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    ativo?: SortOrder
     pgto_status?: SortOrder
     brinquedosLocados?: BrinquedoLocadoOrderByRelationAggregateInput
     cliente?: ClienteOrderByWithRelationInput
@@ -9635,6 +9762,7 @@ export namespace Prisma {
     NOT?: LocacaoWhereInput | LocacaoWhereInput[]
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    ativo?: BoolFilter<"Locacao"> | boolean
     pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoListRelationFilter
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
@@ -9645,6 +9773,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    ativo?: SortOrder
     pgto_status?: SortOrder
     _count?: LocacaoCountOrderByAggregateInput
     _max?: LocacaoMaxOrderByAggregateInput
@@ -9658,6 +9787,7 @@ export namespace Prisma {
     cod?: UuidWithAggregatesFilter<"Locacao"> | string
     data_hora?: DateTimeWithAggregatesFilter<"Locacao"> | Date | string
     cpf_cliente?: StringWithAggregatesFilter<"Locacao"> | string
+    ativo?: BoolWithAggregatesFilter<"Locacao"> | boolean
     pgto_status?: EnumPgtoStatusWithAggregatesFilter<"Locacao"> | $Enums.PgtoStatus
   }
 
@@ -9671,6 +9801,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
     valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Pagamento"> | boolean
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
   }
@@ -9682,6 +9813,7 @@ export namespace Prisma {
     data_pagamento?: SortOrder
     valor_pagamento?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
     locacao?: LocacaoOrderByWithRelationInput
     cliente?: ClienteOrderByWithRelationInput
   }
@@ -9696,6 +9828,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
     valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Pagamento"> | boolean
     locacao?: XOR<LocacaoScalarRelationFilter, LocacaoWhereInput>
     cliente?: XOR<ClienteScalarRelationFilter, ClienteWhereInput>
   }, "cod" | "cod_locacao">
@@ -9707,6 +9840,7 @@ export namespace Prisma {
     data_pagamento?: SortOrder
     valor_pagamento?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
     _count?: PagamentoCountOrderByAggregateInput
     _avg?: PagamentoAvgOrderByAggregateInput
     _max?: PagamentoMaxOrderByAggregateInput
@@ -9724,6 +9858,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeWithAggregatesFilter<"Pagamento"> | Date | string
     valor_pagamento?: DecimalWithAggregatesFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalWithAggregatesFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolWithAggregatesFilter<"Pagamento"> | boolean
   }
 
   export type TipoBrinquedoWhereInput = {
@@ -9732,12 +9867,14 @@ export namespace Prisma {
     NOT?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
     cod?: UuidFilter<"TipoBrinquedo"> | string
     nome?: StringFilter<"TipoBrinquedo"> | string
+    ativo?: BoolFilter<"TipoBrinquedo"> | boolean
     brinquedos?: BrinquedoListRelationFilter
   }
 
   export type TipoBrinquedoOrderByWithRelationInput = {
     cod?: SortOrder
     nome?: SortOrder
+    ativo?: SortOrder
     brinquedos?: BrinquedoOrderByRelationAggregateInput
   }
 
@@ -9747,12 +9884,14 @@ export namespace Prisma {
     AND?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
     OR?: TipoBrinquedoWhereInput[]
     NOT?: TipoBrinquedoWhereInput | TipoBrinquedoWhereInput[]
+    ativo?: BoolFilter<"TipoBrinquedo"> | boolean
     brinquedos?: BrinquedoListRelationFilter
   }, "cod" | "nome">
 
   export type TipoBrinquedoOrderByWithAggregationInput = {
     cod?: SortOrder
     nome?: SortOrder
+    ativo?: SortOrder
     _count?: TipoBrinquedoCountOrderByAggregateInput
     _max?: TipoBrinquedoMaxOrderByAggregateInput
     _min?: TipoBrinquedoMinOrderByAggregateInput
@@ -9764,6 +9903,7 @@ export namespace Prisma {
     NOT?: TipoBrinquedoScalarWhereWithAggregatesInput | TipoBrinquedoScalarWhereWithAggregatesInput[]
     cod?: UuidWithAggregatesFilter<"TipoBrinquedo"> | string
     nome?: StringWithAggregatesFilter<"TipoBrinquedo"> | string
+    ativo?: BoolWithAggregatesFilter<"TipoBrinquedo"> | boolean
   }
 
   export type BrinquedoCreateInput = {
@@ -9772,6 +9912,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     tipoBrinquedo: TipoBrinquedoCreateNestedOneWithoutBrinquedosInput
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutBrinquedoInput
   }
@@ -9783,6 +9924,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutBrinquedoInput
   }
 
@@ -9792,6 +9934,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     tipoBrinquedo?: TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutBrinquedoNestedInput
   }
@@ -9803,6 +9946,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -9813,6 +9957,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type BrinquedoUpdateManyMutationInput = {
@@ -9821,6 +9966,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoUncheckedUpdateManyInput = {
@@ -9830,6 +9976,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoCreateInput = {
@@ -9837,6 +9984,7 @@ export namespace Prisma {
     valor_unitario: Decimal | DecimalJsLike | number | string
     nome: string
     data_devolucao: Date | string
+    ativo?: boolean
     locacao: LocacaoCreateNestedOneWithoutBrinquedosLocadosInput
     brinquedo: BrinquedoCreateNestedOneWithoutBrinquedosLocadosInput
   }
@@ -9848,6 +9996,7 @@ export namespace Prisma {
     cod_locacao: string
     data_devolucao: Date | string
     cod_brinquedo: string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoUpdateInput = {
@@ -9855,6 +10004,7 @@ export namespace Prisma {
     valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacao?: LocacaoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
     brinquedo?: BrinquedoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
   }
@@ -9866,6 +10016,7 @@ export namespace Prisma {
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoCreateManyInput = {
@@ -9875,6 +10026,7 @@ export namespace Prisma {
     cod_locacao: string
     data_devolucao: Date | string
     cod_brinquedo: string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoUpdateManyMutationInput = {
@@ -9882,6 +10034,7 @@ export namespace Prisma {
     valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyInput = {
@@ -9891,6 +10044,7 @@ export namespace Prisma {
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClienteCreateInput = {
@@ -9899,6 +10053,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     locacoes?: LocacaoCreateNestedManyWithoutClienteInput
     pagamentos?: PagamentoCreateNestedManyWithoutClienteInput
   }
@@ -9909,6 +10064,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     locacoes?: LocacaoUncheckedCreateNestedManyWithoutClienteInput
     pagamentos?: PagamentoUncheckedCreateNestedManyWithoutClienteInput
   }
@@ -9919,6 +10075,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacoes?: LocacaoUpdateManyWithoutClienteNestedInput
     pagamentos?: PagamentoUpdateManyWithoutClienteNestedInput
   }
@@ -9929,6 +10086,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacoes?: LocacaoUncheckedUpdateManyWithoutClienteNestedInput
     pagamentos?: PagamentoUncheckedUpdateManyWithoutClienteNestedInput
   }
@@ -9939,6 +10097,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
   }
 
   export type ClienteUpdateManyMutationInput = {
@@ -9947,6 +10106,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type ClienteUncheckedUpdateManyInput = {
@@ -9955,6 +10115,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FuncionarioCreateInput = {
@@ -9963,6 +10124,7 @@ export namespace Prisma {
     telefone: string
     funcao: $Enums.Funcao
     senha: string
+    ativo?: boolean
   }
 
   export type FuncionarioUncheckedCreateInput = {
@@ -9971,6 +10133,7 @@ export namespace Prisma {
     telefone: string
     funcao: $Enums.Funcao
     senha: string
+    ativo?: boolean
   }
 
   export type FuncionarioUpdateInput = {
@@ -9979,6 +10142,7 @@ export namespace Prisma {
     telefone?: StringFieldUpdateOperationsInput | string
     funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FuncionarioUncheckedUpdateInput = {
@@ -9987,6 +10151,7 @@ export namespace Prisma {
     telefone?: StringFieldUpdateOperationsInput | string
     funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FuncionarioCreateManyInput = {
@@ -9995,6 +10160,7 @@ export namespace Prisma {
     telefone: string
     funcao: $Enums.Funcao
     senha: string
+    ativo?: boolean
   }
 
   export type FuncionarioUpdateManyMutationInput = {
@@ -10003,6 +10169,7 @@ export namespace Prisma {
     telefone?: StringFieldUpdateOperationsInput | string
     funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type FuncionarioUncheckedUpdateManyInput = {
@@ -10011,11 +10178,13 @@ export namespace Prisma {
     telefone?: StringFieldUpdateOperationsInput | string
     funcao?: EnumFuncaoFieldUpdateOperationsInput | $Enums.Funcao
     senha?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type LocacaoCreateInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
@@ -10026,6 +10195,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
@@ -10034,6 +10204,7 @@ export namespace Prisma {
   export type LocacaoUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
@@ -10044,6 +10215,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
@@ -10053,12 +10225,14 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
   }
 
   export type LocacaoUpdateManyMutationInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
@@ -10066,6 +10240,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
@@ -10074,6 +10249,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     locacao: LocacaoCreateNestedOneWithoutPagamentoInput
     cliente: ClienteCreateNestedOneWithoutPagamentosInput
   }
@@ -10085,6 +10261,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type PagamentoUpdateInput = {
@@ -10092,6 +10269,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacao?: LocacaoUpdateOneRequiredWithoutPagamentoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutPagamentosNestedInput
   }
@@ -10103,6 +10281,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PagamentoCreateManyInput = {
@@ -10112,6 +10291,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type PagamentoUpdateManyMutationInput = {
@@ -10119,6 +10299,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PagamentoUncheckedUpdateManyInput = {
@@ -10128,45 +10309,53 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TipoBrinquedoCreateInput = {
     cod?: string
     nome: string
+    ativo?: boolean
     brinquedos?: BrinquedoCreateNestedManyWithoutTipoBrinquedoInput
   }
 
   export type TipoBrinquedoUncheckedCreateInput = {
     cod?: string
     nome: string
+    ativo?: boolean
     brinquedos?: BrinquedoUncheckedCreateNestedManyWithoutTipoBrinquedoInput
   }
 
   export type TipoBrinquedoUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedos?: BrinquedoUpdateManyWithoutTipoBrinquedoNestedInput
   }
 
   export type TipoBrinquedoUncheckedUpdateInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedos?: BrinquedoUncheckedUpdateManyWithoutTipoBrinquedoNestedInput
   }
 
   export type TipoBrinquedoCreateManyInput = {
     cod?: string
     nome: string
+    ativo?: boolean
   }
 
   export type TipoBrinquedoUpdateManyMutationInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TipoBrinquedoUncheckedUpdateManyInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type UuidFilter<$PrismaModel = never> = {
@@ -10218,6 +10407,11 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type TipoBrinquedoScalarRelationFilter = {
     is?: TipoBrinquedoWhereInput
     isNot?: TipoBrinquedoWhereInput
@@ -10240,6 +10434,7 @@ export namespace Prisma {
     marca?: SortOrder
     data_aquisicao?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoAvgOrderByAggregateInput = {
@@ -10253,6 +10448,7 @@ export namespace Prisma {
     marca?: SortOrder
     data_aquisicao?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoMinOrderByAggregateInput = {
@@ -10262,6 +10458,7 @@ export namespace Prisma {
     marca?: SortOrder
     data_aquisicao?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoSumOrderByAggregateInput = {
@@ -10331,6 +10528,14 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type LocacaoScalarRelationFilter = {
     is?: LocacaoWhereInput
     isNot?: LocacaoWhereInput
@@ -10348,6 +10553,7 @@ export namespace Prisma {
     cod_locacao?: SortOrder
     data_devolucao?: SortOrder
     cod_brinquedo?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoLocadoAvgOrderByAggregateInput = {
@@ -10361,6 +10567,7 @@ export namespace Prisma {
     cod_locacao?: SortOrder
     data_devolucao?: SortOrder
     cod_brinquedo?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoLocadoMinOrderByAggregateInput = {
@@ -10370,6 +10577,7 @@ export namespace Prisma {
     cod_locacao?: SortOrder
     data_devolucao?: SortOrder
     cod_brinquedo?: SortOrder
+    ativo?: SortOrder
   }
 
   export type BrinquedoLocadoSumOrderByAggregateInput = {
@@ -10402,6 +10610,7 @@ export namespace Prisma {
     endereco?: SortOrder
     data_nascimento?: SortOrder
     telefone?: SortOrder
+    ativo?: SortOrder
   }
 
   export type ClienteMaxOrderByAggregateInput = {
@@ -10410,6 +10619,7 @@ export namespace Prisma {
     endereco?: SortOrder
     data_nascimento?: SortOrder
     telefone?: SortOrder
+    ativo?: SortOrder
   }
 
   export type ClienteMinOrderByAggregateInput = {
@@ -10418,6 +10628,7 @@ export namespace Prisma {
     endereco?: SortOrder
     data_nascimento?: SortOrder
     telefone?: SortOrder
+    ativo?: SortOrder
   }
 
   export type EnumFuncaoFilter<$PrismaModel = never> = {
@@ -10433,6 +10644,7 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+    ativo?: SortOrder
   }
 
   export type FuncionarioMaxOrderByAggregateInput = {
@@ -10441,6 +10653,7 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+    ativo?: SortOrder
   }
 
   export type FuncionarioMinOrderByAggregateInput = {
@@ -10449,6 +10662,7 @@ export namespace Prisma {
     telefone?: SortOrder
     funcao?: SortOrder
     senha?: SortOrder
+    ativo?: SortOrder
   }
 
   export type EnumFuncaoWithAggregatesFilter<$PrismaModel = never> = {
@@ -10482,6 +10696,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    ativo?: SortOrder
     pgto_status?: SortOrder
   }
 
@@ -10489,6 +10704,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    ativo?: SortOrder
     pgto_status?: SortOrder
   }
 
@@ -10496,6 +10712,7 @@ export namespace Prisma {
     cod?: SortOrder
     data_hora?: SortOrder
     cpf_cliente?: SortOrder
+    ativo?: SortOrder
     pgto_status?: SortOrder
   }
 
@@ -10516,6 +10733,7 @@ export namespace Prisma {
     data_pagamento?: SortOrder
     valor_pagamento?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type PagamentoAvgOrderByAggregateInput = {
@@ -10530,6 +10748,7 @@ export namespace Prisma {
     data_pagamento?: SortOrder
     valor_pagamento?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type PagamentoMinOrderByAggregateInput = {
@@ -10539,6 +10758,7 @@ export namespace Prisma {
     data_pagamento?: SortOrder
     valor_pagamento?: SortOrder
     valor_locacao?: SortOrder
+    ativo?: SortOrder
   }
 
   export type PagamentoSumOrderByAggregateInput = {
@@ -10559,16 +10779,19 @@ export namespace Prisma {
   export type TipoBrinquedoCountOrderByAggregateInput = {
     cod?: SortOrder
     nome?: SortOrder
+    ativo?: SortOrder
   }
 
   export type TipoBrinquedoMaxOrderByAggregateInput = {
     cod?: SortOrder
     nome?: SortOrder
+    ativo?: SortOrder
   }
 
   export type TipoBrinquedoMinOrderByAggregateInput = {
     cod?: SortOrder
     nome?: SortOrder
+    ativo?: SortOrder
   }
 
   export type TipoBrinquedoCreateNestedOneWithoutBrinquedosInput = {
@@ -10605,6 +10828,10 @@ export namespace Prisma {
     decrement?: Decimal | DecimalJsLike | number | string
     multiply?: Decimal | DecimalJsLike | number | string
     divide?: Decimal | DecimalJsLike | number | string
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput = {
@@ -10968,6 +11195,11 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type NestedUuidWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -11040,6 +11272,14 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedEnumFuncaoFilter<$PrismaModel = never> = {
     equals?: $Enums.Funcao | EnumFuncaoFieldRefInput<$PrismaModel>
     in?: $Enums.Funcao[] | ListEnumFuncaoFieldRefInput<$PrismaModel>
@@ -11077,11 +11317,13 @@ export namespace Prisma {
   export type TipoBrinquedoCreateWithoutBrinquedosInput = {
     cod?: string
     nome: string
+    ativo?: boolean
   }
 
   export type TipoBrinquedoUncheckedCreateWithoutBrinquedosInput = {
     cod?: string
     nome: string
+    ativo?: boolean
   }
 
   export type TipoBrinquedoCreateOrConnectWithoutBrinquedosInput = {
@@ -11094,6 +11336,7 @@ export namespace Prisma {
     valor_unitario: Decimal | DecimalJsLike | number | string
     nome: string
     data_devolucao: Date | string
+    ativo?: boolean
     locacao: LocacaoCreateNestedOneWithoutBrinquedosLocadosInput
   }
 
@@ -11103,6 +11346,7 @@ export namespace Prisma {
     nome: string
     cod_locacao: string
     data_devolucao: Date | string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoCreateOrConnectWithoutBrinquedoInput = {
@@ -11129,11 +11373,13 @@ export namespace Prisma {
   export type TipoBrinquedoUpdateWithoutBrinquedosInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TipoBrinquedoUncheckedUpdateWithoutBrinquedosInput = {
     cod?: StringFieldUpdateOperationsInput | string
     nome?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoUpsertWithWhereUniqueWithoutBrinquedoInput = {
@@ -11162,11 +11408,13 @@ export namespace Prisma {
     cod_locacao?: UuidFilter<"BrinquedoLocado"> | string
     data_devolucao?: DateTimeFilter<"BrinquedoLocado"> | Date | string
     cod_brinquedo?: UuidFilter<"BrinquedoLocado"> | string
+    ativo?: BoolFilter<"BrinquedoLocado"> | boolean
   }
 
   export type LocacaoCreateWithoutBrinquedosLocadosInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
     pagamento?: PagamentoCreateNestedOneWithoutLocacaoInput
@@ -11176,6 +11424,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
   }
@@ -11191,6 +11440,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     tipoBrinquedo: TipoBrinquedoCreateNestedOneWithoutBrinquedosInput
   }
 
@@ -11201,6 +11451,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type BrinquedoCreateOrConnectWithoutBrinquedosLocadosInput = {
@@ -11222,6 +11473,7 @@ export namespace Prisma {
   export type LocacaoUpdateWithoutBrinquedosLocadosInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
     pagamento?: PagamentoUpdateOneWithoutLocacaoNestedInput
@@ -11231,6 +11483,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
   }
@@ -11252,6 +11505,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     tipoBrinquedo?: TipoBrinquedoUpdateOneRequiredWithoutBrinquedosNestedInput
   }
 
@@ -11262,11 +11516,13 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type LocacaoCreateWithoutClienteInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoCreateNestedOneWithoutLocacaoInput
@@ -11275,6 +11531,7 @@ export namespace Prisma {
   export type LocacaoUncheckedCreateWithoutClienteInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
     pagamento?: PagamentoUncheckedCreateNestedOneWithoutLocacaoInput
@@ -11295,6 +11552,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     locacao: LocacaoCreateNestedOneWithoutPagamentoInput
   }
 
@@ -11304,6 +11562,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type PagamentoCreateOrConnectWithoutClienteInput = {
@@ -11339,6 +11598,7 @@ export namespace Prisma {
     cod?: UuidFilter<"Locacao"> | string
     data_hora?: DateTimeFilter<"Locacao"> | Date | string
     cpf_cliente?: StringFilter<"Locacao"> | string
+    ativo?: BoolFilter<"Locacao"> | boolean
     pgto_status?: EnumPgtoStatusFilter<"Locacao"> | $Enums.PgtoStatus
   }
 
@@ -11368,6 +11628,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFilter<"Pagamento"> | Date | string
     valor_pagamento?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFilter<"Pagamento"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Pagamento"> | boolean
   }
 
   export type BrinquedoLocadoCreateWithoutLocacaoInput = {
@@ -11375,6 +11636,7 @@ export namespace Prisma {
     valor_unitario: Decimal | DecimalJsLike | number | string
     nome: string
     data_devolucao: Date | string
+    ativo?: boolean
     brinquedo: BrinquedoCreateNestedOneWithoutBrinquedosLocadosInput
   }
 
@@ -11384,6 +11646,7 @@ export namespace Prisma {
     nome: string
     data_devolucao: Date | string
     cod_brinquedo: string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoCreateOrConnectWithoutLocacaoInput = {
@@ -11402,6 +11665,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     pagamentos?: PagamentoCreateNestedManyWithoutClienteInput
   }
 
@@ -11411,6 +11675,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     pagamentos?: PagamentoUncheckedCreateNestedManyWithoutClienteInput
   }
 
@@ -11424,6 +11689,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     cliente: ClienteCreateNestedOneWithoutPagamentosInput
   }
 
@@ -11433,6 +11699,7 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type PagamentoCreateOrConnectWithoutLocacaoInput = {
@@ -11473,6 +11740,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pagamentos?: PagamentoUpdateManyWithoutClienteNestedInput
   }
 
@@ -11482,6 +11750,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pagamentos?: PagamentoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
@@ -11501,6 +11770,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     cliente?: ClienteUpdateOneRequiredWithoutPagamentosNestedInput
   }
 
@@ -11510,11 +11780,13 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type LocacaoCreateWithoutPagamentoInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutLocacaoInput
     cliente: ClienteCreateNestedOneWithoutLocacoesInput
@@ -11524,6 +11796,7 @@ export namespace Prisma {
     cod?: string
     data_hora?: Date | string
     cpf_cliente: string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutLocacaoInput
   }
@@ -11539,6 +11812,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     locacoes?: LocacaoCreateNestedManyWithoutClienteInput
   }
 
@@ -11548,6 +11822,7 @@ export namespace Prisma {
     endereco: string
     data_nascimento: Date | string
     telefone: string
+    ativo?: boolean
     locacoes?: LocacaoUncheckedCreateNestedManyWithoutClienteInput
   }
 
@@ -11570,6 +11845,7 @@ export namespace Prisma {
   export type LocacaoUpdateWithoutPagamentoInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     cliente?: ClienteUpdateOneRequiredWithoutLocacoesNestedInput
@@ -11579,6 +11855,7 @@ export namespace Prisma {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
     cpf_cliente?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
   }
@@ -11600,6 +11877,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacoes?: LocacaoUpdateManyWithoutClienteNestedInput
   }
 
@@ -11609,6 +11887,7 @@ export namespace Prisma {
     endereco?: StringFieldUpdateOperationsInput | string
     data_nascimento?: DateTimeFieldUpdateOperationsInput | Date | string
     telefone?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacoes?: LocacaoUncheckedUpdateManyWithoutClienteNestedInput
   }
 
@@ -11618,6 +11897,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     brinquedosLocados?: BrinquedoLocadoCreateNestedManyWithoutBrinquedoInput
   }
 
@@ -11627,6 +11907,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
     brinquedosLocados?: BrinquedoLocadoUncheckedCreateNestedManyWithoutBrinquedoInput
   }
 
@@ -11666,6 +11947,7 @@ export namespace Prisma {
     marca?: StringFilter<"Brinquedo"> | string
     data_aquisicao?: DateTimeFilter<"Brinquedo"> | Date | string
     valor_locacao?: DecimalFilter<"Brinquedo"> | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFilter<"Brinquedo"> | boolean
   }
 
   export type BrinquedoLocadoCreateManyBrinquedoInput = {
@@ -11674,6 +11956,7 @@ export namespace Prisma {
     nome: string
     cod_locacao: string
     data_devolucao: Date | string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoUpdateWithoutBrinquedoInput = {
@@ -11681,6 +11964,7 @@ export namespace Prisma {
     valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacao?: LocacaoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
   }
 
@@ -11690,6 +11974,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoInput = {
@@ -11698,11 +11983,13 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     cod_locacao?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type LocacaoCreateManyClienteInput = {
     cod?: string
     data_hora?: Date | string
+    ativo?: boolean
     pgto_status?: $Enums.PgtoStatus
   }
 
@@ -11712,11 +11999,13 @@ export namespace Prisma {
     data_pagamento?: Date | string
     valor_pagamento: Decimal | DecimalJsLike | number | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type LocacaoUpdateWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUpdateOneWithoutLocacaoNestedInput
@@ -11725,6 +12014,7 @@ export namespace Prisma {
   export type LocacaoUncheckedUpdateWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoNestedInput
     pagamento?: PagamentoUncheckedUpdateOneWithoutLocacaoNestedInput
@@ -11733,6 +12023,7 @@ export namespace Prisma {
   export type LocacaoUncheckedUpdateManyWithoutClienteInput = {
     cod?: StringFieldUpdateOperationsInput | string
     data_hora?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     pgto_status?: EnumPgtoStatusFieldUpdateOperationsInput | $Enums.PgtoStatus
   }
 
@@ -11741,6 +12032,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     locacao?: LocacaoUpdateOneRequiredWithoutPagamentoNestedInput
   }
 
@@ -11750,6 +12042,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PagamentoUncheckedUpdateManyWithoutClienteInput = {
@@ -11758,6 +12051,7 @@ export namespace Prisma {
     data_pagamento?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_pagamento?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoCreateManyLocacaoInput = {
@@ -11766,6 +12060,7 @@ export namespace Prisma {
     nome: string
     data_devolucao: Date | string
     cod_brinquedo: string
+    ativo?: boolean
   }
 
   export type BrinquedoLocadoUpdateWithoutLocacaoInput = {
@@ -11773,6 +12068,7 @@ export namespace Prisma {
     valor_unitario?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedo?: BrinquedoUpdateOneRequiredWithoutBrinquedosLocadosNestedInput
   }
 
@@ -11782,6 +12078,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoLocadoUncheckedUpdateManyWithoutLocacaoInput = {
@@ -11790,6 +12087,7 @@ export namespace Prisma {
     nome?: StringFieldUpdateOperationsInput | string
     data_devolucao?: DateTimeFieldUpdateOperationsInput | Date | string
     cod_brinquedo?: StringFieldUpdateOperationsInput | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type BrinquedoCreateManyTipoBrinquedoInput = {
@@ -11798,6 +12096,7 @@ export namespace Prisma {
     marca: string
     data_aquisicao: Date | string
     valor_locacao: Decimal | DecimalJsLike | number | string
+    ativo?: boolean
   }
 
   export type BrinquedoUpdateWithoutTipoBrinquedoInput = {
@@ -11806,6 +12105,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedosLocados?: BrinquedoLocadoUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -11815,6 +12115,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
     brinquedosLocados?: BrinquedoLocadoUncheckedUpdateManyWithoutBrinquedoNestedInput
   }
 
@@ -11824,6 +12125,7 @@ export namespace Prisma {
     marca?: StringFieldUpdateOperationsInput | string
     data_aquisicao?: DateTimeFieldUpdateOperationsInput | Date | string
     valor_locacao?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    ativo?: BoolFieldUpdateOperationsInput | boolean
   }
 
 

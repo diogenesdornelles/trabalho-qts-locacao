@@ -1,4 +1,4 @@
-import { Funcao } from "../../../generated/prisma_client"
+import { Funcao } from '../../../generated/prisma_client'
 
 /**
  * DTOs para o modelo Funcionario

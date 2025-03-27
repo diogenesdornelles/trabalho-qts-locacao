@@ -1,6 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseController = void 0;
+'use strict'
+Object.defineProperty(exports, '__esModule', { value: true })
+exports.BaseController = void 0
 /**
  * Abstract base controller class.
  *
@@ -12,15 +12,15 @@ exports.BaseController = void 0;
  * @template T - The type of the service, which must extend BaseService with generic types.
  */
 class BaseController {
-    /**
-     * Creates an instance of BaseController.
-     *
-     * @param {T} service - The service instance responsible for business logic.
-     * @param {DTOValidator} validator - The DTO validator instance.
-     */
-    constructor(service, validator) {
-        this.service = service;
-        this.validator = validator;
-    }
+  /**
+   * Creates an instance of BaseController.
+   *
+   * @param {T} service - The service instance responsible for business logic.
+   * @param {DTOValidator} validator - The DTO validator instance.
+   */
+  constructor(service, validator) {
+    this.service = service
+    this.validator = validator
+  }
 }
-exports.BaseController = BaseController;
+exports.BaseController = BaseController

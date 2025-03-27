@@ -1,6 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.BaseService = void 0;
+'use strict'
+Object.defineProperty(exports, '__esModule', { value: true })
+exports.BaseService = void 0
 /**
  * Abstract base service class that provides a blueprint for standard CRUD operations.
  *
@@ -13,13 +13,13 @@ exports.BaseService = void 0;
  * @template UpdateDTO - The data transfer object type used for updating a record.
  */
 class BaseService {
-    /**
-     * Constructs a new BaseService instance.
-     *
-     * @param {PrismaClient} prisma - The Prisma client instance for interacting with the database.
-     */
-    constructor(prisma) {
-        this.prisma = prisma;
-    }
+  /**
+   * Constructs a new BaseService instance.
+   *
+   * @param {PrismaClient} prisma - The Prisma client instance for interacting with the database.
+   */
+  constructor(prisma) {
+    this.prisma = prisma
+  }
 }
-exports.BaseService = BaseService;
+exports.BaseService = BaseService

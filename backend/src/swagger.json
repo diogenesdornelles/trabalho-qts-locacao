@@ -801,6 +801,9 @@
           "valor_locacao": {
             "type": "number",
             "minimum": 0
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -834,6 +837,9 @@
           "valor_locacao": {
             "type": "number",
             "example": 100.5
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -869,6 +875,9 @@
           },
           "tipoBrinquedo": {
             "$ref": "#/components/schemas/TipoBrinquedoResponseDTO"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -935,6 +944,9 @@
             "type": "string",
             "format": "uuid",
             "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -982,6 +994,9 @@
           },
           "telefone": {
             "type": "string"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1005,6 +1020,9 @@
           },
           "telefone": {
             "type": "string"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -1068,6 +1086,9 @@
             "type": "string",
             "minLength": 8,
             "maxLength": 128
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1087,6 +1108,9 @@
           },
           "funcao": {
             "type": "string"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -1112,6 +1136,9 @@
           "pgto_status": {
             "type": "string",
             "enum": ["PAGO", "PENDENTE", "ATRASO"]
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1131,6 +1158,9 @@
           "cpf_cliente": {
             "type": "string",
             "pattern": "^[0-9]{11}$"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
@@ -1190,6 +1220,9 @@
           },
           "valor_pagamento": {
             "type": "number"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1239,6 +1272,9 @@
         "properties": {
           "nome": {
             "type": "string"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -1253,6 +1289,9 @@
           },
           "nome": {
             "type": "string"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },

@@ -28,9 +28,9 @@ export default class BrinquedoLocadoServices extends BaseService<
   public create = async (
     data: CreateBrinquedoLocadoDTO,
   ): Promise<ResponseBrinquedoLocadoDTO | null> => {
-    // Get the toy in the DB to fill the fields unit_value and name
+    // Get the toy in the DB to fill the fields unit_value and name. Brinquedo deve estar ativo.
     const brinquedoDB = await this.prisma.brinquedo.findUnique({
-      where: { cod: data.cod_brinquedo },
+      where: { cod: data.cod_brinquedo, ativo: true },
     })
 
     if (brinquedoDB) {
@@ -50,7 +50,7 @@ export default class BrinquedoLocadoServices extends BaseService<
       return createdBrinquedoLocado
     }
     throw new Error(
-      `Validation error: toy code ${data.cod_brinquedo} not found`,
+      `Validation error: toy code ${data.cod_brinquedo} not found or toy not active`,
     )
   }
 
@@ -63,7 +63,7 @@ export default class BrinquedoLocadoServices extends BaseService<
     if (data.cod_brinquedo) {
       // obtém o brinquedo no DB para preencher campos valor_unitario e nome
       const brinquedoDB = await this.prisma.brinquedo.findUnique({
-        where: { cod: data.cod_brinquedo },
+        where: { cod: data.cod_brinquedo, ativo: true },
       })
       if (brinquedoDB) {
         updatedData = {
@@ -73,7 +73,7 @@ export default class BrinquedoLocadoServices extends BaseService<
         }
       } else {
         throw new Error(
-          `Validation error: toy code ${data.cod_brinquedo} not found`,
+          `Validation error: toy code ${data.cod_brinquedo} not found or toy not active`,
         )
       }
     }
@@ -89,7 +89,7 @@ export default class BrinquedoLocadoServices extends BaseService<
   public delete = async (pk: string): Promise<boolean> => {
     try {
       await this.prisma.brinquedoLocado.delete({
-        where: { cod: pk },
+        where: { cod: pk, ativo: true },
       })
       return true
     } catch (error: unknown) {

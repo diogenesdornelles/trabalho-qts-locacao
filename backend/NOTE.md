@@ -12,7 +12,7 @@ Após configurar docker-compose.yml e Dockerfile:
 - A URI para desenvolvimento local, em root no backend, use em .env:
   - DATABASE_URL="postgresql://postgres:123456@localhost:5433/locacaotest?schema=public"
 - cria usuário padrão postgres, senha 123456, porta externa 5433 no localhost (para não conflitar), porta interna padrão 5432 em postgres, nome container default postgres_db;
-- npm run dev:db;
+- npm run db:dev;
 - npm run dev;
 - A aplicação pode ser configurada para usar http ou https. Se nao tiver os certificados, inicie aplicação passando 'http' em app.ts
 - faça requisições na porta 3000, em localhost;
@@ -38,7 +38,7 @@ Após configurar docker-compose.yml e Dockerfile:
 ## apaga o container up pelo compose e remove volumes
 
 - docker-compose down -v
-- sudo docker compose f docker-compose.yml down --remove-orphans
+- sudo docker compose -f docker-compose.yml down --remove-orphans
 
 ## Schema prisma
 

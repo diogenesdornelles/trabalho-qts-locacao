@@ -1,3 +1,5 @@
 import { CreateClienteDTO } from '../create/create-cliente.dto'
 
-export type UpdateClienteDTO = Partial<Omit<CreateClienteDTO, 'cpf'>>
+export type UpdateClienteDTO = Partial<Omit<CreateClienteDTO, 'cpf'>> & {
+  ativo?: boolean
+}

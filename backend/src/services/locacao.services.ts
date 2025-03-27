@@ -27,8 +27,8 @@ export default class LocacaoServices extends BaseService<
     if (locacao && locacao.brinquedosLocados.length > 0) {
       totalValorUnitario = locacao.brinquedosLocados.reduce(
         (total, brinquedo) => {
-          // Converts unit_value to number if necessary
-          return total + Number(brinquedo.valor_unitario)
+          // Converts unit_value to number if necessary. Only add if toy is active
+          return brinquedo.ativo ? total + Number(brinquedo.valor_unitario) : total
         },
         0,
       )

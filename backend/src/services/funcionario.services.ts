@@ -21,6 +21,7 @@ export default class FuncionarioServices extends BaseService<
         telefone: true,
         funcao: true,
         senha: false,
+        ativo: true
       },
     })
   }
@@ -36,6 +37,7 @@ export default class FuncionarioServices extends BaseService<
         telefone: true,
         funcao: true,
         senha: false,
+        ativo: true
       },
     })
   }
@@ -59,6 +61,7 @@ export default class FuncionarioServices extends BaseService<
       nome: createdFuncionario.nome,
       telefone: createdFuncionario.telefone,
       funcao: createdFuncionario.funcao,
+      ativo: createdFuncionario.ativo
     }
   }
 
@@ -90,7 +93,7 @@ export default class FuncionarioServices extends BaseService<
   public delete = async (pk: string): Promise<boolean> => {
     try {
       await this.prisma.funcionario.delete({
-        where: { cpf: pk },
+        where: { cpf: pk, ativo: true },
       })
       return true
     } catch (error: unknown) {

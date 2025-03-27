@@ -123,7 +123,8 @@ exports.Prisma.BrinquedoScalarFieldEnum = {
   tipo_brinquedo: 'tipo_brinquedo',
   marca: 'marca',
   data_aquisicao: 'data_aquisicao',
-  valor_locacao: 'valor_locacao'
+  valor_locacao: 'valor_locacao',
+  ativo: 'ativo'
 };
 
 exports.Prisma.BrinquedoLocadoScalarFieldEnum = {
@@ -132,7 +133,8 @@ exports.Prisma.BrinquedoLocadoScalarFieldEnum = {
   nome: 'nome',
   cod_locacao: 'cod_locacao',
   data_devolucao: 'data_devolucao',
-  cod_brinquedo: 'cod_brinquedo'
+  cod_brinquedo: 'cod_brinquedo',
+  ativo: 'ativo'
 };
 
 exports.Prisma.ClienteScalarFieldEnum = {
@@ -140,7 +142,8 @@ exports.Prisma.ClienteScalarFieldEnum = {
   nome: 'nome',
   endereco: 'endereco',
   data_nascimento: 'data_nascimento',
-  telefone: 'telefone'
+  telefone: 'telefone',
+  ativo: 'ativo'
 };
 
 exports.Prisma.FuncionarioScalarFieldEnum = {
@@ -148,13 +151,15 @@ exports.Prisma.FuncionarioScalarFieldEnum = {
   nome: 'nome',
   telefone: 'telefone',
   funcao: 'funcao',
-  senha: 'senha'
+  senha: 'senha',
+  ativo: 'ativo'
 };
 
 exports.Prisma.LocacaoScalarFieldEnum = {
   cod: 'cod',
   data_hora: 'data_hora',
   cpf_cliente: 'cpf_cliente',
+  ativo: 'ativo',
   pgto_status: 'pgto_status'
 };
 
@@ -164,12 +169,14 @@ exports.Prisma.PagamentoScalarFieldEnum = {
   cod_locacao: 'cod_locacao',
   data_pagamento: 'data_pagamento',
   valor_pagamento: 'valor_pagamento',
-  valor_locacao: 'valor_locacao'
+  valor_locacao: 'valor_locacao',
+  ativo: 'ativo'
 };
 
 exports.Prisma.TipoBrinquedoScalarFieldEnum = {
   cod: 'cod',
-  nome: 'nome'
+  nome: 'nome',
+  ativo: 'ativo'
 };
 
 exports.Prisma.SortOrder = {

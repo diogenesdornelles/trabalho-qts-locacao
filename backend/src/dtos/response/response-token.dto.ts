@@ -1,4 +1,4 @@
-import { Funcao } from "../../../generated/prisma_client"
+import { Funcao } from '../../../generated/prisma_client'
 
 export interface ResponseTokenDTO {
   funcionario: {

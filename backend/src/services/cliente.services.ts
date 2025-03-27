@@ -25,20 +25,17 @@ export default class ClienteServices extends BaseService<
   public create = async (
     data: CreateClienteDTO,
   ): Promise<ResponseClienteDTO> => {
-    const createdCliente = await this.prisma.cliente.create({ data })
-    return createdCliente
+    return await this.prisma.cliente.create({ data })
   }
 
   public update = async (
     pk: string,
     data: UpdateClienteDTO,
   ): Promise<Partial<ResponseClienteDTO>> => {
-    const updatedCliente = await this.prisma.cliente.update({
+    return await this.prisma.cliente.update({
       where: { cpf: pk },
       data,
     })
-
-    return updatedCliente
   }
 
   public delete = async (pk: string): Promise<boolean> => {

@@ -10,9 +10,9 @@ import { Router } from 'express'
  */
 export abstract class BaseRouter<T> {
   // Express Router instance used for defining routes.
-  public router: Router;
+  public router: Router
   // Controller instance associated with this router.
-  public controller: T;
+  public controller: T
 
   /**
    * Creates an instance of BaseRouter.
@@ -24,11 +24,11 @@ export abstract class BaseRouter<T> {
    */
   constructor(controller: T) {
     // Initialize the Express Router.
-    this.router = Router();
+    this.router = Router()
     // Assign the controller.
-    this.controller = controller;
+    this.controller = controller
     // Initialize the routes defined by the subclass.
-    this.initRoutes();
+    this.initRoutes()
   }
 
   /**
@@ -37,5 +37,5 @@ export abstract class BaseRouter<T> {
    * Each subclass must implement this method to define its routes and attach the appropriate
    * controller methods to the Express router.
    */
-  protected abstract initRoutes(): void;
+  protected abstract initRoutes(): void
 }

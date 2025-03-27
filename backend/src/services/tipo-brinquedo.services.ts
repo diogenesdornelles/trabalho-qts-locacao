@@ -28,10 +28,9 @@ export default class TipoBrinquedoServices extends BaseService<
   public create = async (
     data: CreateTipoBrinquedoDTO,
   ): Promise<ResponseTipoBrinquedoDTO> => {
-    const createdTipoBrinquedo = await this.prisma.tipoBrinquedo.create({
+    return await this.prisma.tipoBrinquedo.create({
       data,
     })
-    return createdTipoBrinquedo
   }
 
   public update = async (
@@ -50,7 +49,7 @@ export default class TipoBrinquedoServices extends BaseService<
   public delete = async (pk: string): Promise<boolean> => {
     try {
       await this.prisma.tipoBrinquedo.delete({
-        where: { cod: pk },
+        where: { cod: pk, ativo: true },
       })
       return true
     } catch (error: unknown) {
