@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         const { data } = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
           {
-            cpf: "44444444444",
+            cpf: "11111111111",
             senha: "@123abcABC",
           }
         );

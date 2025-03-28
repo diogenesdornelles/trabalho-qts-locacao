@@ -6,12 +6,12 @@ import { getCustomer } from "@/services/customer/getCustomer";
 import { createRental } from "@/services/rentals/createRental";
 import { rentToy } from "@/services/rentedToy/rentToy";
 import { yupResolver } from "@hookform/resolvers/yup";
-import axios, { isAxiosError } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as Yup from "yup";
-import { successToast } from "../styles/toast";
+import { errorToast, successToast } from "../styles/toast";
 
 const formSchema = Yup.object().shape({
   data_locacao: Yup.string().nullable(),
@@ -78,6 +78,7 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
       error = await rentToy({
         cod_brinquedo: toy.cod_brinquedo,
         data_devolucao: data.data_devolucao,
+        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
         cod_locacao: rental?.cod!,
       });
     });
@@ -89,6 +90,11 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
       });
       reset();
       resetToys();
+    } else {
+      toast("Ocorreu um erro ao criar a locação, tente novamente.", {
+        duration: 2000,
+        style: errorToast,
+      });
     }
   };
 
@@ -168,9 +174,14 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
           />
         </div>
       </div>
-      <Button className="flex justify-evenly absolute top-[90.5%] right-[4.5%] rounded-full p-5 w-40 self-end cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold">
-        Salvar
-      </Button>
+      <div className="absolute flex top-[90.5%] right-[4.5%] gap-4">
+        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+          Cancelar
+        </Button>
+        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold">
+          Salvar
+        </Button>
+      </div>
     </form>
   );
 };

@@ -40,3 +40,4 @@ export type SelectedToy = {
   quantidade: number;
   nome: string | undefined;
 };
+

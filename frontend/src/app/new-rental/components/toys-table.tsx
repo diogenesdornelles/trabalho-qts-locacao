@@ -77,9 +77,7 @@ export const ToysTable = ({
               <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
                 Total
               </TableHead>
-              <TableHead className="w-[10%] text-white rounded-tr-2xl font-semibold text-base">
-                
-              </TableHead>
+              <TableHead className="w-[10%] text-white rounded-tr-2xl font-semibold text-base"></TableHead>
             </TableRow>
           </TableHeader>
         </Table>
@@ -99,7 +97,10 @@ export const ToysTable = ({
                   <TableCell className="w-[15%]">{toy.valor_locacao}</TableCell>
                   <TableCell className="w-[15%]">{toy.quantidade}</TableCell>
                   <TableCell className="w-[10%]">
-                    {toy.valor_locacao * toy.quantidade}
+                    {(toy.valor_locacao * toy.quantidade).toLocaleString(
+                      "pt-br",
+                      { style: "currency", currency: "BRL" }
+                    )}
                   </TableCell>
                   <TableCell className="w-[10%] flex items-center justify-start">
                     <button
@@ -123,14 +124,19 @@ export const ToysTable = ({
         )}
       </div>
       <div className="text-sky-700 w-full font-bold text-lg text-right">
-        Total: R$ {""}
-        {selectedToys
-          .reduce(
-            (prev, current) =>
-              prev + current.valor_locacao * current.quantidade,
-            0
-          )
-          .toFixed(2)}
+        Total:{" "}
+        {Number(
+          selectedToys
+            .reduce(
+              (prev, current) =>
+                prev + current.valor_locacao * current.quantidade,
+              0
+            )
+            .toFixed(2)
+        ).toLocaleString("pt-br", {
+          style: "currency",
+          currency: "BRL",
+        })}
       </div>
     </div>
   );
