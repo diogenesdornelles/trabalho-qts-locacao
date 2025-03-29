@@ -178,7 +178,10 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
         <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
           Cancelar
         </Button>
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold">
+        <Button
+          type="submit"
+          className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold"
+        >
           Salvar
         </Button>
       </div>

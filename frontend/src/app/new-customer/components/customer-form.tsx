@@ -39,9 +39,13 @@ const formSchema = Yup.object().shape({
 
       return true;
     }),
-  telefone: Yup.string()
-    .nullable()
-  ,
+  telefone: Yup.string().required("Campo obrigatório").test(
+    "validade phone number",
+    "O telefone deve ter 11 caracteres, somente números",
+    (phone) => {
+      return /^\d{11}$/.test(phone);
+    }
+  ),
 });
 
 export const CustomerForm = () => {
@@ -154,7 +158,10 @@ export const CustomerForm = () => {
         <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
           Cancelar
         </Button>
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold">
+        <Button
+          type="submit"
+          className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold"
+        >
           Salvar
         </Button>
       </div>

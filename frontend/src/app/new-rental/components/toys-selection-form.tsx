@@ -188,7 +188,10 @@ export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
 
       <FormErrors />
 
-      <Button className="flex text-base font-bold w-fullcursor-pointer bg-pink-700 hover:bg-pink-600">
+      <Button
+        type="submit"
+        className="flex text-base font-bold w-fullcursor-pointer bg-pink-700 hover:bg-pink-600"
+      >
         Adicionar
         <Plus strokeWidth={3} />
       </Button>

@@ -2,11 +2,14 @@
 
 import { useAuth } from "@/app/contexts/authContext";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export const Layout = () => {
   const { user } = useAuth();
 
-  return (
+  const pathName = usePathname();
+
+  return pathName !== "/login" ? (
     <>
       <div className="p-4 flex justify-between w-full shadow-md">
         <Image src="/logo.png" alt="logo" width={70} height={47} />
@@ -17,5 +20,5 @@ export const Layout = () => {
         </div>
       </div>
     </>
-  );
+  ) : null;
 };
