@@ -175,7 +175,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 - **Backend**: [Node.js](https://nodejs.org/en), [Express](https://expressjs.com/pt-br/), [PostgreSQL](https://www.postgresql.org/), [Prisma ORM](https://www.prisma.io/), [TypeScript](https://www.typescriptlang.org/), [JWT (Json Web Token)](https://www.npmjs.com/package/jsonwebtoken), [Docker](https://www.docker.com/);
 
-- **Frontend**: [React](https://react.dev/), [TypeScript](https://www.typescriptlang.org/), [Styled-components](https://styled-components.com/), [Bootstrap](https://getbootstrap.com/), [Tailwind](https://tailwindcss.com/) (ou outra ferramenta framework de estilização);
+- **Frontend**: [React](https://react.dev/), [NextJS](https://nextjs.org/), [TypeScript](https://www.typescriptlang.org/), [Styled-components](https://styled-components.com/), [Bootstrap](https://getbootstrap.com/), [Tailwind](https://tailwindcss.com/) (ou outra ferramenta framework de estilização);
 
 - **Ferramentas de Modelagem**: [Draw.io](https://app.diagrams.net/), [PgAdmin4](https://www.pgadmin.org/), [Figma](https://www.figma.com/), [PlantUML](https://plantuml.com/); e
 
@@ -196,6 +196,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **RF05** | O sistema deve **incluir** informações sobre locações: *código único da locação,  ativo, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado,  ativo, valor total da locação e data para devolução*. | Agente de locação | RF02, RF04, RN02 |
 | **RF06** | O sistema deve **incluir** informações sobre pagamento: *código único da locação, ativo, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*. | Caixa | RF02, RF05, RN01 |
 | **RF07** | O sistema deve **permitir** acesso aos recursos mediante login com *senha* e *CPF*. | Sistema | RF01, RNF06 |
+| **RF08** | O sistema deve **permitir** o encerramento de sessão. | Sistema | RF01, RNF06 |
 
 ### Definições
 
@@ -326,7 +327,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **Nome do caso de uso**         | Gerenciar brinquedo                                                             |
 |---------------------------------|:--------------------------------------------------------------------------------:|
 | **Escopo**                      | Permite incluir, alterar e excluir informações de brinquedos                      |
-| **Ator(es)**                    | Almoxárife, Gerente                                                               |
+| **Ator(es)**                    | Almoxárife                                                            |
 | **Interessados e interesses**   | Almoxárife e gerente: controle de dados sobre brinquedos                          |
 | **Pré-condição**                | Estar logado                                                                     |
 | **Pós-condição**                | Que as informações de brinquedo sejam incluídas, alteradas e excluídas com sucesso |
@@ -402,7 +403,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **Nome do caso de uso**         | Manter tipo de brinquedo                                                       |
 |---------------------------------|:-------------------------------------------------------------------------------:|
 | **Escopo**                      | Permite incluir e alterar informações de tipo de brinquedos                     |
-| **Ator(es)**                    | Almoxárife e Gerente                                                                      |
+| **Ator(es)**                    | Almoxárife                                                              |
 | **Interessados e interesses**   | Almoxárife e Gerente: controle de dados sobre tipo de brinquedos                          |
 | **Pré-condição**                | Estar logado                                                                    |
 | **Pós-condição**                | Que as informações de tipo de brinquedo sejam incluídas e alteradas com sucesso |
@@ -459,7 +460,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **Nome do caso de uso**         | Manter cliente                                                                 |
 |---------------------------------|:------------------------------------------------------------------------------:|
 | **Escopo**                      | Permite incluir e alterar informações de clientes                              |
-| **Ator(es)**                    | Analista de cadastro e Gerente                                                           |
+| **Ator(es)**                    | Analista de cadastro                                                       |
 | **Interessados e interesses**   | Analista de cadastro e Gerente: controle de dados sobre clientes                         |
 | **Pré-condição**                | Estar logado                                                                   |
 | **Pós-condição**                | Que as informações de cliente sejam incluídas e alteradas com sucesso            |
@@ -525,7 +526,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **Nome do caso de uso**         | Incluir locações                                                              |
 |---------------------------------|:-------------------------------------------------------------------------------:|
 | **Escopo**                      | Permite incluir informações de locações                                       |
-| **Ator(es)**                    | Agente de locação e Gerente                                                             |
+| **Ator(es)**                    | Agente de locação                                                           |
 | **Interessados e interesses**   | Agente de locação e Gerente: controle de dados sobre locações                           |
 | **Pré-condição**                | Estar logado                                                                  |
 | **Pós-condição**                | Que as informações de locação sejam incluídas e alteradas com sucesso           |
@@ -541,28 +542,23 @@ Portanto, as atividades executadas serão as seguintes:
 7. **Agente de locação** informa o nome do brinquedo.
 8. **Sistema** exibe uma lista com brinquedos ativos compatíveis.
 9. **Agente de locação** seleciona o brinquedo desejado.
-10. **Sistema** define a data de devolução como *Data atual + 1*.
-11. **Sistema** gera um código único para o item locado.
-12. **Sistema** registra o nome do brinquedo e o valor unitário.
-13. **Sistema** exibe a mensagem: *Item incluído com sucesso*.
-14. **Sistema** pergunta: *Deseja locar outro brinquedo?*
-    - Se **Sim**: Retoma a partir do **passo 6** (mantendo o mesmo cliente).
-    - Se **Não**: Prossegue para o fechamento da locação.
-15. **Sistema** calcula o valor total da locação.
-16. **Sistema** registra a data e hora atual da transação.
-17. **Sistema** define o status do pagamento como *pendente* e status do item como `ativo=true`.
-18. **Sistema** gera um código único para a locação.
-19. **Sistema** salva os dados da locação.
-20. **Sistema** exibe a mensagem: *Locação salva com sucesso*.
-21. **Sistema** registra todos os *brinquedos locados*, dando-lhes o respectivo código de locação.
-22. **Sistema** exibe a mensagem: *Brinquedos de locação salvos com sucesso*.
+10. **Sistema** mostra a data de devolução como *Data atual + 1*, o nome do brinquedo e o valor unitário.
+     **Agente de locação repete passos 6 a 10 enquanto for solicitada a locação de brinquedos pelo cliente**
+11. **Sistema** calcula o valor total da locação.
+12. **Sistema** registra a data e hora atual da transação.
+13. **Sistema** define o status do pagamento como *pendente* e status do item como `ativo=true`.
+14. **Sistema** gera um código único para a locação.
+15. **Sistema** salva os dados da locação.
+16. **Sistema** exibe a mensagem: *Locação salva com sucesso*.
+17. **Sistema** registra todos os *brinquedos locados*, com o respectivo código de locação.
+18. **Sistema** exibe a mensagem: *Brinquedos locados salvos com sucesso*.
 
 #### 6. Alterar e Excluir Brinquedo Locado
 
 | **Nome do Caso de Uso**         | Alterar e Excluir brinquedo locado                                            |
 |---------------------------------|:------------------------------------------------------------------------------:|
 | **Escopo**                      | Permite alterar ou excluir (por soft delete) um item de brinquedo locado de uma locação  |
-| **Ator(es)**                    | Agente de locação e Gerente                                                             |
+| **Ator(es)**                    | Agente de locação                                                            |
 | **Interessados e Interesses**   | Agente de locação e Gerente: controle dos itens locados e rastreamento histórico          |
 | **Pré-condição**                | Ter uma locação registrada e estar logado                                     |
 | **Pós-condição**                | As informações do item locado foram alteradas ou marcadas como excluídas com sucesso  |
@@ -605,7 +601,7 @@ Portanto, as atividades executadas serão as seguintes:
 | **Nome do caso de uso**         | Incluir pagamentos                                                           |
 |---------------------------------|:----------------------------------------------------------------------------:|
 | **Escopo**                      | Permite incluir informações de pagamento                                    |
-| **Ator(es)**                    | Caixa e Gerente                                                                       |
+| **Ator(es)**                    | Caixa                                                                     |
 | **Interessados e interesses**   | Caixa e Gerente: controle de dados sobre pagamentos                                  |
 | **Pré-condição**                | Estar logado                                                                 |
 | **Pós-condição**                | Que as informações de pagamento sejam incluídas e alteradas com sucesso       |

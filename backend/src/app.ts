@@ -83,8 +83,8 @@ class App {
     // Use Morgan to log HTTP requests in a developer-friendly format.
     this.app.use(morgan('dev'))
     // Setup API documentation route.
-    // Accessible via: https://localhost:3000/api-docs/ or http://localhost:3000/api-docs/
-    this.app.use('api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+    // Accessible via: https://localhost:3000/api/docs/ or http://localhost:3000/api/docs/
+    this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
   }
 
   /**
@@ -109,11 +109,17 @@ class App {
   public listen(protocol: ServerProtocolType = 'http'): void {
     if (protocol === 'https') {
       https.createServer(sslOptions, this.app).listen(PORT, () => {
-        console.log(`Host: ${HOST}. Listening on port ${PORT}`)
+        console.log(`Host: ${HOST}. Listening on port ${PORT}
+          Do requests at ${protocol}://${HOST}:${PORT}/api
+          See documentation at ${protocol}://${HOST}:${PORT}/api/docs
+          `)
       })
     } else {
       this.app.listen(PORT, () => {
-        console.log(`Host: ${HOST}. Listening on port ${PORT}`)
+        console.log(`Host: ${HOST}. Listening on port ${PORT} and protocol ${protocol.toUpperCase()}!
+          Do requests at ${protocol}://${HOST}:${PORT}/api
+          See documentation at ${protocol}://${HOST}:${PORT}/api/docs
+        `)
       })
     }
   }

@@ -243,9 +243,9 @@ export default class GeneralMiddleware {
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'ALMOXARIFE' or 'GERENTE' role.
+   * Authorization middleware to restrict access to users with the 'ALMOXARIFE' role.
    *
-   * Checks the token attached to the request and ensures the function is 'ALMOXARIFE' or 'GERENTE'.
+   * Checks the token attached to the request and ensures the function is 'ALMOXARIFE'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -258,23 +258,23 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'ALMOXARIFE' or 'GERENTE'
+    // Check if token exists and if the user's role is 'ALMOXARIFE'
     if (
       !token ||
-      (token.funcao !== Funcao.ALMOXARIFE && token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.ALMOXARIFE)
     ) {
       res
         .status(403)
-        .json({ message: 'Access denied: almoxarife or gerente only' })
+        .json({ message: 'Access denied: almoxarife only' })
       return
     }
     next()
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'ALMOXARIFE' or 'GERENTE' role.
+   * Authorization middleware to restrict access to users with the 'ALMOXARIFE' role.
    *
-   * Checks the token attached to the request and ensures the function is 'ALMOXARIFE' or 'GERENTE'.
+   * Checks the token attached to the request and ensures the function is 'ALMOXARIFE'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -287,23 +287,23 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'ALMOXARIFE' or 'GERENTE'.
+    // Check if token exists and if the user's role is 'ALMOXARIFE'.
     if (
       !token ||
-      (token.funcao !== Funcao.ALMOXARIFE && token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.ALMOXARIFE)
     ) {
       res
         .status(403)
-        .json({ message: 'Access denied: almoxarife or gerente only' })
+        .json({ message: 'Access denied: almoxarife only' })
       return
     }
     next()
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'ANALISTA_CADASTRO' or 'GERENTE' role.
+   * Authorization middleware to restrict access to users with the 'ANALISTA_CADASTRO' role.
    *
-   * Checks the token attached to the request and ensures the function is 'ANALISTA_CADASTRO' or 'GERENTE' .
+   * Checks the token attached to the request and ensures the function is 'ANALISTA_CADASTRO'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -316,24 +316,23 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'ANALISTA_CADASTRO' or 'GERENTE'
+    // Check if token exists and if the user's role is 'ANALISTA_CADASTRO'
     if (
       !token ||
-      (token.funcao !== Funcao.ANALISTA_CADASTRO &&
-        token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.ANALISTA_CADASTRO)
     ) {
       res
         .status(403)
-        .json({ message: 'Access denied: analista cadastro or gerente only' })
+        .json({ message: 'Access denied: analista cadastro  only' })
       return
     }
     next()
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' or 'GERENTE'  role.
+   * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO'  role.
    *
-   * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO' or 'GERENTE' .
+   * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -346,24 +345,23 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'AGENTE_LOCACAO' or 'GERENTE'
+    // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
     if (
       !token ||
-      (token.funcao !== Funcao.AGENTE_LOCACAO &&
-        token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.AGENTE_LOCACAO)
     ) {
       res
         .status(403)
-        .json({ message: 'Access denied: agente locacao or gerente only' })
+        .json({ message: 'Access denied: agente locacao only' })
       return
     }
     next()
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' or 'GERENTE'  role.
+   * Authorization middleware to restrict access to users with the 'AGENTE_LOCACAO' role.
    *
-   * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO' or 'GERENTE' .
+   * Checks the token attached to the request and ensures the function is 'AGENTE_LOCACAO'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -376,24 +374,23 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'AGENTE_LOCACAO' or 'GERENTE'
+    // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
     if (
       !token ||
-      (token.funcao !== Funcao.AGENTE_LOCACAO &&
-        token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.AGENTE_LOCACAO)
     ) {
       res
         .status(403)
-        .json({ message: 'Access denied: agente locacao or gerente only' })
+        .json({ message: 'Access denied: agente locacao only' })
       return
     }
     next()
   }
 
   /**
-   * Authorization middleware to restrict access to users with the 'CAIXA' or 'GERENTE' role.
+   * Authorization middleware to restrict access to users with the 'CAIXA' role.
    *
-   * Checks the token attached to the request and ensures the function is 'CAIXA' or 'GERENTE'.
+   * Checks the token attached to the request and ensures the function is 'CAIXA'.
    * If not, it returns a 403 response.
    *
    * @param {Request} req - The Express Request object.
@@ -406,12 +403,12 @@ export default class GeneralMiddleware {
     next: NextFunction,
   ): void => {
     const { token } = req as CustomRequestInterface
-    // Check if token exists and if the user's role is 'CAIXA' or 'GERENTE'
+    // Check if token exists and if the user's role is 'CAIXA'
     if (
       !token ||
-      (token.funcao !== Funcao.CAIXA && token.funcao !== Funcao.GERENTE)
+      (token.funcao !== Funcao.CAIXA)
     ) {
-      res.status(403).json({ message: 'Access denied: caixa or gerente only' })
+      res.status(403).json({ message: 'Access denied: caixa only' })
       return
     }
     next()
