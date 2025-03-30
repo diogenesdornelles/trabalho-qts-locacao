@@ -10,19 +10,18 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/api-instance/api";
 
 interface AuthContextData {
-  user: Funcionario | undefined;
+  user: Omit<Funcionario, "ativo"> | undefined;
   login: (cpf: string, password: string) => void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [funcionario, setFuncionario] = useState<Funcionario>();
+  const [funcionario, setFuncionario] = useState<Omit<Funcionario, "ativo">>();
 
   const router = useRouter();
 
   const login = async (cpf: string, password: string) => {
-    console.log("entrou");
     try {
       const { data } = await axios.post(
         `${process.env.NEXT_PUBLIC_BASE_URL}/login`,
@@ -32,7 +31,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         }
       );
 
-      const newFuncionario: Funcionario = {
+      console.log(data);
+
+      const newFuncionario: Omit<Funcionario, "ativo"> = {
         cpf: data.funcionario.cpf,
         nome: data.funcionario.nome,
         funcao: data.funcionario.funcao,
@@ -47,12 +48,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           path: "/",
         });
 
-        api.defaults.headers["Authorization"] = `Beare ${data.token}`;
+        api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
       }
 
-      router.push("/home");
-    } catch (error) {
-      console.log(error);
+      router.push("/new-rental");
+    } catch {
       toast("Usuário ou senha inválidos", {
         style: errorToast,
         duration: 2000,

@@ -1,3 +1,4 @@
+import { errorToast } from "@/app/new-rental/styles/toast";
 import { api } from "@/lib/api-instance/api";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
@@ -17,7 +18,11 @@ export const createRental = async (data: {
     return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
-      toast(error.response?.data.details[0].message);
+      const message =
+        error.response?.status === 403
+          ? "Operação liberada apenas para o agente de locação"
+          : error.response?.data.details?.message;
+      toast(message, { style: errorToast, duration: 2000 });
     }
     return null;
   }

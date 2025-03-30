@@ -10,10 +10,12 @@ export const rentToy = async (toy: BrinquedoLocado): Promise<boolean> => {
     return false;
   } catch (error) {
     if (isAxiosError(error)) {
-      toast(error.response?.data.details?.[0]?.message, {
-        duration: 2000,
-        style: errorToast,
-      });
+      if (error.response?.status !== 403) {
+        toast(error.response?.data.details?.message, {
+          duration: 2000,
+          style: errorToast,
+        });
+      }
     }
 
     return true;

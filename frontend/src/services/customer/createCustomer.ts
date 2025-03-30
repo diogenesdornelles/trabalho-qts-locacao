@@ -4,7 +4,9 @@ import { api } from "@/lib/api-instance/api";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 
-export const createCustomer = async (data: Cliente): Promise<boolean> => {
+export const createCustomer = async (
+  data: Omit<Cliente, "ativo">
+): Promise<boolean> => {
   try {
     await api.post(`/clientes`, data);
 

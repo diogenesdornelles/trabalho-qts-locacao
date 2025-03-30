@@ -3,6 +3,7 @@ export interface Funcionario {
   nome: string;
   funcao: string;
   token: string;
+  ativo: boolean;
 }
 
 export interface TipoBrinquedo {
@@ -26,11 +27,11 @@ export interface Cliente {
   endereco: string;
   data_nascimento: string;
   telefone: string;
+  ativo: boolean;
 }
 
 export interface BrinquedoLocado {
   cod_locacao: string;
-  data_devolucao: string;
   cod_brinquedo: string;
 }
 
@@ -40,4 +41,3 @@ export type SelectedToy = {
   quantidade: number;
   nome: string | undefined;
 };
-

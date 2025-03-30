@@ -16,7 +16,6 @@ import { errorToast, successToast } from "../styles/toast";
 const formSchema = Yup.object().shape({
   data_locacao: Yup.string().nullable(),
   cpf_cliente: Yup.string().required("Campo obrigatório"),
-  data_devolucao: Yup.string().required("Campo obrigatório"),
   nome_cliente: Yup.string().nullable(),
 });
 
@@ -77,7 +76,6 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
     selectedToys.forEach(async (toy) => {
       error = await rentToy({
         cod_brinquedo: toy.cod_brinquedo,
-        data_devolucao: data.data_devolucao,
         // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
         cod_locacao: rental?.cod!,
       });
@@ -118,23 +116,6 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
             name="data_locacao"
             className="bg-white relative"
           />
-        </div>
-
-        <div className="w-50">
-          <label className="font-semibold" htmlFor="data_devolucao">
-            Data de devolução
-          </label>
-          <Input
-            {...register("data_devolucao")}
-            type="date"
-            name="data_devolucao"
-            className="bg-white"
-          />
-          {errors.data_devolucao && (
-            <span className="absolute text-destructive font-semibold">
-              {errors.data_devolucao.message}
-            </span>
-          )}
         </div>
       </div>
 
