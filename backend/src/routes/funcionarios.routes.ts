@@ -1,6 +1,6 @@
-import FuncionariosController from '../controllers/FuncionariosController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import FuncionariosController from '../controllers/funcionarios.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class FuncionariosRouter extends BaseRouter<FuncionariosController> {
   constructor() {
@@ -26,7 +26,7 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationGerente,
+      GeneralMiddleware.authorizationFuncionarios,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -35,7 +35,7 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
     this.router.put(
       '/:cpf',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationGerente,
+      GeneralMiddleware.authorizationFuncionarios,
       GeneralMiddleware.validateCpf,
       this.controller.update,
       GeneralMiddleware.errorHandler,
@@ -44,7 +44,7 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
     this.router.delete(
       '/:cpf',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationGerente,
+      GeneralMiddleware.authorizationFuncionarios,
       GeneralMiddleware.validateCpf,
       this.controller.delete,
       GeneralMiddleware.errorHandler,

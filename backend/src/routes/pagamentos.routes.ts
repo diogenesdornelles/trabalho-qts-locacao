@@ -1,6 +1,6 @@
-import PagamentosController from '../controllers/PagamentosController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import PagamentosController from '../controllers/pagamentos.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class PagamentosRouter extends BaseRouter<PagamentosController> {
   constructor() {
@@ -26,7 +26,7 @@ export default class PagamentosRouter extends BaseRouter<PagamentosController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationCaixa,
+      GeneralMiddleware.authorizationPagamentos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,

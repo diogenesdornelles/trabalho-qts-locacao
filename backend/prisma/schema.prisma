@@ -21,6 +21,7 @@ model Brinquedo {
   marca            String            @db.VarChar(255)
   data_aquisicao   DateTime          @db.Date
   valor_locacao    Decimal           @db.Money
+  ativo            Boolean           @default(true)
   tipoBrinquedo    TipoBrinquedo     @relation(fields: [tipo_brinquedo], references: [cod])
   brinquedosLocados BrinquedoLocado[]
 
@@ -34,6 +35,7 @@ model BrinquedoLocado {
   cod_locacao    String     @db.Uuid
   data_devolucao DateTime   @db.Date
   cod_brinquedo  String     @db.Uuid
+  ativo          Boolean    @default(true)
   locacao        Locacao    @relation(fields: [cod_locacao], references: [cod])
   brinquedo      Brinquedo  @relation(fields: [cod_brinquedo], references: [cod])
 
@@ -46,6 +48,7 @@ model Cliente {
   endereco        String      @db.VarChar(255)
   data_nascimento DateTime    @db.Date
   telefone        String      @db.VarChar(11)
+  ativo           Boolean     @default(true)
   locacoes        Locacao[]
   pagamentos      Pagamento[]
 
@@ -61,11 +64,12 @@ enum Funcao {
 }
 
 model Funcionario {
-  cpf      String @id @db.Char(11)
-  nome     String @db.VarChar(255)
-  telefone String @db.VarChar(11)
+  cpf      String   @id @db.Char(11)
+  nome     String   @db.VarChar(255)
+  telefone String   @db.VarChar(11)
   funcao   Funcao
-  senha    String @db.VarChar(128)
+  senha    String   @db.VarChar(128)
+  ativo    Boolean  @default(true)
 
   @@map("funcionarios")
 }
@@ -80,6 +84,7 @@ model Locacao {
   cod               String            @id @default(uuid()) @db.Uuid
   data_hora         DateTime          @default(now()) @db.Date
   cpf_cliente       String            @db.Char(11)
+  ativo             Boolean           @default(true)
   pgto_status       PgtoStatus        @default(PENDENTE)
   brinquedosLocados BrinquedoLocado[]
   cliente           Cliente           @relation(fields: [cpf_cliente], references: [cpf])
@@ -95,6 +100,7 @@ model Pagamento {
   data_pagamento  DateTime @default(now()) @db.Date
   valor_pagamento Decimal  @db.Money
   valor_locacao   Decimal  @db.Money
+  ativo           Boolean  @default(true)
   locacao         Locacao  @relation(fields: [cod_locacao], references: [cod])
   cliente         Cliente  @relation(fields: [cpf_cliente], references: [cpf])
 
@@ -104,6 +110,7 @@ model Pagamento {
 model TipoBrinquedo {
   cod        String      @id @default(uuid()) @db.Uuid
   nome       String      @unique @db.VarChar(255)
+  ativo      Boolean     @default(true)
   brinquedos Brinquedo[]
 
   @@map("tipos_brinquedos")

@@ -5,3 +5,5 @@ node_modules
 cert
 generated
 prisma
+dist
+generated

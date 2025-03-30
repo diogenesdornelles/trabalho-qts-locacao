@@ -1,9 +1,10 @@
 import { z } from 'zod'
 import { Funcao, PrismaClient } from './generated/prisma_client'
-import { CreateFuncionarioValidator } from './src/validators/CreateFuncionarioValidator'
+import DTOValidator from './src/validators/dto.validator'
 
 import * as dotenv from 'dotenv'
-import hashPassword from './src/utils/hashPwd'
+import hashPassword from './src/utils/hash-pwd.util'
+import { CreateFuncionarioDTO } from './src/dtos/create/create-funcionario.dto'
 // Carrega o .env de um nível acima
 dotenv.config()
 
@@ -16,14 +17,15 @@ const prisma = new PrismaClient()
 async function main() {
   try {
     const data = {
-      cpf: CPF,
-      nome: NOME,
+      cpf: CPF as string,
+      nome: NOME as string,
       telefone: '1111111111',
       funcao: Funcao.GERENTE, // Use os valores do enum como string
-      senha: PWD,
+      senha: PWD as string,
     }
-
-    const validatedData = CreateFuncionarioValidator.parse(data)
+    const validator = new DTOValidator()
+    const validatedData =
+      validator.createFuncionario<CreateFuncionarioDTO>(data)
 
     const papwd = await hashPassword(validatedData.senha)
 
@@ -40,6 +42,7 @@ async function main() {
         senha: validatedData.senha,
       },
     })
+    console.log(`Employee CPF ${gerente.cpf} was created`)
   } catch (error: unknown) {
     // Trata erros de validação do Zod
     if (error instanceof z.ZodError) {

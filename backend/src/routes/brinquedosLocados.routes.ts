@@ -1,6 +1,6 @@
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import BrinquedosLocadosController from '../controllers/BrinquedosLocadosController'
-import { BaseRouter } from './BaseRouter'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import BrinquedosLocadosController from '../controllers/brinquedos-locados.controller'
+import { BaseRouter } from './base.routes'
 
 export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocadosController> {
   constructor() {
@@ -26,7 +26,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaLocacao,
+      GeneralMiddleware.authorizationBrinquedosLocados,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -35,7 +35,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.put(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaLocacao,
+      GeneralMiddleware.authorizationBrinquedosLocados,
       GeneralMiddleware.validateUUID,
       this.controller.update,
       GeneralMiddleware.errorHandler,
@@ -44,7 +44,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.delete(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaLocacao,
+      GeneralMiddleware.authorizationBrinquedosLocados,
       GeneralMiddleware.validateUUID,
       this.controller.delete,
       GeneralMiddleware.errorHandler,

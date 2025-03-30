@@ -1,6 +1,6 @@
-import ClientesController from '../controllers/ClientesController'
-import GeneralMiddleware from '../middlewares/GeneralMiddleware'
-import { BaseRouter } from './BaseRouter'
+import ClientesController from '../controllers/clientes.controller'
+import GeneralMiddleware from '../middlewares/general.middleware'
+import { BaseRouter } from './base.routes'
 
 export default class ClientesRouter extends BaseRouter<ClientesController> {
   constructor() {
@@ -26,7 +26,7 @@ export default class ClientesRouter extends BaseRouter<ClientesController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaCadastro,
+      GeneralMiddleware.authorizationClientes,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -35,7 +35,7 @@ export default class ClientesRouter extends BaseRouter<ClientesController> {
     this.router.put(
       '/:cpf',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationAnalistaCadastro,
+      GeneralMiddleware.authorizationClientes,
       GeneralMiddleware.validateCpf,
       this.controller.update,
       GeneralMiddleware.errorHandler,
