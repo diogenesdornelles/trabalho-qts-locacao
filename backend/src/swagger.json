@@ -113,6 +113,15 @@
             }
           }
         }
+      },
+      "delete": {
+        "summary": "Excluir um brinquedo",
+        "operationId": "deleteBrinquedo",
+        "responses": {
+          "204": {
+            "description": "Brinquedo removido"
+          }
+        }
       }
     },
     "/brinquedosLocados": {
@@ -325,15 +334,6 @@
                 }
               }
             }
-          }
-        }
-      },
-      "delete": {
-        "summary": "Excluir um cliente",
-        "operationId": "deleteCliente",
-        "responses": {
-          "204": {
-            "description": "Cliente removido"
           }
         }
       }
@@ -883,7 +883,11 @@
       },
       "CreateBrinquedoLocadoDTO": {
         "type": "object",
-        "required": ["cod_locacao", "data_devolucao", "cod_brinquedo"],
+        "required": [
+          "cod_locacao",
+          "data_devolucao",
+          "cod_brinquedo"
+        ],
         "properties": {
           "cod_locacao": {
             "type": "string",
@@ -910,6 +914,9 @@
             "type": "string",
             "format": "uuid",
             "example": "8e07cb00-089a-4e0f-b366-3889bf2c61db"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
@@ -952,7 +959,13 @@
       },
       "CreateClienteDTO": {
         "type": "object",
-        "required": ["cpf", "nome", "endereco", "data_nascimento", "telefone"],
+        "required": [
+          "cpf",
+          "nome",
+          "endereco",
+          "data_nascimento",
+          "telefone"
+        ],
         "properties": {
           "cpf": {
             "type": "string",
@@ -1028,7 +1041,13 @@
       },
       "CreateFuncionarioDTO": {
         "type": "object",
-        "required": ["cpf", "nome", "telefone", "funcao", "senha"],
+        "required": [
+          "cpf",
+          "nome",
+          "telefone",
+          "funcao",
+          "senha"
+        ],
         "properties": {
           "cpf": {
             "type": "string",
@@ -1107,7 +1126,14 @@
             "type": "string"
           },
           "funcao": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "GERENTE",
+              "CAIXA",
+              "ALMOXARIFE",
+              "AGENTE_LOCACAO",
+              "ANALISTA_CADASTRO"
+            ]
           },
           "ativo": {
             "type": "boolean"
@@ -1116,7 +1142,9 @@
       },
       "CreateLocacaoDTO": {
         "type": "object",
-        "required": ["cpf_cliente"],
+        "required": [
+          "cpf_cliente"
+        ],
         "properties": {
           "cpf_cliente": {
             "type": "string",
@@ -1135,7 +1163,11 @@
           },
           "pgto_status": {
             "type": "string",
-            "enum": ["PAGO", "PENDENTE", "ATRASO"]
+            "enum": [
+              "PAGO",
+              "PENDENTE",
+              "ATRASO"
+            ]
           },
           "ativo": {
             "type": "boolean"
@@ -1161,6 +1193,14 @@
           },
           "ativo": {
             "type": "boolean"
+          },
+          "pgto_status": {
+            "type": "string",
+            "enum": [
+              "PENDENTE",
+              "PAGO",
+              "ATRASO"
+            ]
           }
         }
       },
@@ -1180,6 +1220,17 @@
             "type": "string",
             "pattern": "^[0-9]{11}$"
           },
+          "ativo": {
+            "type": "boolean"
+          },
+          "pgto_status": {
+            "type": "string",
+            "enum": [
+              "PENDENTE",
+              "PAGO",
+              "ATRASO"
+            ]
+          },
           "brinquedosLocados": {
             "$ref": "#/components/schemas/BrinquedoLocadoResponseDTO"
           }
@@ -1187,7 +1238,11 @@
       },
       "CreatePagamentoDTO": {
         "type": "object",
-        "required": ["cpf_cliente", "cod_locacao", "valor_pagamento"],
+        "required": [
+          "cpf_cliente",
+          "cod_locacao",
+          "valor_pagamento"
+        ],
         "properties": {
           "cpf_cliente": {
             "type": "string",
@@ -1253,12 +1308,17 @@
           },
           "valor_locacao": {
             "type": "number"
+          },
+          "ativo": {
+            "type": "boolean"
           }
         }
       },
       "CreateTipoBrinquedoDTO": {
         "type": "object",
-        "required": ["nome"],
+        "required": [
+          "nome"
+        ],
         "properties": {
           "nome": {
             "type": "string",
@@ -1297,7 +1357,10 @@
       },
       "CreateTokenDTO": {
         "type": "object",
-        "required": ["cpf", "senha"],
+        "required": [
+          "cpf",
+          "senha"
+        ],
         "properties": {
           "cpf": {
             "type": "string",
@@ -1317,6 +1380,9 @@
           "funcionario": {
             "type": "object",
             "properties": {
+              "nome": {
+                "type": "string"
+              },
               "cpf": {
                 "type": "string",
                 "pattern": "^[0-9]{11}$"
