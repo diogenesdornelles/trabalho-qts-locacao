@@ -117,7 +117,7 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
             className="bg-white relative"
           />
         </div>
-      </div>
+       </div>
 
       <div className="flex gap-4">
         <div>

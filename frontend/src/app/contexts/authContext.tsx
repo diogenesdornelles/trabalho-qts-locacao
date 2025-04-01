@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { Funcionario } from "../../domains/types";
 import axios from "axios";
 import { setCookie } from "nookies";
@@ -20,6 +20,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [funcionario, setFuncionario] = useState<Omit<Funcionario, "ativo">>();
 
   const router = useRouter();
+
+  useEffect(() => {
+    const employee = JSON.parse(localStorage.getItem("employee")!);
+
+    setFuncionario(employee);
+  }, []);
 
   const login = async (cpf: string, password: string) => {
     try {
@@ -41,6 +47,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       };
 
       setFuncionario(newFuncionario);
+      localStorage.setItem("employee", JSON.stringify(newFuncionario));
 
       if (data?.token) {
         setCookie(undefined, "token", data.token, {

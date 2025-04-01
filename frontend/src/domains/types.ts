@@ -9,6 +9,7 @@ export interface Funcionario {
 export interface TipoBrinquedo {
   cod: string;
   nome: string;
+  ativo: boolean;
 }
 
 export interface Brinquedo {
@@ -17,8 +18,9 @@ export interface Brinquedo {
   tipo_brinquedo: string;
   marca: string;
   data_aquisicao: string;
-  valor_locacao: string;
+  valor_locacao: number;
   tipoBrinquedo: TipoBrinquedo;
+  ativo: boolean;
 }
 
 export interface Cliente {

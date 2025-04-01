@@ -61,7 +61,7 @@ const Login = () => {
             </label>
             <Input
               type="text"
-              className="border-cyan-500 focus-visible:ring-cyan-500/40"
+              className="border-cyan-500"
               {...register("cpf")}
             />
             {errors.cpf && (
@@ -82,7 +82,7 @@ const Login = () => {
             <div className="flex items-center w-[110%] gap-2">
               <Input
                 type={showPassword ? "text" : "password"}
-                className="border-cyan-500 relative focus-visible:ring-cyan-500/40"
+                className="border-cyan-500 relative"
                 {...register("password")}
               />
               <button
