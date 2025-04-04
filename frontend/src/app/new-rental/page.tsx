@@ -4,6 +4,7 @@ import { RentalForm } from "./components/rental-form";
 import { ToysTable } from "./components/toys-table";
 import { useCallback, useEffect, useState } from "react";
 import { SelectedToy } from "@/domains/types";
+import { PageTitle } from "@/components/page-title";
 
 export default function NewRental() {
   const [selectedToys, setSelectedToys] = useState<SelectedToy[]>([]);
@@ -31,7 +32,7 @@ export default function NewRental() {
 
   return (
     <div className="flex flex-col items-center w-full h-full">
-      <h1 className="text-2xl font-bold self-start p-4">Nova locação</h1>
+      <PageTitle title="Nova locação" backPath="/home" />
       <div className="flex flex-col w-full items-center border-2 border-t-cyan-600 border-b-cyan-600 align-self-center gap-6 p-20 min-h-[700px] bg-cyan-200">
         <RentalForm selectedToys={selectedToys} resetToys={resetToys} />
         <ToysTable

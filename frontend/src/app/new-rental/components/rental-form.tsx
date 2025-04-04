@@ -155,7 +155,7 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
           />
         </div>
       </div>
-      <div className="absolute flex top-[90.5%] right-[4.5%] gap-4">
+      <div className="fixed z-20 flex top-[90.5%] right-[4.5%] gap-4">
         <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
           Cancelar
         </Button>

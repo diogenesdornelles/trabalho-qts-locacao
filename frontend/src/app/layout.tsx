@@ -35,7 +35,7 @@ export default function RootLayout({
     <AuthProvider>
       <html lang="pt-br">
         <body
-          className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${poppins.variable} ${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
         >
           <Layout />
           {children}
