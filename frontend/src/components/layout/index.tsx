@@ -19,7 +19,7 @@ export const Layout = () => {
 
   const pathName = usePathname();
 
-  return pathName !== "/login" ? (
+  return pathName !== "/login" && pathName !== "/" ? (
     <>
       <div className="p-4 flex justify-between w-full shadow-md">
         <Image src="/logo.png" alt="logo" width={70} height={47} />

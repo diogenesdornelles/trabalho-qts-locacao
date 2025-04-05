@@ -1,6 +1,6 @@
-import { errorToast, successToast } from "@/app/new-rental/styles/toast";
 import { Cliente } from "@/domains/types";
 import { api } from "@/lib/api-instance/api";
+import { errorToast, successToast } from "@/styles/toast";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 

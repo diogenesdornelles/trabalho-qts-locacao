@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as Yup from "yup";
-import { errorToast, successToast } from "../styles/toast";
+import { errorToast, successToast } from "../../../styles/toast";
 
 const formSchema = Yup.object().shape({
   data_locacao: Yup.string().nullable(),

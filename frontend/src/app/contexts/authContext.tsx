@@ -11,7 +11,7 @@ import { Funcionario } from "../../domains/types";
 import axios from "axios";
 import { setCookie, destroyCookie } from "nookies";
 import { toast } from "sonner";
-import { errorToast } from "../new-rental/styles/toast";
+import { errorToast } from "@/styles/toast";
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api-instance/api";
 
@@ -31,8 +31,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const employee = JSON.parse(localStorage.getItem("employee")!);
 
-    setFuncionario(employee);
-  }, []);
+    if (!employee) {
+      destroyCookie(undefined, "token");
+      router.push("/login");
+    } else {
+      setFuncionario(employee);
+    }
+  }, [router]);
 
   const login = useCallback(
     async (cpf: string, password: string) => {
@@ -66,7 +71,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           api.defaults.headers["Authorization"] = `Bearer ${data.token}`;
         }
 
-        router.push("/new-rental");
+        router.push("/home");
       } catch {
         toast("Usuário ou senha inválidos", {
           style: errorToast,
