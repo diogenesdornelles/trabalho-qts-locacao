@@ -4,6 +4,7 @@ import { ResponseLocacaoDTO } from '../dtos/response/response-locacao.dto'
 import { ResponseLocacaoComBrinquedosDTO } from '../dtos/response/response-locacao-com-brinquedos.dto'
 import { CreateLocacaoDTO } from '../dtos/create/create-locacao.dto'
 import { UpdateLocacaoDTO } from '../dtos/update/update-locacao.dto'
+import { ApiError } from '../utils/api-error.util'
 
 export default class LocacaoServices extends BaseService<
   ResponseLocacaoDTO,
@@ -56,10 +57,19 @@ export default class LocacaoServices extends BaseService<
 
   public update = async (
     pk: string,
-    data: UpdateLocacaoDTO,
-  ): Promise<ResponseLocacaoDTO> => {
-    throw new Error('Method not implemented.')
-  }
+    data: Partial<UpdateLocacaoDTO>,
+  ): Promise<ResponseLocacaoDTO | null> => {
+    try {
+      const updatedLocacao = await this.prisma.locacao.update({
+        where: { cod: pk },
+        data,
+      });
+      return updatedLocacao;
+    } catch (error) {
+      console.error('Error updating locacao:', error);
+      throw new ApiError(500, 'Failed to update locacao');
+    }
+  };
 
   public delete = async (pk: string): Promise<boolean> => {
     throw new Error('Method not implemented.')

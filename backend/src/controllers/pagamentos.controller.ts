@@ -68,13 +68,13 @@ export default class PagamentosController extends BaseController<PagamentoServic
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented update.')
   }
   public delete = async (
     req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    throw new Error('Method not implemented.')
+    throw new Error('Method not implemented delete.')
   }
 }
