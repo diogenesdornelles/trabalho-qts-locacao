@@ -43,3 +43,17 @@ export type SelectedToy = {
   quantidade: number;
   nome: string | undefined;
 };
+
+export interface Locacao {
+  cod: string;
+  data_hora: string;
+  cpf_cliente: string;
+  ativo: boolean;
+  pgto_status: string;
+}
+
+export interface RentalInfo {
+  customerName: string;
+  date: string;
+  status: string;
+}
