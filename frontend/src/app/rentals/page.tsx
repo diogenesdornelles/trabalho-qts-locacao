@@ -8,19 +8,24 @@ import { getRentals } from "@/services/rentals/getRentals";
 import { getCustomers } from "@/services/customer/getCustomers";
 import { formatDate } from "../utils/format-date";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
 
 export default function Rentals() {
   const [rentalsData, setRentalsData] = useState<RentalInfo[]>([]);
 
+  const router = useRouter();
+
   const rentalsStatus = [
     { value: "PENDENTE", label: "Pendentes" },
     { value: "ATRASO", label: "Atrasadas" },
-    { value: "PAGO", label: "Pagas" },
   ];
 
   useEffect(() => {
     const fetchRentals = async () => {
       const response = await getRentals();
+      console.log(response);
       return response;
     };
 
@@ -34,14 +39,16 @@ export default function Rentals() {
       const customers = await fetchCustomers();
 
       const data = rentals.map((rental) => ({
+        cod: rental.cod,
         customerName: customers.filter(
           (customer) => customer.cpf === rental.cpf_cliente
         )?.[0]?.nome,
         date: formatDate(new Date(rental.data_hora), "pt-br"),
         status: rental.pgto_status,
+        cpf: customers.filter(
+          (customer) => customer.cpf === rental.cpf_cliente
+        )?.[0]?.cpf,
       }));
-
-      console.log(data);
 
       setRentalsData(data);
     };
@@ -52,11 +59,22 @@ export default function Rentals() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <PageTitle title="Locações" backPath="/home" />
-      <div className="flex flex-col w-[800px] items-center align-self-center p-10 min-h-[700px]">
+      <div className="flex flex-col w-[80%] items-center align-self-center p-10 min-h-[700px]">
+        <Button
+          onClick={() => router.push("/rentals/maintenance/new")}
+          className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
+        >
+          Adicionar
+          <Plus strokeWidth={3} />
+        </Button>
         <Tabs defaultValue="PENDENTE" className="w-full">
-          <TabsList className="h-15 w-full">
+          <TabsList className="h-10 w-full">
             {rentalsStatus.map((status, index) => (
-              <TabsTrigger key={index} value={status.value}>
+              <TabsTrigger
+                className="cursor-pointer"
+                key={index}
+                value={status.value}
+              >
                 {status.label}
               </TabsTrigger>
             ))}
@@ -69,7 +87,14 @@ export default function Rentals() {
             >
               {rentalsData?.map((rental, index) =>
                 rental.status === status.value ? (
-                  <RentalItem key={index} rental={rental} />
+                  <RentalItem
+                    key={index}
+                    rental={rental}
+                    onClick={() => {
+                      localStorage.setItem("rental", JSON.stringify(rental));
+                      router.push(`/rentals/info/${rental.cod}`);
+                    }}
+                  />
                 ) : null
               )}
             </TabsContent>

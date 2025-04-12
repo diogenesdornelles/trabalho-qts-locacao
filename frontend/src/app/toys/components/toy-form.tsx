@@ -16,7 +16,10 @@ import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api-instance/api";
-import { TipoBrinquedo } from "@/domains/types";
+import { Brinquedo, TipoBrinquedo } from "@/domains/types";
+import { useParams } from "next/navigation";
+import { updateToy } from "@/services/toys/updateToy";
+import { formatDate } from "@/app/utils/format-date";
 
 const formSchema = Yup.object().shape({
   nome: Yup.string().required("Campo obrigatório"),
@@ -43,13 +46,17 @@ const formSchema = Yup.object().shape({
     .positive("O valor deve ser positivo"),
 });
 
+export type ToyFormData = Yup.InferType<typeof formSchema>;
+
 export const ToyForm = () => {
+  const [toy, setToy] = useState<Brinquedo>();
   const [toyTypes, setToyTypes] = useState<TipoBrinquedo[]>();
   const { handleSubmit, register, formState, reset, control, setValue } =
     useForm({
       resolver: yupResolver(formSchema),
     });
 
+  const { action } = useParams();
   const { errors } = formState;
 
   useEffect(() => {
@@ -65,11 +72,32 @@ export const ToyForm = () => {
     fetchToyTypes();
   }, []);
 
-  const onSubmit = async (data: Yup.InferType<typeof formSchema>) => {
-    const toyCreated = await createToy(data);
+  useEffect(() => {
+    if (action === "edit") {const storedToy: Brinquedo = JSON.parse(localStorage.getItem("toy")!);
+      setToy(storedToy);
 
-    if (toyCreated) reset();
-    setValue("tipo_brinquedo", "");
+      reset({
+        data_aquisicao: formatDate(new Date(storedToy.data_aquisicao), "sv-SE"),
+        marca: storedToy.marca,
+        nome: storedToy.nome,
+        tipo_brinquedo: storedToy.tipoBrinquedo.cod,
+        valor_locacao: storedToy.valor_locacao,
+      });
+      
+    }
+  }, [action, reset, toyTypes]);
+
+  const onSubmit = async (data: ToyFormData) => {
+    if (action === "new") {
+      const toyCreated = await createToy(data);
+
+      if (toyCreated) reset();
+      setValue("tipo_brinquedo", "");
+    } else {
+      if (toy) {
+        await updateToy(toy.cod, data);
+      }
+    }
   };
 
   return (

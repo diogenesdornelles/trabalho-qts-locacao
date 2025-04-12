@@ -4,12 +4,10 @@ import { errorToast } from "@/styles/toast";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 
-export const rentToy = async (
-  toy: Pick<BrinquedoLocado, "cod_brinquedo" | "cod_locacao">
-): Promise<boolean> => {
+export const getRentedToys = async (): Promise<BrinquedoLocado[] | null> => {
   try {
-    await api.post(`/brinquedosLocados`, toy);
-    return false;
+    const response = await api.get(`/brinquedosLocados`);
+    return response.data;
   } catch (error) {
     if (isAxiosError(error)) {
       if (error.response?.status !== 403) {
@@ -20,6 +18,6 @@ export const rentToy = async (
       }
     }
 
-    return true;
+    return [];
   }
 };

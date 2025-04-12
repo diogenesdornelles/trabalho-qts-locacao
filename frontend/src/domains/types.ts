@@ -33,8 +33,13 @@ export interface Cliente {
 }
 
 export interface BrinquedoLocado {
+  cod: string;
+  valor_unitario: number;
+  nome: string;
   cod_locacao: string;
+  data_devolucao: string;
   cod_brinquedo: string;
+  ativo: boolean;
 }
 
 export type SelectedToy = {
@@ -53,7 +58,9 @@ export interface Locacao {
 }
 
 export interface RentalInfo {
+  cod: string;
   customerName: string;
+  cpf: string;
   date: string;
   status: string;
 }

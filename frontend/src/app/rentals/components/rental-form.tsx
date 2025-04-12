@@ -19,12 +19,18 @@ const formSchema = Yup.object().shape({
   nome_cliente: Yup.string().nullable(),
 });
 
+export type RentalFormData = Yup.InferType<typeof formSchema>;
 interface RentalFormProps {
   selectedToys: SelectedToy[];
   resetToys: () => void;
+  defaultValues?: RentalFormData;
 }
 
-export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
+export const RentalForm = ({
+  selectedToys,
+  resetToys,
+  defaultValues,
+}: RentalFormProps) => {
   const [isCustomerUnregistered, setIsCustomerUnregistered] = useState(true);
 
   const { handleSubmit, register, watch, setValue, formState, reset } = useForm(
@@ -41,10 +47,17 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
   const cpf = watch("cpf_cliente");
 
   useEffect(() => {
-    if (cpf?.length < 11) {
+    if (defaultValues) {
+      setIsCustomerUnregistered(false);
+      reset(defaultValues);
+    }
+  }, [defaultValues, reset]);
+
+  useEffect(() => {
+    if (cpf?.length < 11 && !defaultValues) {
       setValue("nome_cliente", "");
     }
-  }, [cpf, setValue]);
+  }, [cpf, defaultValues, setValue]);
 
   useEffect(() => {
     const fetchCustomer = async () => {
@@ -64,10 +77,10 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
       }
     };
 
-    if (cpf) fetchCustomer();
-  }, [cpf, setValue]);
+    if (cpf && !defaultValues) fetchCustomer();
+  }, [cpf, defaultValues, setValue]);
 
-  const onSubmit = async (data: Yup.InferType<typeof formSchema>) => {
+  const onSubmit = async (data: RentalFormData) => {
     let error = false;
     if (isCustomerUnregistered || !selectedToys.length) return;
 
@@ -117,7 +130,7 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
             className="bg-white relative"
           />
         </div>
-       </div>
+      </div>
 
       <div className="flex gap-4">
         <div>
@@ -129,6 +142,7 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
             type="text"
             name="cpf_cliente"
             className="bg-white relative"
+            disabled={!!defaultValues}
           />
           {isCustomerUnregistered && cpf?.length === 11 && (
             <span className="absolute text-destructive font-semibold">
@@ -155,17 +169,19 @@ export const RentalForm = ({ selectedToys, resetToys }: RentalFormProps) => {
           />
         </div>
       </div>
-      <div className="fixed z-20 flex top-[90.5%] right-[4.5%] gap-4">
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
-          Cancelar
-        </Button>
-        <Button
-          type="submit"
-          className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold"
-        >
-          Salvar
-        </Button>
-      </div>
+      {!defaultValues && (
+        <div className="fixed z-20 flex top-[90.5%] right-[4.5%] gap-4">
+          <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+            Cancelar
+          </Button>
+          <Button
+            type="submit"
+            className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-pink-600 hover:bg-pink-500 text-base font-bold"
+          >
+            Salvar
+          </Button>
+        </div>
+      )}
     </form>
   );
 };
