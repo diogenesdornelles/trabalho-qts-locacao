@@ -35,7 +35,7 @@ export default class DTOValidator {
         message: 'Data de aquisição deve ser menor ou igual a data atual',
       }),
       valor_locacao: z
-        .number()
+        .number({ coerce: true })
         .gt(0, 'Valor mínimo de compra deve ser R$ 0,01')
         .transform(num => Math.round(num * 100) / 100),
     })
@@ -156,7 +156,7 @@ export default class DTOValidator {
         }),
       cod_locacao: z.string().uuid('Forneça um UUID de locação correto'),
       valor_pagamento: z
-        .number()
+        .number({ coerce: true })
         .gt(0, 'Valor mínimo de compra deve ser R$ 0,01')
         .transform(num => Math.round(num * 100) / 100),
     })
