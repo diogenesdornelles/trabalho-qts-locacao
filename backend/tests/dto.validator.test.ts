@@ -51,10 +51,10 @@ describe('DTOValidator', () => {
 
         it('deve lançar erro se data em formato inválido 1', () => {
             const invalidBrinquedo = {
-                nome: 'Br', // nome muito curto
+                nome: 'Brinquedo A',
                 tipo_brinquedo: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
                 marca: 'Marca X',
-                data_aquisicao: '20-01-2001',
+                data_aquisicao: '20-01-2001', // invalid date
                 valor_locacao: 10.5,
             }
             expect(() => validator.createBrinquedo(invalidBrinquedo)).toThrow()
@@ -62,10 +62,10 @@ describe('DTOValidator', () => {
 
         it('deve lançar erro se data em formato inválido 2', () => {
             const invalidBrinquedo = {
-                nome: 'Br', // nome muito curto
+                nome: 'Brinquedo A',
                 tipo_brinquedo: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
                 marca: 'Marca X',
-                data_aquisicao: 'invalid date',
+                data_aquisicao: 'invalid date', // data inválida
                 valor_locacao: 10.5,
             }
             expect(() => validator.createBrinquedo(invalidBrinquedo)).toThrow()
@@ -181,7 +181,7 @@ describe('DTOValidator', () => {
                 nome: 'Funcionario Teste',
                 telefone: '11987654321',
                 senha: 'Valida@123',
-                funcao: 'ADMINISTRADOR', // função que não cumpre os requisitos
+                funcao: 'ADMINISTRADOR', // função não cumpre os requisitos
             }
             expect(() => validator.createFuncionario(invalidFuncionario)).toThrow()
         })
