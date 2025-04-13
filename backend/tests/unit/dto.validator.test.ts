@@ -1,4 +1,4 @@
-import DTOValidator from "../src/validators/dto.validator"
+import DTOValidator from "../../src/validators/dto.validator"
 
 
 describe('DTOValidator', () => {

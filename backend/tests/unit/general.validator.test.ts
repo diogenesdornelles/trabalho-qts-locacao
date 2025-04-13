@@ -1,4 +1,4 @@
-import GeneralValidator from "../src/validators/general.validator"
+import GeneralValidator from "../../src/validators/general.validator"
 
 
 describe('GeneralValidator', () => {
