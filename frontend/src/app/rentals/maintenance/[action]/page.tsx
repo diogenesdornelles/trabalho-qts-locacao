@@ -5,9 +5,15 @@ import { SelectedToy } from "@/domains/types";
 import { PageTitle } from "@/components/page-title";
 import { RentalForm } from "../../components/rental-form";
 import { ToysTable } from "../../components/toys-table";
+import { useAuth } from "@/app/contexts/authContext";
+import { useRouter } from "next/navigation";
 
-export default function NewRental() {
+export default function RentalMaintenance() {
   const [selectedToys, setSelectedToys] = useState<SelectedToy[]>([]);
+
+  const { user } = useAuth();
+
+  const router = useRouter();
 
   const addToy = useCallback(
     (newToy: SelectedToy) => {
@@ -27,8 +33,10 @@ export default function NewRental() {
   }, []);
 
   useEffect(() => {
-    console.log(selectedToys);
-  }, [selectedToys]);
+    const isRentalAgent = user?.funcao === "AGENTE_LOCACAO";
+
+    if (!isRentalAgent) router.back();
+  }, [router, user?.funcao]);
 
   return (
     <div className="flex flex-col items-center w-full h-full">

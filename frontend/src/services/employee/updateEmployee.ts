@@ -4,13 +4,14 @@ import { errorToast, successToast } from "@/styles/toast";
 import { isAxiosError } from "axios";
 import { toast } from "sonner";
 
-export const createEmployee = async (
-  data: Omit<Funcionario, "ativo">
+export const updateEmployee = async (
+  cpf: string,
+  data: Omit<Funcionario, "ativo" | "cpf">
 ): Promise<boolean> => {
   try {
-    await api.post(`/funcionarios`, data);
+    await api.put(`/funcionarios/${cpf}`, data);
 
-    toast("Funcionário cadastrado!", {
+    toast("Funcionário atualizado!", {
       duration: 2000,
       style: successToast,
     });
@@ -21,7 +22,7 @@ export const createEmployee = async (
       console.log(error);
       toast(
         error.response?.data?.message ||
-          "Ocorreu um erro ao cadastrar o funcionário, tente novamente.",
+          "Ocorreu um erro ao atualizar os dados do funcionário, tente novamente.",
         {
           duration: 2000,
           style: errorToast,

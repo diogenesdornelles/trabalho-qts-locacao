@@ -11,11 +11,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
+import { useAuth } from "../contexts/authContext";
 
 export default function Rentals() {
   const [rentalsData, setRentalsData] = useState<RentalInfo[]>([]);
+  
+  const {user} = useAuth()
 
   const router = useRouter();
+  
+  const isRentalAgent = user?.funcao === 'AGENTE_LOCACAO'
 
   const rentalsStatus = [
     { value: "PENDENTE", label: "Pendentes" },
@@ -59,7 +64,10 @@ export default function Rentals() {
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <PageTitle title="Locações" backPath="/home" />
-      <div className="flex flex-col w-[80%] items-center align-self-center p-10 min-h-[700px]">
+      <div className="flex flex-col w-[65%] items-center align-self-center p-10 min-h-[700px]">
+        {
+          isRentalAgent && (
+
         <Button
           onClick={() => router.push("/rentals/maintenance/new")}
           className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
@@ -67,6 +75,8 @@ export default function Rentals() {
           Adicionar
           <Plus strokeWidth={3} />
         </Button>
+          )
+        }
         <Tabs defaultValue="PENDENTE" className="w-full">
           <TabsList className="h-10 w-full">
             {rentalsStatus.map((status, index) => (
@@ -82,7 +92,7 @@ export default function Rentals() {
           {rentalsStatus.map((status, index) => (
             <TabsContent
               key={index}
-              className="flex flex-col gap-6"
+              className="flex flex-col gap-3"
               value={status.value}
             >
               {rentalsData?.map((rental, index) =>

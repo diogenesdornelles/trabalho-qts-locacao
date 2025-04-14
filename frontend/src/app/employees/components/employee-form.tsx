@@ -13,8 +13,11 @@ import { Input } from "@/components/ui/input";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createEmployee } from "@/services/employee/createEmployee";
+import { useParams } from "next/navigation";
+import { Funcionario } from "@/domains/types";
+import { updateEmployee } from "@/services/employee/updateEmployee";
 
 const formSchema = Yup.object().shape({
   cpf: Yup.string()
@@ -41,12 +44,15 @@ const formSchema = Yup.object().shape({
 });
 
 export const EmployeeForm = () => {
+  const [employee, setEmployee] = useState<Funcionario>();
+
   const { handleSubmit, register, formState, reset, control, setValue } =
     useForm({
       resolver: yupResolver(formSchema),
     });
 
   const { errors } = formState;
+  const { action } = useParams();
 
   const roles = useMemo(
     () => [
@@ -60,11 +66,39 @@ export const EmployeeForm = () => {
   );
 
   const onSubmit = async (data: Yup.InferType<typeof formSchema>) => {
-    const employeeCreated = await createEmployee(data);
+    if (action === "new") {
+      const employeeCreated = await createEmployee(data);
 
-    if (employeeCreated) reset();
-    setValue("funcao", "");
+      if (employeeCreated) reset();
+      setValue("funcao", "");
+    } else {
+      if (employee) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { cpf, ...rest } = data;
+        await updateEmployee(employee?.cpf, {
+          ...rest,
+        });
+      }
+    }
   };
+
+  useEffect(() => {
+    if (action === "edit") {
+      const selectedEmployee: Funcionario = JSON.parse(
+        localStorage.getItem("selectedEmployee")!
+      );
+
+      reset({
+        cpf: selectedEmployee?.cpf,
+        nome: selectedEmployee?.nome,
+        telefone: selectedEmployee?.telefone,
+        funcao: selectedEmployee?.funcao,
+      });
+
+      setValue("funcao", selectedEmployee?.funcao);
+      setEmployee(selectedEmployee);
+    }
+  }, [action, reset, setValue]);
 
   return (
     <form

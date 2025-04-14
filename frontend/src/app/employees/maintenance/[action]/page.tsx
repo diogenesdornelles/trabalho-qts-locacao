@@ -1,7 +1,21 @@
+"use client";
+
 import { PageTitle } from "@/components/page-title";
 import { EmployeeForm } from "../../components/employee-form";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/contexts/authContext";
+import { useEffect } from "react";
 
 const NewToy = () => {
+  const router = useRouter();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const isManager = user?.funcao === "GERENTE";
+
+    if (!isManager) router.back();
+  }, [router, user?.funcao]);
+
   return (
     <div className="flex flex-col items-center w-full h-full">
       <PageTitle title="Cadastro de funcionários" backPath="/employees" />

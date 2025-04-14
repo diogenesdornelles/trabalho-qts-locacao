@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { Funcionario } from "../../domains/types";
+import { User } from "../../domains/types";
 import axios from "axios";
 import { setCookie, destroyCookie } from "nookies";
 import { toast } from "sonner";
@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation";
 import { api } from "@/lib/api-instance/api";
 
 interface AuthContextData {
-  user: Omit<Funcionario, "ativo"> | undefined;
+  user: User | undefined;
   login: (cpf: string, password: string) => Promise<void>;
   logout: () => void;
 }
@@ -24,18 +24,18 @@ interface AuthContextData {
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [funcionario, setFuncionario] = useState<Omit<Funcionario, "ativo">>();
+  const [user, setUser] = useState<User>();
 
   const router = useRouter();
 
   useEffect(() => {
     const employee = JSON.parse(localStorage.getItem("employee")!);
-
+    console.log(employee);
     if (!employee) {
       destroyCookie(undefined, "token");
       router.push("/login");
     } else {
-      setFuncionario(employee);
+      setUser(employee);
     }
   }, [router]);
 
@@ -50,17 +50,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           }
         );
 
-        console.log(data);
-
-        const newFuncionario: Omit<Funcionario, "ativo"> = {
+        const newUser: User = {
           cpf: data.funcionario.cpf,
           nome: data.funcionario.nome,
           funcao: data.funcionario.funcao,
           token: data.token,
         };
 
-        setFuncionario(newFuncionario);
-        localStorage.setItem("employee", JSON.stringify(newFuncionario));
+        setUser(newUser);
+        localStorage.setItem("employee", JSON.stringify(newUser));
 
         if (data?.token) {
           setCookie(undefined, "token", data.token, {
@@ -92,7 +90,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   return (
     <AuthContext.Provider
       value={{
-        user: funcionario,
+        user,
         login,
         logout,
       }}

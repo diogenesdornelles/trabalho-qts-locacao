@@ -1,8 +1,15 @@
-export interface Funcionario {
+export interface User {
   cpf: string;
   nome: string;
   funcao: string;
   token: string;
+}
+
+export interface Funcionario {
+  cpf: string;
+  nome: string;
+  telefone: string;
+  funcao: string;
   ativo: boolean;
 }
 

@@ -2,10 +2,21 @@
 
 import { PageTitle } from "@/components/page-title";
 import { ToyForm } from "../../components/toy-form";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useAuth } from "@/app/contexts/authContext";
 
 const ToyMaintenance = () => {
   const { action } = useParams();
+
+  const router = useRouter();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const isStorekeeper = user?.funcao === "ALMOXARIFE";
+
+    if (!isStorekeeper) router.back();
+  }, [router, user?.funcao]);
 
   return (
     <div className="flex flex-col justify-center w-full h-full">
