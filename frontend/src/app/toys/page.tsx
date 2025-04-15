@@ -17,10 +17,14 @@ import { getToys } from "@/services/toys/getToys";
 import { deleteToy } from "@/services/toys/deleteToy";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../contexts/authContext";
 
 export default function Toys() {
   const [toys, setToys] = useState<Brinquedo[]>([]);
+
   const router = useRouter();
+  const { user } = useAuth();
+  const isStorekeeper = user?.funcao === "ALMOXARIFE";
 
   const handleToyDelete = useCallback(async (toyId: string) => {
     const wasToyDeleted = await deleteToy(toyId);
@@ -42,13 +46,15 @@ export default function Toys() {
       <PageTitle title="Brinquedos" backPath="/home" />
       <div className="flex flex-col w-full items-center border-2 border-t-cyan-600 border-b-cyan-600 align-self-center gap-6 p-20 min-h-[700px] bg-cyan-200">
         <div className="flex flex-col relative  rounded-lg w-[70%]">
-          <Button
-            onClick={() => router.push("/toys/maintenance/new")}
-            className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
-          >
-            Adicionar
-            <Plus strokeWidth={3} />
-          </Button>
+          {isStorekeeper && (
+            <Button
+              onClick={() => router.push("/toys/maintenance/new")}
+              className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
+            >
+              Adicionar
+              <Plus strokeWidth={3} />
+            </Button>
+          )}
           <Table className="justify-self-center rounded-t-4">
             <TableHeader className="bg-sky-400">
               <TableRow className="hover:bg-transparent">
@@ -100,22 +106,27 @@ export default function Toys() {
                       })}
                     </TableCell>
                     <TableCell className="w-[10%] flex items-center justify-start">
-                      <button
-                        className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-yellow-500 rounded-[6px]"
-                        type="button"
-                        onClick={() => {
-                          localStorage.setItem('toy', JSON.stringify(toy))
-                          router.push("/toys/maintenance/edit")}}
-                      >
-                        <Pen strokeWidth={2.4} color="white" />
-                      </button>
-                      <button
-                        className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-red-500 rounded-[6px]"
-                        type="button"
-                        onClick={() => handleToyDelete(toy.cod)}
-                      >
-                        <Trash strokeWidth={2.4} color="white" />
-                      </button>
+                      {isStorekeeper && (
+                        <>
+                          <button
+                            className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-yellow-500 rounded-[6px]"
+                            type="button"
+                            onClick={() => {
+                              localStorage.setItem("toy", JSON.stringify(toy));
+                              router.push("/toys/maintenance/edit");
+                            }}
+                          >
+                            <Pen strokeWidth={2.4} color="white" />
+                          </button>
+                          <button
+                            className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-red-500 rounded-[6px]"
+                            type="button"
+                            onClick={() => handleToyDelete(toy.cod)}
+                          >
+                            <Trash strokeWidth={2.4} color="white" />
+                          </button>
+                        </>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}

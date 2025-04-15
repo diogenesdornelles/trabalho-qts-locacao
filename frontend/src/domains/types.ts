@@ -71,3 +71,9 @@ export interface RentalInfo {
   date: string;
   status: string;
 }
+
+export interface Pagamento {
+  cpf_cliente: string;
+  cod_locacao: string;
+  valor_pagamento: number;
+}

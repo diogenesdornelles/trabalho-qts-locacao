@@ -16,10 +16,14 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { getEmployees } from "@/services/employee/getEmployees";
 import { deleteEmployee } from "@/services/employee/deleteEmployee";
+import { useAuth } from "../contexts/authContext";
 
-export default function Toys() {
+export default function Employees() {
   const [employees, setEmployees] = useState<Funcionario[]>([]);
+
   const router = useRouter();
+  const { user } = useAuth();
+  const isManager = user?.funcao === "GERENTE";
 
   const handleEmployeeDelete = useCallback(async (cpf: string) => {
     const wasEmployeeDeleted = await deleteEmployee(cpf);
@@ -41,13 +45,15 @@ export default function Toys() {
       <PageTitle title="Funcionários" backPath="/home" />
       <div className="flex flex-col w-full items-center border-2 border-t-cyan-600 border-b-cyan-600 align-self-center gap-6 p-20 min-h-[700px] bg-cyan-200">
         <div className="flex flex-col relative  rounded-lg w-[70%]">
-          <Button
-            onClick={() => router.push("/employees/maintenance/new")}
-            className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
-          >
-            Adicionar
-            <Plus strokeWidth={3} />
-          </Button>
+          {isManager && (
+            <Button
+              onClick={() => router.push("/employees/maintenance/new")}
+              className="self-end flex text-base font-bold cursor-pointer bg-pink-700 hover:bg-pink-600 mb-5"
+            >
+              Adicionar
+              <Plus strokeWidth={3} />
+            </Button>
+          )}
           <Table className="justify-self-center rounded-t-4">
             <TableHeader className="bg-sky-400">
               <TableRow className="hover:bg-transparent">
@@ -78,42 +84,40 @@ export default function Toys() {
                     }
                     key={index}
                   >
-                    <TableCell className="w-[25%]">
-                      {employee.nome}
-                    </TableCell>
-                    <TableCell className="w-[25%]">
-                      {employee.cpf}
-                    </TableCell>
+                    <TableCell className="w-[25%]">{employee.nome}</TableCell>
+                    <TableCell className="w-[25%]">{employee.cpf}</TableCell>
 
                     <TableCell className="w-[18.7%]">
                       {employee.telefone}
                     </TableCell>
-              
-                    <TableCell className="w-[20%]">
-                      {employee.funcao}
-                    </TableCell>
+
+                    <TableCell className="w-[20%]">{employee.funcao}</TableCell>
 
                     <TableCell className="w-[10%] flex items-center justify-start">
-                      <button
-                        className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-yellow-500 rounded-[6px]"
-                        type="button"
-                        onClick={() => {
-                          localStorage.setItem(
-                            "selectedEmployee",
-                            JSON.stringify(employee)
-                          );
-                          router.push("/employees/maintenance/edit");
-                        }}
-                      >
-                        <Pen strokeWidth={2.4} color="white" />
-                      </button>
-                      <button
-                        className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-red-500 rounded-[6px]"
-                        type="button"
-                        onClick={() => handleEmployeeDelete(employee.cpf)}
-                      >
-                        <Trash strokeWidth={2.4} color="white" />
-                      </button>
+                      {isManager && (
+                        <>
+                          <button
+                            className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-yellow-500 rounded-[6px]"
+                            type="button"
+                            onClick={() => {
+                              localStorage.setItem(
+                                "selectedEmployee",
+                                JSON.stringify(employee)
+                              );
+                              router.push("/employees/maintenance/edit");
+                            }}
+                          >
+                            <Pen strokeWidth={2.4} color="white" />
+                          </button>
+                          <button
+                            className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-red-500 rounded-[6px]"
+                            type="button"
+                            onClick={() => handleEmployeeDelete(employee.cpf)}
+                          >
+                            <Trash strokeWidth={2.4} color="white" />
+                          </button>
+                        </>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}

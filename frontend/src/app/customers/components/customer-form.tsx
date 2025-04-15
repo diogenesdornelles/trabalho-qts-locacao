@@ -6,6 +6,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { createCustomer } from "@/services/customer/createCustomer";
+import { useParams, useRouter } from "next/navigation";
+import { Cliente } from "@/domains/types";
+import { useEffect, useState } from "react";
+import { updateCustomer } from "@/services/customer/updateCustomer";
+import { formatDate } from "@/app/utils/format-date";
 
 const formSchema = Yup.object().shape({
   cpf: Yup.string()
@@ -39,27 +44,55 @@ const formSchema = Yup.object().shape({
 
       return true;
     }),
-  telefone: Yup.string().required("Campo obrigatório").test(
-    "validade phone number",
-    "O telefone deve ter 11 caracteres, somente números",
-    (phone) => {
-      return /^\d{11}$/.test(phone);
-    }
-  ),
+  telefone: Yup.string()
+    .required("Campo obrigatório")
+    .test(
+      "validade phone number",
+      "O telefone deve ter 11 caracteres, somente números",
+      (phone) => {
+        return /^\d{11}$/.test(phone);
+      }
+    ),
 });
 
 export const CustomerForm = () => {
+  const [customer, setCustomer] = useState<Cliente>();
+
   const { handleSubmit, register, formState, reset } = useForm({
     resolver: yupResolver(formSchema),
   });
 
+  const router = useRouter();
+
   const { errors } = formState;
+  const { action } = useParams();
 
   const onSubmit = async (data: Yup.InferType<typeof formSchema>) => {
-    const customerCreated: boolean = await createCustomer(data);
+    if (action === "new") {
+      const customerCreated: boolean = await createCustomer(data);
 
-    if (customerCreated) reset();
+      if (customerCreated) reset();
+    } else {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { cpf, ...rest } = data;
+      await updateCustomer(customer!.cpf, { ...rest });
+    }
   };
+
+  useEffect(() => {
+    if (action === "edit") {
+      const { data_nascimento, ...rest }: Cliente = JSON.parse(
+        localStorage.getItem("customer")!
+      );
+
+      reset({
+        data_nascimento: formatDate(new Date(data_nascimento), "sv-SE"),
+        ...rest,
+      });
+
+      setCustomer({ data_nascimento, ...rest });
+    }
+  }, [action, reset]);
 
   return (
     <form
@@ -67,23 +100,6 @@ export const CustomerForm = () => {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex gap-4 w-full">
-        <div className="w-1/2">
-          <label className="font-semibold" htmlFor="cpf">
-            CPF
-          </label>
-          <Input
-            {...register("cpf")}
-            type="text"
-            name="cpf"
-            className="bg-white relative"
-          />
-          {errors.cpf && (
-            <span className="absolute text-destructive font-semibold">
-              {errors.cpf.message}
-            </span>
-          )}
-        </div>
-
         <div className="w-1/2">
           <label className="font-semibold" htmlFor="nome">
             Nome completo
@@ -97,6 +113,24 @@ export const CustomerForm = () => {
           {errors.nome && (
             <span className="absolute text-destructive font-semibold">
               {errors.nome.message}
+            </span>
+          )}
+        </div>
+
+        <div className="w-1/2">
+          <label className="font-semibold" htmlFor="cpf">
+            CPF
+          </label>
+          <Input
+            {...register("cpf")}
+            type="text"
+            name="cpf"
+            className="bg-white relative"
+            disabled={action === "edit"}
+          />
+          {errors.cpf && (
+            <span className="absolute text-destructive font-semibold">
+              {errors.cpf.message}
             </span>
           )}
         </div>
@@ -155,7 +189,11 @@ export const CustomerForm = () => {
         </div>
       </div>
       <div className="absolute flex top-[90.5%] right-[4.5%] gap-4">
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+        <Button
+          type="button"
+          onClick={() => router.push("/customers")}
+          className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold"
+        >
           Cancelar
         </Button>
         <Button
