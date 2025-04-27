@@ -36,11 +36,14 @@ export default class GeneralMiddleware {
     res: Response,
     next: NextFunction,
   ): void => {
+    // Extract the 'cpf' parameter from the request
     let { cpf } = req.params
+    // If the cpf is valid, call next function in flow
     if (GeneralValidator.validateCpf(cpf)) {
       next()
       return
     }
+    // If the cpf is not valid, send a 400 response with an error message
     res.status(400).json({
       error: 'Invalid CPF format. Please provide a valid CPF.',
     })
@@ -62,11 +65,14 @@ export default class GeneralMiddleware {
     res: Response,
     next: NextFunction,
   ): void => {
+    // Extract the 'cod' parameter from the request
     let { cod } = req.params
+    // If the cod is valid, call next function in flow
     if (GeneralValidator.validateUUID(cod)) {
       next()
       return
     }
+    // If the code is not valid, send a 400 response with an error message
     res.status(400).json({
       error: 'Invalid UUID format. Please provide a valid UUID.',
     })
@@ -173,12 +179,15 @@ export default class GeneralMiddleware {
     res: Response,
     next: NextFunction,
   ) => {
+    // Check if the request method is not GET. Otherwise, skip validation
     if (req.method.toLocaleLowerCase() !== 'get') {
+      // If there is no body or the body is empty (no keys), send a 400 response
       if (!req.body || Object.keys(req.body).length === 0) {
         res.status(400).json({ message: 'Invalid requisition' })
         return
       }
     }
+    // Calls next function in flow
     next()
     return
   }
@@ -202,17 +211,19 @@ export default class GeneralMiddleware {
     try {
       // Extract the token from the Authorization header (removing the 'Bearer ' prefix)
       const token = req.header('Authorization')?.replace('Bearer ', '')
-
+      // If no token in found, throw as error
       if (!token) {
-        throw new Error()
+        throw new Error('Token not found')
       }
 
       // Verify the token and cast the payload to AuthPayloadInterface
       const decoded = jwt.verify(token, SECRET_KEY) as AuthPayloadInterface
+      // Insert the decoded token into the req. object
       ;(req as unknown as CustomRequestInterface).token = decoded
-
+      // Calls next function in flow
       next()
     } catch (err) {
+      // If token is invalid or expired, send a 401 response
       res.status(401).send('Please authenticate')
       return
     }
@@ -236,6 +247,7 @@ export default class GeneralMiddleware {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'GERENTE'
     if (!token || token.funcao !== Funcao.GERENTE) {
+      // If not authorized, send a 403 response 'Unauthorized'
       res.status(403).json({ message: 'Access denied: gerente only' })
       return
     }
@@ -259,13 +271,9 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'ALMOXARIFE'
-    if (
-      !token ||
-      (token.funcao !== Funcao.ALMOXARIFE)
-    ) {
-      res
-        .status(403)
-        .json({ message: 'Access denied: almoxarife only' })
+    if (!token || token.funcao !== Funcao.ALMOXARIFE) {
+      // If not authorized, send a 403 response 'Unauthorized'
+      res.status(403).json({ message: 'Access denied: almoxarife only' })
       return
     }
     next()
@@ -288,13 +296,9 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'ALMOXARIFE'.
-    if (
-      !token ||
-      (token.funcao !== Funcao.ALMOXARIFE)
-    ) {
-      res
-        .status(403)
-        .json({ message: 'Access denied: almoxarife only' })
+    if (!token || token.funcao !== Funcao.ALMOXARIFE) {
+      // If not authorized, send a 403 response 'Unauthorized'
+      res.status(403).json({ message: 'Access denied: almoxarife only' })
       return
     }
     next()
@@ -317,10 +321,8 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'ANALISTA_CADASTRO'
-    if (
-      !token ||
-      (token.funcao !== Funcao.ANALISTA_CADASTRO)
-    ) {
+    if (!token || token.funcao !== Funcao.ANALISTA_CADASTRO) {
+      // If not authorized, send a 403 response 'Unauthorized'
       res
         .status(403)
         .json({ message: 'Access denied: analista cadastro  only' })
@@ -346,13 +348,9 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
-    if (
-      !token ||
-      (token.funcao !== Funcao.AGENTE_LOCACAO)
-    ) {
-      res
-        .status(403)
-        .json({ message: 'Access denied: agente locacao only' })
+    if (!token || token.funcao !== Funcao.AGENTE_LOCACAO) {
+      // If not authorized, send a 403 response 'Unauthorized'
+      res.status(403).json({ message: 'Access denied: agente locacao only' })
       return
     }
     next()
@@ -375,13 +373,9 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
-    if (
-      !token ||
-      (token.funcao !== Funcao.AGENTE_LOCACAO)
-    ) {
-      res
-        .status(403)
-        .json({ message: 'Access denied: agente locacao only' })
+    if (!token || token.funcao !== Funcao.AGENTE_LOCACAO) {
+      // If not authorized, send a 403 response 'Unauthorized'
+      res.status(403).json({ message: 'Access denied: agente locacao only' })
       return
     }
     next()
@@ -404,10 +398,8 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'CAIXA'
-    if (
-      !token ||
-      (token.funcao !== Funcao.CAIXA)
-    ) {
+    if (!token || token.funcao !== Funcao.CAIXA) {
+      // If not authorized, send a 403 response 'Unauthorized'
       res.status(403).json({ message: 'Access denied: caixa only' })
       return
     }

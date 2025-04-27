@@ -1,5 +1,4 @@
-import GeneralValidator from "../../src/validators/general.validator"
-
+import GeneralValidator from '../../src/validators/general.validator'
 
 describe('GeneralValidator', () => {
   describe('validateCpf', () => {
@@ -71,7 +70,7 @@ describe('GeneralValidator', () => {
 
   describe('validateMoney', () => {
     it('deve retornar true para valor monetário com duas casas decimais', () => {
-      const validMoney = 10.50
+      const validMoney = 10.5
       expect(GeneralValidator.validateMoney(validMoney)).toBe(true)
     })
 

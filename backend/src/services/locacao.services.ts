@@ -6,72 +6,123 @@ import { CreateLocacaoDTO } from '../dtos/create/create-locacao.dto'
 import { UpdateLocacaoDTO } from '../dtos/update/update-locacao.dto'
 import { ApiError } from '../utils/api-error.util'
 
+/**
+ * Service for managing rentals.
+ *
+ * @export
+ * @class LocacaoServices
+ * @extends {BaseService<ResponseLocacaoDTO, CreateLocacaoDTO, UpdateLocacaoDTO>}
+ */
 export default class LocacaoServices extends BaseService<
   ResponseLocacaoDTO,
   CreateLocacaoDTO,
   UpdateLocacaoDTO
 > {
+  /**
+   * Creates an instance of LocacaoServices.
+   * @memberof LocacaoServices
+   */
   constructor() {
     super(new PrismaClient())
   }
 
+  /**
+   * Get all rentals.
+   *
+   * @memberof LocacaoServices
+   * @returns {Promise<ResponseLocacaoDTO[]>} A list of rentals.
+   */
   public getAll = async (): Promise<ResponseLocacaoDTO[]> => {
     return await this.prisma.locacao.findMany()
   }
 
+  /**
+   * Get the total value of a rental by UUID.
+   *
+   * @param {string} pk - The UUID of the rental.
+   * @returns {Promise<number>} The total value of the rental.
+   */
   public getTotalValue = async (pk: string): Promise<number> => {
-    // Initializa variable with 0 value
-    let totalValorUnitario = 0.0
-    // Get rental by pk
-    const locacao = await this.getOne(pk)
-    // if there is a rental and there is at least 1 item
-    if (locacao && locacao.brinquedosLocados.length > 0) {
-      totalValorUnitario = locacao.brinquedosLocados.reduce(
-        (total, brinquedo) => {
-          // Converts unit_value to number if necessary. Only add if toy is active
-          return brinquedo.ativo ? total + Number(brinquedo.valor_unitario) : total
-        },
-        0,
-      )
+    // Initialize variable with 0 value
+    let totalUnitValue = 0.0
+    // Get rental by UUID
+    const rental = await this.getOne(pk)
+    // If there is a rental and it has at least one item
+    if (rental && rental.brinquedosLocados.length > 0) {
+      totalUnitValue = rental.brinquedosLocados.reduce((total, toy) => {
+        // Add the unit value if the toy is active
+        return toy.ativo ? total + Number(toy.valor_unitario) : total
+      }, 0)
     }
-    return totalValorUnitario
+    return totalUnitValue
   }
 
+  /**
+   * Get one rental by UUID.
+   *
+   * @param {string} pk - The UUID of the rental.
+   * @returns {Promise<ResponseLocacaoComBrinquedosDTO | null>} The rental with its rented toys or null if not found.
+   */
   public getOne = async (
     pk: string,
   ): Promise<ResponseLocacaoComBrinquedosDTO | null> => {
     return await this.prisma.locacao.findUnique({
       where: { cod: pk },
       include: {
-        brinquedosLocados: true, // consulta populada: nome usado no prisma schema
+        brinquedosLocados: true, // Populated query: name used in the Prisma schema
       },
     })
   }
 
+  /**
+   * Create a new rental.
+   *
+   * @param {CreateLocacaoDTO} data - The data for the new rental.
+   * @returns {Promise<ResponseLocacaoDTO>} The created rental.
+   */
   public create = async (
     data: CreateLocacaoDTO,
   ): Promise<ResponseLocacaoDTO> => {
-    const createdLocacao = await this.prisma.locacao.create({ data })
-    return createdLocacao
+    return await this.prisma.locacao.create({ data })
   }
 
+  /**
+   * Update a rental by UUID.
+   *
+   * @param {string} pk - The UUID of the rental.
+   * @param {Partial<UpdateLocacaoDTO>} data - The data to update the rental.
+   * @returns {Promise<ResponseLocacaoDTO | null>} The updated rental or null if not found.
+   */
   public update = async (
     pk: string,
     data: Partial<UpdateLocacaoDTO>,
   ): Promise<ResponseLocacaoDTO | null> => {
     try {
-      const updatedLocacao = await this.prisma.locacao.update({
+      return await this.prisma.locacao.update({
         where: { cod: pk },
         data,
-      });
-      return updatedLocacao;
+      })
     } catch (error) {
-      console.error('Error updating locacao:', error);
-      throw new ApiError(500, 'Failed to update locacao');
+      console.error('Error updating locacao:', error)
+      throw new ApiError(500, 'Failed to update locacao')
     }
-  };
+  }
 
+  /**
+   * Delete a rental by UUID.
+   *
+   * @param {string} pk - The UUID of the rental.
+   * @returns {Promise<boolean>} True if the rental was deleted, false otherwise.
+   */
   public delete = async (pk: string): Promise<boolean> => {
-    throw new Error('Method not implemented.')
+    try {
+      await this.prisma.locacao.delete({
+        where: { cod: pk },
+      })
+      return true
+    } catch (error) {
+      console.error('Error deleting locacao:', error)
+      return false
+    }
   }
 }

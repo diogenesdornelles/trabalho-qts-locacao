@@ -1,15 +1,9 @@
-version: '3.8'
-
 services:
   postgres_db:
     image: postgres:latest
     hostname: postgres_db
     container_name: postgres_db
     restart: always
-    # environment:
-    #   POSTGRES_DB: locacaotest
-    #   POSTGRES_USER: postgres
-    #   POSTGRES_PASSWORD: 123456
     env_file:
       # .env.prod
       - .env

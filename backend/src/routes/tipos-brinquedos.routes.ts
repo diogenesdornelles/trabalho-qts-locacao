@@ -1,12 +1,28 @@
+import TiposBrinquedosController from '../controllers/tipos-brinquedos.controller'
 import GeneralMiddleware from '../middlewares/general.middleware'
-import BrinquedosLocadosController from '../controllers/brinquedos-locados.controller'
 import { BaseRouter } from './base.routes'
-
-export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocadosController> {
+/**
+ * Router for managing type of toys. Each route is defined with a pipeline of functions,
+ * including middleware or the corresponding functions in the controller.
+ *
+ * @export
+ * @class TiposBrinquedosRouter
+ * @extends {BaseRouter<TiposBrinquedosController>}
+ */
+export default class TiposBrinquedosRouter extends BaseRouter<TiposBrinquedosController> {
+  /**
+   * Creates an instance of TiposBrinquedosRouter.
+   * @memberof TiposBrinquedosRouter
+   */
   constructor() {
-    super(new BrinquedosLocadosController())
+    super(new TiposBrinquedosController())
   }
-
+  /**
+   * Initializes the routes for managing type of toys. Each route is defined with a pipeline of functions,
+   *
+   * @protected
+   * @memberof TiposBrinquedosRouter
+   */
   protected initRoutes(): void {
     this.router.get(
       '/',
@@ -26,7 +42,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.authorizationTiposBrinquedos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -35,18 +51,9 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.put(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.authorizationTiposBrinquedos,
       GeneralMiddleware.validateUUID,
       this.controller.update,
-      GeneralMiddleware.errorHandler,
-    )
-
-    this.router.delete(
-      '/:cod',
-      GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
-      GeneralMiddleware.validateUUID,
-      this.controller.delete,
       GeneralMiddleware.errorHandler,
     )
   }

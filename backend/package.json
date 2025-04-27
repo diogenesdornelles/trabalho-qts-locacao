@@ -11,7 +11,8 @@
     "db:dev": "npx prisma migrate dev --name init && npx ts-node seed.ts",
     "db:deploy": "npx prisma migrate deploy && npx prisma generate && npx ts-node seed.ts",
     "db:seed": "npx ts-node seed.ts",
-    "test": "jest"
+    "test": "jest",
+    "docs": "typedoc"
   },
   "keywords": [],
   "author": "",

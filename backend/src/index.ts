@@ -24,7 +24,7 @@ export default class Server {
    */
   constructor() {
     this.app = new App(appRoutes)
-    // use 'https' para https
+    // use 'https' for https
     this.app.listen('http')
   }
 }

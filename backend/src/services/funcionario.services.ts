@@ -5,14 +5,32 @@ import { ResponseFuncionarioDTO } from '../dtos/response/response-funcionario.dt
 import { CreateFuncionarioDTO } from '../dtos/create/create-funcionario.dto'
 import { UpdateFuncionarioDTO } from '../dtos/update/update-funcionario.dto'
 
+/**
+ * Service for managing employees.
+ *
+ * @export
+ * @class FuncionarioServices
+ * @extends {BaseService<ResponseFuncionarioDTO, CreateFuncionarioDTO, UpdateFuncionarioDTO>}
+ */
 export default class FuncionarioServices extends BaseService<
   ResponseFuncionarioDTO,
   CreateFuncionarioDTO,
   UpdateFuncionarioDTO
 > {
+  /**
+   * Creates an instance of FuncionarioServices.
+   * @memberof FuncionarioServices
+   */
   constructor() {
     super(new PrismaClient())
   }
+
+  /**
+   * Get all employees.
+   *
+   * @memberof FuncionarioServices
+   * @returns {Promise<ResponseFuncionarioDTO[]>} A list of employees.
+   */
   public getAll = async (): Promise<ResponseFuncionarioDTO[]> => {
     return await this.prisma.funcionario.findMany({
       select: {
@@ -20,12 +38,18 @@ export default class FuncionarioServices extends BaseService<
         nome: true,
         telefone: true,
         funcao: true,
-        senha: false,
-        ativo: true
+        senha: false, // Password is excluded from the response
+        ativo: true,
       },
     })
   }
 
+  /**
+   * Get one employee by CPF.
+   *
+   * @param {string} pk - The CPF of the employee.
+   * @returns {Promise<ResponseFuncionarioDTO | null>} The employee or null if not found.
+   */
   public getOne = async (
     pk: string,
   ): Promise<ResponseFuncionarioDTO | null> => {
@@ -36,44 +60,60 @@ export default class FuncionarioServices extends BaseService<
         nome: true,
         telefone: true,
         funcao: true,
-        senha: false,
-        ativo: true
+        senha: false, // Password is excluded from the response
+        ativo: true,
       },
     })
   }
 
+  /**
+   * Create a new employee.
+   *
+   * @param {CreateFuncionarioDTO} data - The data for the new employee.
+   * @returns {Promise<ResponseFuncionarioDTO>} The created employee.
+   */
   public create = async (
     data: CreateFuncionarioDTO,
   ): Promise<ResponseFuncionarioDTO> => {
-    // tornar oculto o pwd no bd
+    // Hash the password before saving it to the database
     data.senha = await hashPassword(data.senha)
 
-    // Salva o novo funcionário utilizando o método create do Prisma
+    // Save the new employee using Prisma's create method
     const createdFuncionario = await this.prisma.funcionario.create({
       data: {
         ...data,
         funcao: data.funcao as Funcao,
       },
     })
+
+    // Exclude the password from the response
     createdFuncionario.senha = ''
     return {
       cpf: createdFuncionario.cpf,
       nome: createdFuncionario.nome,
       telefone: createdFuncionario.telefone,
       funcao: createdFuncionario.funcao,
-      ativo: createdFuncionario.ativo
+      ativo: createdFuncionario.ativo,
     }
   }
 
+  /**
+   * Update an employee by CPF.
+   *
+   * @param {string} pk - The CPF of the employee.
+   * @param {UpdateFuncionarioDTO} data - The data to update the employee.
+   * @returns {Promise<Partial<ResponseFuncionarioDTO>>} The updated employee.
+   */
   public update = async (
     pk: string,
     data: UpdateFuncionarioDTO,
   ): Promise<Partial<ResponseFuncionarioDTO>> => {
+    // Hash the password if it is being updated
     if (data.senha) {
       data.senha = await hashPassword(data.senha)
     }
 
-    // Atualiza o funcionário utilizando o método update do Prisma
+    // Update the employee using Prisma's update method
     const updatedFuncionario = await this.prisma.funcionario.update({
       where: { cpf: pk },
       data: {
@@ -90,6 +130,12 @@ export default class FuncionarioServices extends BaseService<
     }
   }
 
+  /**
+   * Delete an employee by CPF.
+   *
+   * @param {string} pk - The CPF of the employee.
+   * @returns {Promise<boolean>} True if the employee was deleted, false otherwise.
+   */
   public delete = async (pk: string): Promise<boolean> => {
     try {
       await this.prisma.funcionario.delete({

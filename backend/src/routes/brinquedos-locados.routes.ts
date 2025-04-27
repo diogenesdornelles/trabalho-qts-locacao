@@ -1,27 +1,28 @@
-import FuncionariosController from '../controllers/funcionarios.controller'
 import GeneralMiddleware from '../middlewares/general.middleware'
+import BrinquedosLocadosController from '../controllers/brinquedos-locados.controller'
 import { BaseRouter } from './base.routes'
+
 /**
- * Router for managing emps. Each route is defined with a pipeline of functions,
+ * Router for managing rented toys. Each route is defined with a pipeline of functions,
  * including middleware or the corresponding functions in the controller.
  *
  * @export
- * @class FuncionariosRouter
- * @extends {BaseRouter<FuncionariosController>}
+ * @class BrinquedosLocadosRouter
+ * @extends {BaseRouter<BrinquedosLocadosController>}
  */
-export default class FuncionariosRouter extends BaseRouter<FuncionariosController> {
+export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocadosController> {
   /**
-   * Creates an instance of FuncionariosRouter.
-   * @memberof FuncionariosRouter
+   * Creates an instance of BrinquedosLocadosRouter.
+   * @memberof BrinquedosLocadosRouter
    */
   constructor() {
-    super(new FuncionariosController())
+    super(new BrinquedosLocadosController())
   }
   /**
-   * Initializes the routes for managing emps. Each route is defined with a pipeline of functions,
+   * Initializes the routes for managing rented toys. Each route is defined with a pipeline of functions,
    *
    * @protected
-   * @memberof FuncionariosRouter
+   * @memberof BrinquedosLocadosRouter
    */
   protected initRoutes(): void {
     this.router.get(
@@ -32,9 +33,9 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
     )
 
     this.router.get(
-      '/:cpf',
+      '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.validateCpf,
+      GeneralMiddleware.validateUUID,
       this.controller.getOne,
       GeneralMiddleware.errorHandler,
     )
@@ -42,26 +43,26 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationFuncionarios,
+      GeneralMiddleware.authorizationBrinquedosLocados,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
     )
 
     this.router.put(
-      '/:cpf',
+      '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationFuncionarios,
-      GeneralMiddleware.validateCpf,
+      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.validateUUID,
       this.controller.update,
       GeneralMiddleware.errorHandler,
     )
 
     this.router.delete(
-      '/:cpf',
+      '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationFuncionarios,
-      GeneralMiddleware.validateCpf,
+      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.validateUUID,
       this.controller.delete,
       GeneralMiddleware.errorHandler,
     )

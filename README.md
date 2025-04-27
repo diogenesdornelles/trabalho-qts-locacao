@@ -223,7 +223,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 ### Diagrama de Casos de Uso
 
-![diagrama-caso-uso](/artifacts/escrita.png)
+![diagrama-caso-uso](/casos/casos.png)
 
 ### Escrita do caso de uso principal do incremento de forma detalhada
 
@@ -709,7 +709,7 @@ Um pagamento se refere a somente uma locação. Uma locação possui apenas um p
 
 O Schema da aplicação fica melhor delineado no ERD abaixo:
 
-![ERD](/artifacts/erd.png "Erd para o sistema de locação")
+![ERD](/casos/erd.png "Erd para o sistema de locação")
 
 Código SQL para a geração das tabelas:
 
@@ -954,7 +954,7 @@ model TipoBrinquedo {
 
 ### UML
 
-![UML Diagram](/artifacts/uml.png "UML para o backend sistema de locação")
+![UML Diagram](/casos/uml.png "UML para o backend sistema de locação")
 
 #### Imagem no drive para melhor visualização
 
