@@ -1,24 +1,25 @@
 import { Request, Response, NextFunction } from 'express'
-import LoginServices from '../services/login.services'
 import { BaseController } from './base.controller'
 import { CreateTokenDTO } from '../dtos/create/create-token.dto'
-import { ResponseTokenDTO } from '../dtos/response/response-token.dto'
 import DTOValidator from '../validators/dto.validator'
+import PagamentoService from '../services/pagamento.service'
+import { CreatePagamentoDTO } from '../dtos/create/create-pagamento.dto'
+import { ResponsePagamentoDTO } from '../dtos/response/response-pagamento.dto'
 
 /**
- * Controller for managing login and token creation.
+ * Controller for managing payments.
  *
  * @export
- * @class LoginController
- * @extends {BaseController<LoginServices>}
+ * @class PaymentController
+ * @extends {BaseController<PagamentoService>}
  */
-export default class LoginController extends BaseController<LoginServices> {
+export default class PagamentoController extends BaseController<PagamentoService> {
   /**
    * Creates an instance of LoginController.
-   * @memberof LoginController
+   * @memberof PagamentoController
    */
   constructor() {
-    super(new LoginServices(), new DTOValidator())
+    super(new PagamentoService(), new DTOValidator())
   }
 
   /**
@@ -36,10 +37,10 @@ export default class LoginController extends BaseController<LoginServices> {
   ): Promise<void> => {
     try {
       // Validate the request body
-      const validatedData: CreateTokenDTO =
-        this.validator.createLogin<CreateTokenDTO>(req.body)
+      const validatedData: CreatePagamentoDTO =
+        this.validator.createPagamento<CreateTokenDTO>(req.body)
       // Calls the service to create a new token
-      const result: ResponseTokenDTO = await this.service.create(validatedData)
+      const result: ResponsePagamentoDTO = await this.service.create(validatedData)
       // If no error is found, return 201, created
       res.status(201).json(result)
       return

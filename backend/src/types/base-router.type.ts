@@ -1,5 +1,5 @@
 import { BaseController } from '../controllers/base.controller'
-import { BaseRouter } from '../routes/base.routes'
+import { BaseRouter } from '../routes/base.router'
 import { BaseService } from '../services/base.service'
 
 // Generic type for a base router that is associated with a controller and service.

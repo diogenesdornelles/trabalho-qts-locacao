@@ -9,17 +9,17 @@ import { UpdateFuncionarioDTO } from '../dtos/update/update-funcionario.dto'
  * Service for managing employees.
  *
  * @export
- * @class FuncionarioServices
+ * @class FuncionarioService
  * @extends {BaseService<ResponseFuncionarioDTO, CreateFuncionarioDTO, UpdateFuncionarioDTO>}
  */
-export default class FuncionarioServices extends BaseService<
+export default class FuncionarioService extends BaseService<
   ResponseFuncionarioDTO,
   CreateFuncionarioDTO,
   UpdateFuncionarioDTO
 > {
   /**
-   * Creates an instance of FuncionarioServices.
-   * @memberof FuncionarioServices
+   * Creates an instance of FuncionarioService.
+   * @memberof FuncionarioService
    */
   constructor() {
     super(new PrismaClient())
@@ -28,7 +28,7 @@ export default class FuncionarioServices extends BaseService<
   /**
    * Get all employees.
    *
-   * @memberof FuncionarioServices
+   * @memberof FuncionarioService
    * @returns {Promise<ResponseFuncionarioDTO[]>} A list of employees.
    */
   public getAll = async (): Promise<ResponseFuncionarioDTO[]> => {

@@ -18,17 +18,17 @@ const EXPIRES_IN = process.env.EXPIRES_IN || '2d'
  * Service for managing login and token creation.
  *
  * @export
- * @class LoginServices
+ * @class LoginService
  * @extends {BaseService<ResponseTokenDTO, CreateTokenDTO, UpdateTokenDTO>}
  */
-export default class LoginServices extends BaseService<
+export default class LoginService extends BaseService<
   ResponseTokenDTO,
   CreateTokenDTO,
   UpdateTokenDTO
 > {
   /**
-   * Creates an instance of LoginServices.
-   * @memberof LoginServices
+   * Creates an instance of LoginService.
+   * @memberof LoginService
    */
   constructor() {
     super(new PrismaClient())
@@ -87,7 +87,7 @@ export default class LoginServices extends BaseService<
   /**
    * Get all tokens.
    *
-   * @memberof LoginServices
+   * @memberof LoginService
    * @returns {Promise<ResponseTokenDTO[]>} A list of tokens.
    * @throws {Error} Method not implemented.
    */

@@ -1,5 +1,5 @@
 import GeneralMiddleware from '../middlewares/general.middleware'
-import { BaseRouter } from './base.routes'
+import { BaseRouter } from './base.router'
 import LoginController from '../controllers/login.controller'
 /**
  * Router for managing logins. Each route is defined with a pipeline of functions,

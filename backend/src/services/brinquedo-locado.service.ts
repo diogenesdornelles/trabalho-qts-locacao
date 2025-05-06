@@ -8,17 +8,17 @@ import { UpdateBrinquedoLocadoDTO } from '../dtos/update/update-brinquedo-locado
  * Service for managing rented toys.
  *
  * @export
- * @class BrinquedoLocadoServices
+ * @class BrinquedoLocadoService
  * @extends {BaseService<ResponseBrinquedoLocadoDTO, CreateBrinquedoLocadoDTO, UpdateBrinquedoLocadoDTO>}
  */
-export default class BrinquedoLocadoServices extends BaseService<
+export default class BrinquedoLocadoService extends BaseService<
   ResponseBrinquedoLocadoDTO,
   CreateBrinquedoLocadoDTO,
   UpdateBrinquedoLocadoDTO
 > {
   /**
-   * Creates an instance of BrinquedoLocadoServices.
-   * @memberof BrinquedoLocadoServices
+   * Creates an instance of BrinquedoLocadoService.
+   * @memberof BrinquedoLocadoService
    */
   constructor() {
     super(new PrismaClient())
@@ -27,7 +27,7 @@ export default class BrinquedoLocadoServices extends BaseService<
   /**
    * Get all rented toys.
    *
-   * @memberof BrinquedoLocadoServices
+   * @memberof BrinquedoLocadoService
    * @returns {Promise<ResponseBrinquedoLocadoDTO[]>} A list of rented toys.
    */
   public getAll = async (): Promise<ResponseBrinquedoLocadoDTO[]> => {

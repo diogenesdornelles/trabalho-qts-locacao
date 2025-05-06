@@ -1,28 +1,29 @@
-import LocacoesController from '../controllers/locacoes.controller'
+import PagamentoController from '../controllers/pagamento.controller'
 import GeneralMiddleware from '../middlewares/general.middleware'
-import { BaseRouter } from './base.routes'
+import { BaseRouter } from './base.router'
+
 /**
- * Router for managing rentals. Each route is defined with a pipeline of functions,
+ * Router for managing payments. Each route is defined with a pipeline of functions,
  * including middleware or the corresponding functions in the controller.
- *
+ * To perform 'gets' need to be authenticated.
+ * To perform mutations need to be authenticated and authorized.
  * @export
- * @class LocacoesRouter
- * @extends {BaseRouter<LocacoesController>}
+ * @class PagamentoRouter
+ * @extends {BaseRouter<PagamentoController>}
  */
-export default class LocacoesRouter extends BaseRouter<LocacoesController> {
+export default class PagamentoRouter extends BaseRouter<PagamentoController> {
   /**
-   * Creates an instance of LocacoesRouter.
-   * @memberof LocacoesRouter
+   * Creates an instance of PagamentoRouter.
+   * @memberof PagamentoRouter
    */
   constructor() {
-    super(new LocacoesController())
+    super(new PagamentoController())
   }
-
   /**
-   * Initializes the routes for managing rentals. Each route is defined with a pipeline of functions,
+   * Initializes the routes for managing payments. Each route is defined with a pipeline of functions,
    *
    * @protected
-   * @memberof LocacoesRouter
+   * @memberof PagamentoRouter
    */
   protected initRoutes(): void {
     this.router.get(
@@ -43,7 +44,7 @@ export default class LocacoesRouter extends BaseRouter<LocacoesController> {
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationLocacoes,
+      GeneralMiddleware.authorizationPagamentos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,

@@ -1,35 +1,34 @@
 import { Request, Response, NextFunction } from 'express'
-import BrinquedoServices from '../services/brinquedo.services'
+import TipoBrinquedoService from '../services/tipo-brinquedo.service'
 import { BaseController } from './base.controller'
-import { ResponseBrinquedoDTO } from '../dtos/response/response-brinquedo.dto'
-import { ResponseBrinquedoComTipoDTO } from '../dtos/response/response-brinquedo-response-com-tipo.dto'
-import { CreateBrinquedoDTO } from '../dtos/create/create-brinquedo.dto'
-import { UpdateBrinquedoDTO } from '../dtos/update/update-brinquedo.dto'
+import { ResponseTipoBrinquedoDTO } from '../dtos/response/response-tipo-brinquedo.dto'
+import { CreateTipoBrinquedoDTO } from '../dtos/create/create-tipo-brinquedo.dto'
+import { UpdateTipoBrinquedoDTO } from '../dtos/update/update-tipo-brinquedo.dto'
 import DTOValidator from '../validators/dto.validator'
 
 /**
- * Controller for managing toys.
+ * Controller for managing toy types.
  *
  * @export
- * @class BrinquedosController
- * @extends {BaseController<BrinquedoServices>}
+ * @class TipoBrinquedoController
+ * @extends {BaseController<TipoBrinquedoService>}
  */
-export default class BrinquedosController extends BaseController<BrinquedoServices> {
+export default class TipoBrinquedoController extends BaseController<TipoBrinquedoService> {
   /**
-   * Creates an instance of BrinquedosController.
-   * @memberof BrinquedosController
+   * Creates an instance of TipoBrinquedoController.
+   * @memberof TipoBrinquedoController
    */
   constructor() {
-    super(new BrinquedoServices(), new DTOValidator())
+    super(new TipoBrinquedoService(), new DTOValidator())
   }
 
   /**
-   * Get all toys
+   * Get all toy types.
    *
    * @param {Request} req - The Express request object.
    * @param {Response} res - The Express response object.
    * @param {NextFunction} next - The next middleware function.
-   * @memberof BrinquedosController
+   * @memberof TipoBrinquedoController
    */
   public getAll = async (
     req: Request,
@@ -37,11 +36,10 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
     next: NextFunction,
   ): Promise<void> => {
     try {
-      // Calls the service to get all toys
-      const brinquedos: ResponseBrinquedoComTipoDTO[] =
-        await this.service.getAll()
+      // Calls the service to get all toy types
+      const tipos: ResponseTipoBrinquedoDTO[] = await this.service.getAll()
       // If no error is found, return 200
-      res.status(200).json(brinquedos)
+      res.status(200).json(tipos)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -52,12 +50,12 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
   }
 
   /**
-   * Get one toy by UUID cod
+   * Get one toy type by UUID cod.
    *
    * @param {Request} req - The Express request object.
    * @param {Response} res - The Express response object.
    * @param {NextFunction} next - The next middleware function.
-   * @memberof BrinquedosController
+   * @memberof TipoBrinquedoController
    */
   public getOne = async (
     req: Request,
@@ -65,18 +63,18 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
     next: NextFunction,
   ): Promise<void> => {
     try {
-      // Get cod from params
+      // Get the cod from req.params
       const { cod } = req.params
-      // Calls the service to get one toy
-      const brinquedo: ResponseBrinquedoComTipoDTO | null =
+      // Calls the service to get one toy type
+      const tipo: ResponseTipoBrinquedoDTO | null =
         await this.service.getOne(cod)
       // If not found, return 404
-      if (!brinquedo) {
-        res.status(404).json({ message: 'Toy not found' })
+      if (!tipo) {
+        res.status(404).json({ message: 'Type toy not found' })
         return
       }
       // If no error is found, return 200
-      res.status(200).json(brinquedo)
+      res.status(200).json(tipo)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -87,12 +85,12 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
   }
 
   /**
-   * Create a new toy
+   * Create a new toy type.
    *
    * @param {Request} req - The Express request object.
    * @param {Response} res - The Express response object.
    * @param {NextFunction} next - The next middleware function.
-   * @memberof BrinquedosController
+   * @memberof TipoBrinquedoController
    */
   public create = async (
     req: Request,
@@ -101,13 +99,13 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
   ): Promise<void> => {
     try {
       // Validate the request body
-      const validatedData: CreateBrinquedoDTO =
-        this.validator.createBrinquedo<CreateBrinquedoDTO>(req.body)
-      // Calls the service to create a new toy
-      const brinquedo: ResponseBrinquedoDTO =
+      const validatedData: CreateTipoBrinquedoDTO =
+        this.validator.createTipoBrinquedo<CreateTipoBrinquedoDTO>(req.body)
+      // Calls the service to create a new toy type
+      const tipo: ResponseTipoBrinquedoDTO =
         await this.service.create(validatedData)
       // If no error is found, return 201, created
-      res.status(201).json(brinquedo)
+      res.status(201).json(tipo)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -118,12 +116,12 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
   }
 
   /**
-   * Update a toy by UUID cod
+   * Update a toy type by UUID cod.
    *
    * @param {Request} req - The Express request object.
    * @param {Response} res - The Express response object.
    * @param {NextFunction} next - The next middleware function.
-   * @memberof BrinquedosController
+   * @memberof TipoBrinquedoController
    */
   public update = async (
     req: Request,
@@ -131,21 +129,21 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
     next: NextFunction,
   ): Promise<void> => {
     try {
-      // Get cod from params
+      // Get the cod from req.params
       const { cod } = req.params
       // Validate the request body
-      const validatedData: UpdateBrinquedoDTO =
-        this.validator.updateBrinquedo<UpdateBrinquedoDTO>(req.body)
-      // Calls the service to update the toy
-      const updatedBrinquedo: Partial<ResponseBrinquedoDTO> =
+      const validatedData: UpdateTipoBrinquedoDTO =
+        this.validator.updateTipoBrinquedo<UpdateTipoBrinquedoDTO>(req.body)
+      // Calls the service to update the toy type
+      const updatedTipo: Partial<ResponseTipoBrinquedoDTO> =
         await this.service.update(cod, validatedData)
       // If not found, return 404
-      if (!updatedBrinquedo) {
-        res.status(404).json({ message: 'Toy not found' })
+      if (!updatedTipo) {
+        res.status(404).json({ message: 'Type toy not found' })
         return
       }
-      // If no error is found, return 200, OK
-      res.status(200).json(updatedBrinquedo)
+      // If no error is found, return 200
+      res.status(200).json(updatedTipo)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -156,36 +154,18 @@ export default class BrinquedosController extends BaseController<BrinquedoServic
   }
 
   /**
-   * Delete a toy by UUID cod
+   * Delete a toy type by UUID cod.
    *
    * @param {Request} req - The Express request object.
    * @param {Response} res - The Express response object.
    * @param {NextFunction} next - The next middleware function.
-   * @memberof BrinquedosController
+   * @memberof TipoBrinquedoController
    */
   public delete = async (
     req: Request,
     res: Response,
     next: NextFunction,
   ): Promise<void> => {
-    try {
-      // Get cod from params
-      const { cod } = req.params
-      // Calls the service to delete the toy
-      const success: boolean = await this.service.delete(cod)
-      // If not success, return 404, not found
-      if (!success) {
-        res.status(404).json({ message: 'Toy not found' })
-        return
-      }
-      // If no error is found, return 200, OK
-      res.status(200).json({ message: 'Toy deleted!' })
-      return
-    } catch (error) {
-      // If error, calls next func. with error
-      // This will be handled by the error middleware
-      next(error)
-      return
-    }
+    throw new Error('Method not implemented.')
   }
 }

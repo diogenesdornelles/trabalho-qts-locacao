@@ -8,17 +8,17 @@ import { UpdateClienteDTO } from '../dtos/update/update-cliente.dto'
  * Service for managing customers.
  *
  * @export
- * @class ClienteServices
+ * @class ClienteService
  * @extends {BaseService<ResponseClienteDTO, CreateClienteDTO, UpdateClienteDTO>}
  */
-export default class ClienteServices extends BaseService<
+export default class ClienteService extends BaseService<
   ResponseClienteDTO,
   CreateClienteDTO,
   UpdateClienteDTO
 > {
   /**
-   * Creates an instance of ClienteServices.
-   * @memberof ClienteServices
+   * Creates an instance of ClienteService.
+   * @memberof ClienteService
    */
   constructor() {
     super(new PrismaClient())
@@ -27,7 +27,7 @@ export default class ClienteServices extends BaseService<
   /**
    * Get all customers.
    *
-   * @memberof ClienteServices
+   * @memberof ClienteService
    * @returns {Promise<ResponseClienteDTO[]>} A list of customers.
    */
   public getAll = async (): Promise<ResponseClienteDTO[]> => {

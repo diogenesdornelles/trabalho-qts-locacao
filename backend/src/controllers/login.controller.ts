@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import LoginServices from '../services/login.services'
+import LoginService from '../services/login.service'
 import { BaseController } from './base.controller'
 import { CreateTokenDTO } from '../dtos/create/create-token.dto'
 import { ResponseTokenDTO } from '../dtos/response/response-token.dto'
@@ -10,15 +10,15 @@ import DTOValidator from '../validators/dto.validator'
  *
  * @export
  * @class LoginController
- * @extends {BaseController<LoginServices>}
+ * @extends {BaseController<LoginService>}
  */
-export default class LoginController extends BaseController<LoginServices> {
+export default class LoginController extends BaseController<LoginService> {
   /**
    * Creates an instance of LoginController.
    * @memberof LoginController
    */
   constructor() {
-    super(new LoginServices(), new DTOValidator())
+    super(new LoginService(), new DTOValidator())
   }
 
   /**

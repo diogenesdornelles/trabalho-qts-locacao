@@ -1,18 +1,19 @@
-import FuncionariosController from '../controllers/funcionarios.controller'
+import FuncionariosController from '../controllers/funcionario.controller'
 import GeneralMiddleware from '../middlewares/general.middleware'
-import { BaseRouter } from './base.routes'
+import { BaseRouter } from './base.router'
 /**
  * Router for managing emps. Each route is defined with a pipeline of functions,
  * including middleware or the corresponding functions in the controller.
- *
+ * To perform 'gets' need to be authenticated.
+ * To perform mutations need to be authenticated and authorized.
  * @export
- * @class FuncionariosRouter
+ * @class FuncionarioRouter
  * @extends {BaseRouter<FuncionariosController>}
  */
-export default class FuncionariosRouter extends BaseRouter<FuncionariosController> {
+export default class FuncionarioRouter extends BaseRouter<FuncionariosController> {
   /**
-   * Creates an instance of FuncionariosRouter.
-   * @memberof FuncionariosRouter
+   * Creates an instance of FuncionarioRouter.
+   * @memberof FuncionarioRouter
    */
   constructor() {
     super(new FuncionariosController())
@@ -21,7 +22,7 @@ export default class FuncionariosRouter extends BaseRouter<FuncionariosControlle
    * Initializes the routes for managing emps. Each route is defined with a pipeline of functions,
    *
    * @protected
-   * @memberof FuncionariosRouter
+   * @memberof FuncionarioRouter
    */
   protected initRoutes(): void {
     this.router.get(

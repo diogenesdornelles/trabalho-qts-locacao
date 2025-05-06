@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import BrinquedoLocadoServices from '../services/brinquedo-locado.services'
+import BrinquedoLocadoService from '../services/brinquedo-locado.service'
 import { BaseController } from './base.controller'
 import { ResponseBrinquedoLocadoDTO } from '../dtos/response/response-brinquedo-locado.dto'
 import { CreateBrinquedoLocadoDTO } from '../dtos/create/create-brinquedo-locado.dto'
@@ -10,16 +10,16 @@ import DTOValidator from '../validators/dto.validator'
  * Controller for managing toy rentals.
  *
  * @export
- * @class BrinquedosLocadosController
- * @extends {BaseController<BrinquedoLocadoServices>}
+ * @class BrinquedoLocadoController
+ * @extends {BaseController<BrinquedoLocadoService>}
  */
-export default class BrinquedosLocadosController extends BaseController<BrinquedoLocadoServices> {
+export default class BrinquedoLocadoController extends BaseController<BrinquedoLocadoService> {
   /**
-   * Creates an instance of BrinquedosLocadosController.
-   * @memberof BrinquedosLocadosController
+   * Creates an instance of BrinquedoLocadoController.
+   * @memberof BrinquedoLocadoController
    */
   constructor() {
-    super(new BrinquedoLocadoServices(), new DTOValidator())
+    super(new BrinquedoLocadoService(), new DTOValidator())
   }
 
   /**
@@ -28,7 +28,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
-   * @memberof BrinquedosLocadosController
+   * @memberof BrinquedoLocadoController
    */
   public getAll = async (
     req: Request,
@@ -37,10 +37,10 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
   ): Promise<void> => {
     try {
       // Calls the service to get all rented toys
-      const brinquedos: ResponseBrinquedoLocadoDTO[] =
+      const toys: ResponseBrinquedoLocadoDTO[] =
         await this.service.getAll()
       // If no error is found, return 200
-      res.status(200).json(brinquedos)
+      res.status(200).json(toys)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -56,7 +56,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
-   * @memberof BrinquedosLocadosController
+   * @memberof BrinquedoLocadoController
    */
   public getOne = async (
     req: Request,
@@ -67,15 +67,15 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       // Get cod from params
       const { cod } = req.params
       // Get one toy
-      const brinquedo: ResponseBrinquedoLocadoDTO | null =
+      const toy: ResponseBrinquedoLocadoDTO | null =
         await this.service.getOne(cod)
       // If not found, return 404
-      if (!brinquedo) {
-        res.status(404).json({ message: 'Toy not found' })
+      if (!toy) {
+        res.status(404).json({ message: 'Rented toy not found' })
         return
       }
       // If no error is found, return 200
-      res.status(200).json(brinquedo)
+      res.status(200).json(toy)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -91,7 +91,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
-   * @memberof BrinquedosLocadosController
+   * @memberof BrinquedoLocadoController
    */
   public create = async (
     req: Request,
@@ -103,14 +103,14 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       const validatedData: CreateBrinquedoLocadoDTO =
         this.validator.createBrinquedoLocado<CreateBrinquedoLocadoDTO>(req.body)
       // Calls the service t create a new toy
-      const brinquedo: ResponseBrinquedoLocadoDTO | null =
+      const toy: ResponseBrinquedoLocadoDTO | null =
         await this.service.create(validatedData)
       // If no error is found, return 201, created
-      if (brinquedo) {
-        res.status(201).json(brinquedo)
+      if (toy) {
+        res.status(201).json(toy)
       } else {
         // If error is found, return 400
-        res.status(404).json({ message: 'Toy not created' })
+        res.status(404).json({ message: 'Rented toy not created' })
       }
       return
     } catch (error) {
@@ -127,7 +127,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
-   * @memberof BrinquedosLocadosController
+   * @memberof BrinquedoLocadoController
    */
   public update = async (
     req: Request,
@@ -140,16 +140,16 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
       // Validate the request body
       const validatedData: UpdateBrinquedoLocadoDTO =
         this.validator.updateBrinquedoLocado<UpdateBrinquedoLocadoDTO>(req.body)
-      // Calls the service to update a toy
-      const updatedBrinquedo: Partial<ResponseBrinquedoLocadoDTO | null> =
+      // Calls the service to update a rented toy
+      const updatedToy: Partial<ResponseBrinquedoLocadoDTO | null> =
         await this.service.update(cod, validatedData)
       // If not found, return 404
-      if (!updatedBrinquedo) {
-        res.status(404).json({ message: 'Toy not found' })
+      if (!updatedToy) {
+        res.status(404).json({ message: 'Rented toy not found' })
         return
       }
       // If no error is found, return 200, OK
-      res.status(200).json(updatedBrinquedo)
+      res.status(200).json(updatedToy)
       return
     } catch (error) {
       // If error, calls next func. with error
@@ -165,7 +165,7 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
    * @param {Request} req
    * @param {Response} res
    * @param {NextFunction} next
-   * @memberof BrinquedosLocadosController
+   * @memberof BrinquedoLocadoController
    */
   public delete = async (
     req: Request,
@@ -175,15 +175,15 @@ export default class BrinquedosLocadosController extends BaseController<Brinqued
     try {
       // Get cod from params
       const { cod } = req.params
-      // Calls the service to delete a toy
+      // Calls the service to delete a rented toy
       const success: boolean = await this.service.delete(cod)
       // If not success, return 404, not found
       if (!success) {
-        res.status(404).json({ message: 'Toy not found' })
+        res.status(404).json({ message: 'Rented toy not found' })
         return
       }
       // If no error is found, return 200, OK
-      res.status(200).json({ message: 'Toy deleted!' })
+      res.status(200).json({ message: 'Rented toy deleted!' })
       return
     } catch (error) {
       // If error, calls next func. with error

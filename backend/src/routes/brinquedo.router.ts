@@ -1,28 +1,29 @@
+import BrinquedosController from '../controllers/brinquedo.controller'
 import GeneralMiddleware from '../middlewares/general.middleware'
-import BrinquedosLocadosController from '../controllers/brinquedos-locados.controller'
-import { BaseRouter } from './base.routes'
+import { BaseRouter } from './base.router'
 
 /**
- * Router for managing rented toys. Each route is defined with a pipeline of functions,
+ * Router for managing toys. Each route is defined with a pipeline of functions,
  * including middleware or the corresponding functions in the controller.
- *
+ * To perform 'gets' need to be authenticated.
+ * To perform mutations need to be authenticated and authorized.
  * @export
- * @class BrinquedosLocadosRouter
- * @extends {BaseRouter<BrinquedosLocadosController>}
+ * @class BrinquedoRouter
+ * @extends {BaseRouter<BrinquedosController>}
  */
-export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocadosController> {
+export default class BrinquedoRouter extends BaseRouter<BrinquedosController> {
   /**
-   * Creates an instance of BrinquedosLocadosRouter.
-   * @memberof BrinquedosLocadosRouter
+   * Creates an instance of BrinquedoRouter.
+   * @memberof BrinquedoRouter
    */
   constructor() {
-    super(new BrinquedosLocadosController())
+    super(new BrinquedosController())
   }
   /**
-   * Initializes the routes for managing rented toys. Each route is defined with a pipeline of functions,
+   * Initializes the routes for managing toys. Each route is defined with a pipeline of functions,
    *
    * @protected
-   * @memberof BrinquedosLocadosRouter
+   * @memberof BrinquedoRouter
    */
   protected initRoutes(): void {
     this.router.get(
@@ -43,7 +44,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.post(
       '/',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateBodyRequest,
       this.controller.create,
       GeneralMiddleware.errorHandler,
@@ -52,7 +53,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.put(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateUUID,
       this.controller.update,
       GeneralMiddleware.errorHandler,
@@ -61,7 +62,7 @@ export default class BrinquedosLocadosRouter extends BaseRouter<BrinquedosLocado
     this.router.delete(
       '/:cod',
       GeneralMiddleware.authentication,
-      GeneralMiddleware.authorizationBrinquedosLocados,
+      GeneralMiddleware.authorizationBrinquedos,
       GeneralMiddleware.validateUUID,
       this.controller.delete,
       GeneralMiddleware.errorHandler,

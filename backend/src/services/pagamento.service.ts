@@ -1,6 +1,6 @@
 import { Pagamento, PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import LocacaoServices from './locacao.services'
+import LocacalService from './locacao.service'
 import { ResponsePagamentoDTO } from '../dtos/response/response-pagamento.dto'
 import { CreatePagamentoDTO } from '../dtos/create/create-pagamento.dto'
 import { UpdatePagamentoDTO } from '../dtos/update/update.pagamento.dto'
@@ -10,29 +10,29 @@ import { ApiError } from '../utils/api-error.util'
  * Service for managing payments.
  *
  * @export
- * @class PagamentoServices
+ * @class PagamentoService
  * @extends {BaseService<ResponsePagamentoDTO, CreatePagamentoDTO, UpdatePagamentoDTO>}
  */
-export default class PagamentoServices extends BaseService<
+export default class PagamentoService extends BaseService<
   ResponsePagamentoDTO,
   CreatePagamentoDTO,
   UpdatePagamentoDTO
 > {
-  protected locacaoService: LocacaoServices
+  protected locacaoService: LocacalService
 
   /**
-   * Creates an instance of PagamentoServices.
-   * @memberof PagamentoServices
+   * Creates an instance of PagamentoService.
+   * @memberof PagamentoService
    */
   constructor() {
     super(new PrismaClient())
-    this.locacaoService = new LocacaoServices()
+    this.locacaoService = new LocacalService()
   }
 
   /**
    * Get all payments.
    *
-   * @memberof PagamentoServices
+   * @memberof PagamentoService
    * @returns {Promise<Pagamento[]>} A list of payments.
    */
   public getAll = async (): Promise<Pagamento[]> => {

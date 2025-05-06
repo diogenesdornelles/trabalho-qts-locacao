@@ -8,17 +8,17 @@ import { UpdateTipoBrinquedoDTO } from '../dtos/update/update-tipo-brinquedo.dto
  * Service for managing toy types.
  *
  * @export
- * @class TipoBrinquedoServices
+ * @class TipoBrinquedoService
  * @extends {BaseService<ResponseTipoBrinquedoDTO, CreateTipoBrinquedoDTO, UpdateTipoBrinquedoDTO>}
  */
-export default class TipoBrinquedoServices extends BaseService<
+export default class TipoBrinquedoService extends BaseService<
   ResponseTipoBrinquedoDTO,
   CreateTipoBrinquedoDTO,
   UpdateTipoBrinquedoDTO
 > {
   /**
-   * Creates an instance of TipoBrinquedoServices.
-   * @memberof TipoBrinquedoServices
+   * Creates an instance of TipoBrinquedoService.
+   * @memberof TipoBrinquedoService
    */
   constructor() {
     super(new PrismaClient())
@@ -27,7 +27,7 @@ export default class TipoBrinquedoServices extends BaseService<
   /**
    * Get all toy types.
    *
-   * @memberof TipoBrinquedoServices
+   * @memberof TipoBrinquedoService
    * @returns {Promise<TipoBrinquedo[]>} A list of all toy types.
    */
   public getAll = async (): Promise<TipoBrinquedo[]> => {
@@ -39,7 +39,7 @@ export default class TipoBrinquedoServices extends BaseService<
    *
    * @param {string} pk - The UUID of the toy type.
    * @returns {Promise<ResponseTipoBrinquedoDTO | null>} The toy type or null if not found.
-   * @memberof TipoBrinquedoServices
+   * @memberof TipoBrinquedoService
    */
   public getOne = async (
     pk: string,
@@ -54,7 +54,7 @@ export default class TipoBrinquedoServices extends BaseService<
    *
    * @param {CreateTipoBrinquedoDTO} data - The data for the new toy type.
    * @returns {Promise<ResponseTipoBrinquedoDTO>} The created toy type.
-   * @memberof TipoBrinquedoServices
+   * @memberof TipoBrinquedoService
    */
   public create = async (
     data: CreateTipoBrinquedoDTO,
@@ -70,7 +70,7 @@ export default class TipoBrinquedoServices extends BaseService<
    * @param {string} pk - The UUID of the toy type.
    * @param {UpdateTipoBrinquedoDTO} data - The data to update the toy type.
    * @returns {Promise<Partial<ResponseTipoBrinquedoDTO>>} The updated toy type.
-   * @memberof TipoBrinquedoServices
+   * @memberof TipoBrinquedoService
    */
   public update = async (
     pk: string,
@@ -90,7 +90,7 @@ export default class TipoBrinquedoServices extends BaseService<
    *
    * @param {string} pk - The UUID of the toy type.
    * @returns {Promise<boolean>} True if the toy type was deleted, false otherwise.
-   * @memberof TipoBrinquedoServices
+   * @memberof TipoBrinquedoService
    */
   public delete = async (pk: string): Promise<boolean> => {
     try {

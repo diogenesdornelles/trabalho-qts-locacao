@@ -9,17 +9,17 @@ import { UpdateBrinquedoDTO } from '../dtos/update/update-brinquedo.dto'
  * Service for managing toys.
  *
  * @export
- * @class BrinquedoServices
+ * @class BrinquedoService
  * @extends {BaseService<ResponseBrinquedoDTO, CreateBrinquedoDTO, UpdateBrinquedoDTO>}
  */
-export default class BrinquedoServices extends BaseService<
+export default class BrinquedoService extends BaseService<
   ResponseBrinquedoDTO,
   CreateBrinquedoDTO,
   UpdateBrinquedoDTO
 > {
   /**
-   * Creates an instance of BrinquedoServices.
-   * @memberof BrinquedoServices
+   * Creates an instance of BrinquedoService.
+   * @memberof BrinquedoService
    */
   constructor() {
     super(new PrismaClient())
@@ -28,7 +28,7 @@ export default class BrinquedoServices extends BaseService<
   /**
    * Get all toys.
    *
-   * @memberof BrinquedoServices
+   * @memberof BrinquedoService
    * @returns {Promise<ResponseBrinquedoComTipoDTO[]>} A list of toys with their types.
    */
   public getAll = async (): Promise<ResponseBrinquedoComTipoDTO[]> => {

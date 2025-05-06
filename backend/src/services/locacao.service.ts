@@ -10,17 +10,17 @@ import { ApiError } from '../utils/api-error.util'
  * Service for managing rentals.
  *
  * @export
- * @class LocacaoServices
+ * @class LocacalService
  * @extends {BaseService<ResponseLocacaoDTO, CreateLocacaoDTO, UpdateLocacaoDTO>}
  */
-export default class LocacaoServices extends BaseService<
+export default class LocacalService extends BaseService<
   ResponseLocacaoDTO,
   CreateLocacaoDTO,
   UpdateLocacaoDTO
 > {
   /**
-   * Creates an instance of LocacaoServices.
-   * @memberof LocacaoServices
+   * Creates an instance of LocacalService.
+   * @memberof LocacalService
    */
   constructor() {
     super(new PrismaClient())
@@ -29,7 +29,7 @@ export default class LocacaoServices extends BaseService<
   /**
    * Get all rentals.
    *
-   * @memberof LocacaoServices
+   * @memberof LocacalService
    * @returns {Promise<ResponseLocacaoDTO[]>} A list of rentals.
    */
   public getAll = async (): Promise<ResponseLocacaoDTO[]> => {
