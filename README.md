@@ -850,11 +850,12 @@ ALTER TABLE "pagamentos" ADD CONSTRAINT "pagamentos_cpf_cliente_fkey" FOREIGN KE
 
 ```
 
-Schema Prisma para a geração da Database PG
+Schema Prisma para a geração da Database Pg/Mysql
 
 ```prisma
 
 datasource db {
+  // provider = "mysql" // caso use mysql
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }

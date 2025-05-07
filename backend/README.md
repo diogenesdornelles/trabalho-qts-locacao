@@ -2,76 +2,47 @@
 
 - É possível subir a aplicação via docker-compose ou localmente
 
-## 1. Simplificado via localhost
+## 1. Simplificado via localhost (postgres)
 
-- schemas prisma estão no README.md, na raiz do projeto; inseri-las em /prisma/schema.prisma;
-- criar a database com a primeira migrate em postgres via localhost;
+- Lembre-se de criar a database junto ao banco de dados;
 - `npx prisma init`;
+- schemas prisma estão no README.md, na raiz do projeto; inseri-las em /prisma/schema.prisma;
 - após, rodar o comando: `npm run db:dev`;
 - a URI para conexao com a database deve ser setada em .env com o *shape*:
   - `DATABASE_URL="postgresql://postgres:<senha>@localhost:5432/<nome_db>?schema=public"`;
-- para *startar*: `npm run dev`;
+- para *startar* o app: `npm run dev`;
+- Para usar via mysql, ajuste os parâmetros necessários em .env (por exemplo, port: 3306), no schema (provider === mysql) e instale os pacotes node necessários (driver mysql2, etc);
 
 ## Schema prisma
 
 Está no README.md na raiz do projeto
 
-##
-
-URIS de conexão
-
-### para um serviço entre containers use
-
-- `DATABASE_URL="postgresql://postgres:123456@postgres:5432/locacaotest?schema=public"`
-
-### para desenvolvimento local, com npm run dev, use
-
-- `DATABASE_URL="postgresql://postgres:123456@localhost:5433/locacaotest?schema=public"`
-
-## Conexão PgAdmin4
-
-Create -> Server group
-
-Register -> Server
-
-General -> Name: qualquer
-
-Connection -> Host -> localhost
-
-Username -> postgres
-
-Port -> 5433
-
-Senha - xxx
-
-Save
-
-## Example .env MODEL
+## Exemplo de .env MODEL
 
 ``` plaintext
-# .env
-DATABASE_URL="postgresql://postgres:<dbpwd>@localhost:<dbport>/<dbname>?schema=public"
+  # .env
+  DATABASE_URL="postgresql://postgres:<dbpwd>@localhost:<dbport>/<dbname>?schema=public"
 
-PORT=3000
+  PORT=3000
 
-HOST=localhost
+  HOST=localhost
 
-NODE_OPTIONS=--tls-min-v1.0
+  NODE_OPTIONS=--tls-min-v1.0
 
-SECRET_KEY=<your secret key>
+  SECRET_KEY=<your secret key>
 
-POSTGRES_DB=<dbname>
+  POSTGRES_DB=<dbname>
 
-POSTGRES_USER=<dbuser>
+  POSTGRES_USER=<dbuser>
 
-POSTGRES_PASSWORD=<dbpwd>
+  POSTGRES_PASSWORD=<dbpwd>
 
-SUPER_USER_NOME=<app super user name>
+  SUPER_USER_NOME=<app super user name>
 
-SUPER_USER_PWD=<app super user password>
+  SUPER_USER_PWD=<app super user password>
 
-SUPER_USER_CPF=<app super user cpf>
+  SUPER_USER_CPF=<app super user cpf>
 
-EXPIRES_IN="2d"
+  EXPIRES_IN="2d"
 
 ```
