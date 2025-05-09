@@ -1,8 +1,8 @@
 import { PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import { ResponseClienteDTO } from '../dtos/response/response-cliente.dto'
-import { CreateClienteDTO } from '../dtos/create/create-cliente.dto'
-import { UpdateClienteDTO } from '../dtos/update/update-cliente.dto'
+import { ResponseClienteDTO } from '../dtos/response/responseCliente.dto'
+import { CreateClienteDTO } from '../dtos/create/createCliente.dto'
+import { UpdateClienteDTO } from '../dtos/update/updateCliente.dto'
 
 /**
  * Service for managing customers.

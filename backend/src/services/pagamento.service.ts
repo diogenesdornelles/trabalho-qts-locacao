@@ -1,10 +1,10 @@
 import { Pagamento, PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
 import LocacalService from './locacao.service'
-import { ResponsePagamentoDTO } from '../dtos/response/response-pagamento.dto'
-import { CreatePagamentoDTO } from '../dtos/create/create-pagamento.dto'
-import { UpdatePagamentoDTO } from '../dtos/update/update.pagamento.dto'
-import { ApiError } from '../utils/api-error.util'
+import { ResponsePagamentoDTO } from '../dtos/response/responsePagamento.dto'
+import { CreatePagamentoDTO } from '../dtos/create/createPagamento.dto'
+import { UpdatePagamentoDTO } from '../dtos/update/updatePagamento.dto'
+import { ApiError } from '../utils/apiError.util'
 
 /**
  * Service for managing payments.

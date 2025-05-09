@@ -1,4 +1,4 @@
-import { BaseRouterType } from './base-router.type'
+import { BaseRouterType } from './baseRouter.type'
 
 // Route configuration type: associates a base path with its corresponding router.
 export type RouteConfigType = {

@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import LocacaoService from '../services/locacao.service'
 import { BaseController } from './base.controller'
-import { ResponseLocacaoDTO } from '../dtos/response/response-locacao.dto'
-import { UpdateLocacaoDTO } from '../dtos/update/update-locacao.dto'
-import { CreateLocacaoDTO } from '../dtos/create/create-locacao.dto'
+import { ResponseLocacaoDTO } from '../dtos/response/responseLocacao.dto'
+import { UpdateLocacaoDTO } from '../dtos/update/updateLocacao.dto'
+import { CreateLocacaoDTO } from '../dtos/create/createLocacao.dto'
 import DTOValidator from '../validators/dto.validator'
 
 /**

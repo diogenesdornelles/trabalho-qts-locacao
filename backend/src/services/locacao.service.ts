@@ -1,10 +1,10 @@
 import { PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import { ResponseLocacaoDTO } from '../dtos/response/response-locacao.dto'
-import { ResponseLocacaoComBrinquedosDTO } from '../dtos/response/response-locacao-com-brinquedos.dto'
-import { CreateLocacaoDTO } from '../dtos/create/create-locacao.dto'
-import { UpdateLocacaoDTO } from '../dtos/update/update-locacao.dto'
-import { ApiError } from '../utils/api-error.util'
+import { ResponseLocacaoDTO } from '../dtos/response/responseLocacao.dto'
+import { ResponseLocacaoComBrinquedosDTO } from '../dtos/response/responseLocacaoComBrinquedos.dto'
+import { CreateLocacaoDTO } from '../dtos/create/createLocacao.dto'
+import { UpdateLocacaoDTO } from '../dtos/update/updateLocacao.dto'
+import { ApiError } from '../utils/apiError.util'
 
 /**
  * Service for managing rentals.

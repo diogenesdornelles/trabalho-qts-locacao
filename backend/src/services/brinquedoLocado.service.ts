@@ -1,8 +1,8 @@
 import { PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import { ResponseBrinquedoLocadoDTO } from '../dtos/response/response-brinquedo-locado.dto'
-import { CreateBrinquedoLocadoDTO } from '../dtos/create/create-brinquedo-locado.dto'
-import { UpdateBrinquedoLocadoDTO } from '../dtos/update/update-brinquedo-locado.dto'
+import { ResponseBrinquedoLocadoDTO } from '../dtos/response/responseBrinquedoLocado.dto'
+import { CreateBrinquedoLocadoDTO } from '../dtos/create/createBrinquedoLocado.dto'
+import { UpdateBrinquedoLocadoDTO } from '../dtos/update/updateBrinquedoLocado.dto'
 
 /**
  * Service for managing rented toys.

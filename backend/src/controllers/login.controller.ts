@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express'
 import LoginService from '../services/login.service'
 import { BaseController } from './base.controller'
-import { CreateTokenDTO } from '../dtos/create/create-token.dto'
-import { ResponseTokenDTO } from '../dtos/response/response-token.dto'
+import { CreateTokenDTO } from '../dtos/create/createToken.dto'
+import { ResponseTokenDTO } from '../dtos/response/responseToken.dto'
 import DTOValidator from '../validators/dto.validator'
 
 /**

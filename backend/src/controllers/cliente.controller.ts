@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
 import ClienteService from '../services/cliente.service'
 import { BaseController } from './base.controller'
-import { ResponseClienteDTO } from '../dtos/response/response-cliente.dto'
-import { CreateClienteDTO } from '../dtos/create/create-cliente.dto'
+import { ResponseClienteDTO } from '../dtos/response/responseCliente.dto'
+import { CreateClienteDTO } from '../dtos/create/createCliente.dto'
 import DTOValidator from '../validators/dto.validator'
-import { UpdateClienteDTO } from '../dtos/update/update-cliente.dto'
+import { UpdateClienteDTO } from '../dtos/update/updateCliente.dto'
 
 /**
  * Controller for managing customers.

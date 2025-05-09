@@ -1,9 +1,9 @@
 import { PrismaClient, Funcao } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import hashPassword from '../utils/hash-pwd.util'
-import { ResponseFuncionarioDTO } from '../dtos/response/response-funcionario.dto'
-import { CreateFuncionarioDTO } from '../dtos/create/create-funcionario.dto'
-import { UpdateFuncionarioDTO } from '../dtos/update/update-funcionario.dto'
+import hashPassword from '../utils/hashPwd.util'
+import { ResponseFuncionarioDTO } from '../dtos/response/responseFuncionario.dto'
+import { CreateFuncionarioDTO } from '../dtos/create/createFuncionario.dto'
+import { UpdateFuncionarioDTO } from '../dtos/update/updateFuncionario.dto'
 
 /**
  * Service for managing employees.

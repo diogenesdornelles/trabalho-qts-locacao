@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express'
 import { BaseController } from './base.controller'
-import { CreateTokenDTO } from '../dtos/create/create-token.dto'
+import { CreateTokenDTO } from '../dtos/create/createToken.dto'
 import DTOValidator from '../validators/dto.validator'
 import PagamentoService from '../services/pagamento.service'
-import { CreatePagamentoDTO } from '../dtos/create/create-pagamento.dto'
-import { ResponsePagamentoDTO } from '../dtos/response/response-pagamento.dto'
+import { CreatePagamentoDTO } from '../dtos/create/createPagamento.dto'
+import { ResponsePagamentoDTO } from '../dtos/response/responsePagamento.dto'
 
 /**
  * Controller for managing payments.

@@ -1,4 +1,4 @@
-import { AuthPayloadInterface } from './auth-payload.interface'
+import { AuthPayloadInterface } from './authPayload.interface'
 import { Request } from 'express'
 
 export interface CustomRequestInterface extends Request {

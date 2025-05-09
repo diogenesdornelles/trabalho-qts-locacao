@@ -1,9 +1,9 @@
 import { PrismaClient } from '../../generated/prisma_client'
 import { BaseService } from './base.service'
-import { ResponseBrinquedoComTipoDTO } from '../dtos/response/response-brinquedo-response-com-tipo.dto'
-import { ResponseBrinquedoDTO } from '../dtos/response/response-brinquedo.dto'
-import { CreateBrinquedoDTO } from '../dtos/create/create-brinquedo.dto'
-import { UpdateBrinquedoDTO } from '../dtos/update/update-brinquedo.dto'
+import { ResponseBrinquedoComTipoDTO } from '../dtos/response/responseBrinquedoResponseComTipo.dto'
+import { ResponseBrinquedoDTO } from '../dtos/response/responseBrinquedo.dto'
+import { CreateBrinquedoDTO } from '../dtos/create/createBrinquedo.dto'
+import { UpdateBrinquedoDTO } from '../dtos/update/updateBrinquedo.dto'
 
 /**
  * Service for managing toys.

@@ -3,8 +3,8 @@ import { Funcao, PrismaClient } from './generated/prisma_client'
 import DTOValidator from './src/validators/dto.validator'
 
 import * as dotenv from 'dotenv'
-import hashPassword from './src/utils/hash-pwd.util'
-import { CreateFuncionarioDTO } from './src/dtos/create/create-funcionario.dto'
+import hashPassword from './src/utils/hashPwd.util'
+import { CreateFuncionarioDTO } from './src/dtos/create/createFuncionario.dto'
 // Carrega o .env de um nível acima
 dotenv.config()
 
@@ -27,11 +27,7 @@ async function main() {
     const validatedData =
       validator.createFuncionario<CreateFuncionarioDTO>(data)
 
-    const papwd = await hashPassword(validatedData.senha)
-
     validatedData.senha = await hashPassword(validatedData.senha)
-
-    console.log(validatedData)
 
     const gerente = await prisma.funcionario.create({
       data: {

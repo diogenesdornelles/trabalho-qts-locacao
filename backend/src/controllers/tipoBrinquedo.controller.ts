@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
-import TipoBrinquedoService from '../services/tipo-brinquedo.service'
+import TipoBrinquedoService from '../services/tipoBrinquedo.service'
 import { BaseController } from './base.controller'
-import { ResponseTipoBrinquedoDTO } from '../dtos/response/response-tipo-brinquedo.dto'
-import { CreateTipoBrinquedoDTO } from '../dtos/create/create-tipo-brinquedo.dto'
-import { UpdateTipoBrinquedoDTO } from '../dtos/update/update-tipo-brinquedo.dto'
+import { ResponseTipoBrinquedoDTO } from '../dtos/response/responseTipoBrinquedo.dto'
+import { CreateTipoBrinquedoDTO } from '../dtos/create/createTipoBrinquedo.dto'
+import { UpdateTipoBrinquedoDTO } from '../dtos/update/updateTipoBrinquedo.dto'
 import DTOValidator from '../validators/dto.validator'
 
 /**

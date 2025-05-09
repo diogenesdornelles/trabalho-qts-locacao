@@ -1,5 +1,5 @@
 import PagamentoController from '../controllers/pagamento.controller'
-import GeneralMiddleware from '../middlewares/general.middleware'
+import GeneralMiddleware from '../middlewares/generalMiddleware'
 import { BaseRouter } from './base.router'
 
 /**

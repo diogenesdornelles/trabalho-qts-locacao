@@ -1,4 +1,4 @@
-import { CreateBrinquedoDTO } from '../create/create-brinquedo.dto'
+import { CreateBrinquedoDTO } from '../create/createBrinquedo.dto'
 
 export type UpdateBrinquedoDTO = Partial<CreateBrinquedoDTO> & {
   ativo?: boolean

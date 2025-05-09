@@ -17,8 +17,8 @@ import swaggerDocument from './swagger.json'
 import https from 'https'
 import fs from 'fs'
 import path from 'path'
-import { RouteConfigType } from './types/route-config.type'
-import { ServerProtocolType } from './types/server-protocol.type'
+import { RouteConfigType } from './types/routeConfig.type'
+import { ServerProtocolType } from './types/serverProtocol.type'
 
 // SSL certificate options for running the application over HTTPS.
 // Reads the key and certificate files from the 'cert' directory.

@@ -1,4 +1,4 @@
-import { CreateFuncionarioDTO } from '../create/create-funcionario.dto'
+import { CreateFuncionarioDTO } from '../create/createFuncionario.dto'
 
 export type UpdateFuncionarioDTO = Partial<
   Omit<CreateFuncionarioDTO, 'cpf'>

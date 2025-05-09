@@ -5,9 +5,9 @@ import jwt, { Secret } from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { Funcao } from '../../generated/prisma_client'
 import { z } from 'zod'
-import { ApiError } from '../utils/api-error.util'
-import { AuthPayloadInterface } from '../interfaces/auth-payload.interface'
-import { CustomRequestInterface } from '../interfaces/custom-request.interface'
+import { ApiError } from '../utils/apiError.util'
+import { AuthPayloadInterface } from '../interfaces/authPayload.interface'
+import { CustomRequestInterface } from '../interfaces/customRequest.interface'
 
 // Load environment variables from .env file
 dotenv.config()

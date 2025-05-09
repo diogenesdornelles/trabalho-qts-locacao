@@ -1,9 +1,9 @@
 import { Request, Response, NextFunction } from 'express'
 import FuncionarioService from '../services/funcionario.service'
 import { BaseController } from './base.controller'
-import { ResponseFuncionarioDTO } from '../dtos/response/response-funcionario.dto'
-import { UpdateFuncionarioDTO } from '../dtos/update/update-funcionario.dto'
-import { CreateFuncionarioDTO } from '../dtos/create/create-funcionario.dto'
+import { ResponseFuncionarioDTO } from '../dtos/response/responseFuncionario.dto'
+import { UpdateFuncionarioDTO } from '../dtos/update/updateFuncionario.dto'
+import { CreateFuncionarioDTO } from '../dtos/create/createFuncionario.dto'
 import DTOValidator from '../validators/dto.validator'
 
 /**

@@ -1,12 +1,12 @@
 import FuncionarioRouter from './routes/funcionario.router'
 import BrinquedoRouter from './routes/brinquedo.router'
-import TipoBrinquedoRouter from './routes/tipo-brinquedo.router'
+import TipoBrinquedoRouter from './routes/tipoBrinquedo.router'
 import LocacaoRouter from './routes/locacao.router'
 import ClienteRouter from './routes/cliente.router'
 import PagamentoRouter from './routes/pagamento.router'
 import LoginRouter from './routes/login.router'
-import BrinquedoLocadoRouter from './routes/brinquedo-locado.router'
-import { RouteConfigType } from './types/route-config.type'
+import BrinquedoLocadoRouter from './routes/brinquedoLocado.router'
+import { RouteConfigType } from './types/routeConfig.type'
 
 // Registers routes and paths into Array to fill app
 const appRoutes: RouteConfigType[] = [

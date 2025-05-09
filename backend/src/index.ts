@@ -8,7 +8,7 @@
 import * as dotenv from 'dotenv'
 dotenv.config()
 import App from './app'
-import appRoutes from './app-routes'
+import appRoutes from './appRoutes'
 
 /**
  * Receives route settings and makes the app listen, by default https.

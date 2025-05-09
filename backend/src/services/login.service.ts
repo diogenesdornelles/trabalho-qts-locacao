@@ -3,11 +3,11 @@ import jwt from 'jsonwebtoken'
 import * as dotenv from 'dotenv'
 import { BaseService } from './base.service'
 import { PrismaClient } from '../../generated/prisma_client'
-import { ResponseTokenDTO } from '../dtos/response/response-token.dto'
-import { CreateTokenDTO } from '../dtos/create/create-token.dto'
-import { UpdateTokenDTO } from '../dtos/update/update-token.dto'
+import { ResponseTokenDTO } from '../dtos/response/responseToken.dto'
+import { CreateTokenDTO } from '../dtos/create/createToken.dto'
+import { UpdateTokenDTO } from '../dtos/update/updateToken.dto'
 import ms from 'ms'
-import { ApiError } from '../utils/api-error.util'
+import { ApiError } from '../utils/apiError.util'
 
 dotenv.config()
 
