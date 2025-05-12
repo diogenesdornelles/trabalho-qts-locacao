@@ -35,8 +35,8 @@ export default function RentalMaintenance() {
   useEffect(() => {
     const isRentalAgent = user?.funcao === "AGENTE_LOCACAO";
 
-    if (!isRentalAgent) router.back();
-  }, [router, user?.funcao]);
+    if (!isRentalAgent && user) router.back();
+  }, [router, user, user?.funcao]);
 
   return (
     <div className="flex flex-col items-center w-full h-full">

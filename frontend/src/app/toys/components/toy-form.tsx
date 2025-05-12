@@ -17,7 +17,7 @@ import * as Yup from "yup";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api-instance/api";
 import { Brinquedo, TipoBrinquedo } from "@/domains/types";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { updateToy } from "@/services/toys/updateToy";
 import { formatDate } from "@/app/utils/format-date";
 
@@ -58,6 +58,8 @@ export const ToyForm = () => {
 
   const { action } = useParams();
   const { errors } = formState;
+
+  const router = useRouter()
 
   useEffect(() => {
     const fetchToyTypes = async () => {
@@ -210,7 +212,7 @@ export const ToyForm = () => {
         </div>
       </div>
       <div className="flex justify-end gap-4 mt-6">
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+        <Button onClick={() => router.back()} className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
           Cancelar
         </Button>
         <Button
