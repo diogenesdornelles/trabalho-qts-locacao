@@ -244,7 +244,10 @@ export default class GeneralMiddleware {
     res: Response,
     next: NextFunction,
   ): void => {
+    
     const { token } = req as CustomRequestInterface
+
+    // console.log(token)
     // Check if token exists and if the user's role is 'GERENTE'
     if (!token || token.funcao !== Funcao.GERENTE) {
       // If not authorized, send a 403 response 'Unauthorized'
@@ -373,7 +376,6 @@ export default class GeneralMiddleware {
   ): void => {
     const { token } = req as CustomRequestInterface
     // Check if token exists and if the user's role is 'AGENTE_LOCACAO'
-    console.log('token', token)
     if (!token || token.funcao !== Funcao.AGENTE_LOCACAO) {
       // If not authorized, send a 403 response 'Unauthorized'
       res.status(403).json({ message: 'Access denied: agente locacao only' })

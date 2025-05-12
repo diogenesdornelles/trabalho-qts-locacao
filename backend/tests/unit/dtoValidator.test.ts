@@ -221,37 +221,6 @@ describe('DTOValidator', () => {
     })
   })
 
-  describe('createPagamento', () => {
-    it('deve validar um objeto de pagamento válido', () => {
-      const validPagamento = {
-        cpf_cliente: '52998224725',
-        cod_locacao: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        valor_pagamento: 100.25,
-      }
-      const result = validator.createPagamento(validPagamento)
-      expect(result.valor_pagamento).toBeCloseTo(100.25)
-    })
-
-    it('deve validar um objeto de pagamento válido, mesmo com valor string', () => {
-      const validPagamento = {
-        cpf_cliente: '52998224725',
-        cod_locacao: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        valor_pagamento: '100.25',
-      }
-      const result = validator.createPagamento(validPagamento)
-      expect(result.valor_pagamento).toBeCloseTo(100.25)
-    })
-
-    it('deve lançar erro se o CPF do cliente for inválido', () => {
-      const invalidPagamento = {
-        cpf_cliente: 'invalidcpf',
-        cod_locacao: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        valor_pagamento: 100.25,
-      }
-      expect(() => validator.createPagamento(invalidPagamento)).toThrow()
-    })
-  })
-
   describe('createTipoBrinquedo', () => {
     it('deve validar um objeto de tipo de brinquedo válido', () => {
       const validTipo = {
@@ -340,18 +309,6 @@ describe('DTOValidator', () => {
         pgto_status: 'INVALID_STATUS',
       }
       expect(() => validator.updateLocacao(updateObj)).toThrow()
-    })
-  })
-
-  describe('updatePagamento', () => {
-    it('deve atualizar um objeto de pagamento válido', () => {
-      const updateObj = {
-        cpf_cliente: '52998224725',
-        cod_locacao: 'd290f1ee-6c54-4b01-90e6-d701748f0851',
-        valor_pagamento: 50,
-      }
-      const result = validator.updatePagamento(updateObj)
-      expect(result.valor_pagamento).toBeCloseTo(50)
     })
   })
 

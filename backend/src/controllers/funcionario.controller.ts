@@ -98,6 +98,7 @@ export default class FuncionariosController extends BaseController<FuncionarioSe
     next: NextFunction,
   ): Promise<void> => {
     try {
+      console.log(req.body)
       // Validate the request body
       const validatedData: CreateFuncionarioDTO =
         this.validator.createFuncionario<CreateFuncionarioDTO>(req.body)

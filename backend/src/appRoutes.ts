@@ -3,7 +3,6 @@ import BrinquedoRouter from './routes/brinquedo.router'
 import TipoBrinquedoRouter from './routes/tipoBrinquedo.router'
 import LocacaoRouter from './routes/locacao.router'
 import ClienteRouter from './routes/cliente.router'
-import PagamentoRouter from './routes/pagamento.router'
 import LoginRouter from './routes/login.router'
 import BrinquedoLocadoRouter from './routes/brinquedoLocado.router'
 import { RouteConfigType } from './types/routeConfig.type'
@@ -33,10 +32,6 @@ const appRoutes: RouteConfigType[] = [
   {
     baseRouter: new LocacaoRouter(),
     basePath: '/api/locacoes',
-  },
-  {
-    baseRouter: new PagamentoRouter(),
-    basePath: '/api/pagamentos',
   },
   {
     baseRouter: new LoginRouter(),

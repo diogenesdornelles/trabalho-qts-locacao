@@ -99,10 +99,11 @@ export default class BrinquedoLocadoController extends BaseController<BrinquedoL
     next: NextFunction,
   ): Promise<void> => {
     try {
+      console.log(req.body)
       // Validate the request body
       const validatedData: CreateBrinquedoLocadoDTO =
         this.validator.createBrinquedoLocado<CreateBrinquedoLocadoDTO>(req.body)
-      // Calls the service t create a new toy
+      // Calls the service to create a new toy
       const toy: ResponseBrinquedoLocadoDTO | null =
         await this.service.create(validatedData)
       // If no error is found, return 201, created

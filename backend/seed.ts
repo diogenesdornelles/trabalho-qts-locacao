@@ -14,51 +14,93 @@ const CPF = process.env.SUPER_USER_CPF
 
 const prisma = new PrismaClient()
 
+const funcionarios = [
+  {
+    cpf: CPF as string,
+    nome: NOME as string,
+    telefone: '1111111111',
+    funcao: Funcao.GERENTE, // Use os valores do enum como string
+    senha: PWD as string,
+  }
+]
+
+const tiposBrinquedos = [
+  {
+    nome: "Ação",
+  },
+  {
+    nome: "Tabuleiro",
+  },
+  {
+    nome: "Inflável",
+  },
+  {
+    nome: "Eletrônico",
+  }
+]
+
 async function main() {
   try {
-    const data = {
-      cpf: CPF as string,
-      nome: NOME as string,
-      telefone: '1111111111',
-      funcao: Funcao.GERENTE, // Use os valores do enum como string
-      senha: PWD as string,
-    }
+    // Criar funcionários
+    console.log("Iniciando seed de funcionários...")
     const validator = new DTOValidator()
-    const validatedData =
-      validator.createFuncionario<CreateFuncionarioDTO>(data)
 
-    validatedData.senha = await hashPassword(validatedData.senha)
+    for (const data of funcionarios) {
+      try {
+        const validatedData = validator.createFuncionario<CreateFuncionarioDTO>(data)
+        validatedData.senha = await hashPassword(validatedData.senha)
 
-    const gerente = await prisma.funcionario.create({
-      data: {
-        cpf: validatedData.cpf,
-        telefone: validatedData.telefone,
-        funcao: validatedData.funcao as Funcao,
-        nome: validatedData.nome,
-        senha: validatedData.senha,
-      },
-    })
-    console.log(`Employee CPF ${gerente.cpf} was created`)
+        const gerente = await prisma.funcionario.create({
+          data: {
+            cpf: validatedData.cpf,
+            telefone: validatedData.telefone,
+            funcao: validatedData.funcao as Funcao,
+            nome: validatedData.nome,
+            senha: validatedData.senha,
+          },
+        })
+        console.log(`Funcionário CPF ${gerente.cpf} foi criado com sucesso.`)
+      } catch (err) {
+        console.error(`Erro ao criar funcionário ${data.nome}:`, err)
+      }
+    }
+
+    // Criar tipos de brinquedos
+    console.log("\nIniciando seed de tipos de brinquedos...")
+    for (const tipo of tiposBrinquedos) {
+      try {
+        const tipoCriado = await prisma.tipoBrinquedo.create({
+          data: {
+            nome: tipo.nome,
+            ativo: true
+          }
+        })
+        console.log(`Tipo de brinquedo "${tipoCriado.nome}" foi criado com sucesso.`)
+      } catch (err) {
+        console.error(`Erro ao criar tipo de brinquedo "${tipo.nome}":`, err)
+      }
+    }
+
+    console.log("\nProcesso de seed concluído com sucesso!")
   } catch (error: unknown) {
     // Trata erros de validação do Zod
     if (error instanceof z.ZodError) {
-      console.error('Validation error on create employee:', error.errors)
+      console.error('Erro de validação na criação:', error.errors)
       throw new Error(
-        `Validation error: ${error.errors.map(err => err.message).join(', ')}`,
+        `Erro de validação: ${error.errors.map(err => err.message).join(', ')}`,
       )
     }
-    // Trata erros genéricos (incluindo erros do Prisma)
     if (error instanceof Error) {
-      console.error('Database error on create employee:', error.message)
-      throw new Error(`Database error: ${error.message}`)
+      console.error('Erro de banco de dados:', error.message)
+      throw new Error(`Erro de banco de dados: ${error.message}`)
     }
-    throw new Error('An unknown error occurred while saving employee.')
+    throw new Error('Um erro desconhecido ocorreu durante o processo de seed.')
   }
 }
 
 main()
   .catch(e => {
-    console.error(e)
+    console.error('Erro fatal durante o processo de seed:', e)
   })
   .finally(async () => {
     await prisma.$disconnect()
