@@ -23,14 +23,14 @@
   {
     "cpf": "89824500090",
     "nome": "Claudir",
-    "telefone": "8888888888",
+    "telefone": "88888888888",
     "funcao": "ANALISTA_CADASTRO",
     "senha": "#123ABCabd"
   },
   {
     "cpf": "95699820043",
     "nome": "Estevao",
-    "telefone": "9999999999",
+    "telefone": "99999999999",
     "funcao": "AGENTE_LOCACAO",
     "senha": "#123ABCabd"
   },

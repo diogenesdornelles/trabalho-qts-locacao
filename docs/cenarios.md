@@ -1,4 +1,4 @@
-# Cenários do Caso de Uso: Incluir Locação de Brinquedos
+# Cenários: Incluir Locação de Brinquedos
 
 ---
 

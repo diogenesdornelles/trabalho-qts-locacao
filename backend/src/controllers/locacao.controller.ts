@@ -99,6 +99,7 @@ export default class LocacaoController extends BaseController<LocacaoService> {
   ): Promise<void> => {
     try {
       // Validate the request body
+      console.log(req.body)
       const validatedData: CreateLocacaoDTO =
         this.validator.createLocacao<CreateLocacaoDTO>(req.body)
       // Calls the service to create a new rental

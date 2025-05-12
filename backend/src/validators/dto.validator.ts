@@ -146,22 +146,6 @@ export default class DTOValidator {
     })
     .strict()
 
-  private readonly createPagamentoSchema = z
-    .object({
-      cpf_cliente: z
-        .string()
-        .transform(str => str.replace(/\D/g, ''))
-        .refine(GeneralValidator.validateCpf, {
-          message: 'CPF inválido.',
-        }),
-      cod_locacao: z.string().uuid('Forneça um UUID de locação correto'),
-      valor_pagamento: z
-        .number({ coerce: true })
-        .gt(0, 'Valor mínimo de compra deve ser R$ 0,01')
-        .transform(num => Math.round(num * 100) / 100),
-    })
-    .strict()
-
   private readonly createTipoBrinquedoSchema = z
     .object({
       nome: z
@@ -207,7 +191,6 @@ export default class DTOValidator {
     })
     .strict()
 
-  private readonly updatePagamentoSchema = this.createPagamentoSchema.partial()
   private readonly updateTipoBrinquedoSchema = this.createTipoBrinquedoSchema
     .partial()
     .extend({
@@ -242,10 +225,6 @@ export default class DTOValidator {
     return this.createLoginSchema.parse(obj)
   }
 
-  public createPagamento<T>(obj: T) {
-    return this.createPagamentoSchema.parse(obj)
-  }
-
   public createTipoBrinquedo<T>(obj: T) {
     return this.createTipoBrinquedoSchema.parse(obj)
   }
@@ -268,10 +247,6 @@ export default class DTOValidator {
 
   public updateLocacao<T>(obj: T) {
     return this.updateLocacaoSchema.parse(obj)
-  }
-
-  public updatePagamento<T>(obj: T) {
-    return this.updatePagamentoSchema.parse(obj)
   }
 
   public updateTipoBrinquedo<T>(obj: T) {
