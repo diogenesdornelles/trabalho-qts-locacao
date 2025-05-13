@@ -18,10 +18,6 @@ import { Button } from "@/components/ui/button";
 
 export const toyFormSchema = Yup.object().shape({
   cod_brinquedo: Yup.string().required("Um brinquedo deve ser selecionado"),
-  quantidade: Yup.number()
-    .transform((value, originalValue) => (!originalValue ? null : value))
-    .required("Informe a quantidade")
-    .positive("A quantidade não pode ser negativa"),
   valor_locacao: Yup.number()
     .transform((value, originalValue) => (!originalValue ? null : value))
     .required("")
@@ -43,8 +39,6 @@ export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
       resolver: yupResolver(toyFormSchema),
     });
 
-  const quantity = watch("quantidade");
-  const rentalPrice = watch("valor_locacao");
   const toyCode = watch("cod_brinquedo");
 
   useEffect(() => {
@@ -93,7 +87,6 @@ export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
 
     reset({
       cod_brinquedo: "",
-      quantidade: null,
       valor_locacao: null,
     });
   };
@@ -165,11 +158,6 @@ export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
 
       <div className="flex gap-4 items-end">
         <div className="w-full">
-          <label htmlFor="quantidade">Quantidade</label>
-          <Input {...register("quantidade")} type="number" />
-        </div>
-
-        <div className="w-full">
           <label htmlFor="valor_locacao">Valor de locação</label>
           <Input
             {...register("valor_locacao")}
@@ -179,12 +167,6 @@ export const ToysSelectionForm = ({ addToy }: ToysSelectionFormProps) => {
           />
         </div>
       </div>
-
-      {rentalPrice && quantity && (
-        <span className="text-2xl w-1/2 font-semibold">
-          Total: {+rentalPrice * +quantity}
-        </span>
-      )}
 
       <FormErrors />
 

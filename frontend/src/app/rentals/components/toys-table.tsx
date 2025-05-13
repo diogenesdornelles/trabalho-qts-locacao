@@ -76,12 +76,8 @@ export const ToysTable = ({
               <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
                 Valor unitário
               </TableHead>
-              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
-                {allowUpdates ? "Quantidade" : ""}
-              </TableHead>
-              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base">
-                {allowUpdates ? "Total" : ""}
-              </TableHead>
+              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base"></TableHead>
+              <TableHead className="w-[15%] text-white ml-0.5 font-semibold text-base"></TableHead>
               <TableHead className="w-[10%] text-white rounded-tr-2xl font-semibold text-base"></TableHead>
             </TableRow>
           </TableHeader>
@@ -100,17 +96,10 @@ export const ToysTable = ({
                 >
                   <TableCell className="w-[50%]">{toy.nome}</TableCell>
                   <TableCell className="w-[15%]">{toy.valor_locacao}</TableCell>
-                  <TableCell className="w-[15%]">
-                    {allowUpdates ? toy.quantidade : ""}
-                  </TableCell>
+                  <TableCell className="w-[15%]"></TableCell>
                   {allowUpdates && (
                     <>
-                      <TableCell className="w-[10%]">
-                        {(toy.valor_locacao * toy.quantidade).toLocaleString(
-                          "pt-br",
-                          { style: "currency", currency: "BRL" }
-                        )}
-                      </TableCell>
+                      <TableCell className="w-[10%]"></TableCell>
                       <TableCell className="w-[10%] flex items-center justify-start">
                         <button
                           className="flex ml-2 items-center justify-center cursor-pointer p-[4px] w-[30px] h-[30px]  bg-red-500 rounded-[6px]"
@@ -134,16 +123,13 @@ export const ToysTable = ({
           </div>
         )}
       </div>
+
       {allowUpdates && (
         <div className="text-sky-700 w-full font-bold text-lg text-right">
           Total:{" "}
           {Number(
             selectedToys
-              .reduce(
-                (prev, current) =>
-                  prev + current.valor_locacao * current.quantidade,
-                0
-              )
+              .reduce((prev, current) => prev + current.valor_locacao, 0)
               .toFixed(2)
           ).toLocaleString("pt-br", {
             style: "currency",

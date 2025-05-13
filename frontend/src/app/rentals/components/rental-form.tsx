@@ -12,9 +12,11 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as Yup from "yup";
 import { errorToast, successToast } from "../../../styles/toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = Yup.object().shape({
   data_locacao: Yup.string().nullable(),
+  data_devolucao: Yup.string().nullable(),
   cpf_cliente: Yup.string().required("Campo obrigatório"),
   nome_cliente: Yup.string().nullable(),
 });
@@ -33,11 +35,17 @@ export const RentalForm = ({
 }: RentalFormProps) => {
   const [isCustomerUnregistered, setIsCustomerUnregistered] = useState(true);
 
+  const today = new Date();
+
   const { handleSubmit, register, watch, setValue, formState, reset } = useForm(
     {
       resolver: yupResolver(formSchema),
       defaultValues: {
         data_locacao: formatDate(new Date(), "sv-SE"),
+        data_devolucao: formatDate(
+          new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1),
+          "sv-SE"
+        ),
       },
     }
   );
@@ -45,6 +53,7 @@ export const RentalForm = ({
   const { errors } = formState;
 
   const cpf = watch("cpf_cliente");
+  const router = useRouter();
 
   useEffect(() => {
     if (defaultValues) {
@@ -130,6 +139,18 @@ export const RentalForm = ({
             className="bg-white relative"
           />
         </div>
+        <div className="w-50">
+          <label className="font-semibold" htmlFor="data_devolucao">
+            Data de devolução
+          </label>
+          <Input
+            {...register("data_devolucao")}
+            disabled
+            type="date"
+            name="data_devolucao"
+            className="bg-white relative"
+          />
+        </div>
       </div>
 
       <div className="flex gap-4">
@@ -171,7 +192,10 @@ export const RentalForm = ({
       </div>
       {!defaultValues && (
         <div className="fixed z-20 flex top-[90.5%] right-[4.5%] gap-4">
-          <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+          <Button
+            onClick={() => router.back()}
+            className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold"
+          >
             Cancelar
           </Button>
           <Button
