@@ -5,7 +5,7 @@ import DTOValidator from './src/validators/dto.validator'
 import * as dotenv from 'dotenv'
 import hashPassword from './src/utils/hashPwd.util'
 import { CreateFuncionarioDTO } from './src/dtos/create/createFuncionario.dto'
-// Carrega o .env de um nível acima
+
 dotenv.config()
 
 const NOME = process.env.SUPER_USER_NOME

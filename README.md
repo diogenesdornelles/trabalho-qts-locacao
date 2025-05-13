@@ -581,3 +581,51 @@ locales/
 
 
 ```
+
+## Instruções de uso: backend
+
+- Lembre-se de criar a database junto ao banco de dados;
+- `cd backend && npm i -y && npx prisma init`;
+- schemas prisma estão no README.md, na raiz do projeto; inseri-las em /prisma/schema.prisma;
+- `npm run db:dev`;
+- a URI para conexao com a database deve ser setada em .env com o *shape*:
+  - `DATABASE_URL="postgresql://postgres:<senha>@localhost:5432/<nome_db>?schema=public"`;
+- `npm run dev`;
+- Para usar via mysql, ajuste os parâmetros necessários em .env (por exemplo, port: 3306) e no schema (provider === mysql);
+- `cd frontend && npm i -y && npm run dev`;
+- Não esquecer de declarar o endponint da API no frontend em .env: `NEXT_PUBLIC_BASE_URL=http://localhost:3000/api`;
+- Acesse o frontend em `http://localhost:3001` e o backend em `http://localhost:3000/api`;
+
+### Schema prisma
+
+Está no README.md na raiz do projeto
+
+### Exemplo de .env MODEL no backend
+
+``` plaintext
+  # .env
+  DATABASE_URL="postgresql://postgres:<dbpwd>@localhost:<dbport>/<dbname>?schema=public"
+
+  PORT=3000
+
+  HOST=localhost
+
+  NODE_OPTIONS=--tls-min-v1.0
+
+  SECRET_KEY=<your secret key>
+
+  POSTGRES_DB=<dbname>
+
+  POSTGRES_USER=<dbuser>
+
+  POSTGRES_PASSWORD=<dbpwd>
+
+  SUPER_USER_NOME=<app super user name>
+
+  SUPER_USER_PWD=<app super user password>
+
+  SUPER_USER_CPF=<app super user cpf>
+
+  EXPIRES_IN="2d"
+
+```
