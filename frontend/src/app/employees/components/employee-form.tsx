@@ -15,7 +15,7 @@ import { Controller, useForm } from "react-hook-form";
 import * as Yup from "yup";
 import { useEffect, useMemo, useState } from "react";
 import { createEmployee } from "@/services/employee/createEmployee";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Funcionario } from "@/domains/types";
 import { updateEmployee } from "@/services/employee/updateEmployee";
 
@@ -53,6 +53,8 @@ export const EmployeeForm = () => {
 
   const { errors } = formState;
   const { action } = useParams();
+
+  const router = useRouter() 
 
   const roles = useMemo(
     () => [
@@ -203,7 +205,7 @@ export const EmployeeForm = () => {
         </div>
       </div>
       <div className="flex justify-end gap-4 mt-6">
-        <Button className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
+        <Button onClick={() => router.back()} className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold">
           Cancelar
         </Button>
         <Button

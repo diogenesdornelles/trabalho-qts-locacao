@@ -191,7 +191,7 @@ export const CustomerForm = () => {
       <div className="absolute flex top-[90.5%] right-[4.5%] gap-4">
         <Button
           type="button"
-          onClick={() => router.push("/customers")}
+          onClick={() => router.back()}
           className="flex justify-evenly rounded-full p-5 w-40 cursor-pointer bg-yellow-500 hover:bg-yellow-400 text-base font-bold"
         >
           Cancelar

@@ -28,7 +28,6 @@ const RentalDetails = () => {
             cod_brinquedo: t.cod_brinquedo,
             nome: t.nome,
             valor_locacao: t.valor_unitario,
-            quantidade: 0,
           }))
         );
       }

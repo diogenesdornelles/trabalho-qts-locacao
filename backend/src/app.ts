@@ -22,10 +22,10 @@ import { ServerProtocolType } from './types/serverProtocol.type'
 
 // SSL certificate options for running the application over HTTPS.
 // Reads the key and certificate files from the 'cert' directory.
-const sslOptions = {
-  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
-  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
-}
+// const sslOptions = {
+//   key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+//   cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem')),
+// }
 
 dotenv.config()
 
@@ -108,7 +108,7 @@ class App {
    */
   public listen(protocol: ServerProtocolType = 'http'): void {
     if (protocol === 'https') {
-      https.createServer(sslOptions, this.app).listen(PORT, () => {
+      https.createServer({}, this.app).listen(PORT, () => {
         console.log(`Host: ${HOST}. Listening on port ${PORT}
           Do requests at ${protocol}://${HOST}:${PORT}/api
           See documentation at ${protocol}://${HOST}:${PORT}/api/docs

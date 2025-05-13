@@ -1,11 +1,11 @@
 /* Estiliza a largura da barra de rolagem */
 .custom-scrollbar::-webkit-scrollbar {
-  width: 8px; /* Largura da barra */
+  width: 6px; /* Largura da barra */
 }
 
 /* Estiliza a "pegada" da barra de rolagem */
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: oklch(0.592 0.249 0.584);
+  background-color: oklch(71.8% 0.202 349.761);
   border-radius: 4px;
 }
 

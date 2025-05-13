@@ -52,7 +52,6 @@ export interface BrinquedoLocado {
 export type SelectedToy = {
   valor_locacao: number;
   cod_brinquedo: string;
-  quantidade: number;
   nome: string | undefined;
 };
 
