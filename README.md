@@ -139,25 +139,25 @@ Portanto, as atividades executadas serão as seguintes:
 
 ## Cronograma
 
-| #  | Atividade | Tempo de Execução | Prazo | Responsável | Ferramentas |
-|----|-----------|----------------|-------|--------------|--------------|
-| **01** | Reunião inicial | 1 dia | 07/03/2025 | Líder | Presencial |
-| **02** | Análise de requisitos | 2 dias | 09/03/2025 | Analista | Editor de texto |
-| **03** | Caso de uso principal | 3 dias | 12/03/2025 | Analista | Editor de texto |
-| **04** | Regras de negócio | 2 dias | 14/03/2025 | Analista | Editor de texto |
-| **05** | Diagrama de Casos de Uso | 2 dias | 16/03/2025 | Analista | DrawIO |
-| **06** | Diagrama ER | 2 dias | 18/03/2025 | Analista | PgAdmin4 |
-| **07** | Diagrama UML de Classes | 3 dias | 21/03/2025 | Analista | DrawIO/PlantUML |
-| **08** | Planejamento UI/UX | 2 dias | 23/03/2025 | Analista e Dev Frontend | Figma |
-| **09** | Reunião intermediária 1 | 1 dia | 24/04/2025 | Líder | Presencial |
-| **10** | Desenvolvimento Backend | 20 dias | 14/04/2025 | Dev Backend | NodeJS/Express/Postgres/Prisma |
-| **11** | Desenvolvimento Frontend | 20 dias | 24/04/2025 | Dev Frontend | React/TypeScript/Git |
-| **12** | Reunião intermediária 2 | 1 dia | 25/04/2025 | Líder | Presencial |
-| **13** | Testes funcionais  | 7 dias | 02/05/2025 | Equipe | Ambiente NodeJS |
-| **14** | Revisão de código | 4 dias | 06/05/2025 | Equipe | Tecnologias acima |
-| **15** | Testes funcionais  | 2 dias | 08/05/2025 | Equipe | Ambiente NodeJS |
-| **16** | Reunião final | 1 dia | 09/05/2025 | Líder | Presencial |
-| **17** | Entrega final | 1 dia | 15/05/2025 | Líder | Moodle |
+| #      | Atividade                | Tempo de Execução | Prazo      | Responsável             | Ferramentas                    |
+| ------ | ------------------------ | ----------------- | ---------- | ----------------------- | ------------------------------ |
+| **01** | Reunião inicial          | 1 dia             | 07/03/2025 | Líder                   | Presencial                     |
+| **02** | Análise de requisitos    | 2 dias            | 09/03/2025 | Analista                | Editor de texto                |
+| **03** | Caso de uso principal    | 3 dias            | 12/03/2025 | Analista                | Editor de texto                |
+| **04** | Regras de negócio        | 2 dias            | 14/03/2025 | Analista                | Editor de texto                |
+| **05** | Diagrama de Casos de Uso | 2 dias            | 16/03/2025 | Analista                | DrawIO                         |
+| **06** | Diagrama ER              | 2 dias            | 18/03/2025 | Analista                | PgAdmin4                       |
+| **07** | Diagrama UML de Classes  | 3 dias            | 21/03/2025 | Analista                | DrawIO/PlantUML                |
+| **08** | Planejamento UI/UX       | 2 dias            | 23/03/2025 | Analista e Dev Frontend | Figma                          |
+| **09** | Reunião intermediária 1  | 1 dia             | 24/04/2025 | Líder                   | Presencial                     |
+| **10** | Desenvolvimento Backend  | 20 dias           | 14/04/2025 | Dev Backend             | NodeJS/Express/Postgres/Prisma |
+| **11** | Desenvolvimento Frontend | 20 dias           | 24/04/2025 | Dev Frontend            | React/TypeScript/Git           |
+| **12** | Reunião intermediária 2  | 1 dia             | 25/04/2025 | Líder                   | Presencial                     |
+| **13** | Testes funcionais        | 7 dias            | 02/05/2025 | Equipe                  | Ambiente NodeJS                |
+| **14** | Revisão de código        | 4 dias            | 06/05/2025 | Equipe                  | Tecnologias acima              |
+| **15** | Testes funcionais        | 2 dias            | 08/05/2025 | Equipe                  | Ambiente NodeJS                |
+| **16** | Reunião final            | 1 dia             | 09/05/2025 | Líder                   | Presencial                     |
+| **17** | Entrega final            | 1 dia             | 15/05/2025 | Líder                   | Moodle                         |
 
 ## Responsáveis pela Execução
 
@@ -185,16 +185,16 @@ Portanto, as atividades executadas serão as seguintes:
 
 ### Requisitos funcionais (RF)
 
-| **Código** | **Requisito** | **Ator** | **Relacionados** |
-|------------|--------------|----------|------------------|
-| **RF01** | O sistema deve **gerenciar** informações sobre funcionários: *CPF, nome, senha, ativo, telefone e função*. | Gerente (Administrador do site) | - |
-| **RF02** | O sistema deve **gerenciar** informações sobre brinquedos: *código único, nome, tipo de brinquedo, ativo, marca, data da aquisição e valor da locação*. | Almoxarife | RF03 |
-| **RF03** | O sistema deve **manter** informações sobre tipos de brinquedos: *código único, ativo e nome do tipo*. | Almoxarife | - |
-| **RF04** | O sistema deve **manter** informações sobre clientes: *CPF, nome, endereço, ativo, data de nascimento e telefone*. | Analista de cadastro | - |
-| **RF05** | O sistema deve **incluir** informações sobre locações: *código único da locação,  ativo, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado,  ativo, valor total da locação e data para devolução*. | Agente de locação | RF02, RF04, RN02 |
-| **RF06** | O sistema deve **incluir** informações sobre pagamento: *código único da locação, ativo, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*. | Caixa | RF02, RF05, RN01 |
-| **RF07** | O sistema deve **permitir** acesso aos recursos mediante login com *senha* e *CPF*. | Sistema | RF01, RNF06 |
-| **RF08** | O sistema deve **permitir** o encerramento de sessão. | Sistema | RF01, RNF06 |
+| **Código** | **Requisito**                                                                                                                                                                                                                                   | **Ator**                        | **Relacionados** |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- | ---------------- |
+| **RF01**   | O sistema deve **gerenciar** informações sobre funcionários: *CPF, nome, senha, ativo, telefone e função*.                                                                                                                                      | Gerente (Administrador do site) | -                |
+| **RF02**   | O sistema deve **gerenciar** informações sobre brinquedos: *código único, nome, tipo de brinquedo, ativo, marca, data da aquisição e valor da locação*.                                                                                         | Almoxarife                      | RF03             |
+| **RF03**   | O sistema deve **manter** informações sobre tipos de brinquedos: *código único, ativo e nome do tipo*.                                                                                                                                          | Almoxarife                      | -                |
+| **RF04**   | O sistema deve **manter** informações sobre clientes: *CPF, nome, endereço, ativo, data de nascimento e telefone*.                                                                                                                              | Analista de cadastro            | -                |
+| **RF05**   | O sistema deve **incluir** informações sobre locações: *código único da locação,  ativo, data e horário atual, CPF do cliente, código único do brinquedo, valor unitário do item locado,  ativo, valor total da locação e data para devolução*. | Agente de locação               | RF02, RF04, RN02 |
+| **RF06**   | O sistema deve **incluir** informações sobre pagamento: *código único da locação, ativo, nome e CPF do cliente, data do pagamento, valor da locação e valor do pagamento*.                                                                      | Caixa                           | RF02, RF05, RN01 |
+| **RF07**   | O sistema deve **permitir** acesso aos recursos mediante login com *senha* e *CPF*.                                                                                                                                                             | Sistema                         | RF01, RNF06      |
+| **RF08**   | O sistema deve **permitir** o encerramento de sessão.                                                                                                                                                                                           | Sistema                         | RF01, RNF06      |
 
 ### Definições
 
@@ -203,25 +203,25 @@ Portanto, as atividades executadas serão as seguintes:
 
 ### Requisitos Não Funcionais (RNF)
 
-| **Código** | **Requisito** | **Atores** | **Relacionados** |
-|------------|--------------|------------|------------------|
-| **RNF01** | O sistema deve ser acessível via internet, utilizando uma arquitetura cliente-servidor baseada nos protocolos **HTTP/HTTPS**. Deve-se priorizar **HTTPS** para garantir segurança na transmissão de dados por meio do protocolo **TLS (Transport Layer Security)**. | Usuário final, Administrador | - |
-| **RNF02** | O sistema deve ser totalmente compatível e funcional nos navegadores **Google Chrome e Mozilla Firefox** versões Desktop, garantindo suporte para suas versões mais recentes e futuras atualizações. | Usuário final | - |
-| **RNF03** | O sistema deve oferecer uma interface intuitiva, seguindo diretrizes reconhecidas de usabilidade, como os princípios de **Jakob Nielsen**. Para melhorar a experiência do usuário, a interface deve:<br> - Utilizar **listas de seleção** para facilitar a inserção de dados.<br> - Exibir **notificações sobre campos inválidos** e fornecer sugestões de preenchimento.<br> - Seguir um **padrão de design visual** baseado em uma paleta de três cores principais, aplicando o conceito de **Color Harmony** para garantir consistência estética. | Usuário final | - |
-| **RNF04** | O sistema deve implementar **mecanismos seguros de autenticação** para impedir acessos não autorizados. Os métodos podem incluir:<br> - **OAuth 2.0** ou **JWT (JSON Web Token)** para autenticação baseada em tokens.<br> - **Criptografia de credenciais** para proteção dos dados de login. | Administrador, Usuário final | RNF06 |
-| **RNF05** | O sistema deve garantir a **privacidade e segurança dos dados** dos usuários por meio das seguintes medidas:<br> - **Criptografia de armazenamento** usando, por exemplo, **criptografia Bcrypt** para dados sensíveis como senhas.<br> - **Restrições de acesso** baseadas em regras de permissão.<br> - Implementação de **UUIDs (Identificadores Únicos Universais)** para a identificação de recursos, garantindo rastreabilidade e segurança. | Administrador, Usuário final | RNF04, RNF06 |
-| **RNF06** | O sistema deve permitir a **criação e gestão de perfis de usuários** com diferentes níveis de acesso, garantindo que cada perfil tenha permissões apropriadas. Exemplos de níveis incluem:<br> - **Caixa** – Acesso a operações financeiras.<br> - **Gerente** – Controle total e gerenciamento de usuários.<br> - **Analista de Cadastro** – Permissão para modificar registros cadastrais.<br> - **Agente de Locação** – Gerenciamento de locações e contratos.<br> - **Almoxarife** – Controle de estoque e produtos. | Administrador | RNF04, RNF05 |
+| **Código** | **Requisito**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | **Atores**                   | **Relacionados** |
+| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- | ---------------- |
+| **RNF01**  | O sistema deve ser acessível via internet, utilizando uma arquitetura cliente-servidor baseada nos protocolos **HTTP/HTTPS**. Deve-se priorizar **HTTPS** para garantir segurança na transmissão de dados por meio do protocolo **TLS (Transport Layer Security)**.                                                                                                                                                                                                                                                                                  | Usuário final, Administrador | -                |
+| **RNF02**  | O sistema deve ser totalmente compatível e funcional nos navegadores **Google Chrome e Mozilla Firefox** versões Desktop, garantindo suporte para suas versões mais recentes e futuras atualizações.                                                                                                                                                                                                                                                                                                                                                 | Usuário final                | -                |
+| **RNF03**  | O sistema deve oferecer uma interface intuitiva, seguindo diretrizes reconhecidas de usabilidade, como os princípios de **Jakob Nielsen**. Para melhorar a experiência do usuário, a interface deve:<br> - Utilizar **listas de seleção** para facilitar a inserção de dados.<br> - Exibir **notificações sobre campos inválidos** e fornecer sugestões de preenchimento.<br> - Seguir um **padrão de design visual** baseado em uma paleta de três cores principais, aplicando o conceito de **Color Harmony** para garantir consistência estética. | Usuário final                | -                |
+| **RNF04**  | O sistema deve implementar **mecanismos seguros de autenticação** para impedir acessos não autorizados. Os métodos podem incluir:<br> - **OAuth 2.0** ou **JWT (JSON Web Token)** para autenticação baseada em tokens.<br> - **Criptografia de credenciais** para proteção dos dados de login.                                                                                                                                                                                                                                                       | Administrador, Usuário final | RNF06            |
+| **RNF05**  | O sistema deve garantir a **privacidade e segurança dos dados** dos usuários por meio das seguintes medidas:<br> - **Criptografia de armazenamento** usando, por exemplo, **criptografia Bcrypt** para dados sensíveis como senhas.<br> - **Restrições de acesso** baseadas em regras de permissão.<br> - Implementação de **UUIDs (Identificadores Únicos Universais)** para a identificação de recursos, garantindo rastreabilidade e segurança.                                                                                                   | Administrador, Usuário final | RNF04, RNF06     |
+| **RNF06**  | O sistema deve permitir a **criação e gestão de perfis de usuários** com diferentes níveis de acesso, garantindo que cada perfil tenha permissões apropriadas. Exemplos de níveis incluem:<br> - **Caixa** – Acesso a operações financeiras.<br> - **Gerente** – Controle total e gerenciamento de usuários.<br> - **Analista de Cadastro** – Permissão para modificar registros cadastrais.<br> - **Agente de Locação** – Gerenciamento de locações e contratos.<br> - **Almoxarife** – Controle de estoque e produtos.                             | Administrador                | RNF04, RNF05     |
 
 ### Descrição das regras de negócio (RN)
 
-| **Código** | **Regra de Negócio** |
-|------------|----------------------|
-| **RN01** | O pagamento é feito no momento da locação e em dinheiro. |
-| **RN02** | O prazo máximo para devolução dos brinquedos é de 01 dia (ou seja, 1 dia após a entrega do brinquedo locado). |
+| **Código** | **Regra de Negócio**                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| **RN01**   | O pagamento é feito no momento da locação e em dinheiro.                                                      |
+| **RN02**   | O prazo máximo para devolução dos brinquedos é de 01 dia (ou seja, 1 dia após a entrega do brinquedo locado). |
 
 ### Diagrama de Casos de Uso
 
-![diagrama-caso-uso](/casos/casos.png)
+![diagrama-caso-uso](/docs/casos_de_uso.png)
 
 ### Escrita do caso de uso principal do incremento de forma detalhada
 
@@ -229,50 +229,52 @@ Portanto, as atividades executadas serão as seguintes:
 
 ### 1. Incluir Locações
 
-| **Nome do caso de uso**         | Incluir locações                                                              |
-|---------------------------------|:-------------------------------------------------------------------------------:|
-| **Escopo**                      | Permite incluir informações de locações                                       |
-| **Ator(es)**                    | Agente de locação                                                           |
-| **Interessados e interesses**   | Agente de locação e Gerente: controle de dados sobre locações                           |
-| **Pré-condição**                | Estar logado                                                                  |
-| **Pós-condição**                | Que as informações de locação sejam incluídas e alteradas com sucesso           |
+| **Nome do caso de uso**       |                           Incluir locações                            |
+| ----------------------------- | :-------------------------------------------------------------------: |
+| **Escopo**                    |                Permite incluir informações de locações                |
+| **Ator(es)**                  |                           Agente de locação                           |
+| **Interessados e interesses** |     Agente de locação e Gerente: controle de dados sobre locações     |
+| **Pré-condição**              |                             Estar logado                              |
+| **Pós-condição**              | Que as informações de locação sejam incluídas e alteradas com sucesso |
 
 ##### Fluxo Principal
 
 1. **Agente de locação** clica na opção *Incluir locação*.
-2. **Sistema** solicita o preenchimento do campo **CPF**.
-3. **Agente de locação** informa o CPF.
-4. **Sistema** exibe uma lista de clientes ativos compatíveis.
+2. **Sistema** mostra a data de locação como *Data atual*, e a data de devolução como *Data atual + 1*
+3. **Sistema** solicita o preenchimento do campo **CPF**.
+4. **Agente de locação** informa o CPF.
+5. **Sistema** valida campo.
     - Se **CPF não corresponde a cliente cadastrado ou ativo**:
       1. Exibe mensagem de erro.
       2. Retorna ao **passo 2**.
-5. **Agente de locação** seleciona o cliente desejado.
-6. **Sistema** solicita o preenchimento do campo **Nome do Brinquedo**.
-7. **Agente de locação** informa o nome do brinquedo.
-8. **Sistema** exibe uma lista com brinquedos ativos compatíveis.
-    - Se **Nome não corresponde a brinquedo cadastrado ou ativo**:
-      1. Exibe mensagem de erro.
-      2. Retorna ao **passo 6**.
-9. **Agente de locação** seleciona o brinquedo desejado.
-10. **Sistema** mostra a data de devolução como *Data atual + 1*, o nome do brinquedo e o valor unitário.
-     **Agente de locação repete passos 6 a 10 enquanto for solicitada a locação de brinquedos pelo cliente**
-11. **Sistema** calcula o valor total da locação.
-    - Se nenhum brinquedo for selecionado:
+6. **Agente de locação** clica na opção *Adicionar* para selecionar brinquedos a serem locados.
+7. **Sistema** abre janela de seleção de brinquedos.
+8. **Agente de locação** seleciona o tipo de brinquedo desejado.
+9. **Sistema** busca e mostra brinquedos do tipo escolhido.
+10. **Agente de locação** escolhe o brinquedo
+11. **Sistema** mostra valor de locação do brinquedo
+12. **Agente de locação** confirma ou cancela a operação
+    - Se **cancela operação**:
+      1. **Sistema** fecha janela de seleção de brinquedos.
+    - Se **confirma operação**:
+      1. **Sistema** fecha janela de seleção de brinquedos e adiciona o brinquedo à tabela de brinquedos locados.
+13. **Agente de locação repete passos 6 a 12 enquanto for solicitada a locação de brinquedos pelo cliente**
+14. **Sistema** calcula e mostra o valor total da locação.
+15. - Se nenhum brinquedo for selecionado:
       1. Exibe mensagem de erro *É necessário selecionar pelo menos um brinquedo para concluir a locação*.
       2. Retorna ao **passo 6**.
-12. **Sistema** registra a data e hora atual da transação.
-13. **Sistema** define o status do pagamento como *pendente* e status do item como `ativo=true`.
-14. **Sistema** gera um código único para a locação.
-15. **Sistema** salva os dados da locação.
+16. **Sistema** define o status do pagamento como *pendente* .
+17. **Sistema** gera um código único para a locação.
+18. **Sistema** salva os dados da locação.
     - Se ocorre erro ao salvar locação:
       1. Exibe mensagem de erro *Erro ao salvar locação*.
       2. Retorna ao **passo 1**.
-16. **Sistema** exibe a mensagem: *Locação salva com sucesso*.
-17. **Sistema** registra todos os *brinquedos locados*, com o respectivo código de locação.
+19. **Sistema** exibe a mensagem: *Locação salva com sucesso*.
+20. **Sistema** registra todos os *brinquedos locados*, com o respectivo código de locação.
     - Se ocorre erro ao salvar brinquedos locados:
       1. Exibe mensagem de erro *Erro ao salvar brinquedos locados*.
       2. Retorna ao **passo 1**.
-18. **Sistema** exibe a mensagem: *Brinquedos locados salvos com sucesso*.
+21. **Sistema** exibe a mensagem: *Brinquedos locados salvos com sucesso*.
 
 ### ERD
 
@@ -316,7 +318,7 @@ Portanto, as atividades executadas serão as seguintes:
 
 O Schema da aplicação fica melhor delineado no ERD abaixo:
 
-![ERD](/casos/erd.png "Erd para o sistema de locação")
+![ERD](/docs/erd.png "Erd para o sistema de locação")
 
 Código SQL para a geração das tabelas:
 
@@ -424,7 +426,7 @@ model TipoBrinquedo {
 
 ### UML
 
-![UML Diagram](/casos/uml.png "UML para o backend sistema de locação")
+![UML Diagram](/docs/diagrama_uml.png "UML para o backend sistema de locação")
 
 #### Imagem no drive para melhor visualização
 
@@ -629,3 +631,7 @@ Está no README.md na raiz do projeto
   EXPIRES_IN="2d"
 
 ```
+
+## Telas principais do sistema
+
+![System screens](/docs/screens.png "Telas principais para o sistema de locação")

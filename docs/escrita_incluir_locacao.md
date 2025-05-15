@@ -27,7 +27,6 @@
 12. **Agente de locação** confirma ou cancela a operação
     - Se **cancela operação**:
       1. **Sistema** fecha janela de seleção de brinquedos.
-    
     - Se **confirma operação**:
       1. **Sistema** fecha janela de seleção de brinquedos e adiciona o brinquedo à tabela de brinquedos locados.
 13. **Agente de locação repete passos 6 a 12 enquanto for solicitada a locação de brinquedos pelo cliente**
