@@ -4,9 +4,9 @@
 
 ## Cenário 1: Simular a inclusão de uma locação com sucesso
 
-- **Descrição**: O agente de locação realiza todos os passos corretamente e o sistema registra a locação e o brinquedo selecionado com sucesso.
+- **Descrição**: O agente de locação realiza todos os passos corretamente e o sistema registra a locação e os brinquedos selecionados com sucesso.
 - **Fluxo**: Segue o fluxo principal do caso de uso.
-- **Resultado esperado**: A locação é salva com sucesso e o brinquedo locado é registrado.
+- **Resultado esperado**: A locação é salva com sucesso e os brinquedos locados são registrados.
 
 ---
 
@@ -37,16 +37,16 @@
 ## Cenário 5: Simular erro ao salvar a locação
 
 - **Descrição**: O sistema encontra um erro ao tentar salvar os dados da locação.
-- **Fluxo alternativo**: O sistema exibe uma mensagem de erro: *Erro ao salvar a locação. Tente novamente mais tarde*.
-- **Resultado esperado**: A locação não é salva, e o sistema mantém os dados consistentes.
+- **Fluxo alternativo**: O sistema exibe uma mensagem de erro: *Erro ao salvar locação. Verifique sua conexão e tente novamente*.
+- **Resultado esperado**: A locação não é salva e o sistema retorna ao início do processo.
 
 ---
 
 ## Cenário 6: Simular erro ao salvar os brinquedos locados
 
 - **Descrição**: O sistema encontra um erro ao tentar salvar os brinquedos locados após salvar a locação.
-- **Fluxo alternativo**: O sistema exibe uma mensagem de erro: *Erro ao salvar os brinquedos locados. Tente novamente mais tarde*.
-- **Resultado esperado**: Nenhum dado é salvo, e o sistema mantém os dados consistentes.
+- **Fluxo alternativo**: O sistema exibe uma mensagem de erro: *Erro ao salvar brinquedos locados. A locação foi registrada, mas os itens precisam ser vinculados manualmente*.
+- **Resultado esperado**: O agente é notificado e recomendado a entrar em contato com o suporte técnico.
 
 ---
 
@@ -58,18 +58,34 @@
 
 ---
 
-## Cenário 8: Avaliar se mensagem data de devolução, nome do brinquedo e valor unitário é corretamente exibida
+## Cenário 8: Avaliar se sistema exibe corretamente data de devolução, nome do brinquedo e valor unitário
 
-- **Descrição**: O sistema exibe uma mensagem com a data de devolução, nome do brinquedo e valor unitário.
-- **Fluxo**: O agente de locação seleciona um brinquedo e o sistema exibe a mensagem com as informações corretas.
-- **Resultado esperado**: A mensagem é exibida corretamente com as informações do brinquedo selecionado.
+- **Descrição**: O sistema exibe as informações do brinquedo selecionado corretamente.
+- **Fluxo**: O agente de locação seleciona um brinquedo e o sistema exibe a data de devolução, nome e valor.
+- **Resultado esperado**: A mensagem é exibida corretamente com as informações do brinquedo.
 
 ---
 
 ## Cenário 9: Avaliar se sistema calcula corretamente o valor total da locação
 
-- **Descrição**: O sistema calcula o valor total da locação com base no valor unitário do brinquedo.
-- **Fluxo**: O agente de locação informa brinquedos e o sistema calcula o valor total.
+- **Descrição**: O sistema calcula o valor total da locação com base nos brinquedos selecionados.
+- **Fluxo**: O agente de locação adiciona brinquedos e o sistema realiza o cálculo.
 - **Resultado esperado**: O valor total é calculado corretamente e exibido para o agente de locação.
+
+---
+
+## Cenário 10: Simular valor inválido do brinquedo
+
+- **Descrição**: O sistema identifica um valor de brinquedo como zero, negativo ou inválido.
+- **Fluxo alternativo**: O sistema exibe uma mensagem de erro: *Valor do brinquedo inválido. Selecione outro item*.
+- **Resultado esperado**: O sistema impede a adição do brinquedo e retorna à tela de seleção.
+
+---
+
+## Cenário 11: Simular cancelamento da locação antes da confirmação final
+
+- **Descrição**: O agente de locação decide cancelar a locação antes de finalizar o processo.
+- **Fluxo alternativo**: O sistema cancela a operação e retorna ao menu inicial.
+- **Resultado esperado**: Nenhum dado é salvo, e o sistema volta ao menu inicial.
 
 ---
