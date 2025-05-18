@@ -16,7 +16,7 @@ export abstract class BaseController<
   T extends BaseService<
     Record<string, any>,
     Record<string, any>,
-    Record<string, any>
+    Record<string, any> 
   >,
 > {
   // The service instance used for business logic operations.
